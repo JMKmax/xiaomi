@@ -1,9 +1,55 @@
-/*
-* @Author: TomChen
-* @Date:   2018-11-15 20:47:21
-* @Last Modified by:   TomChen
-* @Last Modified time: 2018-11-15 20:47:50
-*/
-ul li{
+@import url(common.css);
+.top{
+	height: 40px;
+	background: #333;
+}
+.top-nav{
+	height: 40px;
+	float: left;
+}
+.top .top-nav-item {
+	line-height: 40px;
+	float: left;
+}
+.top .cart{
+	float: right;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.top .cart:hover{
+	background: white;
+}
+.top .cart:hover a{
+	color: red;
+}
+.top .user-ifm{
+	float: right;
+	width: 175px;
+	height: 40px;
+}
+.top .user-ifm .user-ifm-item{
+	float: left;
+	line-height: 40px;	
+}
+.header{
+	height: 100px;
 	background: red;
 }
+.home{
+	height: 1271px;
+	background: pink;
+}
+.main{
+	height: 2176px;
+	background: purple;
+}
+.footer{
+	height: 277px;
+	background: gray;
+}
+.bottom{
+	height: 148px;
+	background: skyblue;
+}	
