@@ -35,7 +35,15 @@
 }
 .header{
 	height: 100px;
-	background: red;
+}
+.header .logo{
+	width: 60px;
+	height: 60px;
+	background: #ff6700;
+	margin-top: 20px;
+}
+.header .header-nav{
+	width: 
 }
 .home{
 	height: 1271px;
