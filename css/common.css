@@ -29,9 +29,19 @@ a:hover{
 .col1{
 	width: 234px;
 	float: left;
-	margin-right: 15px;
+	margin-right: 16px;
 }
 .col2{
-	width: 978px;
+	width: 976px;
 	float: left;
+}
+.hd .title{
+	height: 60px;
+	line-height: 60px;
+	float: left;
+}
+.hd .more{
+	height: 60px;
+	line-height: 60px;
+	float: right;
 }
