@@ -159,3 +159,10 @@ a:hover{
 	font-size: 12px;
 	color: #adadad;
 }
+.product-item-m .view {
+	width: 234px;
+	height: 80px;
+	background: #ff6740;
+	position: absolute;
+	bottom: 0px;
+}
