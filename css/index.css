@@ -417,7 +417,7 @@
 .elec .bd .col1{
 	height: 616px;
 }
-.elec .bd .col1 .product-item-m{
+.col1 .product-item-m{
 	padding:0px;
 	width: 234px;
 	position:relative;
@@ -432,7 +432,7 @@
 .main .elec .bd .col2{
 	height: 616px;
 }
-.main .elec .bd .col2 .product-item-m{
+.elec .bd .col2 .product-item{
 	padding:0px;
 }
 
