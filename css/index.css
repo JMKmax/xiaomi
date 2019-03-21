@@ -1,4 +1,249 @@
-@import url(common.css);
+
+/*共同样式*/
+.caption{
+	width: 1226px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.clearfix:after{
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix{
+	*zoom: 1;
+}
+.top .nev{
+	color: #3b4142;
+	font-size: 9px;
+}
+a{
+	text-decoration: none;
+	font-size: 12px;
+	color: #90b0b0;
+	margin:0px 5px;
+}
+a:hover{
+	color: #fff;
+}
+.col1{
+	width: 234px;
+	float: left;
+	margin-right: 16px;
+}
+.col2{
+	width: 976px;
+	float: left;
+}
+.hd{
+	height: 60px;
+	background: #f5f5f5;
+}
+.hd .title{
+	height: 60px;
+	line-height: 60px;
+	float: left;
+}
+.hd .more{
+	height: 60px;
+	line-height: 60px;
+	float: right;
+}
+.adv{
+	height: 120px;
+	margin-top: 42px;
+}
+.adv img{
+	width: 100%;
+	height: 100%;
+}
+.hd .vedo a{
+	font-size: 15px;
+	color: #333;
+}
+.hd .vedo a:hover{
+	color: #ff6740;
+}
+.hd .vedo a:hover i{
+	background: #ff6740;
+}
+.hd .vedo a i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+	background: #b0b0b0;
+	border-radius: 50%;
+	vertical-align: 1px;
+}
+.hd .tab .tab-item{
+	float: left;
+}
+.hd .tab .tab-item a{
+	font-size: 16px;
+	color:#424242;
+}
+.flag{
+	width: 66px;
+	height: 20px;
+	line-height: 20px;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	margin-left: -33px;
+}
+.off-flag{
+	background: #ff6740
+}
+.new-flag{
+	background: #83c44e;
+}
+.product-item{
+	width: 234px;
+	float: left;
+	text-align: center;
+	margin-left: 13px;
+	position: relative;
+}
+.product-item-m{
+	height: 301px;
+	background: #fff;
+	padding-top: 10px;
+	transition: all 0.2s;
+	margin-bottom: 14px;
+	box-sizing: border-box;
+}
+.product-item-m:hover{
+	box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+	transform: translateY(-3px);
+}
+.product-item:first-child{
+	margin-left: 0px;
+}
+.product-item-m:nth-child(5){
+	margin-left: 0px;
+}
+.product-item-m img{
+	width: 122px;
+	height: 153px;
+}
+.product-item h3{
+	display: block;
+	font-size: 12px;
+	margin-top: 40px;
+	color: #202020;
+}
+.product-item .flash-item-disc{
+	display: block;
+	font-size: 9px;
+	color: #adadad;
+	margin-top: 12px;
+	margin-bottom: 18px;
+	width: 150px;
+	margin-left: 40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.product-item strong,
+.product-item .flash-bd-num{
+	font-size: 12px;
+	color: #ff6740;
+}
+.product-item del{
+	font-size: 12px;
+	color: #adadad;
+}
+.product-item-m .view {
+	width: 234px;
+	height: 0px;
+	background: #ff6740;
+	text-align: left;
+	/*padding: 10px 20px 0 20px;*/
+	padding:0px 20px;
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0px;
+	transition: height 0.2s;
+}
+.product-item-m:hover .view{
+	height: 80px;
+}
+.product-item-m .view .view-dis{
+	height: 40px;
+	line-height: 20px;
+	font-size: 13px;
+	color: #fff;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+.product-item-m .view .author{
+	height: 10px;
+	line-height: 10px;
+	font-size: 10px;
+	color: #f5f5f5;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+.product-item.cl{
+	background: #f5f5f5;
+	height: 300px;
+}
+ .cl .product-item-m.product-item-s{
+	height: 143px;
+	width: 234px;
+	background: #fff;
+	margin-bottom: 14px;
+	position: relative;
+	text-align: left;
+	padding:0 0 0 30px;
+}
+.product-item-m.product-item-s img{
+	width: 45px;
+	height: 66px;
+	position: absolute;
+	right: 36px;
+	top: 40px;
+}
+.product-item-m.product-item-s h3{
+	margin-bottom: 5px;
+
+}
+.product-item-m.product-item-s.product-hot{
+	padding:40px 0 0 30px;
+}
+.product-item-m.product-item-s.product-hot a{
+	font-size: 18px;
+	color: #333;
+	text-align: left;
+	margin:0;
+}
+.product-item-m.product-item-s.product-hot span{
+	display: block;
+	font-size: 12px;
+	color: #7d7d7d;
+	margin-top: 5px;
+}
+
+.product-item-m.product-item-s.product-hot p{
+	position: absolute;
+	right: 34px;
+	top:40px;
+	font-size: 48px;
+	color: #ff6740
+}
+/*分隔符*/
 .top{
 	height: 40px;
 	background: #333;
@@ -682,8 +927,3 @@
 	height: 110px;
 	line-height: 110px;
 }
-/*.bottom .bottom-flag img{
-	height: 100%;
-	width: 
-}
-*/
