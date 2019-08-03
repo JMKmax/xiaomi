@@ -786,7 +786,7 @@
                     <div class="dynamic-video fromProd">
                         <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
                         <div class="play"></div>
-                        <div class="total-num">17:24</div>
+                        <div class="total-num"><%=list[i].length%></div>
                     </div>
                     <%}%>
                     <%if(list[i].price){%>
@@ -828,7 +828,7 @@
                         <div class="dynamic-video">
                             <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%"onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
                             <div class="play"></div>
-                            <div class="total-num">17:24</div>
+                            <div class="total-num"><%=list[i].length%></div>
                         </div>
                     <%}%>
                 </div>
@@ -1052,6 +1052,7 @@
                     results[i].cover = _obj.url+feilKey;
                     results[i].coverStyle = _obj.style;
                 }
+                results[i].length = checkTime(results[i].length)
             }
             results[i].ctime = quakooUtils.commentFormatTime(results[i].ctime)
         }
@@ -1244,6 +1245,18 @@
             $api.text(curNumberDom,++curNumber);
         }
 
+    }
+    //处理时间
+    function toStr(nub) {
+        return nub > 10 ? '' + nub : '0' + nub
+    }
+
+    function checkTime(time) {
+        var iHour = parseInt(time / 3600);
+        var iMinute = parseInt((time % 3600) / 60);
+        var iSecond = (time % 3600) % 60;
+
+        return time = "" + toStr(iMinute) + ":" + toStr(iSecond) + "";
     }
 </script>
 </body>

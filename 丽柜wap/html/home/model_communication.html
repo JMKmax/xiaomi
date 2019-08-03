@@ -202,7 +202,13 @@
             height: calc(100vw / 1.7045);
             position: relative;
         }
-
+		#video{
+			object-fit: fill;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			z-index: 2;
+		}
         .video-cover {
             width: 100%;
             height: 100%;
@@ -602,9 +608,12 @@
                         </div>
                         <%if(list.objectType == 1){%>
                         <div class="dynamic-video fromProd">
-                            <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list.cover%>" real-style="<%=list.coverStyle%>" alt=""></div>
+                        	<video id="video" x5-playsinline="" poster="<%=list.cover%>"  playsinline=""  webkit-playsinline="" class="video-js vjs-default-skin video_fill" controls controlsList="nodownload" preload="true" width="640" height="264" data-setup="{}" data-time="<%=list.canWatchNum%>">
+								<source controls="" src="<%=list.video%>" type="video/mp4">
+							</video>
+                            
                             <div class="play" tapmode="" onclick="playVideoEvent('<%=list.video%>','<%=list.length%>')"></div>
-                            <div class="total-num">17:24</div>
+                            <div class="total-num"><%=list.length%></div>
                         </div>
                         <%}%>
                     </div>
@@ -638,7 +647,9 @@
                     <%}%>
                     <%if(list.objectType == 1){%>
                     <div class="dynamic-video">
-                        <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list.cover%>" real-style="<%=list.coverStyle%>" alt=""></div>
+                        <video id="video" x5-playsinline="" poster="<%=list.cover%>"  playsinline=""  webkit-playsinline="" class="video-js vjs-default-skin video_fill" controls controlsList="nodownload" preload="true"  data-setup="{}" data-time="<%=list.canWatchNum%>">
+								<source controls="" src="<%=list.video%>" type="video/mp4">
+							</video>
                         <div class="play" tapmode="" onclick="playVideoEvent('<%=list.video%>','<%=list.length%>')"></div>
                         <!--						<div class="total-num">17:24</div>-->
                     </div>
@@ -740,7 +751,7 @@
         var data = {
             list: results,
         };
-
+//		console.log(data.list.url)
         var html = template('scriptDiv1', data);
         $api.html($api.dom('#con'), html);
         
@@ -768,6 +779,7 @@
 			mui('.prod-data').on('tap','.com',function(){
 				showWords('block')
 			})
+			 
 			
         }, 100);
         //底部列表

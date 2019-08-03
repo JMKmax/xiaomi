@@ -111,9 +111,47 @@
 		.mui-table-view{
 			background: none;
 		}
+		/*右上角点击按钮*/
+		.wrap{
+  			position: fixed;
+  			top:0;
+  			left: 0;
+  			width: 100%;
+  			height: 100%;
+  			background: rgba(0,0,0,0.2);
+  			z-index: 99;
+  			display: none;
+  		}
+  		.wrap_ul{
+  			width: 4.346666rem;
+  			background: #fff;
+  			padding: 0.32rem;
+  			position: absolute;
+  			top: 1.44rem;
+  			right: 0.4rem;
+  			box-shadow: 0 0.066666rem 0.2rem #ccc;
+  			border-radius: 0.106666rem;
+  		}
+  		.item{
+  			font-size: 0.373333rem;
+  			color: #333;
+  			font-family:PingFang-SC-Medium;
+  			margin-bottom: 0.32rem;
+  		}
+  		.item:last-child{
+  			margin-bottom: 0;
+  		}
     </style>
 </head>
 <body>
+	<div class="wrap" tapmode="" onclick="OnCancel()">
+		<ul class="wrap_ul">
+			<li class="item" tapmode="" onclick="consumeLista(1)">钱包充值</li>
+			<li class="item" tapmode="" onclick="consumeLista(2)">打赏作品</li>
+			<li class="item" tapmode="" onclick="consumeLista(3)">打赏模特</li>
+			<li class="item" tapmode="" onclick="consumeLista(4)">打赏摄影师</li>
+		</ul>
+	</div>
 	<div id="topbar">
 		<div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
 			<img src="../../icon/back.png" alt="">
@@ -181,11 +219,14 @@
 	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
 
 //	打开右上角菜单栏
-    function openSidebar() {
-			quakooApp.openFrame('consumeRecord_slide', './consumeRecord_slide.html', {}, 64, 0, {
-				bgColor: 'rgba(0,0,0,0)'
-			})
-		}
+	mui('#topbar').on('tap','#share',function(){
+//		alert(6)
+			$('.wrap').css('display','block')
+	})
+	function OnCancel(){
+		$('.wrap').css('display','none')
+	}
+    	
 
    
     
@@ -256,17 +297,19 @@
 			}
     
     function consumeLista(index){
+    	quakooUtils.stopEventBubble()
     	var params;
     	if(index == 1){
-    		params = {type:0}
+    		obj = {type:0,size:8,cursor:0}
     	}else if(index == 2){
-    		params ={type: 1,objectType:4,subType:3 }
+    		obj ={type: 1,objectType:4,subType:3 ,size:8,cursor:0}
     	}else if(index == 3){
-    		params ={type: 1,objectType:4,subType:1 }
+    		obj ={type: 1,objectType:4,subType:1,size:8,cursor:0 }
     	}else if(index == 4){
-    		params ={type: 1,objectType:4,subType:2 }
+    		obj ={type: 1,objectType:4,subType:2,size:8,cursor:0 }
     	}
-    	 new QuakooPage(consumeRecordCb, config.getUrl_wallet_getWalletRecordPager(),params)
+    	$('.wrap').css('display','none')
+    	pulldownRefresh()
     }
 
     function consumeRecordCb(results, append) {

@@ -717,7 +717,7 @@
 			<ul class="prod-data">
 				<li class="collect  <%=list.hasCollect && 'collectted'%>" tapmode="itemOn" data-flag="0" onclick="switchCollectEvent(this,<%=list.id%>)"><i class="collect-icon"></i><span><%=list.collectNum%></span></li>
 				<li class="comment-b" tapmode="" onclick="commentInput()"><i class="comment-icon"></i><span><%=list.commentNum%></span></li>
-				<li class="buy-prod <%=list.canView && 'active' %>" data-price="<%=list.price%>">
+				<li class="buy-prod <%=list.canView && 'active' %>" tapmode="" onclick="buyProd(<%=list.id%>)">
 					<%=list.canView ? '已购买' : '购买'  %>
 				</li>
 			</ul>
@@ -937,8 +937,7 @@
 			var openPhotoSwipe;
 			var userInfo = quakooUser.getUserInfo();
 			var pageParams = quakooUtils.GetRequest();
-			var canView = pageParams.canView;
-			var cid = pageParams.cid;
+			cid = pageParams.cid;
 			var ajaxParams = {
 				objectId: pageParams.cid,
 				type: 1, //1作品 2动态
@@ -1094,36 +1093,20 @@
 						mui('.partner').on('tap', '.followed', function(event) {
 							var id = this.getAttribute("data-id")
 							checkAttend(this, id)
-						});
+						})
 						mui('.partner').on('tap', '.user-info', function(event) {
 							var id = this.getAttribute("data-id")
 							var type = this.getAttribute("data-type")
 							AudioDetail(id, type)
-						});
+						})
 						mui('.recommend-wrap').on('tap', '.swiper-slide', function(event) {
 							var id = this.getAttribute("data-id")
 							ImageDetail(id);
-						});
+						})
 						mui('.curImage-detail').on('tap', '.swiper-slide', function(event) {
 							var index = this.getAttribute("data-index");
 							openPhotoSwipe(index);
-						});
-						mui('.prod-data').on('tap','.buy-prod',function(){
-							var price = this.getAttribute('data-price')
-							if(!canView){
-					            var content ='购买此作品需支付'+price+'LB,确定购买吗?';
-					            quakooMsg.showDialog('购买',content,'取消','购买',function () {
-					                quakooData.ajaxSubmitData(config.getUrl_content_buyContent(),{cid:cid},function (ret,err) {
-					                    if(ret&& ret.success){
-					                        quakooMsg.toast('购买成功');
-					                        setTimeout(function () {
-					                            apiready()
-					                        },350)
-					                    }
-					                })
-					            });
-					        }
-						});
+						})
 					}, 100);
 
 					quakooData.ajaxGetDataWithOutProgress(config.getUrl_wallet_getMyWallet(), {}, function(ret, err) {

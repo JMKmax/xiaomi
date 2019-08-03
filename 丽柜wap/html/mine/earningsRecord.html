@@ -104,15 +104,52 @@
 		.mui-table-view{
 			background: none;
 		}
+		/*右上角点击按钮*/
+		.wrap{
+  			position: fixed;
+  			top:0;
+  			left: 0;
+  			width: 100%;
+  			height: 100%;
+  			background: rgba(0,0,0,0.2);
+  			z-index: 99;
+  			display: none;
+  		}
+  		.wrap_item{
+  			width: 4.346666rem;
+  			background: #fff;
+  			padding: 0.32rem;
+  			position: absolute;
+  			top: 0.266666rem;
+  			right: 0.4rem;
+  			box-shadow: 0 0.066666rem 0.2rem #ccc;
+  			border-radius: 0.106666rem;
+  		}
+  		.item{
+  			font-size: 0.373333rem;
+  			color: #333;
+  			font-family:PingFang-SC-Medium;
+  			margin-bottom: 0.32rem;
+  		}
+  		.item:last-child{
+  			margin-bottom: 0;
+  		}
     </style>
 </head>
 <body>
+	<div class="wrap" tapmode="" onclick="onCancel()">
+		<ul class="wrap_item">
+			<li class="item" tapmode="itemOn" onclick="consumeLista(1)">图片收益</li>
+			<li class="item" tapmode="itemOn" onclick="consumeLista(2)">视频收益</li>
+			<li class="item" tapmode="itemOn" onclick="consumeLista(3)">打赏收益</li>
+		</ul>
+	</div>
 	<div id="topbar">
 		<div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
 			<img src="../../icon/back.png" alt="">
 		</div>
 		<div>我的收益</div>
-		<div id="share"  tapmode="" onclick="openSidebar()"><img src="../../icon/more.png" width="20" height="5" alt=""></div>
+		<div id="share"><img src="../../icon/more.png" width="20" height="5" alt=""></div>
 	</div>
 	<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh" style="width: 100%;">
 				<div class="main" style="width: 100%;">
@@ -190,13 +227,14 @@
 <script>
 	 var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
 
-	//打开右上角的菜单栏
-		function openSidebar() {
-			quakooApp.openFrame('earning_sidebar', './earning_sidebar.html', {}, 64, 0, {
-				bgColor: 'rgba(0,0,0,0)'
-			})
-		}
-	
+	//	打开右上角菜单栏
+	mui('#topbar').on('tap','#share',function(){
+//		alert(6)
+			$('.wrap').css('display','block')
+	})
+	function onCancel(){
+		$('.wrap').css('display','none')
+	}
    
     
     var obj = {
@@ -206,7 +244,17 @@
 				objectType: 0
 			}
 			var hasnext = false;
-			
+function consumeLista(index){
+    	if(index == 1){
+    		obj ={type: 2,objectType:0,subType:4 ,size:8,cursor:0}
+    	}else if(index == 2){
+    		obj ={type: 2,objectType:0,subType:5,size:8,cursor:0 }
+    	}else if(index == 3){
+    		obj ={type: 2,objectType:4,subType:0,size:8,cursor:0 }
+    	}
+    	pulldownRefresh()
+    	$('.wrap').css('display','none')
+    }			
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -265,17 +313,7 @@
 			}
     
     
-	function consumeLista(index){
-    	var params;
-    	if(index == 1){
-    		params ={type: 2,objectType:0,subType:4 }
-    	}else if(index == 2){
-    		params ={type: 2,objectType:0,subType:5 }
-    	}else if(index == 3){
-    		params ={type: 2,objectType:4,subType:0 }
-    	}
-    	 new QuakooPage(consumeRecordCb, config.getUrl_wallet_getWalletRecordPager(),params)
-    }
+	
     function consumeRecordCb(results, append) {
     	var feilKey = quakooUtils.getImgKey();
         for (var i = 0; i < results.length; i++) {

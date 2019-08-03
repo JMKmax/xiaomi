@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+	    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css?v=1.04"/>
+	    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	    <link rel="stylesheet" type="text/css" href="../../css/home.css?v=8.03"/>
+	    <link rel="stylesheet" href="../../css/mui.min.css">
+		<title>青年曲艺</title>
+		<style>
+			.top_bg div{
+				max-width: 100%;
+				max-height: 5.626666rem;
+			}
+			html,body{
+				width: 100%;
+				/*height: 100%;*/
+				/*overflow-x: hidden;*/
+				background:rgba(245,245,245,1)
+			}
+			.container{
+				width: 100%;
+				box-sizing: border-box;
+				padding:0 0.32rem;
+				margin: 0 auto;
+				background: #fff;
+			}
+			.imgCon{
+				height: 6.213333rem;
+				width: 100%;
+				overflow: hidden;
+			}
+			.top_bg{
+				width: 100%;
+				height: 5.626666rem;
+				/*background: url(../../image/baner.png) 0 0 no-repeat;
+				background-size: 100% 100%;*/
+			}
+
+			.top_bg video{
+				width: 100%;
+				height: 5.626666rem;
+				
+			}
+			.top_bg .video_fill{
+				object-fit: fill;
+			}
+			.msg_title{
+				padding-top: 0.426666rem;
+				font-size:0.48rem;
+				color: #333;
+				margin-bottom: 0.32rem;
+				font-weight: 500;
+			}
+			.info_picture{
+				color: #555;
+				font-size: 0.4rem;
+				line-height: 0.64rem;
+				padding: 0 0.32rem;
+			}
+			
+			#list{
+				overflow: hidden;
+			}
+			#list li{
+				position: relative;
+				width: 4.533333rem;
+				float: left;
+				margin-bottom: 0.373333rem;
+				
+				color: #333;
+			}
+			#list li:nth-child(2n){
+				float: right;
+			}
+			#list li .imgCon{
+				position: relative;
+				width: 4.533333rem;
+				height: 3.013333rem;
+				margin-bottom: 0.16rem;
+				border-radius:0.106666rem;
+				overflow: hidden;
+			}
+			#list li .imgCon .img{
+				/*width: 100%;*/
+				/*height: 100%;*/
+			}
+			#list li .imgCon .playInfo{
+				position: absolute;
+				left: 0.16rem;
+				bottom: 0.24rem;
+				color: #fff;
+				font-size: 0.266666rem;
+				line-height: 0.373333rem;
+			}
+			#list li .imgCon .playNum{
+				width: 0.32rem;
+				height: 0.32rem;
+				margin-right: 0.08rem;
+			}
+			#list .title{
+				font-size:0.373333rem;
+				/*height: 0.373333rem;*/
+				line-height:0.533333rem;
+				max-width: 80%;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				/** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical;
+				/** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 1;
+				/** 显示的行数 **/
+				overflow: hidden;
+				border: 1px solid transparent;
+				/** 隐藏超出的内容 **/
+			}
+			
+			.over_scroll{
+				width:100%;
+				overflow-x: scroll;
+			}
+			.item_list{
+				white-space: nowrap;
+				min-width: 100%;
+				/*margin-top: 0.293333rem;*/
+			}
+			
+			.item_list li{
+				display: inline-block;
+				width: 2.96rem;
+				text-align: center;
+				color: #333;
+				font-size: 0.373333rem;
+				line-height: 0.373333rem;
+				margin-right: 0.64rem;
+			}
+			.item_list .imgCon_user{
+				width: 2.96rem;
+				height: 2.96rem;
+				overflow: hidden;
+				margin-bottom: 0.266666rem;
+			}
+			.item_list li:last-child{
+				margin: 0;
+			}
+			.item_list li img{
+				width: 100%;
+				height: 2.96rem;
+				margin-bottom: 0.266666rem;
+			}
+			::-webkit-scrollbar {
+		 		width: 0;
+				height: 0;
+				color: transparent;
+			}
+			.more_info{
+				font-size: 0.32rem;
+				color: #333;
+				float: right;
+				background: url(../../image/more.png) right center no-repeat;
+				background-size: 0.32rem 0.32rem;
+				padding-right: 0.346666rem;
+			}
+			
+			
+			.detail{
+				font-size: 0.48rem;
+				color: #333;
+				line-height: 0.666666rem;
+				padding-top: 0.426666rem;
+				padding-bottom: 0.426666rem;
+				margin-bottom: 0.213333rem;
+				/*background: #fff;*/
+			}
+			.detail .info{
+				color: #999;
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+				margin-top: 0.133333rem;
+				/*line-height: 17px;*/
+			}
+			.detail .info span{
+				margin-top: 0;
+				padding-left: 0;
+			}
+			.detail .info img{
+				width:0.373333rem;
+				height: 0.373333rem;
+			}
+			.money{
+				color: #D7533D;
+				font-size: 0.48rem;
+			}
+			.money span{
+				font-size: 0.32rem;
+			}
+			.delete{
+				display: none;
+			}
+			
+			.payTitle{
+				height: 1.173333rem;
+				text-align: center;
+				line-height: 1.173333rem;
+				background: rgba(247,246,246,1);
+				color: #333;
+				font-size: 0.373333rem;
+			}
+			.bottom_info_list{
+				color: #333;
+				height: 1.333333rem;
+				font-size: 0.4rem;
+				padding: 0 0.32rem;
+			}
+			.bottom_info_list .color{
+				color: #D7533D;
+			}
+			.bottom_info_list_02{
+				border-top: 0.266666rem solid rgba(247,246,246,1);
+				border-bottom: 0.266666rem solid rgba(247,246,246,1);
+			}
+			.chooseWay{
+	        	color: #333;
+	        	font-size: 0.4rem;
+	        	line-height: 0.56rem;
+	        	margin-top: 0.16rem;
+	        	padding: 0 0.32rem;
+	        }
+	        .payList{
+				border-bottom: 0.533333rem solid rgba(247,246,246,1);
+				padding: 0 0.32rem;
+				/*padding-bottom: 0.64rem;*/
+			}
+			.payList li{
+				padding: 0.426666rem 0;
+			}
+			.payList li .left img{
+				width: 0.826666rem;
+				height: 0.826666rem;
+				margin-right: 0.293333rem;
+			}
+			.payList li .right{
+				width: 0.426666rem;
+				height: 0.426666rem;
+			}
+			.bottomPay{
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				left: -100%;
+				z-index: 888;
+				background: #fff;		
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+	        <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+	            <img src="../../image/back@3x.png">
+	        </div>
+	       	<div>智库详情</div>
+	    </div>
+	    <div class="topbar"></div>
+	    <div id="detail">
+		    
+		</div>
+	    <div class="mui-backdrop" onclick="openDialog(this)" style="display: none;"></div>
+	</body>
+	<script type="text/html" id="scriptDiv1">
+		<div class="top_bg">
+	    	<video x5-playsinline="" poster="<%=list.icon%>"  playsinline=""  webkit-playsinline="" id="example_video_1" class="video-js vjs-default-skin video_fill" controls controlsList="nodownload" preload="true" width="640" height="264" data-setup="{}">
+				<source controls="" src="<%=list.contentUrl%>" type="video/mp4">
+			</video>
+		</div>
+	    <div class="container">
+	    	<div class="detail flex flex-align-center flex-pack-justify">
+		    	<div>
+		    		<div class="title"><%=list.name%></div>
+		    		<div class="info flex flex-align-center" style="padding: 0;">
+		    			<%if(list.authorName){%>
+		    				<%=list.authorName%>&nbsp;&nbsp;|&nbsp;&nbsp;
+		    			<%}%>
+		    			<%=list.playCount%>播放&nbsp;&nbsp;&nbsp;&nbsp;
+		    			<%if(!list.isShowParise){%>
+			    			<%if(list.collect){%>
+			    				<img onclick="setPraise(this)" src="../../icon/collected.png" alt="" />&nbsp;<span style="color: #D7533D;"><%=list.likeCount%></span>
+			    			<%}else{%>
+			    				<img onclick="setPraise(this)" src="../../icon/collect.png" alt="" />&nbsp;<span><%=list.likeCount%></span>
+			    			<%}%>
+		    			<%}%>
+		    		</div>
+		    	</div>
+		    	<div class="money">
+		    		<%if(list.buy){%>
+		    			<span>已购买</span>
+		    		<%}else if(list.money > 0){%>
+		    			<span>￥</span><%=list.money%>
+		    		<%}else{%>
+		    			<span>免费</span>
+		    		<%}%>	
+		    	</div>
+	    	</div>
+	    </div>
+	    <div class="container" id="home">
+	    	<div class="msg_title">艺术简历</div>
+	    	<div class="info_picture">
+	    		<%=list.info%>
+	    	</div>
+	    	<%if(list.contentList.length>0){%>
+	    	<div class="msg_title">相关作品</div>
+	    	<ul id="list">
+	    		<%for(var j = 0;j<list.contentList.length;j++){%>
+	    			<li data-type="<%=list.contentList[j].type%>" data-id="<%=list.contentList[j].id%>">
+						<div class="imgCon">
+							<img class="img" src="<%=list.contentList[j].icon%>"  alt="" />
+							<div class="playInfo flex flex-align-center">
+								<img class="playNum" src="../../image/play.png" alt="" />
+								<span><%=list.contentList[j].playCount%></span>
+							</div>
+							<%if(list.contentList[j].buy){%>
+								<div class="money_rotate">已购买</div>
+							<%}else if(list.contentList[j].money > 0){%>
+								<div class="money_rotate">￥<%=list.contentList[j].money%></div>
+							<%}else{%>
+								<div class="money_rotate">免费</div>
+							<%}%>
+						</div>
+						<div class="flex flex-align-center flex-pack-justify">
+							<span class="title"><%=list.contentList[j].name%></span>
+							<%if(list.contentList[j].collect){%>
+								<div class="list_bottom_right active"><%=list.contentList[j].likeCount%></div>
+							<%}else{%>
+								<div class="list_bottom_right"><%=list.contentList[j].likeCount%></div>
+							<%}%>
+						</div>
+					</li>
+	    		<%}%>
+			</ul>
+			<%}%>
+			<%if(list.famousList&&list.famousList.length>0){%>
+			<div class="msg_title">相关名家</div>
+    		<div class="over_scroll">
+    			<ul class="item_list">
+    				<%if(list.famousList){%>
+    					<%for(var i = 0;i<list.famousList.length;i++){%>
+		    			<li onclick="openNewWindow('expert_detail.html',{id:<%=list.famousList[i].id%>})">
+		    				<div class="imgCon_user">
+		    					<img src="<%=list.famousList[i].icon%>" style="<%=list.famousList[i].style%>" alt="" />
+		    				</div>
+		    				<div><%=list.famousList[i].name%></div>
+		    			</li>
+	    				<%}%>
+    				<%}%>
+	    		</ul>
+	    	</div>
+	    	<%}%>
+	    </div> 
+	    <div class=" bottomPay" id="bottomPay">
+	    	<div class="payTitle">订单信息</div>
+	    	<div class="bottom_info_list flex flex-align-center flex-pack-center flex-pack-justify">
+	    		作品名称
+	    		<span><%=list.name%></span>
+	    	</div>
+	    	<div class="bottom_info_list bottom_info_list_02 flex flex-align-center flex-pack-center flex-pack-justify">
+	    		预订费用
+	    		<span class="color">￥<%=list.money%></span>
+	    	</div>
+			<div class="chooseWay">支付方式</div>
+			<ul class="payList">
+	    		<li class="flex flex-align-center flex-pack-center flex-pack-justify">
+	    			<div class="flex flex-align-center flex-pack-center left">
+	    				<img src="../../icon/weixin.png"/>
+	    				<span>微信</span>
+	    			</div>
+	    			<img class="right right_select" src="../../icon/selected.png" alt="" />
+	    		</li>
+	    	</ul>
+	    	<div class="submitButton" style="position: initial;" onclick="buyContent()">确认支付</div>
+	    </div>
+	</script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	    <script type="text/javascript" src="../../script/mui.min.js?v=1.01"></script>
+		
+	<script type="text/javascript" src="../../script/util.js"></script>	
+	<script type="text/javascript" src="../../script/uhpUtils.js?v=8.06"></script>	
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>	
+	<script type="text/javascript" src="../../script/user.js"></script> 
+	<!--<script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>-->
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/public.js"></script>
+	<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script> 
+	<script>
+		ajaxGet(getTicketUrl,{urlStr:(window.location.href).split('#')[0]},function(ret,err){
+		    if(ret&&ret.success){
+		        wx.config({
+		            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		            appId: ret.data.appId, // 必填，公众号的唯一标识
+		            timestamp: ret.data.timestamp, // 必填，生成签名的时间戳
+		            nonceStr: ret.data.noncestr, // 必填，生成签名的随机串
+		            signature: ret.data.signature,// 必填，签名
+		            jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表
+		        });
+		    }
+		})
+		
+		
+		var parms = GetRequest();
+		var isPraised,isBuy,money;
+		var allResults = {};
+
+		var obj_info = {id:parms.id};
+		if (parms.rid) {
+			obj_info.type = 1;
+			obj_info.wid = parms.rid;
+		}
+		ajaxGet(getContentInfoUrl,obj_info,function(ret,err){
+			if (ret&&ret.success) {
+				isBuy = ret.data.buy;
+				if (getUserInfo().famousId > 0) {
+					ret.data.money = ret.data.vipMoney;
+				}
+				isPraised = ret.data.collect;
+				money = ret.data.money;
+//				if (parms.rid) {
+//					ret.data.isShowParise = true;
+//				}
+				addDataToHtml(ret.data);
+				if (isBuy||money<=0) {
+	      			ajaxGet(addPlayCountUrl,{id:parms.id},function(ret,err){
+				
+				    })
+	      		}
+			}else{
+				mui.toast(ret.msg)
+			}
+		})
+//		
+		function addDataToHtml(results){
+			var fontSize = document.querySelector("html").getAttribute("style").split(":")[1].split("px")[0];
+			var imgWidth = 4.533333*fontSize;
+			var imgHeight = 3.013333*fontSize;
+			if (results.contentList.length > 0) {
+				for(var i = 0;i < results.contentList.length;i++){
+					var obj_img = getImgByThisSize(results.contentList[i].icon,imgWidth,imgHeight);
+					results.contentList[i].icon = obj_img.url;
+					results.contentList[i].style = obj_img.style;
+					if (getUserInfo().famousId > 0) {
+						results.contentList[i].money = results.contentList[i].vipMoney;
+					}
+					allResults[results.contentList[i].id] = results.contentList[i];
+				}
+			}
+			if (results.contentList.length > 4) {
+				results.contentList.length = 4;
+			}
+			var imgHeight_user = 2.96*fontSize;
+			if (results.famousList&&results.famousList.length > 0) {
+				for(var i = 0;i < results.famousList.length;i++){
+					if(isNotBlack(results.famousList[i].icon)){
+						var obj_user = getImgByThisSize(results.famousList[i].icon,imgHeight_user,imgHeight_user);
+						results.famousList[i].icon = obj_user.url;
+						results.famousList[i].style = obj_user.style;
+						
+					}else{
+						results.famousList[i].icon = "../../image/person.png";
+						results.famousList[i].style = "width:100%;height:100%";
+					}
+				}
+			}
+			
+			results.info = tryDecodeURIComponent(results.info);
+			var data = {list: results};
+			var html = template('scriptDiv1',data);
+			document.querySelector('#detail').innerHTML = html;
+			var vid = document.getElementById("example_video_1");
+			mui('#list').on('tap','li',function(event){
+	    		var type = this.getAttribute("data-type");
+	    		var id = this.getAttribute("data-id");
+		    	if (type == 1) {//需要区分什么类别 	文件类型 1视频 2图片 3音频
+	    			openNewWindow('quYi_detail.html',{id:id})
+	    		}else if(type == 3){
+	    			openNewWindow('quYi_audio_play.html',{id:id})
+	    		}else if(type == 2){
+	    			openNewWindow('quYi_detail_picture.html',{id:id})
+	    		}
+	      	});
+	      
+	      	document.getElementById("example_video_1").onplay = function(){
+	      		if (!isBuy&&money>0) {
+	      			document.getElementById("example_video_1").pause();
+	      			$("#bottomPay").animate({left:"0"},300)
+	            	$(".mui-backdrop").css("display","block");
+	      		}
+	      	}
+	      	document.getElementById("example_video_1").onplaying = function(){
+	      		
+	      		document.getElementById("example_video_1").classList.remove("video_fill");
+	      	}
+		}
+		
+		
+		function openDialog(){
+			stopEventBubble();
+			$("#bottomPay").animate({left:"-100%"},300)
+	        $(".mui-backdrop").css("display","none");
+		}
+		
+		//点赞
+		var flag = false;
+		function setPraise(_this){
+			if (flag) {
+				return;
+			}
+			flag = true;
+			var obj = {
+				cid:parms.id
+			};
+			if(isPraised){//取消点赞 
+				ajaxGet(delCollectUrl,obj,function(ret,err){
+					flag = false;
+					if (ret&&ret.success) {
+						isPraised = "";
+						_this.src = "../../icon/collect.png";
+						var num_span = _this.parentNode.querySelector("span");
+						num_span.innerHTML = parseInt(num_span.innerHTML) - 1;
+						num_span.style.color = "#999";
+					}else{
+						mui.toast(ret.msg)
+					}
+				})
+			}else{
+				flag = false;
+				ajaxGet(addCollectUrl,obj,function(ret,err){
+					if (ret&&ret.success) {
+						isPraised = true;
+						_this.src = "../../icon/collected.png";
+						var num_span = _this.parentNode.querySelector("span");
+						num_span.innerHTML = parseInt(num_span.innerHTML) + 1;
+						num_span.style.color = "#D7533D";
+					}else{
+						mui.toast(ret.msg)
+					}
+				})
+			}
+		}
+		
+	
+		
+		//		购买智库 cid是智库ID
+		function buyContent(){
+			showLoading();
+			ajaxGet(buyContentUrl,{cid:parms.id,payType:2},function(ret,err){
+				if (ret&&ret.success) {
+					ajaxGet(payContentUrl,{payType:2,oid:ret.data.oid,payType:2},function(rets,err){
+						if (rets&&rets.success) {			
+							ajaxGet(orderPayParamUrl,{type:2,orderId:rets.data.orderId,payType:2},function(data,err){
+								hideLoading();
+								flag = false;
+								if (data) {
+			                        wx.chooseWXPay({
+										timestamp: data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+										nonceStr: data.nonceStr, // 支付签名随机串，不长于 32 位
+										package: data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+										signType: data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+										paySign: data.paySign, // 支付签名
+										success: function (res) {
+										// 支付成功后的回调函数
+											mui.toast("支付成功");
+						                    setTimeout(function(){
+						                    	window.location.reload();
+						                    },500)
+										}
+									});
+			                    }
+							})
+						}else{
+							openNewWindow('../mine/pay_fail.html')
+						}
+					})
+				}
+			})
+		}
+		
+		function onBridgeReady(data){
+	        WeixinJSBridge.invoke(
+	            'getBrandWCPayRequest', data,
+	            function(res){
+	                if(res.err_msg == "get_brand_wcpay_request:ok" ){
+	                    // 使用以上方式判断前端返回,微信团队郑重提示：
+	                   	window.location.reload();
+	                }
+	            });
+	    }
+	</script>
+</html>
