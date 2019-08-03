@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的收益</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+    	html,body{
+    		background: rgba(0,0,0,0);
+    	}
+  		.wrap{
+  			position: fixed;
+  			top:0.266666rem;
+  			left: 0;
+  			width: 100%;
+  			height: 100%;
+  			background: rgba(0,0,0,0);
+  		}
+  		ul{
+  			width: 4.346666rem;
+  			background: #fff;
+  			padding: 0.32rem;
+  			position: absolute;
+  			top: 0.266666rem;
+  			right: 0.4rem;
+  			box-shadow: 0 0.066666rem 0.2rem #ccc;
+  			border-radius: 0.106666rem;
+  		}
+  		.item{
+  			font-size: 0.373333rem;
+  			color: #333;
+  			font-family:PingFang-SC-Medium;
+  			margin-bottom: 0.32rem;
+  		}
+  		.item:last-child{
+  			margin-bottom: 0;
+  		}
+    </style>
+</head>
+<body>
+	<div class="wrap" tapmode="" onclick="OnCancel()"></div>
+		<ul>
+			<li class="item">钱包充值</li>
+			<li class="item">打赏作品</li>
+			<li class="item">打赏模特</li>
+			<li class="item">打赏摄影师</li>
+		</ul>
+	
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        
+    }
+    function OnCancel(){
+    	api.closeFrame();
+    	return false;
+    }
+</script>
+
+</html>

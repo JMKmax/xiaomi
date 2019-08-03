@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>绑定圈子</title>
+    <style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			background: #f7f5f6;
+		}
+		.mui-slider-item img{
+			width: 10rem;
+			height: 5.066666rem;
+		}
+		.itemCon{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0.666666rem;
+			font-size: 0.4rem;
+			color: #646769;
+			background: #fff;
+		}
+		.itemCon .item{
+			text-align: center;
+		}
+		.itemCon .item div{
+			margin-top: 0.2rem;
+		}
+		.itemCon img{
+			width: 1.333333rem;
+			height: 1.333333rem;
+		}
+		
+		.container{
+			width: 100%;
+			padding: 0 0.426666rem;
+			box-sizing: border-box;
+			background: #fff;
+			margin-top: 0.266666rem;
+			padding-top: 0.4rem;
+		}
+		.container .title{
+			font-size: 0.533333rem;
+			color: #2D3134;
+		}
+
+		.ul .list{
+			position: relative;
+			width: 100%;
+			padding: 0.4rem 0;
+		}
+		.ul .list::after {
+		    content: " ";
+		    position: absolute;
+		    left: 0;
+		    bottom: 0;
+		    width: 100%;
+		    height: 0.026666rem;
+		    background: #e6e6e6;
+		    transform: scaleY(0.5);
+		}
+		.ul .list .imgCon{
+			position: absolute;
+			left: 0;
+			top: 0.4rem;
+			width: 2.666666rem;
+			height: 2.666666rem;
+			border-radius: 0.12rem;
+			overflow: hidden;		
+		}
+		.ul .list .imgCon img{
+			width: 100%;
+			height: 100%;
+		}
+		.ul .list .right{
+			width: 100%;
+			padding-left: 2.933333rem;
+		}
+		.ul .list .right .info_title{
+			color: #2D3134;
+			font-size: 0.4rem;
+			line-height:0.6rem;
+		}
+		.ul .list .right .address{
+			background: url("../../image/address.png") 0 0 no-repeat;
+			background-size: 0.306666rem 0.4rem;
+			padding-left: 0.48rem;
+			margin-top: 0.373333rem;
+		}
+		.ul .list .right .info_time{
+			color: #B1B1B1;
+			font-size: 0.266666rem;
+		}
+		
+    </style>
+</head>
+<body>
+	<div id="slider" class="mui-slider">
+		<div class="mui-slider-group mui-slider-loop carousel" style="height: 5.066666rem;">
+	        <div class="mui-slider-item mui-slider-item-duplicate">
+	            <img src="../../image/banner.png">
+	        </div>
+	        <div class="mui-slider-item mui-slider-item-duplicate">
+	            <img src="../../image/banner.png">
+	        </div>
+	    </div>
+	    <div class="mui-slider-indicator">
+	        <div class="mui-indicator mui-active"></div>
+	        <div class="mui-indicator"></div>
+	    </div>
+    </div>
+    <div class="itemCon flex flex-align-center flex-pack-center flex-pack-justify">
+    	<div class="item">
+    		<img src="../../image/home_1.png" alt="" />
+    		<div>圈子</div>
+    	</div>
+    	<div class="item">
+    		<img src="../../image/home_2.png" alt="" />
+    		<div>收益</div>
+    	</div>
+    	<div class="item">
+    		<img src="../../image/home_3.png" alt="" />
+    		<div>合作</div>
+    	</div>
+    	<div class="item">
+    		<img src="../../image/home_4.png" alt="" />
+    		<div>资源</div>
+    	</div>
+    </div>
+    <div class="container">
+    	<div class="title">合作信息</div>
+    	<ul class="ul">
+    		<li class="list">
+    			<div class="imgCon">
+    				<img src="../../image/banner.png" alt="" />
+    			</div>
+    			<div class="right">
+    				<div class="info_title">标题标标题标题标题标题标题标题标题标题标题标题标题标题题标题</div>
+    				<div class="address">北京市海淀区海泰大厦</div>
+    				<div class="info_time">2019年7月19日</div>
+    			</div>
+    		</li>
+    		<li class="list">
+    			<div class="imgCon">
+    				<img src="../../image/banner.png" alt="" />
+    			</div>
+    			<div class="right">
+    				<div class="info_title">标题标标题标题标题标题标题标题标题标题标题标题标题标题题标题</div>
+    				<div class="address">北京市海淀区海泰大厦</div>
+    				<div class="info_time">2019年7月19日</div>
+    			</div>
+    		</li>
+    	</ul>
+    </div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+	var slider = mui("#slider");
+    slider.slider({
+        interval: 3000
+    });
+    apiready = function () {
+      
+    };
+	
+</script>
+</body>
+</html>

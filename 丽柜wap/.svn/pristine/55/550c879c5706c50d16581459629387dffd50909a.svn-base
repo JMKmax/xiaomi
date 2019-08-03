@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>摄影机构订阅</title>
+	<style type="text/css">
+		.sub-warp {
+			margin-bottom: 0.533rem;
+		}
+		.sub-title {
+			font-size:0.373rem;
+			color: #333333;
+			padding: 0.267rem 0.4rem ;
+			background: #f0f2f5;
+		}
+		.list-ul li {
+			padding: 0.453rem 0.4rem 0.32rem;
+
+		}
+		.list-ul li .li-show  {
+			display: flex;
+		}
+		.list-ul .sub-cover{
+			flex-shrink: 0;
+			width: 1.733rem;
+			height: 1.733rem;
+			overflow: hidden;
+			position: relative;
+			z-index: 1;
+		}
+		.list-ul .sub-cover img {
+			/*width: 100%;*/
+			/*height:100%*/
+		}
+		.list-ul .sub-center {
+			flex: 1;
+			margin:0 0.267rem;
+		}
+		.sub-center .sub-center-title {
+			height:0.587rem;
+			line-height: 0.587rem;
+			font-size:0.427rem;
+			font-weight:500;
+			color:#343434;
+
+		}
+		.sub-center .sub-center-desc {
+			width: 100%;
+			font-size:0.32rem;
+			font-weight:400;
+			color:#929292;
+			line-height:1.5em;
+			margin-top: 0.08rem;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
+
+		}
+		.list-ul .sub-right {
+			width: 3.013rem;
+			flex-shrink: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-end;
+		}
+		.take-money {
+			height: 0.72rem;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 1.92rem;
+			color: #FF5C98;
+			border: 0.027rem solid #FF5C98;
+			border-radius: 100px;
+			font-weight: 600;
+			letter-spacing: 0.027rem;
+			font-size: 0.427rem;
+		}
+		.show-more {
+			height:0.453rem;
+			font-size:0.32rem;
+			font-weight:400;
+			color:rgba(146,146,146,1);
+			line-height:0.453rem;
+		}
+	</style>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick=" quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>订阅</div>
+    </div>
+<div class="con">
+<!--	<div class="sub-warp">-->
+<!--		<div class="sub-title">高级订阅</div>-->
+<!--		<ul class="list-ul">-->
+<!--			<li>-->
+<!--				<div class="li-show">-->
+<!--					<div class="sub-cover"><img src="../../icon/worksbg.png" alt=""></div>-->
+<!--					<div class="sub-center">-->
+<!--						<div class="sub-center-title">钻石VIP</div>-->
+<!--						<div class="sub-center-desc">所有权限任性使用一所有权限任性使用一年所有权限任性使用一年所有权限任性使用一年+送价值199元VR</div>-->
+<!--					</div>-->
+<!--					<div class="sub-right">-->
+<!--						<div class="take-money">¥898</div>-->
+<!--						<div class="show-more">点击展开&nbsp;&gt;</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+<!--		</ul>-->
+<!--	</div>-->
+<!--	<div class="sub-warp">-->
+<!--		<div class="sub-title">普通订阅</div>-->
+<!--		<ul class="list-ul">-->
+<!--			<li>-->
+<!--				<div class="li-show">-->
+<!--					<div class="sub-cover"><img src="../../icon/worksbg.png" alt=""></div>-->
+<!--					<div class="sub-center">-->
+<!--						<div class="sub-center-title">钻石VIP</div>-->
+<!--						<div class="sub-center-desc">所有权限任性使用一年+送价值199元VR</div>-->
+<!--					</div>-->
+<!--					<div class="sub-right">-->
+<!--						<div class="take-money">¥898</div>-->
+<!--&lt;!&ndash;						<div class="show-more">点击展开&nbsp;&gt;</div>&ndash;&gt;-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+<!--		</ul>-->
+<!--	</div>-->
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="scriptDiv01">
+
+
+		<%if(gaoJoSub){%>
+			<div class="sub-warp">
+				<div class="sub-title">高级订阅</div>
+				<ul class="list-ul">
+					<%for( var i = 0 ;i < list.length; i++){%>
+					<%if(list[i].type == 1){%>
+						<li tapmode="itemOn" onclick="inputInfoWin(<%=list[i].id%>)">
+							<div class="li-show">
+								<div class="sub-cover"><img src="../../icon/worksbg.png" onerror="this.src='../../icon/worksbg.png;this';this.style='widhtL100%;height:100%'" data-echo="<%=list[i].iconUrl%>" real-style="<%=list[i].iconStyle%>" alt=""></div>
+								<div class="sub-center">
+									<div class="sub-center-title"><%=list[i].name%></div>
+									<div class="sub-center-desc"><%=list[i].info%></div>
+								</div>
+								<div class="sub-right">
+									<div class="take-money">¥<%=list[i].price%></div>
+								</div>
+							</div>
+						</li>
+					<%}%>
+					<%}%>
+				</ul>
+			</div>
+		<%}%>
+		<%if(commonSub){%>
+		<div class="sub-warp">
+			<div class="sub-title">普通订阅</div>
+			<ul class="list-ul">
+				<%for( var i = 0 ;i < list.length; i++){%>
+				<%if(list[i].type == 0){%>
+				<li tapmode="itemOn">
+					<div class="li-show"  onclick="sureSubscribe(<%=list[i].id%>)">
+						<div class="sub-cover"><img src="../../icon/worksbg.png" onerror="this.src='../../icon/worksbg.png;this';this.style='widhtL100%;height:100%'" data-echo="<%=list[i].iconUrl%>" real-style="<%=list[i].iconStyle%>" alt=""></div>
+						<div class="sub-center">
+							<div class="sub-center-title"><%=list[i].name%></div>
+							<div class="sub-center-desc"><%=list[i].info%></div>
+						</div>
+						<div class="sub-right">
+							<div class="take-money">¥<%=list[i].price%></div>
+						</div>
+					</div>
+				</li>
+				<%}%>
+				<%}%>
+			</ul>
+		</div>
+		<%}%>
+
+</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+	var params;
+	var gaoJoSub= 0;//记录高级订阅数
+	var commonSub =0;//记录普通订阅数
+	var coverSize = 1.733 *fontSize;
+	var otherUserId;//订阅的摄影机构的ID
+		params = quakooUtils.GetRequest();
+    	otherUserId = params.id;
+    	quakooData.ajaxSubmitData(config.getUrl_postType_getPostTypeListByType(),{type:5},function(ret,err){
+    		if(ret && ret.success){
+				subListRender(ret.data)
+    		}
+    	});
+    // 列表渲染
+	function subListRender(results) {
+		if(quakooUtils.isNotBlack(results)){
+			for(var i = 0;i<results.length;i++){
+				results[i].info = quakooUtils.tryDecodeURIComponent(results[i].info);
+				results[i].type === 0 ?  ++commonSub: ++gaoJoSub;
+				if(results[i].icon){
+					var _obj = quakooImg.processImg(results[i].icon,coverSize,coverSize);
+					results[i].iconUrl = _obj.url;
+					results[i].iconStyle = _obj.style;
+				}else {
+					results[i].iconUrl = '../../icon/worksbg.png';
+					results[i].iconStyle = 'width:100%;height:100%';
+				}
+			}
+			var data = {
+				list:results,
+				gaoJoSub:gaoJoSub,
+				commonSub:commonSub
+			};
+			var html = template('scriptDiv01',data);
+			$api.html($api.dom('.con'),html)
+			setTimeout(function () {
+					echo.init({
+						offset: 0,
+						throttle: 0//设置图片延迟加载的时间
+					});
+			}, 100);
+		}
+		// addBalance()
+	}
+    function addBalance(){
+    	quakooData.ajaxSubmitDataNotProcess(config.getUrl_wallet_getMyWallet(),{},function(ret,err){
+    		if(ret && ret.success){
+    			$api.html($api.dom('.balance .nub'),ret.data.money)
+    		}
+    	})
+    }
+	function checkSel(index,type,_this){
+    	var labs = $api.domAll('.wrap-item');
+    	var pers = $api.domAll('.persent')
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    			if(type == 1){
+    				$api.css(_this.nextElementSibling,'display:block');
+	    		}else{
+    				for(var j = 0;j<pers.length;j++){
+    					$api.css(pers[j],'display:none')
+	    			}
+    			}
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+	//打开充值窗口
+	 function openRechargeWin() {
+		quakooApp.openNewWindow('recharge','../mine/recharge.html',{})
+	 }
+	 //普通订阅
+	 function sureSubscribe(subId){
+	 	var ajaxParams = {
+	 		subId:subId,
+			otherUserId:otherUserId
+	 	};
+		 quakooMsg.showDialog('提示','确定要订阅当前机构吗？','取消','订阅',function () {
+			quakooData.ajaxSubmitData(config.getUrl_model_buySubscription(),ajaxParams,function(ret,err){
+				if(ret && ret.success){
+					subSuccess()
+				}
+			})
+		 })
+	 }
+	 // 高级订阅填写信息
+	 function inputInfoWin(subId) {
+		quakooApp.openNewWindow('subscribeInfo','./subscribeInfo.html',{subId:subId,otherUserId:otherUserId})
+	 }
+	 function subSuccess(){
+		quakooMsg.toast('订阅成功,可再次选择订阅');
+	}
+</script>
+</body>
+</html>

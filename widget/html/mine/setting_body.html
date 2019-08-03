@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<title>绑定微信</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<style>
+			html,body {
+				background: #f5f5f5;
+			}
+			
+			.style-list {
+				background: #fff;
+				font-size: 16px;
+				color: #333333;
+			}
+			.style-list+.style-list {
+				margin-top: 0.267rem;
+			}
+			
+			.style-list li {
+				padding: 0 0.533rem 0 0.4rem;
+				height: 1.6rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-bottom: 1px solid #f2f2f2;
+				box-sizing: border-box;
+			}
+			
+			.style-list li:last-child {
+				border-bottom: none;
+			}
+			/*按钮*/
+			
+			.a-switch {
+				width: 1.44rem;
+				height: 0.667rem;
+				border-radius: 2.667rem;
+				-webkit-appearance: none;
+				user-select: none;
+				outline: none;
+				background-color: #cbcbcb;
+				box-shadow: #cbcbcb 0 0 0 0 inset;
+				position: relative;
+				transition: 0.4s;
+			}
+			
+			.a-switch:before {
+				content: '';
+				width: 0.533rem;
+				height: 0.533rem;
+				border-radius: 100%;
+				background-color: #fff;
+				box-shadow: 0 0.027rem 0.08rem rgba(0, 0, 0, 0.4);
+				position: absolute;
+				left: 0.08rem;
+				top: 0.053rem;
+				transition: 0.3s;
+			}
+			
+			.a-switch:checked {
+				border-color: #ff5c98;
+				box-shadow: #ff5c98 0 0 0 0.373rem inset;
+				background-color: #ff5c98;
+			}
+			
+			.a-switch:checked:before {
+				left: 0.853rem;
+			}
+			
+			.section-tit {
+				height: 1.227rem;
+				line-height: 1.227rem;
+				padding-left: 0.4rem;
+				font-size: 16px;
+				color: #999999;
+			}
+			
+			.style-list li.hasNext {
+				background-image: url("../../icon/next.png");
+				background-repeat: no-repeat;
+				background-position: center right 20px;
+				-webkit-background-size: 0.187rem 0.373rem;
+				background-size: 0.187rem 0.373rem;
+			}
+			
+			.clearCache,
+			.curVersion {
+				font-size: 14px;
+				color: #999999;
+			}
+			.ensure-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background: #FF5C98;
+    			border-radius: 2.666666rem;
+    			color: #fff;
+    			font-size: 0.48rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			margin: 0 auto;
+    			margin-top: 0.533333rem;
+    			box-sizing: border-box;
+    			overflow: hidden;
+    		}
+		</style>
+	</head>
+
+	<body>
+		<div class="section-tit">推送</div>
+		<ul class="style-list">
+			<li>
+				<span>作品推送</span>
+				<label><input type="checkbox"  tapmode="itemOn" name=""  class="a-switch"></label>
+			</li>
+			<li>
+				<span>动态推送</span>
+				<label><input type="checkbox" tapmode="itemOn" name=""  class="a-switch"></label>
+			</li>
+			<li>
+				<span>消息推送</span>
+				<label><input type="checkbox" tapmode="itemOn" name=""  class="a-switch"></label>
+			</li>
+		</ul>
+		<ul class="style-list">
+			<li class="hasNext" tapmode="itemOn" onclick="changePhone()">
+				<span>更换手机号</span>
+			</li>
+			<li class="hasNext" tapmode="itemOn" onclick="changePwd()">
+				<span>修改密码</span>
+			</li>
+			<li tapmode="" onclick="clearCache()">
+				<span>清除缓存</span>
+				<span class="clearCache ">MB</span>
+			</li>
+			<li class="hasNext" tapmode="itemOn" onclick="openAboutUs()">
+				<span>关于我们</span>
+			</li>
+			<li tapmode="" onclick="getVersion()">
+				<span>版本检测</span>
+				<span class="curVersion"></span>
+			</li>
+			<li class="hasNext" tapmode="itemOn" onclick="openAgreement()">
+				<span>用户协议</span>
+			</li>
+		</ul>
+		<div class="ensure-btn" onclick="quitApp()">退出</div>
+	</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script>
+		var versionType ; // 1 需要更新 2 不需要
+		var versionData;
+		apiready = function() {
+			getCache()
+			setTimeout(function () {
+				api.closeWin({
+					name: 'login',
+					animation:{type:"none"}
+				});
+			}, 300);
+			viewVersion()
+		};
+		function changePhone() {
+			quakooApp.openNewWindow('changePhone', './changePhone.html')
+		}
+
+		function changePwd() {
+			quakooApp.openNewWindow('changePassword', './changePassword.html')
+		}
+		function openAgreement() {
+			quakooApp.openNewWindow('userAgreement', './userAgreement.html')
+		}
+		function openAboutUs() {
+			quakooApp.openNewWindow('aboutUs', './aboutUs.html')
+		}
+		function quitApp() {
+			quakooMsg.showDialog('退出登录','确定退出当前账号吗?','取消','确定',function () {
+				quakooUser.removeUserInfo();
+				quakooApp.openNewWindow("login", "../login/login.html", {},{slidBackEnabled: false});
+				setTimeout(function () {
+					api.closeWin()
+				},300);
+				setTimeout(function () {
+					api.closeWin({
+						name:'main'
+					})
+				},600)
+			})
+
+		}
+
+		function getCache() {
+			api.getCacheSize(function(ret) {
+				var size = ret.size;
+				$api.text($api.dom('.clearCache'),quakooUtils.toFixed(ret.size/(1024*1024),2) + "M")
+			});
+		}
+		function clearCache() {
+			quakooMsg.showProgress({});
+			api.clearCache({timeThreshold : 7},function() {
+				setTimeout(function(){
+					api.toast({
+						msg: '清除完成'
+					});
+					$api.text($api.dom('.clearCache'),0 + "M")
+					quakooMsg.hideProgress();
+				},1000)
+			});
+		}
+
+		// 监测版本
+		function viewVersion() {
+			if(api.systemType == 'ios'){
+				type = 2;
+			}else if(api.systemType == 'android'){
+				type = 1;
+			};
+			api.accessNative({
+				name: "appVersions",
+				extra: {}
+			}, function (ret, err) {});
+
+			api.addEventListener({
+				name: 'aVersions' //监听选择完的事件
+			}, function(ret, err) {
+				var nativeVersion=ret.value.Version;
+				//版本更新
+				quakooData.ajaxSubmitDataNotProcess(config.getUrl_web_version_newVersionList(),{versionNumber:nativeVersion,type:type},function(ret,err) {
+					if (quakooUtils.isNotBlack(ret)) {
+						if (quakooUtils.isNotBlack(ret.data)) {
+
+							versionData = ret.data;
+							if (nativeVersion < ret.data.versionNumber) {
+								var data = nativeVersion+"(有版本需要更新)";
+								$api.text($api.dom(".curVersion "),data);
+								versionType = 1;
+							}else if(nativeVersion == ret.data.versionNumber){
+								var data = nativeVersion+"(已是最新版本)";
+								$api.text($api.dom(".curVersion "),data);
+								versionType = 2;
+							}
+						}else{
+							var data = nativeVersion+"(已是最新版本)";
+							$api.text($api.dom(".curVersion "),data);
+							versionType = 2;
+						}
+					}
+				});
+			});
+		}
+		function getVersion() {
+			if(versionType==1){
+				var obj = {
+					rect: {
+						x: 0,
+						y: 0,
+						w: api.winWidth,
+						h: api.winHeight
+					},
+					bgColor: 'rgba(0,0,0,0)'
+				};
+				quakooApp.openFrame("version", "../common/version.html", versionData, 0, 0, obj);
+			}else{
+				quakooMsg.toast("当前版本已是最新版本")
+			}
+		}
+
+	</script>
+
+</html>

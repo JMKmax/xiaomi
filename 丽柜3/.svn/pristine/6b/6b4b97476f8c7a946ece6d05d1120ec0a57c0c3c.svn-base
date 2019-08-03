@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>个人资料-名字</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+            font-size: 14px;
+        }
+        .tip {
+            font-size:14px;
+            color:#999999;
+            line-height: 0.533rem;
+            height: 0.533rem;
+            padding: 0 0.4rem;
+        }
+        .input-wrap {
+            padding: 0.267rem 0 ;
+            display: flex;
+        }
+        .clear-btn {
+            flex-shrink: 0;
+            width: 1.333rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+
+        }
+        .user-input {
+            width: 100%;
+            height: 1.6rem;
+            background: #fff;
+            font-size: 16px;
+            color: #333;
+            padding: 0 0 0 15px ;
+            overflow: hidden;
+        }
+        .clear {
+            width: 0.533rem;
+            height: 0.533rem;
+            border-radius:50% ;
+            background: #cbcbcb url("../../icon/clear.png") no-repeat center center;
+            -webkit-background-size: 0.213rem 0.213rem;
+            background-size: 0.213rem 0.213rem;
+        }
+    </style>
+</head>
+<body>
+<div class="input-wrap">
+    <input  class="user-input" type="text" maxlength="10" onblur="inputLength()" >
+    <div class="clear-btn" tapmode="" onclick="clearText()" >
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="tip">还可以输入<span id="nub">10</span>个字</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+       var name = api.pageParam.name;
+       $api.attr($api.dom('.user-input'),'value',name)
+       inputLength()
+    }
+    //获取名字并异步刷新
+    var getValue = function(){
+    	var name = $api.val($api.dom('.user-input'))
+    	var _params = {
+    		name:name
+    	};
+    	quakooData.ajaxGetData(config.getUrl_web_user_updateUserInfo(),_params,function(ret,err){
+    		if(ret && ret.success){
+    			quakooMsg.toast('修改成功')
+    			getRefresh()
+    			setTimeout('quakooApp.closeWin()',1000)
+    		}
+			
+		})
+    	
+    }
+    //计算还能输入的字数
+    function inputLength(){
+    	var nameLength = $api.val($api.dom('.user-input')).length;
+    	var nub = 10 - nameLength;
+  		$api.html($api.dom('#nub'),nub)
+    }
+   function getRefresh(){
+    	api.execScript({
+    		name:'userInfo',
+    		frameName:'userInfo_body',
+    		script:'apiready()'
+    	})
+    }
+    function clearText(){
+    	$api.dom('.user-input').value = ''
+    }
+</script>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>个人资料</title>
+    <link rel="stylesheet" href="../../css/mui.css">
+    <link href="../../css/mui.picker.all.css" rel="stylesheet"/>
+    <link href="../../css/mui.poppicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+
+        }
+
+        .info-show-ul {
+            background: #fff;
+            font-size: 14px;
+        }
+
+        .info-show-ul li.hasImg {
+            padding: 0.267rem 0.987rem 0.267rem 0.4rem;
+        }
+
+        .info-show-ul li {
+            padding: 0.507rem 0.987rem 0.507rem 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: url("../../icon/next.png") no-repeat center right 0.4rem;
+            -webkit-background-size: 0.187rem 0.373rem;
+            background-size: 0.187rem 0.373rem;
+        }
+
+        .info-show-ul li {
+            position: relative;
+        }
+
+        .info-show-ul li .item-value {
+            height: 0.587rem;
+            line-height: 0.587rem;
+            color: #666;
+        }
+
+        .info-show-ul li:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleY(0.5);
+        }
+
+        .user-icon {
+            width: 1.067rem;
+            height: 1.067rem;
+            border-radius: 100%;
+            box-sizing:border-box;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+		.user-icon img{
+			width:100%;
+			height:100%;
+		}
+    </style>
+</head>
+<body>
+<ul class="info-show-ul">
+    <li class="hasImg">
+        <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+        <div class="item-value" onclick="commonUploadImg()">更换头像</div>
+    </li>
+    <li id="name" tapmode="itemOn" onclick="editUserName()">
+        <div class="item-key">昵称</div>
+        <div class="item-value">长发及腰热不热i</div>
+    </li>
+    <li id="click_sex">
+        <div class="item-key">性别</div>
+        <div class="item-value " id="value_sex">女</div>
+    </li>
+    <li class="click_stature" >
+        <div class="item-key">身高</div>
+        <div class="item-value value_stature">170cm</div>
+    </li>
+    <li id="click_shoeSize">
+        <div class="item-key">鞋码</div>
+        <div class="item-value" id="value_shoeSize">39</div>
+    </li>
+    <li id="phone">
+        <div class="item-key">电话</div>
+        <div class="item-value">17788990991</div>
+    </li>
+    <li id="wx">
+        <div class="item-key">微信</div>
+        <div class="item-value">lakaljjo</div>
+    </li>
+    <li id="click_province" >
+        <div class="item-key">居住地</div>
+        <div class="item-value" id="value_province">北京</div>
+    </li>
+</ul>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/city.data-3.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script>
+	var imagesMap = [];
+    var maxstr = 1;
+    var submitted = false;
+    apiready = function () {
+    	
+		quakooData.ajaxGetDataWithOutProgress(config.getUrl_web_user_getUserInfo(),{},function(ret,err){
+        	if(ret && ret.success){
+//      		console.log($api.jsonToStr(ret))
+        		checkInfo(ret.data)
+        	}
+       })
+    };
+    //异步刷新
+//  function getRefresh(){
+//  	api.execScript({
+//  		name:'userInfo',
+//  		frameName:'userInfo_body',
+//  		script:'checkInfo()'
+//  	})
+//  }
+	//更改信息
+	function checkInfo(data){
+		//性别
+		if(data.sex == 1){
+	        $api.text($api.dom('#value_sex'),'男')
+	    }else if(data.sex == 0){
+	        $api.text($api.dom('#value_sex'),'女')
+	    }
+	    //电话
+	    var phone = data.phone ? data.phone : "";
+	    $api.text($api.dom('#phone .item-value'),phone);
+	    //头像
+	    var iconImg = data.icon ? data.icon : "../../icon/defaultHead.png";
+	    $api.attr($api.dom('.user-icon img'),'src',iconImg);
+	    //昵称
+	    var name = data.name ? data.name : '';
+	     $api.text($api.dom('#name .item-value'),name);
+	    //身高
+	    var height = data.height ? data.height : '';
+	    $api.text($api.dom('.click_stature .item-value'),height)
+	    //鞋码
+	    var shoeSize = data.shoeSize ? data.shoeSize : '';
+	     $api.text($api.dom('#click_shoeSize .item-value'),shoeSize);
+	     //微信
+	     var weixinCount = data.weixinCount ? data.weixinCount : "";
+	      $api.text($api.dom('#wx .item-value'),weixinCount);
+	    //居住地
+	    var placeName = "";
+	    	cityData3.forEach(function(item,index){
+	    		if(item.value == data.placeId){
+	    			placeName = item.text;
+	    		}
+	    		return placeName
+	    	})
+	    $api.text($api.dom('#click_province .item-value'),placeName);
+	}
+	
+	//修改信息
+	
+	mui('body').on('tap','.mui-poppicker-bottom-right.mui-poppicker-btn-ok',function(){
+//		alert(66)
+		updataInfo()
+	})
+	
+//	var updataBtn = $api.dom('.mui-poppicker-bottom-right.mui-poppicker-btn-ok');
+//	updataBtn.onclick = function(event){
+//		
+//	}
+	
+	function updataInfo(){
+		var placeId = '';
+		var placeName = $api.html($api.dom('#value_province'));
+		 
+	    	cityData3.forEach(function(item,index){
+	    		if(item.text == placeName){
+	    			placeId = item.value;
+	    		}
+	    		return placeId
+	    	})
+		var _params = {
+			icon: $api.attr($api.dom('.user-icon img'),'src'),
+			name:$api.html($api.dom('#name .item-value')),
+			sex: $api.html($api.dom('#value_sex')) === '男' ? 1 : 2,
+			height: $api.html($api.dom('.click_stature .item-value')),
+			shoeSize:$api.html($api.dom('#value_shoeSize')),
+			placeId:placeId
+			
+		}
+		quakooData.ajaxGetData(config.getUrl_web_user_updateUserInfo(),_params,function(){
+			quakooMsg.toast('修改成功')
+		})
+	}
+	
+    function editUserName() {
+    	var name = $api.dom('#name .item-value').innerHTML;
+        quakooApp.openNewWindow('editName', 'editName.html', {name:name})
+    }
+
+    // 身高
+    var statureParams = (function () {
+        var arr = [];
+        for (var w = 150; w <= 180; w++) {
+            var wItem = {
+                text: w + 'cm',
+                value: w
+            };
+            arr.push(wItem)
+        }
+        return arr
+    })();
+	//性别
+    var sexParams = [
+        {
+            text: '男',
+            value: 0
+        },
+        {
+            text: '女',
+            value: 1
+        }
+    ];
+    // 鞋码
+    var shoeSizeParams = (function () {
+        var arr = [];
+        for (var w = 34; w <= 41; w++) {
+            var wItem = {
+                text: w,
+                value: w
+            };
+            arr.push(wItem)
+        }
+        return arr
+    })();
+    var picker_stature;
+    var picker_sex;
+    var picker_shoeSize;
+    var picker_province;
+    (function ($, doc) {
+        $.init();
+        // 身高
+        var click_stature = doc.querySelector('.click_stature');
+        var value_stature = doc.querySelector('.value_stature');
+        click_stature.addEventListener('tap', function (event) {
+            if (!picker_stature) {
+                picker_stature = new $.PopPicker({
+                    layer: 1
+                });
+                picker_stature.setData(statureParams);
+                picker_stature.setTitle('身高');
+            }
+            picker_stature.show(function (items) {
+                value_stature.innerHTML = items[0].text
+
+            })
+        }, false);
+        // 身高
+      	var click_sex = doc.querySelector('#click_sex');
+        var value_sex = doc.querySelector('#value_sex');
+        click_sex.addEventListener('tap', function (event) {
+            if (!picker_sex) {
+                picker_sex = new $.PopPicker({
+                    layer: 1
+                });
+                picker_sex.setData(sexParams);
+                picker_sex.setTitle('性别');
+            }
+            picker_sex.show(function (items) {
+                value_sex.innerHTML = items[0].text
+            })
+        }, false);
+        // 鞋码
+        var click_shoeSize = doc.querySelector('#click_shoeSize');
+        var value_shoeSize = doc.querySelector('#value_shoeSize');
+        click_shoeSize.addEventListener('tap', function (event) {
+            if (!picker_shoeSize) {
+                picker_shoeSize = new $.PopPicker({
+                    layer: 1
+                });
+                picker_shoeSize.setData(shoeSizeParams);
+                picker_shoeSize.setTitle('鞋码');
+            }
+            picker_shoeSize.show(function (items) {
+                value_shoeSize.innerHTML = items[0].text
+            })
+        }, false);
+        // 居住地
+        var click_province = doc.querySelector('#click_province');
+        var value_province = doc.querySelector('#value_province');
+        click_province.addEventListener('tap', function (event) {
+            if (!picker_province) {
+                picker_province = new $.PopPicker({
+                    layer: 1
+                });
+                picker_province.setData(cityData3);
+                picker_province.setTitle('居住地');
+            }
+            picker_province.show(function (items) {
+                if ((items[0] || {}).text == undefined) {
+                    (items[0] || {}).text = "";
+                }
+                value_province.innerHTML = (items[0] || {}).text
+            })
+        }, false);
+    })(mui, document);
+    //选择照片
+	 function commonUploadImg() {
+        
+        var resultList = api.hasPermission({
+            list: ['camera', 'photos']
+        });
+        var list = [];
+
+        for (var i = 0; i < resultList.length; i++) {
+            if (!resultList[i].granted) {
+                list.push(resultList[i].name);
+            }
+        }
+        if (list.length > 0) {
+            api.requestPermission({
+                list: list,
+                code: 1
+            }, function (ret, err) {
+
+            });
+        } else {
+            var Multiplechoice = api.require('Multiplechoice');
+            Multiplechoice.choice({
+                maxstr: maxstr,
+                uploadflowUrl: config.uploadImageUrl
+            }, function(ret, err) {
+
+                if(quakooUtils.isNotBlack(ret.allimgjs)){
+                   $api.attr($api.dom('.user-icon img'),'src',ret.allimgjs[0])
+	                updataInfo()
+                }
+			
+            })
+//			api.getPicture({
+//			    sourceType: 'album',
+//			    encodingType: 'jpg',
+//			    mediaValue: 'pic',
+//			    destinationType: 'url',
+//			    allowEdit: true,
+//			    quality: 50,
+//			    targetWidth: 100,
+//			    targetHeight: 100,
+//			    saveToPhotoAlbum: false
+//			}, function(ret, err) {
+//			    $api.attr($api.dom('.user-icon img'),'src',ret.data);
+//			    alert($api.jsonToStr(ret))
+//			    updataInfo()
+//			});
+     	}
+//		quakooimg.openAlbumAndUpload(0,function(ret){
+//			console.log(JSON.stringify(ret))
+//		})
+  	}
+	 
+</script>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>订单详情</title>
+     <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html,body {
+            width: 100%;
+            height: auto;
+            min-height: 100%;
+            background: #F5F5F5;
+
+        }
+        ul li {
+            position: relative;
+            min-height: 44px;
+            box-sizing: border-box;
+            padding: 0.4rem 0.267rem;
+            display: flex;
+            align-items: center;
+            background: #fff;
+        }
+        ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #F5F5F5;
+            transform: scaleY(.4);
+        }
+        .user-icon{
+            width:1.227rem;
+            height:1.227rem;
+            border-radius:100%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+        .user-name {
+            font-size: 14px;
+            color: #333;
+        }
+        .item-key {
+            flex-shrink: 0;
+            width: 2.453rem;
+            font-size:14px;
+            color:#333333;
+        }
+        .gray-value,.black-value{
+            font-size:14px;
+            flex: 1;
+        }
+        .gray-value {
+            color:#999999;
+            
+        }
+        .black-value {
+            color:#333333;
+        }
+        .copy {
+            font-size:14px;
+            color:#ff5c98;
+            flex-shrink: 0;
+        }
+        .step{
+            padding: 0.32rem 0.4rem;
+        }
+        .step-ul {
+            margin-top: 0.32rem;
+        }
+        .step-ul p {
+            margin-bottom: 0.213rem;
+            font-size:12px;
+            color:#999999;
+        }
+        .step-ul p span {
+            color:#ff5c98;
+        }
+    </style>
+</head>
+<body>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../icon/back.png" alt="">
+	    </div>
+	    <div>订单详情</div>
+	</div>
+ <ul>
+     <!--<li>
+         <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+         <span class="user-name">请叫我妲姬</span>
+     </li>
+     <li>
+         <span class="item-key">微信号</span>
+         <div class="gray-value" >请叫我妲姬123</div>
+         <div class="copy">复制</div>
+     </li>
+     <li>
+         <span class="item-key">验证信息</span>
+         <div class="black-value">哈喽小小蜜</div>
+         <div class="copy">复制</div>
+     </li>
+     <li>
+         <span class="item-key">价格</span>
+         <div class="black-value">1200LB</div>
+     </li>
+     <li>
+         <span class="item-key">购买时间</span>
+         <div class="gray-value">2019.05.16 17:22:20</div>
+     </li>
+     <li>
+         <span class="item-key">订单号</span>
+         <div class="gray-value">177718992990</div>
+     </li>
+     <li>
+         <div class="black-value">你已发送加好友申请</div>
+     </li>
+     <li>
+         <div class="black-value">请叫我妲姬 已通过你的加好友申请，请尽快确认，系统在48小时后自动确认</div>
+     </li>
+     <li>
+         <div class="gray-value">2019.05.18 17:22:20</div>
+     </li>-->
+ </ul>
+<div class="step">
+    <div class="black-value">加好友步骤</div>
+    <div class="step-ul">
+        <p>1、进入微信添加好友，复制微信号到搜索输入框，点击搜索</p>
+        <p>2、向女神发送添加好友申请，申请的内容必须为以上的验证信息内容，如：丽柜123456</p>
+        <p>3、发送申请后，请进入“<span>我-订单</span>”更新订单状态</p>
+        <p>4、如女神没有及时通过您的申请，可以尝试多添加几次</p>
+    </div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+	<script type="text/html" id="renderList">
+		<li>
+	         <div class="user-icon"><img src="../../icon/defaultHead.png"  style="width: 100%;height: 100%;" data-echo="<%=list.userIcon%>" real-style="<%=list.userIconStyle%>" alt=""></div>
+	         <span class="user-name"><%=list.userName%></span>
+	     </li>
+	     <li>
+	         <span class="item-key">微信号</span>
+	         <div class="gray-value" ><%=list.weixin%></div>
+	         <div class="copy">复制</div>
+	     </li>
+	     <li>
+	         <span class="item-key">验证信息</span>
+	         <div class="black-value"><%=list.message%></div>
+	         <div class="copy">复制</div>
+	     </li>
+	     <li>
+	         <span class="item-key">价格</span>
+	         <div class="black-value"><%=list.payMoney%>LB</div>
+	     </li>
+	     <li>
+	         <span class="item-key">购买时间</span>
+	         <div class="gray-value"><%=list.ctime%></div>
+	     </li>
+	     <li>
+	         <span class="item-key">订单号</span>
+	         <div class="gray-value"><%=list.orderNum%></div>
+	     </li>
+	     <li>
+	         <div class="black-value">你已发送加好友申请</div>
+	     </li>
+	     <li>
+	         <div class="black-value"><%=list.userName%> 已通过你的加好友申请，请尽快确认，系统在48小时后自动确认</div>
+	     </li>
+	     <li>
+	         <div class="gray-value"><%=list.ctime%></div>
+	     </li>
+	</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    	var feilKey = quakooUtils.getImgKey();
+        var params = quakooUtils.GetRequest()
+        console.log(JSON.stringify(params))
+        if(quakooUtils.isNotBlack(params.userIcon)){
+            var _iconObg = quakooImg.processImg(params.userIcon,1.227*fontSize,1.227*fontSize);
+            params.userIcon = _iconObg.url+feilKey;
+            params.userIconStyle =  _iconObg.style
+        }else {
+            params.userIcon = '../../icon/defaultHead.png';
+            params.userIconStyle =  'width:100%;height:100%'
+        }
+         params.ctime = quakooUtils.formatTimeToMonthSeconds(params.ctime)
+        var data = {
+        	list:params
+        }
+        var html = template('renderList',data)
+        $api.html($api.dom('ul'),html)
+         setTimeout(function () {
+	                echo.init({
+	                    offset: 0,
+	                    throttle: 0//设置图片延迟加载的时间
+	                });
+	        }, 100);
+//  }
+</script>
+
+</html>

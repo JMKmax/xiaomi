@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>绑定圈子</title>
+    <style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			background: #f7f5f6;
+		}
+		a{ text-decoration:none!important;} 
+		.ul{
+			box-sizing: border-box;
+			padding-top: 0.266666rem;
+		}
+		.ul .list{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0.4rem 0.413333rem 0.386666rem 0.373333rem;
+			background: #fff;
+			margin-bottom: 0.266666rem;
+		}
+		.ul .list .title{
+			color: #2D3134;
+			font-weight: bold;
+			font-size: 0.4rem;
+		}
+		.ul .list .time{
+			color: #B1B1B1;
+			font-size: 0.266666rem;
+		}
+		.ul .list .info{
+			margin: 0.266666rem 0;
+			color: #646769;
+			font-size: 0.32rem;
+			line-height: 0.48rem;
+		}
+		
+		.list .tag{
+			display: inline-block;
+			width: 1.6rem;
+			height: 0.533333rem;
+			line-height: 0.533333rem;
+			text-align: center;
+			color: #2BD62F;
+			font-size: 0.266666rem;
+			background:rgba(43,214,47,0.18);
+			border-radius: 0.106666rem;
+			box-sizing: border-box;
+		}
+		.list .status{
+			border: 1px solid #08A3FF;
+			background: #fff;
+			color: #08A3FF;
+			margin-left: 0.4rem;
+		}
+		.list .right{
+			width: 1.693333rem;
+			height: 0.613333rem;
+			text-align: center;
+			line-height: 0.613333rem;
+			color: #f73d31;
+			border: 1px solid #f73d31;
+			border-radius: 0.093333rem;
+		}
+		.list .money{
+			color: #f73d31;
+			font-size: 0.4rem;
+		}
+		.list .money span:first-child{
+			font-size: 0.32rem;
+			color: #b1b1b1;
+		}
+		.list .money span:nth-child(2){
+			font-size: 0.32rem;
+		}
+		
+		
+		.mui-popover.mui-popover-action .mui-table-view{
+			margin: 0;
+		}
+		.mui-table-view-cell{
+			padding: 0;
+			height: 1.493333rem;
+			line-height: 1.493333rem;
+			color: #282828;
+			font-size: 0.48rem;
+		}
+		.mui-table-view-cell > a:not(.mui-btn){
+			margin: 0;
+		}
+		.mui-popover.mui-popover-action .mui-table-view {
+			border-radius:0;
+		}
+		.mui-popover.mui-popover-action.mui-active{
+			background:rgba(242,242,242,1);
+		}
+		.second:after{
+			height: 0!important;
+		}
+		.second{
+			height: 1.306666rem!important;
+			line-height: 1.306666rem!important;
+		}
+		.first{
+			color: #919191;
+			font-size: 0.426666rem;
+		}
+    </style>
+</head>
+
+<body>
+	<ul class="ul">
+		<li class="list">
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="title">圈子名称</div>
+				<div class="time">2019你那7月22日14:33</div>
+			</div>
+			<div class="info">圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍</div>
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="left">
+					<div>
+						<div class="tag">运行中</div>
+						<div class="tag status">运行中</div>
+					</div>
+					<div class="money">
+						<span>今日流水:</span>
+						<span>￥</span>
+						<span>888</span>
+					</div>
+				</div>
+				<div class="right" onclick="openMuiModal2()">＋绑定</div>
+			</div>
+		</li>
+		<li class="list">
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="title">圈子名称</div>
+				<div class="time">2019你那7月22日14:33</div>
+			</div>
+			<div class="info">圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍</div>
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="left">
+					<div>
+						<div class="tag">运行中</div>
+						<div class="tag status">运行中</div>
+					</div>
+					<div class="money">
+						<span>今日流水:</span>
+						<span>￥</span>
+						<span>888</span>
+					</div>
+				</div>
+				<div class="right">＋绑定</div>
+			</div>
+		</li>
+		<li class="list">
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="title">圈子名称</div>
+				<div class="time">2019你那7月22日14:33</div>
+			</div>
+			<div class="info">圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍</div>
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="left">
+					<div>
+						<div class="tag">运行中</div>
+						<div class="tag status">运行中</div>
+					</div>
+					<div class="money">
+						<span>今日流水:</span>
+						<span>￥</span>
+						<span>888</span>
+					</div>
+				</div>
+				<div class="right">＋绑定</div>
+			</div>
+		</li>
+	</ul>
+	<div id="modal_02" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">是否确定绑定此圈子？</a>
+	        </li>
+	        <li class="mui-table-view-cell second">
+	            <a href="#">是</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell">
+	            <a href="#" class="btm-cancle">否</a>
+	        </li>
+	    </ul>
+	</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+      
+    };
+	
+	
+	
+	function openMuiModal2() {
+		quakooApp.openFrame("mask","mask.html",{type:3},0,0,{bgColor:'rgba(0,0,0,0)'})
+//      mui('#modal_02').popover('toggle');
+    }
+	
+</script>
+</body>
+</html>

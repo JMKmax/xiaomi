@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>用户协议</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        .white{
+        	height: 0.266666rem;
+        	width: 100%;
+        	background: #f5f5f5;
+        }
+        .contents{
+            padding: 0.4rem;
+        }
+        p {
+            line-height: 1.5em;
+            text-align: justify;
+            margin-bottom: 0.533rem;
+            font-size:13px;
+            color:#333333;
+        }
+        div{
+        	background: #fff;
+        }
+    </style>
+</head>
+<body>
+	<div class="white"></div>
+	<div class="contents">
+		<p >关于我们</p>
+		<div class="contents-list">
+			<p>欢迎您与各我方平台经营者（详见定义条款）共同签署本《用户服务协议》（下称“本协议”）并使用我方平台服务！</p>
+		
+			<p>各条款标题仅为帮助您理解该条款表达的主旨之用，不影响或限制本协议条款的含义或解释。为维护您自身权益，建议您仔细阅读各条款具体表述。</p>
+			
+			<p>【审慎阅读】 您在申请注册流程中点击同意本协议之前，应当认真阅读本协议。 请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、法律适用和争议解决条款。免除或者限制责任的条款将以粗体下划线标识，您应重点阅读。 如您对协议有任何疑问，可向我方平台客服咨询。
+			</p>
+			<p>【签约动作】 当您按照注册页面提示填写信息、阅读并同意本协议且完成全部注册程序后，即表示您已充分阅读、理解并接受本协议的全部内容，并与我方平台网站达成一致，成为我方平台“用户”。 阅读本协议的过程中，如果您不同意本协议或其中任何条款约定，您应立即停止注册程序。
+			</p>
+		</div>
+	</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        quakooData.ajaxGetData(config.getUrl_helpCenter_getDetail(),{type:2},function(ret,err){
+        	if(ret && ret.success){
+        		var data = {
+        			list:ret.data
+        		}
+        		$api.html($api.dom('.contents-list'),ret.data.answer)
+        	}
+        	
+        })
+    }
+</script>
+
+</html>

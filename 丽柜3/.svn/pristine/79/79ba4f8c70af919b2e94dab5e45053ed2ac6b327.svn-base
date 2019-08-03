@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>摄影师</title>
+		<style>
+			.person {
+				height: 2.08rem;
+				padding: 0 0.4rem;
+				position: relative;
+			}
+			.person:after{
+				content: '';
+				height: 1px;
+				background: #F1F1F1;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(.5);
+			}
+			.person-left .photo {
+				width: 1.44rem;
+				height: 1.44rem;
+				margin-right: 0.266666rem;
+				border-radius: 100%;
+				overflow: hidden;
+				box-sizing: border-box;
+				position: relative;
+				z-index: 1;
+			}
+			.person-left .author-info .name {
+				font-size: 0.373333rem;
+				color: #333;
+				margin-bottom: 0.16rem;
+				max-width: 4rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.person-left .author-info .fans span {
+				font-size: 0.32rem;
+				color: #666;
+			}
+			
+			.person-left .author-info .fans .num {
+				margin-right: 0.266666rem;
+			}
+			
+			.person .attention {
+				font-size: 0.373333rem;
+				color: #FF5C98;
+				width: 1.28rem;
+				height: 0.64rem;
+				line-height: 0.64rem;
+				text-align: center;
+				border: 1px solid #FF5C98;
+				border-radius: 0.106666rem;
+			}
+			
+			.person .attention.ready {
+				color: #999;
+				border-color: #999;
+			}
+
+		</style>
+	</head>
+
+	<body>
+			<div class="persons-item">
+				<ul>
+					<li class="person flex flex-align-center flex-pack-justify">
+						<div class="person-left flex flex-align-center">
+							<div class="photo" tapmode="itemOn" onclick="openPhotoHome()">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="author-info" tapmode="itemOn" onclick="openInsHome()">
+								<div class="name">小o-毁了你的江山</div>
+								<div class="fans">
+									<span class="num">粉丝17875</span>
+									<span>作品18</span>
+								</div>
+							</div>
+						</div>
+						<div class="attention ready">已关注</div>
+					</li>
+					<li class="person flex flex-align-center flex-pack-justify">
+						<div class="person-left flex flex-align-center">
+							<div class="photo">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="author-info">
+								<div class="name">小o-毁了你的江山</div>
+								<div class="fans">
+									<span class="num">粉丝17875</span>
+									<span>作品18</span>
+								</div>
+							</div>
+						</div>
+						<div class="attention ">关注</div>
+					</li>
+				</ul>
+			</div>
+	</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script id="list" type="text/html">
+		<%for(var i = 0;i<list.length;i++){%>
+			<li class="person flex flex-align-center flex-pack-justify" onclick="openPhotoHome(<%=list[i].uid%>)">
+				<div class="person-left flex flex-align-center">
+					<div class="photo"  >
+						<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%;border-radius: 100%;"
+                         onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%;border-radius: 100%;'"
+                         data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""/>
+					</div>
+					<div class="author-info">
+						<div class="name"><%=list[i].userName%></div>
+						<div class="fans">
+							<span class="num">粉丝<%=list[i].fansCount%></span>
+							<span>作品<%=list[i].contentCount%></span>
+						</div>
+					</div>
+				</div>
+				<%if(list[i].hasFlow){%>
+					<div class="attention ready"  data-mid="<%=list[i].uid%>" data-flag="0" data-attend="<%=list[i].uid%>" onclick="switchAttend(this)" >已关注</div>
+				<%}else{%>
+					<div class="attention" data-mid="<%=list[i].uid%>" data-flag="0"  data-attend="0" onclick="switchAttend(this)">关注</div>
+				<%}%>
+				
+			</li>
+		<%}%>
+	</script>
+	<script>
+		var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+		apiready= function() {
+			new QuakooPage(function(results,append){
+				console.log(JSON.stringify(results))
+				 for (var i = 0; i < results.length; i++) {
+	                if (quakooUtils.isBlack(results[i].userIcon)) {
+	                    results[i].userIcon = '../../icon/defaultHead.png';
+	                    results[i].userIconStyle = 'width:100%;height:100%;'
+	                } else {
+	                    var obj = quakooImg.processImg(results[i].userIcon,1.44*fontSize, 1.44*fontSize);
+	                    results[i].userIcon = obj.url;
+	                    results[i].userIconStyle = obj.style;
+	                }
+	            }
+				var data = {
+					list:results
+				}
+				var html = template('list',data)
+				if(append){
+					var div = document.createElement('div')
+					div.innerHTML = html;
+					$api.dom('ul').appendChild(div)
+				}else{
+					$api.html($api.dom('ul'),html)
+				}
+				setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+           	api.parseTapmode();	
+			},config.getUrl_model_getPhotographyPager(),{type:2})
+		}
+		//切换关注状态
+		function switchAttend(_this){
+			quakooUtils.stopEventBubble()
+			 var mid = parseInt($api.attr(_this,'data-mid'),10); //关注模特的ID
+	        var flag  = $api.attr(_this,'data-flag');// 防止重复点击
+	        var attend =  parseInt($api.attr(_this,'data-attend'),10); // 关注状态 大于0  位关注中 等于0 未关注
+	        if(flag == 1){
+	            return
+	        }
+	        $api.attr(_this,'data-flag',1);
+	        var _params ={
+	            otherId: mid
+	        };
+	        if(attend === 0){ //  未关注 = 》 关注
+	            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+	                if(ret && ret.success){
+	                    quakooMsg.toast('关注成功');
+	                    $api.attr(_this,'data-flag',0);
+	                    $api.attr(_this,'data-attend',mid)
+	                    $api.addCls(_this,'ready')
+	                    $api.html(_this,'已关注')
+	                }
+	            })
+	
+	        }else { //关注 == 未关注
+	            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+	                if(ret && ret.success){
+	                    quakooMsg.toast('取消成功')
+	                    $api.attr(_this,'data-flag',0);
+	                    $api.attr(_this,'data-attend',0)
+	                    $api.removeCls(_this,'ready')
+	                    $api.html(_this,'关注')
+	                }
+	            })
+	        }
+		}
+		
+		//跳转到摄影机构主页
+		function openPhotoHome(id) {
+			var userInfo = quakooUser.getUserInfo()
+	    	userId = userInfo.id;
+	    	if(id == userId){
+	    		return;
+	    	}else{
+	    		quakooApp.openNewWindow('photographic_institutions_detail'+id, './photographic_institutions_detail.html',{id:id})
+	    	}
+			
+		}
+		
+		
+	</script>
+
+</html>

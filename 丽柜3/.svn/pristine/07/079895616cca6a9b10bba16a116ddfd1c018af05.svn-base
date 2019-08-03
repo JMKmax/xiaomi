@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的</title>
+    <link rel="stylesheet" href="../../css/api.css">
+    <link rel="stylesheet" href="../../css/commonWindow.css">
+    <style>
+        html, body {
+            width: 100%;
+
+            box-sizing: border-box;
+            background: #F5F5F5;
+
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0 !important;
+        }
+
+        body {
+            height: auto;
+            padding-bottom: 0.266666rem;
+        }
+
+        .mine-top {
+            background: url(../../image/mine_bg.png) no-repeat center center;
+            width: 100%;
+            height: 5.333rem;
+            background-size: cover;
+            color: #fff;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .mine-nav {
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            line-height: 1.173rem;
+            height: 1.173rem;
+        }
+
+        .mine-info {
+            display: flex;
+            align-items: center;
+            width: 5.333rem;
+            margin: 0.533rem auto 0;
+        }
+
+        .user-icon {
+            width: 1.6rem;
+            height: 1.6rem;
+            margin-right: 0.16rem;
+            flex-shrink: 0;
+            box-sizing:border-box;
+            overflow:hidden;
+            border-radius:100%;
+            position: relative;
+            z-index: 1;
+        }
+        .user-icon img{
+            border-radius: 50%;
+        }
+        .user-name {
+            height: 0.533rem;
+            line-height: 0.533rem;
+        }
+
+        .info-right {
+
+        }
+
+        .user-sex {
+            width: 0.427rem;
+            height: 0.427rem;
+            margin-bottom: 0.107rem;
+        }
+
+        .logo {
+            width: 0.906666rem;
+            height: 1.013333rem;
+            position: absolute;
+            bottom: 0.32rem;
+            right: 0;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 0.906666rem;
+            height: 1.013333rem;
+        }
+
+        .woman {
+            background: url("../../icon/woman.png") no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .man {
+            background: url("../../icon/man.png") no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .user-data {
+            margin-top: 0.533rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .user-data li {
+            padding: 0 0.667rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .user-data li * {
+            line-height: 0.533rem;
+            height: 0.533rem;
+        }
+
+        .user-data li > div {
+            margin-bottom: 0.107rem;
+        }
+
+        .grey {
+            background: #F5F5F5;
+            /*box-sizing: border-box;*/
+            padding-bottom: 0.266666rem;
+        }
+
+        .feature-ul {
+            display: flex;
+            flex-wrap: wrap;
+            background: #fff;
+        }
+
+        .feature-ul li {
+            flex-shrink: 0;
+            width: 33.33%;
+            height: calc(100vw / 3 / 1.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .feature-ul li:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleY(.5);
+        }
+
+        .feature-ul li.noBottom:after {
+            content: none;
+        }
+
+        .feature-ul li.noRight:before {
+            content: none;
+        }
+
+        .feature-ul li:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: #f0f0f0;
+            transform: scaleX(.5);
+        }
+
+        .feature-ul li .item-name {
+            margin-top: 0.267rem;
+            color: #333;
+            line-height: 0.533rem;
+            height: 0.533rem;
+        }
+
+        .feature-ul .item-icon {
+            width: 0.693rem;
+            height: 0.693rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feature-ul li:nth-child(1) .item-icon img {
+            width: 0.613rem;
+            height: 0.56rem;
+        }
+
+        .feature-ul li:nth-child(2) .item-icon img {
+            width: 0.533rem;
+            height: 0.64rem;
+        }
+
+        .feature-ul li:nth-child(3) .item-icon img {
+            width: 0.613rem;
+            height: 0.613rem;
+        }
+
+        .feature-ul li:nth-child(4) .item-icon img {
+            width: 0.64rem;
+            height: 0.64rem;
+        }
+
+        .feature-ul li:nth-child(5) .item-icon img {
+            width: 0.613333rem;
+            height: 0.666666rem;
+        }
+
+        .feature-ul li:nth-child(6) .item-icon img {
+            width: 0.533rem;
+            height: 0.64rem;
+        }
+
+        .feature-ul li:nth-child(7) .item-icon img {
+            width: 0.613rem;
+            height: 0.56rem;
+        }
+
+        .feature-ul li:nth-child(8) .item-icon img {
+            width: 0.72rem;
+            height: 0.693rem;
+        }
+
+        .feature-ul li:nth-child(9) .item-icon img {
+            width: 0.693rem;
+            height: 0.587rem;
+        }
+
+        .feature-ul li:nth-child(10) .item-icon img {
+            width: 0.64rem;
+            height: 0.64rem;
+        }
+
+        .feature-ul li:nth-child(11) .item-icon img {
+            width: 0.64rem;
+            height: 0.56rem;
+        }
+
+        .feature-ul li:nth-child(12) .item-icon img {
+            width: 0.667rem;
+            height: 0.533rem;
+        }
+
+        .feature-ul li:nth-child(13) .item-icon img {
+            width: 0.64rem;
+            height: 0.64rem;
+        }
+
+        .feature-ul li:nth-child(14) .item-icon img {
+            width: 0.64rem;
+            height: 0.613rem;
+        }
+    </style>
+</head>
+<body>
+<div class="mine-top">
+    <div class="mine-nav">我的</div>
+    <div class="user-info-wrap">
+<!--        <div class="mine-info" tapmode="" onclick="openUserInfoWin()">-->
+<!--            <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+<!--            <div class="info-right">-->
+<!--&lt;!&ndash;                <span class="user-sex man"></span>&ndash;&gt;-->
+<!--                <div class="user-name"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <ul class="user-data">-->
+<!--            <li>-->
+<!--                <div>0</div>-->
+<!--                <span>粉丝</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div>0</div>-->
+<!--                <span>关注</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div>0</div>-->
+<!--                <span>积分</span>-->
+<!--            </li>-->
+<!--        </ul>-->
+    </div>
+    <div class="logo"><img src="../../icon/mine/logo.png" alt=""/></div>
+</div>
+<div class="grey">
+    <ul class="feature-ul">
+        <li tapmode="itemOn" onclick="openMyWalletWin()">
+            <div class="item-icon"><img src="../../icon/mine/m1.png" alt=""></div>
+            <div class="item-name">我的钱包</div>
+        </li>
+        <li tapmode="itemOn" onclick="openMyOrderWin()">
+            <div class="item-icon"><img src="../../icon/mine/m3.png" alt=""></div>
+            <div class="item-name">我的订单</div>
+        </li>
+        <li class="noRight" tapmode="itemOn" onclick="openMyWorksWin()">
+            <div class="item-icon"><img src="../../icon/mine/m2.png" alt=""></div>
+            <div class="item-name">我的作品</div>
+        </li>
+        <li tapmode="itemOn" onclick="openMyCollectWin()">
+            <div class="item-icon"><img src="../../icon/mine/i4.png" alt=""></div>
+            <div class="item-name">我的收藏</div>
+        </li>
+        <li tapmode="itemOn" onclick="openMyFlowWin()">
+            <div class="item-icon "><img src="../../icon/mine/attent.png" alt=""></div>
+            <div class="item-name">我的关注</div>
+        </li>
+        <li class="noRight" tapmode="itemOn" onclick="openMySubscriptionWin()">
+            <div class="item-icon"><img src="../../icon/mine/i6.png" alt=""></div>
+            <div class="item-name">我的订阅</div>
+        </li>
+        <li tapmode="itemOn" onclick="openAuthenticationModelWin()">
+            <div class="item-icon"><img src="../../icon/mine/i7.png" alt=""></div>
+            <div class="item-name">认证模特</div>
+        </li>
+        <li tapmode="itemOn" onclick="openAuthenticationPhotographerWin()">
+            <div class="item-icon "><img src="../../icon/mine/atten.png" alt=""></div>
+            <div class="item-name">认证摄影师</div>
+        </li>
+        <li class="noRight" tapmode="itemOn" onclick="openAuthenticationTopPicWin()">
+            <div class="item-icon"><img src="../../icon/mine/i9.png" alt=""></div>
+            <div class="item-name">认证摄影机构</div>
+        </li>
+        <li tapmode="itemOn" onclick="openMyHelpCenterWin()">
+            <div class="item-icon"><img src="../../icon/mine/i10.png" alt=""></div>
+            <div class="item-name">帮助中心</div>
+        </li>
+        <li tapmode="itemOn" onclick="openReportWin()">
+            <div class="item-icon"><img src="../../icon/mine/i11.png" alt=""></div>
+            <div class="item-name">举报</div>
+        </li>
+        <li class="noRight" tapmode="itemOn" onclick="openMyMessage()">
+            <div class="item-icon"><img src="../../icon/mine/i12.png" alt=""></div>
+            <div class="item-name">消息</div>
+        </li>
+        <li class="noBottom" tapmode="itemOn" onclick="openBindWechatWin()">
+            <div class="item-icon"><img src="../../icon/mine/m4.png" alt=""></div>
+            <div class="item-name">绑定微信</div>
+        </li>
+        <li class="noBottom" tapmode="itemOn" onclick="openSettingWin()">
+            <div class="item-icon"><img src="../../icon/mine/i14.png" alt=""></div>
+            <div class="item-name">设置</div>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <div class="mine-info" tapmode="" onclick="openUserInfoWin()">
+        <div class="user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='./../icon/defaultHead.png';this.style='width: 100%;height:100%'"  data-echo="<%=list.icon%>" real-style="<%=list.iconStyle%>" alt=""></div>
+        <div class="info-right">
+            <%if(list.sex == 1){%>
+                <span class="user-sex man"></span>
+            <%}else if(list.sex == 2){%>
+                <span class="user-sex woman"></span>
+            <%}%>
+            <div class="user-name"><%=list.name%></div>
+        </div>
+    </div>
+    <ul class="user-data">
+        <li tapmode="" onclick="openMyFansWin()" >
+            <div><%=list.fansCount%></div>
+            <span>粉丝</span>
+        </li>
+        <li tapmode="" onclick="openMyFlowWin()">
+            <div><%=list.flowCount%></div>
+            <span>关注</span>
+        </li>
+        <li>
+            <div>0</div>
+            <span>积分</span>
+        </li>
+    </ul>
+</script>
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    apiready = function () {
+        var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+        if (statusBarAppearance) {
+            var header = $api.dom('.mine-top');
+            $api.fixStatusBar(header);
+        }
+        $api.fixTabBar($api.dom('.grey'));
+        quakooData.ajaxGetData(config.getUrl_web_user_getUserInfo(),{},function (ret,err) {
+            if(ret && ret.success){
+                userInfoRender(ret.data)
+            }
+        })
+    };
+
+    // 渲染用户信息
+    function userInfoRender(results) {
+        if(quakooUtils.isNotBlack(results)){
+            if(results.icon){
+                var _obj=  quakooImg.processImg(results.icon,1.6*fontSize,1.6*fontSize);
+                results.icon =_obj.url;
+                results.iconStyle =_obj.style;
+            }else {
+                results.icon ='../../icon/defaultHead.png';
+                results.iconStyle = 'width:100%;height:100%';
+            }
+            var data = {
+                list:results
+            };
+            var html = template('scriptDiv1',data);
+            $api.html($api.dom('.user-info-wrap'),html);
+            setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+            api.parseTapmode()
+        }
+
+    }
+    // 用户信息
+    function openUserInfoWin() {
+        quakooApp.openNewWindow('userInfo', './userInfo.html', {})
+    }
+
+    // 我的钱包
+    function openMyWalletWin() {
+        quakooApp.openNewWindow('myWallet', './myWallet.html', {})
+    }
+
+    // 我的订单
+    function openMyOrderWin() {
+        quakooApp.openNewWindow('myOrder', './myOrder.html', {})
+    }
+
+    // 我的作品
+    function openMyWorksWin() {
+        quakooApp.openNewWindow('myWorks', './myWorks.html', {})
+    }
+
+    // 我的收藏
+    function openMyCollectWin() {
+        quakooApp.openNewWindow('collect', './collect.html', {})
+    }
+
+    // 我的关注
+    function openMyFlowWin() {
+        quakooApp.openNewWindow('focusMine', './focusMine.html', {})
+    }
+    // 我的粉丝
+    function openMyFansWin() {
+        quakooApp.openNewWindow('myFans', './myFans.html', {})
+    }
+    // 我的订阅
+    function openMySubscriptionWin() {
+        quakooApp.openNewWindow('subscription', './subscription.html', {})
+    }
+
+    // 认证模特
+    function openAuthenticationModelWin() {
+        quakooApp.openNewWindow('authenticationModel', './authenticationModel.html', {type:0})
+    }
+
+    // 认证摄影师
+    function openAuthenticationPhotographerWin() {
+        quakooApp.openNewWindow('authenticationModel', './authenticationModel.html', {type:1})
+    }
+
+    // 认证摄影机构
+    function openAuthenticationTopPicWin() {
+        quakooApp.openNewWindow('authenticationModel', './authenticationModel.html', {type:2})
+    }
+
+    // 帮助中心
+    function openMyHelpCenterWin() {
+        quakooApp.toast('无设计')
+        // openNewWindow('report','./report.html',{})
+    }
+
+    // 举报
+    function openReportWin() {
+        quakooApp.openNewWindow('report', './report.html', {})
+    }
+
+    // 消息
+    function openMyMessage() {
+        quakooApp.toast('无设计')
+        // openNewWindow('subscription','./subscription.html',{})
+    }
+
+    // 绑定微信
+    function openBindWechatWin() {
+        quakooApp.openNewWindow('bindWechat', './bindWechat.html', {})
+    }
+
+    // 设置
+    function openSettingWin() {
+        quakooApp.openNewWindow('setting', './setting.html', {})
+    }
+</script>
+</body>
+
+</html>

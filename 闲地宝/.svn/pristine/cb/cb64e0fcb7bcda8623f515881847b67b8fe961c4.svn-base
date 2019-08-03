@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <title>圈子-全部</title>
+    <style type="text/css">
+        html,
+        body {
+            background: #F5F5F5;
+        }
+        .head{
+        	padding-top: 1.68rem;
+        	margin-bottom: 0.933333rem;
+			position: relative;
+        }
+        .logo{
+        	width: 1.973333rem;
+        	height: 1.973333rem;
+        	box-sizing: border-box;
+        	overflow: hidden;
+        }
+        .logo img{
+        	width: 100%;
+        	height: 100%;
+        }
+        .content{
+        	padding-left: 0.613333rem;
+        	padding-right: 0.693333rem;
+        	font-size: 0.373333rem;
+        	color: #333;
+        	line-height: 0.72rem;
+        	word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+	<div class="head flex flex-pack-center">
+		<div class="logo"><img src="../../icon/app.png" alt="" /></div>
+	</div>
+    
+    <div class="content">北京闲地宝科技有限公司是一家为公共闲置空间商业化提供区块链解决方案的公司，闲地宝平台整合了闲置空间、售货柜、运维方等到一个区块链共识下的生态中。
+用户可以通过闲地位置、人流、商用情况、业态等数据，获得有价值数据，从而进行投资、经营、共享、分账等商 业行为，最终实现让闲置空间及其产出数据价值最大化。最终实现资产上链。实现共享股东、商品追溯、精准零售。</div>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+    <script>
+        apiready = function() {
+
+        };
+
+        function checkColor() {
+            $api.css($api.dom('.enterBtn'), 'color:#0097FE')
+        }
+    </script>
+</body>
+
+</html>

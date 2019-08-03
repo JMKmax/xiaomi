@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>提现记录</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            background: #F5F5F5;
+        }
+
+        .record-ul {
+            padding-top: 0.267rem;
+        }
+
+        .record-ul li {
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.427rem 0.4rem;
+            position: relative;
+        }
+
+        .record-ul li:after {
+            content: '';
+            height: 1px;
+            background: #f1f1f1;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: scaleY(.5);
+        }
+
+        .record-type {
+            line-height: 1.5em;
+            font-size: 14px;
+        }
+
+        .record-time {
+            margin-top: 0.107rem;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        .record-right {
+            text-align: right;
+        }
+
+        .record-money {
+            text-align: right;
+            font-size: 20px;
+            line-height: 0.747rem;
+            color: #ff5c98;
+        }
+
+        .record-status {
+            margin-top: 0.16rem;
+            font-size: 12px;
+            color: #333333;
+        }
+
+        .record-status.fail {
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+<ul class="record-ul">
+<!--    <li>-->
+<!--        <div class="record-left">-->
+<!--            <div class="record-type">微信</div>-->
+<!--            <div class="record-time">05-21 19:22:19</div>-->
+<!--        </div>-->
+<!--        <div class="record-right">-->
+<!--            <div class="record-money">+500</div>-->
+<!--            <div class="record-status">已到账</div>-->
+<!--        </div>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <div class="record-left">-->
+<!--            <div class="record-type">支付宝</div>-->
+<!--            <div class="record-time">05-21 19:22:19</div>-->
+<!--        </div>-->
+<!--        <div class="record-right">-->
+<!--            <div class="record-money">+500</div>-->
+<!--            <div class="record-status fail">失败-未绑定支付宝</div>-->
+<!--        </div>-->
+<!--    </li>-->
+</ul>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i < list.length ;i++){%>
+    <li>
+        <div class="record-left">
+            <div class="record-type"><%=list[i].payType == 1 && '支付宝'%><%=list[i].payType == 2 && '微信' %></div>
+            <div class="record-time"><%=list[i].dayTime%></div>
+        </div>
+        <div class="record-right">
+            <div class="record-money">+<%=list[i].money%></div>
+            <div class="record-status fail"><%=list[i].info%></div>
+        </div>
+    </li>
+    <%}%>
+</script>
+<script>
+    apiready = function () {
+        pageEvent()
+    }
+
+    function pageEvent() {
+        /**
+         * 记录类型 0充值 1消费 2获得 3提现
+         * 1购买微信 2购买作品 3订阅 4打赏
+         */
+        new QuakooPage(consumeRecordCb, config.getUrl_wallet_getWalletRecordPager(), {type: 3, objectType: 0})
+    }
+
+    function consumeRecordCb(results, append) {
+    	console.log($api.jsonToStr(results))
+        for (var i = 0; i < results.length; i++) {
+            results[i].dayTime = quakooUtils.tryDecodeURIComponent(results[i].dayTime)
+        }
+        
+        var data = {
+            list: results
+        };
+        var html = template('scriptDiv1', data);
+        if (append) {
+            $api.append($api.dom('.record-ul'), html)
+        } else {
+            $api.html($api.dom('.record-ul'), html)
+        }
+    }
+</script>
+
+</html>

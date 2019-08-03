@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../css/swiper.min.css">
+    <title>详情</title>
+    <style type="text/css">
+        body,
+        html {
+            background-color: #f5f5f5;
+        }
+
+        body {
+            height: auto;
+        }
+
+        #topbar {
+            box-shadow: 0 1px 0 0 #f2f2f2;
+        }
+
+        .fit {
+            box-sizing: border-box;
+            padding: 0 0.4rem;
+        }
+
+        .video {
+            width: 100%;
+            height: 5.866666rem;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .video .change_big {
+            width: 0.533333rem;
+            height: 0.533333rem;
+            position: absolute;
+            bottom: 0.4rem;
+            right: 0.4rem;
+        }
+
+        .video > img:nth-child(1) {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video > img:nth-child(2) {
+            width: 1.173333rem;
+            height: 1.173333rem;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .slide {
+            background-color: white;
+        }
+
+        .slide-box {
+            margin-left: 0.4rem;
+            padding-top: 0.4rem;
+            display: -webkit-box;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide-box::-webkit-scrollbar {
+            display: none
+        }
+
+        .slide-item {
+            width: 4.266666rem;
+            height: 5.866666rem;
+            margin-left: 0.133333rem;
+            background-color: pink;
+        }
+
+        .slide-item > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-item_first {
+            margin-left: 0;
+        }
+
+        /*作品信息 操作*/
+        .pic_info {
+            height: 1.067rem;
+            background-color: white;
+            position: relative;
+            display: flex;
+            padding: 0 0.267rem 0 0.4rem;
+
+        }
+
+        .pic_name {
+            flex: 0 0 40%;
+            height: 1.067rem;
+            line-height: 1.067rem;
+            color: #333333;
+            font-size: 0.427rem;
+            font-weight: 500;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .pic_other {
+            flex: 0 0 60%;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 0.32rem;
+            color: #999999;
+        }
+
+        .pic_other > div {
+            box-sizing: border-box;
+            padding: 0 0.133rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .pic_other > div span {
+            margin-left: 0.133rem;
+        }
+
+        .pic_count-icon {
+            flex-shrink: 0;
+            display: inline-block;
+            width: 0.427rem;
+            height: 0.427rem;
+            background: url("../../icon/clock.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .pic_watch-icon {
+            flex-shrink: 0;
+            display: inline-block;
+            width: 0.587rem;
+            height: 0.32rem;
+            background: url("../../icon/eye_2.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .pic_share > img {
+            width: 0.427rem;
+            height: 0.427rem;
+        }
+
+        .money {
+            position: relative;
+            height: 1.227rem;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            border-top: 1px solid #F0F0F0;
+        }
+
+        .money .left {
+            flex: 0 0 30%;
+            height: 1.227rem;
+            line-height: 1.227rem;
+            font-size: 0.533333rem;
+            color: #ff5c98;
+        }
+
+        .money .right {
+            flex: 0 0 70%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        button.recharge {
+            width: 1.226666rem;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            background-color: #ff5c98;
+            border-radius: 0.106666rem;
+            font-size: 0.373333rem;
+            color: #ffffff;
+            text-align: center;
+            padding: 0;
+        }
+
+        .word {
+            display: inline-block;
+            margin-right: 0.373333rem;
+        }
+
+        .count {
+            display: inline-block;
+            margin-right: 0.32rem;
+        }
+
+        .count,
+        .word {
+            font-size: 0.373333rem;
+            color: #333333;
+        }
+
+        /*作品介绍*/
+        .describe {
+            margin-top: 0.267rem;
+            padding-bottom: 0.267rem;
+            background: #fff;
+        }
+
+
+        .describe_content {
+            text-align: justify;
+            white-space: normal;
+            font-size: 0.373333rem;
+            color: #666666;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        /*作品介绍 over*/
+        /*模特*/
+        .partner {
+            background-color: white;
+            margin-top: 0.267rem;
+        }
+
+        .focus-ul li {
+            position: relative;
+            padding: 0 0.4rem 0.267rem;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /*.focus-ul li:after {*/
+        /*    content: '';*/
+        /*    position: absolute;*/
+        /*    left: 0;*/
+        /*    right: 0;*/
+        /*    top: 0;*/
+        /*    height: 1px;*/
+        /*    background: #F5F5F5;*/
+        /*    transform: scaleY(.5);*/
+        /*}*/
+
+        .user-icon {
+            width: 1.227rem;
+            height: 1.227rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index:1;
+        }
+
+        .user-icon img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-name > div {
+            font-size: 14px;
+            color: #333333;
+            height: 0.533rem;
+            line-height: 0.533rem;
+            margin-right: 0.266666rem;
+        }
+
+        .label-icon {
+            width: 0.427rem;
+            height: 0.427rem;
+            margin-right: 0.16rem;
+        }
+
+
+        .user-data {
+            margin-top: 0.16rem;
+            font-size: 0.32rem;
+            color: #666666;
+            height: 0.453rem;
+            line-height: 0.453rem;
+        }
+
+        .user-data span {
+            margin-right: 0.267rem;
+        }
+
+        .followed.follow {
+            border: 1px solid #999999;
+            color: #999999;
+        }
+
+        .followed {
+            border: 1px solid #ff5c98;
+            color: #ff5c98;
+            border-radius: 0.107rem;
+            width: 1.12rem;
+            height: 0.587rem;
+            line-height: 0.587rem;
+            text-align: center;
+        }
+
+        /*模特 over*/
+
+        .recommend_pic {
+            background-color: white;
+            padding-top: 0.266666rem;
+            margin-top: 0.266666rem;
+            clear: left;
+        }
+
+        .recommend_pic_title {
+            font-family: PingFang-SC-Medium;
+            font-size: 0.426666rem;
+            color: #333333;
+            margin-left: 0.4rem;
+        }
+
+        .slide_1 {
+            background-color: white;
+        }
+
+        .slide_1_item {
+            width: 4.32rem;
+            height: 3.413333rem;
+            background-color: pink;
+            margin-right: 0.133333rem;
+            position: relative;
+        }
+
+        .slide_1_item > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .recommend_pic_name {
+            width: fit-content;
+            position: absolute;
+            left: 0.133333rem;
+            top: 0.133333rem;
+            font-family: PingFang-SC-Medium;
+            font-size: 0.32rem;
+            color: #ffffff;
+        }
+
+        .recommend_pic_count {
+            width: fit-content;
+            /*height: 0.48rem;*/
+            background-color: black;
+            opacity: 0.5;
+            position: absolute;
+            bottom: 0.133333rem;
+            right: 0.133333rem;
+            border-radius: 0.053333rem;
+            color: white;
+            text-align: center;
+            font-family: PingFang-SC-Regular;
+            line-height: 0.48rem;
+            font-size: 0.32rem;
+            padding: 0 0.186666rem;
+        }
+
+        .recommend_pic_head {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0.64rem;
+            height: 0.64rem;
+            background-color: burlywood;
+            border-radius: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .slide_set {
+            box-sizing: border-box;
+            padding-bottom: 0.266666rem;
+        }
+
+        .recommend_pic_bottom {
+            position: relative;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            margin-top: 0.266666rem;
+        }
+
+        .recommend_pic_id {
+            margin-left: 0.8rem;
+            font-family: PingFang-SC-Medium;
+            font-size: 0.373333rem;
+            color: #333333;
+            max-width: 2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .recommend_pic_wx {
+            width: 0.586666rem;
+            height: 0.586666rem;
+        }
+
+        .recommend_pic_wx > img {
+            width: 0.373333rem;
+            height: 0.373333rem;
+            margin-bottom: -0.053333rem;
+        }
+        /*推荐*/
+        .recommend-wrap {
+            padding-bottom: 0.267rem;
+        }
+
+        .recommend-wrap .swiper-container {
+            padding: 0 0.4rem;
+        }
+        .recommend-wrap .image-wrap {
+            width: 3.467rem;
+            height: 4.533rem;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+        .swiper-slide {
+            width: auto !important;
+        }
+        .recommend-wrap .image-wrap img{
+            width: 100%;
+            height: 100%;
+        }
+        .recommend-info {
+            position: absolute;
+            left: 0.133rem;
+            right: 0.133rem;
+            top: 0.133rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size:0.32rem;
+            color:#ffffff;
+        }
+        .recommend-time{
+            position: absolute;
+            right: 0.133rem;
+            bottom: 0.133rem;
+            opacity:0.51;
+            background:#000000;
+            border-radius:0.053333rem;
+            width:1.706666rem;
+            height:0.48rem;
+            line-height: 0.48rem;
+            text-align: center;
+            font-family:PingFang-SC-Regular;
+            font-size:0.32rem;
+            color:#ffffff;
+        }
+        .recommend-author {
+            display: flex;
+            align-items: center;
+            height: 1.173rem;
+        }
+
+        .recommend-author-icon {
+            flex-shrink: 0;
+            width: 0.64rem;
+            height: 0.64rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.16rem;
+        }
+
+        .recommend-author-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .recommend-author-right {
+            width: calc(3.467rem - 0.64rem - 0.16rem);
+            display: flex;
+            align-items: center;
+        }
+
+        .recommend-author-right .label-icon {
+            margin: 0;
+        }
+
+        .recommend-author-right .recommend-author-name {
+            width: calc(100% - 0.427rem - 0.427rem);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 0.373rem;
+            color: #333333;
+            margin-right: 0.107rem;
+        }
+
+        /*推荐图片 over*/
+        /*评论*/
+        .comment {
+            margin-top: 0.267rem;
+            background: #fff;
+        }
+
+        .area-item {
+            padding: 0 0.4rem;
+            height: 1.12rem;
+            line-height: 1.12rem;
+            font-size: 0.426666rem;
+            color: #333333;
+        }
+
+        .comment-ul li {
+            position: relative;
+            padding: 0.267rem 0.4rem 0;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .comment_item_left {
+            flex-shrink: 0;
+            width: 0.96rem;
+            height: 0.96rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .comment_item_left img {
+
+        }
+
+        .comment_item_right {
+            flex: 1;
+            padding-bottom: 0.267rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .comment_item_right:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: #F0F0F0;
+            transform: scaleY(.5);
+        }
+
+        .comment-area-top {
+            height: 0.533rem;
+            line-height: 0.533rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .comment_id {
+            font-size: 0.373rem;
+            color: #666666;
+        }
+
+        .comment_date {
+            height: 0.533rem;
+            line-height: 0.533rem;
+            font-size: 0.32rem;
+            color: #999999;
+        }
+
+        .comment_content {
+            font-size: 0.373333rem;
+            color: #333333;
+            line-height: 1.5em;
+            text-align: justify;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .comment_content img {
+            width: 0.373rem;
+            height: 0.373rem;
+            vertical-align: middle;
+        }
+
+        #loadMoreDiv {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="contents">
+    <!--    <div class="video">-->
+    <!--        <img class="big_bg" src="../../image/default_pic.png" alt="" />-->
+    <!--        <img src="../../icon/play.png" alt="" />-->
+    <!--        <img class="change_big" src="../../icon/changeBig.png" alt="" />-->
+    <!--    </div>-->
+    <!--    <div class="pic_info fit">-->
+    <!--        <div class="pic_name">免费作品</div>-->
+    <!--        <div class="pic_other">-->
+    <!--            <div>-->
+    <!--                <i class="pic_count-icon"></i>-->
+    <!--                <span>12:10</span>-->
+    <!--            </div>-->
+    <!--            <div>-->
+    <!--                <i class="pic_watch-icon"></i>-->
+    <!--                <span>12</span>-->
+    <!--            </div>-->
+    <!--            <div class="pic_share" tapmode="itemOn" onclick="openShare()">-->
+    <!--                <img src="../../icon/share.png" alt=""/>-->
+    <!--            </div>-->
+    <!--            <div class="date">2017.01.24</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="money fit">-->
+    <!--        <div class="left"><span>0</span>LB</div>-->
+    <!--        <div class="right">-->
+    <!--            <div class="word">账户余额</div>-->
+    <!--            <div class="count"><span>0</span>LB</div>-->
+    <!--            <button class="recharge" tapmode="itemOn" onclick="openRechargeWin()">充值</button>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="describe">-->
+    <!--        <div class="area-item">作品介绍</div>-->
+    <!--        <div class="describe_content">-->
+    <!--            在现实生活中由于忙碌的工作，生活的压力，人们一般都忘记了给自己一片空间。 非常可惜地错过了展示自己美的一面，一提起个人美的一面，人们就非常不自然，因为他欣赏不到自己的美，也就-->
+    <!--            觉得自己不美。实际上我们所说的美就是一个人从形体和容貌上所表现出的个人特点，这就是美。对于男人的美 往往评价为帅，对于女人的美评价为漂亮。-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="partner ">-->
+    <!--        <div class="area-item">模特</div>-->
+    <!--        <ul class="focus-ul">-->
+    <!--            <li>-->
+    <!--                <div class="user-info">-->
+    <!--                    <div class="user-icon"><img src="../../icon/worksbg.png"  style="width:100%;height: 100%; background:url('../../icon/worksbg.png')"alt=""></div>-->
+    <!--                    <div>-->
+    <!--                        <div class="user-name flex flex-align-center">-->
+    <!--                            <div>周惠惠</div>-->
+    <!--                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>-->
+    <!--                            <img class="label-icon" src="../../icon/reward.png" alt=""/>-->
+    <!--                        </div>-->
+    <!--                        <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num"></span></div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="followed follow" tapmode="itemOn" onclick="chenckAttend(0)">已关注</div>-->
+    <!--            </li>-->
+
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--    <div class="partner ">-->
+    <!--        <div class="area-item">摄影师</div>-->
+    <!--        <ul class="focus-ul">-->
+    <!--            <li>-->
+    <!--                <div class="user-info">-->
+    <!--                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height: 100%;"-->
+    <!--                                                alt=""></div>-->
+    <!--                    <div>-->
+    <!--                        <div class="user-name flex flex-align-center">-->
+    <!--                            <div>周惠惠</div>-->
+    <!--                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>-->
+    <!--                            <img class="label-icon" src="../../icon/reward.png" alt=""/>-->
+    <!--                        </div>-->
+    <!--                        <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num"></span></div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="followed follow" tapmode="itemOn" onclick="chenckAttend(0)">已关注</div>-->
+    <!--            </li>-->
+
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--    <div class="partner ">-->
+    <!--        <div class="area-item">摄影机构</div>-->
+    <!--        <ul class="focus-ul">-->
+    <!--            <li>-->
+    <!--                <div class="user-info">-->
+    <!--                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height: 100%;"-->
+    <!--                                                alt=""></div>-->
+    <!--                    <div>-->
+    <!--                        <div class="user-name flex flex-align-center">-->
+    <!--                            <div>周惠惠</div>-->
+    <!--                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>-->
+    <!--                            <img class="label-icon" src="../../icon/reward.png" alt=""/>-->
+    <!--                        </div>-->
+    <!--                        <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num"></span></div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="followed follow" tapmode="itemOn" onclick="chenckAttend(0)">已关注</div>-->
+    <!--            </li>-->
+
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--    <div class="recommend_pic">-->
+    <!--        <div class="area-item">推荐视频</div>-->
+    <!--        <div class="recommend-wrap">-->
+    <!--            <div class="swiper-container">-->
+    <!--                <div class="swiper-wrapper">-->
+    <!--                    <div class="swiper-slide">-->
+    <!--                        <div class="image-wrap"><img src="../../icon/worksbg.png" alt="">-->
+    <!--                            <div class="recommend-info">不一样的烟火不一样的烟火不一样的烟火不一样的烟火</div>-->
+    <!--                        </div>-->
+
+    <!--                        <div class="recommend-author">-->
+    <!--                            <div class="recommend-author-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+    <!--                            <div class="recommend-author-right">-->
+    <!--                                <div class="recommend-author-name">哈哈哈哈哈哈</div>-->
+    <!--                                <img class="label-icon" src="../../icon/weixin.png" alt=""/>-->
+    <!--                                <img class="label-icon" src="../../icon/reward.png" alt=""/>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                    <div class="swiper-slide">-->
+    <!--                        <div class="image-wrap"><img src="../../icon/worksbg.png" alt="">-->
+    <!--                            <div class="recommend-info">不一样的烟火不一样的烟火不一样的烟火不一样的烟火</div>-->
+    <!--                        </div>-->
+
+    <!--                        <div class="recommend-author">-->
+    <!--                            <div class="recommend-author-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+    <!--                            <div class="recommend-author-right">-->
+    <!--                                <div class="recommend-author-name">哈哈哈哈</div>-->
+    <!--                                <img class="label-icon" src="../../icon/weixin.png" alt=""/>-->
+    <!--                                <img class="label-icon" src="../../icon/reward.png" alt=""/>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+</div>
+<div class="comment">
+    <div class="area-item">用户评论</div>
+    <ul class="comment-ul">
+        <!--        <li class="comment_item">-->
+        <!--            <div class="comment_item_left" style="overflow: hidden;">-->
+        <!--                <img src="../../icon/defaultHead.png" style="width: 100%;height:100%"-->
+        <!--                     onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%;'"-->
+        <!--                     data-echo="<%=list[i].simpleUser.icon%>" real-style="<%=list[i].simpleUser.iconStyle%>" alt=""/>-->
+        <!--            </div>-->
+        <!--            <div class="comment_item_right">-->
+        <!--                <div class="comment-area-top">-->
+        <!--                    <div class="comment_id"><%=list[i].simpleUser.name%></div>-->
+        <!--                    <div class="comment_date"><%=list[i].ctime%></div>-->
+        <!--                </div>-->
+        <!--                <div class="comment_content"><%=list[i].content%></div>-->
+        <!--            </div>-->
+        <!--        </li>-->
+    </ul>
+    <div class="loading"></div>
+</div>
+<script type="text/javascript" src="../../script/chatImage.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/swiper-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/monent.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="contents" type="text/html">
+    <div class="video">
+        <img class="big_bg" src=<%=list.cover%> alt="" />
+        <img src="../../icon/play.png"  onclick="playVideoEvent()" alt=""/>
+    </div>
+    <div class="pic_info fit">
+        <div class="pic_name"><%=list.name%></div>
+        <div class="pic_other">
+            <div>
+                <i class="pic_count-icon"></i>
+                <span><%=list.length%></span>
+            </div>
+            <div>
+                <i class="pic_watch-icon"></i>
+                <span><%=list.playCount%></span>
+            </div>
+            <div class="pic_share" tapmode="itemOn" onclick="openShare()">
+                <img src="../../icon/share.png" alt=""/>
+            </div>
+            <div class="date"><%=list.ctime%></div>
+        </div>
+    </div>
+    <div class="money fit">
+        <div class="left"><span><%=list.price%></span>LB</div>
+        <div class="right">
+            <div class="word">账户余额</div>
+            <div class="count"><span>0</span>LB</div>
+            <button class="recharge" tapmode="itemOn" onclick="openRechargeWin()">充值</button>
+        </div>
+    </div>
+    <div class="describe">
+        <div class="area-item">作品介绍</div>
+        <div class="describe_content"><%=list.info%></div>
+    </div>
+    <div class="partner ">
+        <div class="area-item">模特</div>
+        <ul class="focus-ul">
+            <li>
+                <div class="user-info">
+                    <div class="user-icon" tapmode="" onclick="AudioDetail(<%=list.sid%>,<%=list.authorType%>)">
+                        <img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list.modelIcon%>" real-style="<%=list.modelIconStyle%>" alt=""/>
+                    </div>
+                    <div>
+                        <div class="user-name flex flex-align-center">
+                            <div><%=list.modelName%></div>
+                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>
+                            <img class="label-icon" src="../../icon/reward.png" alt=""/>
+                        </div>
+                        <div class="user-data"><span class="fenSi">粉丝<%=list.modelFansCount%></span><span class="prod-num"></span></div>
+                    </div>
+                </div>
+                <%if(list.hasFlowModel){%>
+                <div class="followed follow" tapmode="" data-flag="0" data-flow="<%=list.hasFlowModel%>" onclick="checkAttend(this,<%=list.mid%>)">已关注</div>
+                <%}else {%>
+                <div class="followed" tapmode="" data-flag="0" data-flow="<%=list.hasFlowModel%>" onclick="checkAttend(this,<%=list.mid%>)">关注</div>
+                <%}%>
+            </li>
+
+        </ul>
+    </div>
+    <div class="partner ">
+        <%if(list.authorType == 1){%>
+        <div class="area-item">摄影师</div>
+        <ul class="focus-ul">
+            <li>
+                <div class="user-info">
+                    <div class="user-icon" tapmode="" onclick="AudioDetail(<%=list.pid%>,<%=list.authorType%>)">
+                        <img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list.authorIcon%>" real-style="<%=list.authorIconStyle%>" alt=""/>
+                    </div>
+                    <div>
+                        <div class="user-name flex flex-align-center">
+                            <div><%=list.authorName%></div>
+                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>
+                            <img class="label-icon" src="../../icon/reward.png" alt=""/>
+                        </div>
+                        <div class="user-data"><span class="fenSi">粉丝<%=list.authorFansCount%></span><span class="prod-num"></span></div>
+                    </div>
+                </div>
+                <%if(list.hasFlowAuthor){%>
+                <div class="followed follow" tapmode="" data-flag="0" data-flow="<%=list.hasFlowAuthor%>" onclick="checkAttend(this,<%=list.pid%>)">已关注</div>
+                <%}else {%>
+                <div class="followed" tapmode="" data-flag="0" data-flow="<%=list.hasFlowAuthor%>" onclick="checkAttend(this,<%=list.pid%>)">关注</div>
+                <%}%>
+            </li>
+
+        </ul>
+        <%}else if(list.authorType == 2){%>
+        <div class="area-item">摄影机构</div>
+        <ul class="focus-ul">
+            <li>
+                <div class="user-info">
+                    <div class="user-icon" tapmode="" onclick="AudioDetail(<%=list.pid%>,<%=list.authorType%>)">
+                        <img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list.authorIcon%>" real-style="<%=list.authorIconStyle%>" alt=""/>
+                    </div>
+                    <div>
+                        <div class="user-name flex flex-align-center">
+                            <div><%=list.authorName%></div>
+                            <img class="label-icon" src="../../icon/weixin.png" alt=""/>
+                            <img class="label-icon" src="../../icon/reward.png" alt=""/>
+                        </div>
+                        <div class="user-data"><span class="fenSi">粉丝<%=list.authorFansCount%></span><span class="prod-num"></span></div>
+                    </div>
+                </div>
+                <%if(list.hasFlowAuthor){%>
+                <div class="followed follow" tapmode="" data-flag="0" data-flow="<%=list.hasFlowAuthor%>" onclick="checkAttend(this,<%=list.sid%>)">已关注</div>
+                <%}else {%>
+                <div class="followed" tapmode="" data-flag="0" data-flow="<%=list.hasFlowAuthor%>" onclick="checkAttend(this,<%=list.sid%>)">关注</div>
+                <%}%>
+            </li>
+        </ul>
+        <%}%>
+
+    </div>
+    <div class="recommend_pic">
+        <div class="area-item">推荐视频</div>
+        <div class="recommend-wrap">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <%for(var j = 0 ; j < list.commendList.length; j++){%>
+
+                    <div class="swiper-slide" tapmode="" onclick="videoDetail(<%=list.commendList[j].id%>)">
+                        <div class="image-wrap"><img src="<%=list.commendList[j].cover%>"  onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" style="<%=list.commendList[j].coverStyle%>" alt="">
+                            <div class="recommend-info"><%=list.commendList[j].name%></div>
+                        </div>
+
+                        <div class="recommend-author">
+                            <div class="recommend-author-icon"><img src="<%=list.commendList[j].modelIcon%>"  onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"  style="<%=list.commendList[j].modelIconStyle%>" alt=""/></div>
+                            <div class="recommend-author-right">
+                                <div class="recommend-author-name"><%=list.commendList[j].modelName%></div>
+                                <img class="label-icon" src="../../icon/weixin.png" alt=""/>
+                                <img class="label-icon" src="../../icon/reward.png" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i < list.length ;i++){%>
+    <li class="comment_item">
+        <div class="comment_item_left" style="overflow: hidden;">
+            <img src="../../icon/defaultHead.png" style="width: 100%;height:100%"
+                 onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%;'"
+                 data-echo="<%=list[i].simpleUser.icon%>" real-style="<%=list[i].simpleUser.iconStyle%>" alt=""/>
+        </div>
+        <div class="comment_item_right">
+            <div class="comment-area-top">
+                <div class="comment_id"><%=list[i].simpleUser.name%></div>
+                <div class="comment_date"><%=list[i].ctime%></div>
+            </div>
+            <div class="comment_content"><%=list[i].content%></div>
+        </div>
+    </li>
+    <%}%>
+</script>
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var pageParams;
+    var nextCursor;
+    var hasnext;
+    var listenerFlag = true;
+    var upLoadingImgSrc = '../../image/loading_more.gif';
+    var userInfo;
+    var money = 0;//用户余额
+    var prodId;
+    var curTime = new Date().getTime();
+    var  playVideoParams={
+        url:'',
+        viewTime:0,
+        playTime:0,
+        outh:0,
+        title:''
+    }
+    apiready = function () {
+        userInfo = quakooUser.getUserInfo();
+        pageParams = api.pageParam;
+        renderDetail(pageParams)
+    };
+    //渲染页面
+    function renderDetail(results) {
+        console.log(JSON.stringify(userInfo));
+        console.log(JSON.stringify(results));
+        playVideoParams.url = results.url;
+        playVideoParams.viewTime = results.canWatchNum;
+        playVideoParams.title = results.name;
+        playVideoParams.outh = results.canView ?1  : 0;
+        var feilKey = quakooUtils.getImgKey();
+        prodId = results.id;
+        results.info = quakooUtils.tryDecodeURIComponent(results.info);
+        results.ctime = quakooUtils.formatTimeToDateDianLY(results.ctime);
+        results.length = checkTime(results.length);
+
+        //封面
+        if (quakooUtils.isBlack(results.cover)) {
+            results.cover = '../../icon/defaultHead.png';
+            results.coverStyle = 'width:100%;height:100%;'
+        } else {
+            var obj = quakooImg.processImg(results.cover, api.winWidth, 5.866666 * fontSize);
+            results.cover = obj.url+feilKey;
+            results.coverStyle = obj.style;
+        }
+        //       模特头像
+        if (quakooUtils.isBlack(results.modelIcon)) {
+            results.modelIcon = '../../icon/defaultHead.png';
+            results.modelIconStyle = 'width:100%;height:100%;'
+        } else {
+            var obj = quakooImg.processImg(results.modelIcon, 1.226666 * fontSize, 1.226666 * fontSize);
+            results.modelIcon = obj.url+feilKey;
+            results.modelIconStyle = obj.style;
+        }
+        //                摄影师头像
+        if (quakooUtils.isBlack(results.authorIcon)) {
+            results.authorIcon = '../../icon/defaultHead.png';
+            results.authorIconStyle = 'width:100%;height:100%;'
+        } else {
+            var obj = quakooImg.processImg(results.authorIcon, 1.226666 * fontSize, 1.226666 * fontSize);
+            results.authorIcon = obj.url+feilKey;
+            results.authorIconStyle = obj.style;
+        }
+        // 推荐头像
+        for (var i = 0; i < results.commendList.length; i++) {
+            if (quakooUtils.isBlack(results.commendList[i].modelIcon)) {
+                results.commendList[i].modelIcon = '../../icon/defaultHead.png';
+                results.commendList[i].modelIconStyle = 'width:100%;height:100%;'
+            } else {
+                var obj = quakooImg.processImg(results.commendList[i].modelIcon, 0.64 * fontSize, 0.64 * fontSize);
+                results.commendList[i].modelIcon = obj.url+feilKey;
+                results.commendList[i].modelIconStyle = obj.style;
+            }
+            // 推荐图片
+            if (quakooUtils.isBlack(results.commendList[i].cover)) {
+                results.commendList[i].cover = '../../icon/defaultHead.png';
+                results.commendList[i].coverStyle = 'width:100%;height:100%;'
+            } else {
+                var obj = quakooImg.processImg(results.commendList[i].cover, 3.467 * fontSize, 4.533 * fontSize);
+                results.commendList[i].cover = obj.url+feilKey;
+                results.commendList[i].coverStyle = obj.style;
+            }
+            results.commendList[i].length = checkTime(results.commendList[i].length)
+        }
+
+        var data = {
+            list: results
+        };
+        var html = template('contents', data);
+        $api.html($api.dom('.contents'), html);
+        recommend = new Swiper('.recommend-wrap .swiper-container', {
+            spaceBetween: 10,
+            slidesPerView: 'auto'
+        });
+        setTimeout(function () {
+            if (!echo.isInit()) {
+                echoExt.init({
+                    offset: 0,
+                    throttle: 0//设置图片延迟加载的时间
+                });
+            } else {
+                echo.render()
+            }
+        }, 100);
+        api.parseTapmode();
+        quakooData.ajaxGetDataWithOutProgress(config.getUrl_wallet_getMyWallet(), {}, function (ret, err) {
+            if (ret && ret.success) {
+                $api.text($api.dom('.count span'), ret.data.money)
+                money = ret.data.money
+            }
+        });
+        //底部列表
+        var offset = $api.dom('.comment-ul').getBoundingClientRect();
+        var offsetTop = offset.top;
+        if (api.frameHeight + 100 > offsetTop) {
+            delayComment()
+        } else {
+            window.addEventListener('scroll', addListenView);
+
+            function addListenView() {
+                //加载评论内容数据
+                var offset = $api.dom('.comment-ul').getBoundingClientRect();
+                var offsetTop = offset.top;
+                if (api.frameHeight + 100 > offsetTop) {
+                    delayComment()
+                    window.removeEventListener('scroll', addListenView);
+                }
+
+            }
+        }
+    };
+
+    //分享
+    function openShare() {
+        quakooApp.openFrame('works_share', './works_share.html', {}, 0, 0, {
+            bgColor: 'rgba(0,0,0,0)'
+        })
+    }
+
+    //处理时间
+    function toStr(nub) {
+        return nub > 10 ? '' + nub : '0' + nub
+    }
+
+    function checkTime(time) {
+        var iHour = parseInt(time / 3600);
+        var iMinute = parseInt((time % 3600) / 60);
+        var iSecond = (time % 3600) % 60;
+
+        return time = "" + toStr(iMinute) + ":" + toStr(iSecond) + "";
+    }
+
+    //打开充值窗口
+    function openRechargeWin() {
+        quakooApp.openNewWindow('recharge', '../mine/recharge.html', {})
+    }
+
+    //跳转评论
+    function openComment(type, objectId) {
+        quakooApp.openNewWindow('comment', './comment.html', {type: type, objectId: '' + objectId})
+    }
+
+    //跳转详情页
+    function videoDetail(id) {
+        quakooApp.openNewWindow('works_video_details'+id, './works_video_details.html', {cid: id});
+    }
+    //点击头像跳转
+    function AudioDetail(id,type){
+        var userInfo = quakooUser.getUserInfo()
+        userId = userInfo.id;
+        if(id == userId){
+            return;
+        }
+        if(type == 0){
+            quakooApp.openNewWindow('model_detail'+id,'../home/model_detail.html',{id:id});
+        }else if(type == 1){
+            quakooApp.openNewWindow('photographer_detail'+id,'../home/photographer_detail.html',{id:id});
+        }else if(type == 2){
+            quakooApp.openNewWindow('photographic_institutions_detail'+id,'../home/photographic_institutions_detail.html',{id:id});
+        }
+
+    }
+    //改变订阅的状态
+    function checkSub() {
+        var isAttend = false;
+        if (!isAttend) {
+            $api.text($api.dom('.partner_follow.parner_sub'), '已订阅')
+            $api.addCls($api.dom('.partner_follow.parner_sub'), 'attend')
+            isAttend = true
+        } else {
+            $api.text($api.dom('.partner_follow.parner_sub'), '订阅')
+            $api.removeCls($api.dom('.partner_follow.parner_sub'), 'attend')
+            isAttend = false
+        }
+    }
+
+    // 切换关注取消
+    function checkAttend(_this,id) {
+        quakooUtils.stopEventBubble()
+        var flow = _this.classList.contains('follow');
+        var flag  = +$api.attr(_this,'data-flag');// 防止重复点击
+        var _params ={
+            otherId: id
+        };
+        if(flag == 1){
+            return
+        }
+        $api.attr(_this,'data-flag',1);
+        if(flow) {// 已关注 =》 未关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('取消成功');
+                    $api.attr(_this,'data-flag',0);
+                    $api.removeCls(_this,'follow');
+                    $api.text(_this,'关注')
+                }
+            })
+        }else {//  未关注  =》 已关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this,'data-flag',0);
+                    $api.addCls(_this,'follow');
+                    $api.text(_this,'已关注')
+
+                }
+            })
+        }
+    }
+
+    //加载评论区内容
+    function delayComment() {
+        var ajaxParams = {
+            objectId: pageParams.id,
+            type: 1,//1作品 2动态
+            size: 10,
+            cursor: 0
+        };
+        quakooData.ajaxSubmitDataNotProcess(config.getUrl_comment_getCommentPager(), ajaxParams, function (rets, err) {
+            if (rets) {
+                if (quakooUtils.isNotBlack(rets)) {
+                    nextCursor = rets.nextCursor;
+                    hasnext = rets.hasnext;
+                    commentListTemplate(rets.data);
+                }
+            }
+        })
+    }
+
+    function commentListTemplate(results, append) {
+        var iconSize = 0.96 * fontSize;
+        var feilKey = quakooUtils.getImgKey();
+        for (var i = 0; i < results.length; i++) {
+            results[i].content = quakooUtils.emotionImg(results[i].content);
+            if (results[i].simpleUser && results[i].simpleUser.icon) {
+                var obj = quakooImg.processImg(results[i].simpleUser.icon, iconSize, iconSize);
+                results[i].simpleUser.icon = obj.url+feilKey;
+                results[i].simpleUser.iconStyle = obj.style;
+            } else {
+                results[i].simpleUser.icon = "../../icon/defaultAvatar.png";
+                results[i].simpleUser.iconStyle = "width:100%;height:100%;";
+            }
+            results[i].ctime = quakooUtils.commentFormatTime(results[i].ctime);
+        }
+        var data = {
+            list: results
+        };
+
+        var html = template('scriptDiv1', data);
+        if (append) {
+            var div = document.createElement("div");
+            div.innerHTML = html;
+            document.querySelector('.comment-ul').appendChild(div);
+        } else {
+            document.querySelector('.comment-ul').innerHTML = html;
+        }
+        api.parseTapmode();
+
+        echoExt.init({
+            offset: 0,
+            throttle: 0 //设置图片延迟加载的时间
+        });
+        var loadMoreDiv = document.getElementById("loadMoreDiv");
+        if (hasnext) {
+            if (loadMoreDiv) {
+                setTimeout(function () {
+                    loading = false;
+                    loadMoreDiv.innerHTML = '上拉加载更多';
+                })
+            } else {
+                var div_loading = document.createElement("div");
+                div_loading.setAttribute("id", "loadMoreDiv");
+                div_loading.innerHTML = '上拉加载更多';
+                $api.dom('.loading').appendChild(div_loading);
+                loading = false;
+            }
+
+        } else {
+            if (loadMoreDiv) {
+                setTimeout(function () {
+                    loading = false;
+                    loadMoreDiv.innerHTML = '已显示全部评论';
+                }, 200);
+            } else {
+                var div_loading = document.createElement("div");
+                div_loading.setAttribute("id", "loadMoreDiv");
+                div_loading.innerHTML = '已显示全部评论';
+                $api.dom('.loading').appendChild(div_loading);
+                loading = false;
+            }
+        }
+
+        if (listenerFlag) {
+            listenerFlag = false;
+            api.addEventListener({
+                name: 'scrolltobottom',
+                extra: {
+                    threshold: 50   //设置距离底部多少就触发
+                }
+            }, function (ret, err) {
+                if (!loading && hasnext) {
+                    loading = true;
+                    var loadMoreDiv = document.getElementById("loadMoreDiv");
+                    if (loadMoreDiv) {
+                        loadMoreDiv.innerHTML = '<img  src="' + upLoadingImgSrc + '"/> 全力加载中...';
+                    } else {
+                        var div_loading = document.createElement("div");
+                        div_loading.setAttribute("id", "loadMoreDiv");
+                        div_loading.innerHTML = '<img  src="' + upLoadingImgSrc + '"/> 全力加载中...';
+                        $api.dom('.loading').appendChild(div_loading);
+                    }
+                    //			评论列表内容
+                    var ajaxParams = {
+                        objectId: pageParams.id,
+                        type: 1,//1作品 2动态
+                        size: 10,
+                        cursor: nextCursor
+                    };
+                    quakooData.ajaxSubmitDataNotProcess(config.getUrl_comment_getCommentPager(), ajaxParams, function (rets, err) {
+                        if (rets) {
+                            if (quakooUtils.isNotBlack(rets.data)) {
+                                nextCursor = rets.nextCursor;
+                                hasnext = rets.hasnext;
+                                commentListTemplate(rets.data, true);
+                            }
+                        }
+                    })
+
+                }
+            });
+        }
+    }
+
+    //添加评论
+    function addComment(content) {
+        // type	是	int	类型 1作品 2动态
+        // objectId	是	long	作品或者动态的id
+        // content	是	String	评论的内容
+        var ajaxParams = {
+            type: 1,
+            objectId: prodId,
+            content: content
+        };
+        quakooData.ajaxSubmitDataNotProcess(config.getUrl_comment_add(), ajaxParams, function (ret, err) {
+            if (ret && ret.success) {
+                api.execScript({
+                    name: api.winName,
+                    script: 'commentNumAdd()'
+                });
+                var userInfo = quakooUser.getUserInfo();
+                quakooMsg.toast('评论成功');
+                var results = ret.data;
+                results.simpleUser = userInfo;
+                addCommentRender([results])
+            }
+        })
+    }
+    function addCommentRender(results) {
+        var iconSize = 0.96 * fontSize;
+        var feilKey = quakooUtils.getImgKey();
+        for (var i = 0; i < results.length; i++) {
+            results[i].content = quakooUtils.emotionImg(results[i].content);
+            if (results[i].simpleUser && results[i].simpleUser.icon) {
+                var obj = quakooImg.processImg(results[i].simpleUser.icon, iconSize, iconSize);
+                results[i].simpleUser.icon = obj.url+feilKey;
+                results[i].simpleUser.iconStyle = obj.style;
+            } else {
+                results[i].simpleUser.icon = "../../icon/defaultAvatar.png";
+                results[i].simpleUser.iconStyle = "width:100%;height:100%;";
+
+            }
+            results[i].ctime = quakooUtils.commentFormatTime(results[i].ctime)
+        }
+        var data = {
+            list: results
+        };
+        var html = template('scriptDiv1', data);
+        $api.prepend($api.dom('.comment-ul'), html)
+    }
+    // 播放视频
+
+    function playVideoEvent() {
+        // alert(JSON.stringify(playVideoParams))
+        liguiPlayVideo(playVideoParams,function () {
+            if (playVideoParams.outh == 0) {
+
+            }
+        })
+    }
+
+    function liguiPlayVideo(param,cb) {
+        api.accessNative({
+            name: "liguiPlay",
+            extra:  param
+        }, function (ret, err) {
+
+        });
+        api.addEventListener({
+            name: 'closePlay'
+        }, function(ret, err) {
+            cb(ret);
+            param.playTime = ret.value.time
+        });
+        api.addEventListener({
+            name: 'playTime'
+        }, function(ret, err) {
+            param.playTime = ret.value.time
+        });
+
+    }
+</script>
+</body>
+
+</html>

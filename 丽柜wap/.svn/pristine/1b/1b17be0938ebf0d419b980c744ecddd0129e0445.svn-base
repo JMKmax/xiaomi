@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<title>微信价格</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<style>
+		.item-tit {
+			display: block;
+			height: 1.227rem;
+			line-height: 1.227rem;
+			padding: 0 0.4rem;
+			font-size: 16px;
+			color: #333333;
+		}
+
+		.charge-ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			padding: 0 0.187rem;
+		}
+
+		.charge-ul li {
+			box-sizing: border-box;
+			flex: 0 0 33.33%;
+			height: 1.413rem;
+			padding: 0 0.187rem;
+			margin-bottom: 0.4rem;
+		}
+
+		.charge-ul li .real-wrap {
+			border: 1px solid #d8d8d8;
+			border-radius: 0.107rem;
+			height: 1.36rem;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.charge-ul li .real-wrap.active {
+			border-color: #FF5C98;
+		}
+
+		.charge-ul li .real-wrap.active > span,
+		.charge-ul li .real-wrap.active > div {
+			color: #FF5C98;
+		}
+
+		.charge-ul li .real-wrap > span {
+			font-size: 16px;
+			color: #333333;
+			height: 0.587rem;
+			line-height: 0.587rem;
+		}
+
+		.charge-ul li .real-wrap > div {
+			font-size: 14px;
+			color: #999999;
+			height: 0.533rem;
+			line-height: 0.533rem;
+		}
+
+		.sure-pay {
+			margin: 0.773rem auto;
+			background-image: linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+			border-radius: 2.667rem;
+			width: 320px;
+			height: 1.173rem;
+			line-height: 1.173rem;
+			font-size: 18px;
+			color: #ffffff;
+			text-align: center;
+		}
+		.hide-weChat {
+			display: inline-flex;
+			align-items: center;
+			padding: 0 0.4rem;
+			font-size: 14px;
+		}
+		.hide-weChat span {
+			display: inline-block;
+		}
+
+
+		.show-flag {
+			margin-right: 0.267rem;
+			display: inline-block;
+			width:0.427rem;
+			height: 0.427rem;
+			background: url("../../icon/pay-unsel.png") no-repeat center center;
+			-webkit-background-size: cover;
+			background-size: cover;
+
+		}
+		.hide-weChat.active  .show-flag  {
+			background: url("../../icon/pay-sel.png") no-repeat center center;
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<div id="topbar">
+    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+        <img src="../../icon/back.png" alt="">
+    </div>
+    <div>微信价格</div>
+</div>
+<div class="con">
+<!--	<span class="item-tit">价格</span>-->
+<!--	<ul class="charge-ul">-->
+
+<!--		<li tapmode=""  onclick="checkFigure(0)">-->
+<!--			<div class="real-wrap" data-money="<%=list[i].money%>">-->
+<!--				<span>1LB</span>-->
+<!--			</div>-->
+<!--		</li>-->
+<!--		<li tapmode=""  onclick="checkFigure(0)">-->
+<!--			<div class="real-wrap" data-money="<%=list[i].money%>">-->
+<!--				<span>1LB</span>-->
+<!--			</div>-->
+<!--		</li><li tapmode=""  onclick="checkFigure(0)">-->
+<!--		<div class="real-wrap" data-money="<%=list[i].money%>">-->
+<!--			<span>1LB</span>-->
+<!--		</div>-->
+<!--	</li><li tapmode=""  onclick="checkFigure(0)">-->
+<!--		<div class="real-wrap" data-money="<%=list[i].money%>">-->
+<!--			<span>1LB</span>-->
+<!--		</div>-->
+<!--	</li>-->
+<!--	</ul>-->
+<!--	<div class="hide-weChat" tapmode=""  onclick="setNoShowWeChat(this)"><span class="show-flag"></span><span>不显示微信</span></div>-->
+<!--	<div class="sure-pay" tapmode="" onclick="setPrice()">确定</div>-->
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+	<span class="item-tit">价格</span>
+	<ul class="charge-ul">
+		<%for(var i = 0 ; i < list.length;i++){%>
+		<li tapmode="" data-money="<%=list[i].name%>" onclick="checkFigure(<%=i%>)">
+			<div class="real-wrap" data-money="<%=list[i].name%>">
+				<span><%=list[i].name%>LB</span>
+			</div>
+		</li>
+		<%}%>
+	</ul>
+	<div class="hide-weChat" tapmode=""  onclick="setNoShowWeChat(this)"><span class="show-flag"></span><span>拒绝添加好友</span></div>
+	<div class="sure-pay" tapmode="" onclick="setPrice()">确定</div>
+</script>
+<script>
+	var weChatPrice;// 微信价格
+//	apiready = function () {
+		// 类型 2发布动态的价钱列表 3购买微信的价钱列表 4打赏个人(动态)的价钱列表 5订阅的列表 订阅列表返回的信息不太一样，在返回参数中单独注明
+		quakooData.ajaxGetDataWithOutProgress(config.getUrl_postType_getPostTypeListByType(),{type:3},function (ret,err) {
+			if(ret && ret.success){
+				console.log(JSON.stringify(ret))
+				rechargeListRender(ret.data)
+			}
+		})
+//	};
+
+	// 充值列表渲染
+	function rechargeListRender(results) {
+		var data = {
+			list:results
+		};
+		var html = template('scriptDiv1',data);
+		$api.html($api.dom('.con'),html);
+		api.parseTapmode()
+	}
+	//选择金额
+	function checkFigure(index) {
+		var labs = $api.domAll('.real-wrap');
+		labs.forEach(function (item, i) {
+			if (index == i) {
+				$api.addCls(item, 'active');
+				weChatPrice = +$api.attr(item, 'data-money') // 赋值 充值金额
+			} else {
+				$api.removeCls(item, 'active')
+			}
+		})
+
+	}
+
+	function setNoShowWeChat(_this) {
+		var selected =  $api.hasCls(_this,'active');
+		if(selected){
+			$api.removeCls(_this,'active');
+			weChatPrice = undefined;
+		}else {
+			$api.addCls(_this,'active');
+			weChatPrice = 0;
+		}
+	}
+	function setPrice() {
+		if(weChatPrice === undefined){
+			quakooMsg.toast('请选择微信价格');
+			return
+		}
+		quakooData.ajaxSubmitData(config.getUrl_model_modelSetWeiXinPrice(),{price:weChatPrice},function (ret,err) {
+			if(ret && ret.success){
+				var curMsg='';
+				if(weChatPrice === 0){
+					curMsg = '已将您微信设置拒绝添加好友';
+				}else {
+					curMsg = '已将您微信价格设置为'+weChatPrice+'LB';
+				}
+				quakooMsg.toast(curMsg)
+			}
+		})
+	}
+</script>
+
+</html>

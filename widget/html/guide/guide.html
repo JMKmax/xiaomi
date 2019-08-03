@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<title>引导页</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+
+</head>
+<style type="text/css">
+	html,body{
+		width: 100%;
+		height: 100%;
+		background: #7f7f7f;
+		overflow: hidden;
+	}
+	.swiper-slide{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.swiper-slide img{
+		display: block;
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+	}
+	.start{
+		position: absolute;
+		z-index: 10001;
+		bottom : 0.8rem;
+		left: 9.333%;
+		background-color:#fff;
+		color: #47C299;
+		width: 81.33%;
+		height: 1.173rem;
+		text-align: center;
+		font-size: 0.427rem;
+		line-height: 1.173rem;
+		display: none;
+		border-radius: 0.213rem;
+	}
+	.topRight{
+		z-index: 10001;
+		width: 1.013rem;
+		height: 0.533rem;
+		line-height: 0.533rem;
+		padding-top: 0.053rem;
+		padding-bottom: 1px;
+		position: absolute;
+		top: 0.8rem;
+		right: 0.427rem;
+		display: flex;
+		display: -webkit-flex;
+		justify-content: center;
+		-webkit-justify-content : center;
+		align-items:center;/*垂直居中*/
+		-webkit-align-items : center;/*垂直居中*/
+		font-size: 0.373rem;
+		border: 1px solid #bfbfbf;
+		border-radius: 4px;
+		color: #c2c2c2;
+	}
+</style>
+<body>
+<div class="swiper-container homework_m" id="wrap">
+	<div class="swiper-wrapper" id="main">
+		<div class="swiper-slide">
+			<img src="../../image/guide/guide_01.png" alt="" />
+		</div>
+		<div class="swiper-slide">
+			<img src="../../image/guide/guide_02.png" alt="" />
+		</div>
+		<div class="swiper-slide">
+			<img src="../../image/guide/guide_03.png" alt="" />
+		</div>
+
+	</div>
+	<div class="swiper-pagination"></div>
+</div>
+<div id="start" class="start" onclick="next()">
+	立即体验
+</div>
+<!--<div class="topRight" onclick="next()">跳过</div>-->
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/swiper-3.3.1.min.js"></script>
+<script type="text/javascript">
+	//		var width = document.documentElement.clientWidth || document.body.clientWidth;
+	//		var height = document.documentElement.clientHeight || document.body.clientHeight;
+	//		var obj = getImgSizeBySize(width,height);
+	//		var imgs = document.querySelectorAll("img");
+	//		for (var i = 0; i < imgs.length; i++) {
+	//			imgs[i].style = obj.style;
+	//		}
+
+	apiready = function(){
+		var activeIndex = 0;
+		quakooDb.setItem('isShowGuide',true);
+		var mySwiper = new Swiper('.swiper-container', {
+			initialSlide: 0,
+			// pagination : '.swiper-pagination',
+			effect : 'slide',
+			resistanceRatio : 0,
+			onReachEnd :function(swiper){
+				document.getElementById('start').style.display = "block";
+			}
+		})
+	};
+
+
+
+	function getImgSizeBySize(showWidth,showHieght){
+		var realSize = {h:1080,w:1920};
+		var thumSize = {w:showWidth,h:showHieght};
+		var h = getHeightFromWidth(1080,1920,thumSize.w);
+		//判断高度是否超出；大于，图片不够显示，截左右
+		if(thumSize.h > h){
+			var w = getHeightFromWidth(1920,1080,showHieght);//肯定超出去
+			var over = 0-Math.round((w - showWidth)/2);//左右截取
+			//margin-left: 17px;margin-right: 17px
+			var obj = {style:"margin-left:"+over+"px"+"; margin-right:"+over+"px;height:"+showHieght+"px;width:"+w+"px;"};
+			//var obj={over:over,type:1}
+			return obj;
+		}else{
+			var over =  0-Math.round((h - showHieght)/2);
+			var obj = {style:"margin-bottom:"+over+"px;margin-top:"+over+"px;height:"+h+"px;width:"+showWidth+"px;"};
+			// var obj={over:over,type:2}
+			return obj;
+		}
+	}
+
+	function getHeightFromWidth(realWidth,realHeight,thumWidth){
+		var thumHeight = Math.round((thumWidth/realWidth)*realHeight);//显示宽度除以图片真实宽度 乘以 图片真实高度
+		return thumHeight;
+	}
+
+
+	function next(){
+		api.execScript({
+			name:'root',
+			script: 'apiready()'
+		});
+		// setTimeout(function(){
+		// 	api.closeFrame({
+		// 		name : "guide"
+		// 	});
+		// },200)
+	}
+</script>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>作品-VR</title>
+    <style>
+        .recommend .image{
+            position: relative;
+        }
+        .recommend .image .title{
+            position: absolute;
+            top: 0.4rem;
+            left: 0.4rem;
+            color:#fff;
+        }
+        .recommend .image .time{
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            height: 0.533333rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding:0 0.213333rem;
+            color: #fff;
+            background: rgba(0,0,0,.5);
+            border-radius: 0.08rem;
+        }
+        .recommend .author{
+            width:100%;
+            height: 1.493333rem;
+        }
+        .recommend .author .photo{
+            width: 0.853333rem;
+            height: 0.853333rem;
+            margin-left: 0.4rem;
+            margin-top: 0.32rem;
+            float: left;
+            border-radius:50%;
+            overflow: hidden;
+        }
+        .recommend .author .photo img{
+            width: 100%;
+            height: 100%;
+        }
+        .recommend .author .name{
+            float: left;
+            margin-left: 0.16rem;
+            margin-top: 0.48rem;
+            line-height: 20px;
+        }
+        .recommend .author .icon{
+            float:left;
+            width:0.426666rem;
+            height: 0.426666rem;
+            margin-left: 0.16rem;
+            margin-top: 0.533333rem;
+        }
+        .recommend .author .attention{
+            float: right;
+            margin-right: 0.4rem;
+            margin-top: 0.426666rem;
+            width:1.28rem;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            text-align: center;
+            border:1px solid #FF77A9;
+            color: #FF77A9;
+            border-radius: 0.106666rem;
+        }
+        .recommend .author .attention.attend{
+            color: #999;
+            border-color: #999;
+        }
+        .recommend .image .audio-photo{
+            width: 100%;
+            height: 5.866666rem;
+            overflow: hidden;
+        }
+        .recommend .image .audio-photo img{
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<!--                            视频                                               -->
+
+<div class="title-video top_title" >
+    <div class="recommend">
+        <div class="image">
+            <p class="title">呼啦好</p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+                <img class="beach" src="../../image/bg_1.png" alt="" />
+            </div>
+            <p class="time">17:24</p>
+        </div>
+        <div class="author">
+            <div class="photo">
+                <img  src="../../image/bg.png" alt="" />
+            </div>
+            <p class="name">小o—毁了你的江山</p>
+            <img class="icon" src="../../icon/weixin.png" alt="" />
+            <p class="attention attend">已关注</p>
+        </div>
+    </div>
+    <div class="recommend">
+        <div class="image">
+            <p class="title">沙滩热辣辣</p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+                <img class="beach" src="../../image/bg_2.jpg" alt="" />
+            </div>
+            <p class="time">17:24</p>
+        </div>
+        <div class="author">
+            <div class="photo">
+                <img  src="../../image/bg.png" alt="" />
+            </div>
+            <p class="name">小o—毁了你的江山</p>
+            <img class="icon" src="../../icon/weixin.png" alt="" />
+            <p class="attention">关注</p>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+
+<script id="swiper" type="text/html">
+    <%for(var i=0; i<list.length; i++){%>
+    <div class="swiper-slide"><img src=<%=list[i].image%> alt="" /></div>
+    <%}%>
+</script>
+<script>
+    apiready = function() {
+        // new QuakooPage(cb,config.getUrl_content_getMostPopularPager(),{});
+
+    };
+    function cb(ret,apped){
+
+    }
+
+    function AudioDetail(_this){
+        var imgUrl =$api.attr($api.dom(_this,'img'),'src');
+        var name =$api.dom($api.closest(_this,'.image'),'p').innerHTML;
+        quakooApp.openNewWindow('works_video_details','./works_video_details.html',{imgUrl:imgUrl,name:name});
+    }
+
+
+    //                                      改变关注的状态
+    var author = $api.domAll('.recommend .author ')
+    var attend = $api.domAll('.recommend .attention');
+    var isAttends = []
+    for(var i = 0;i<author.length;i++){
+        var name = $api.dom(author[i],'.name');
+        var isAttend = $api.hasCls(attend[i],'ready')
+        var wItem = {
+            name:name,
+            isAttend:isAttend
+        };
+        isAttends.push(wItem)
+    }
+    for(var i = 0;i<attend.length;i++){
+        attend[i].index = i
+        attend[i].onclick  = function(){
+            if(!isAttends[this.index].isAttend){
+                this.innerHTML = '已关注'
+                $api.addCls(this,'attend');
+                isAttends[this.index].isAttend = true
+            }else{
+                this.innerHTML = '关注'
+                $api.removeCls(this,'attend');
+                isAttends[this.index].isAttend = false
+
+            }
+        }
+    }
+
+</script>
+</html>

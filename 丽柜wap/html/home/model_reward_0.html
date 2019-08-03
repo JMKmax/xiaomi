@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>模特打赏</title>
+    <style type="text/css">
+        html,body {
+            background: transparent;
+        }
+        .mark{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+        .popup-area {
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            background:#ffffff;
+            border-radius:8px;
+            width:319px;
+            height:198px;
+            box-sizing: border-box;
+            padding: 0.533rem;
+        }
+        .popup-title {
+            height: 0.587rem;
+            line-height: 0.587rem;
+            font-size:16px;
+            color:#333333;
+            text-align: center;
+        }
+        .popup-main {
+            height: 2.213rem;
+            line-height: 2.213rem;
+            text-align: center;
+            font-size:0.64rem;
+            color:#ff5c98;
+            letter-spacing: 0.027rem;
+        }
+        .popup-main span.unit{
+            font-size: 0.373rem;
+        }
+        .popup-btn {
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border:1px solid #ff5c98;
+            border-radius:0.213rem;
+            width:4.96rem;
+            height:1.227rem;
+            font-size:0.48rem;
+            color:#ff5c98;
+        }
+        .rew_1 {
+            display: inline-block;
+            width:0.56rem;
+            height:0.613rem;
+            background: url("../../icon/rew_1.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            margin-right: 0.373rem;
+        }
+    </style>
+</head>
+    <div class="mark" tapmode="" onclick="closeCurFrame()"></div>
+    <div class="popup-area">
+        <div class="popup-title">打赏后即可观看该动态</div>
+        <div class="popup-main"><span class="price">0</span><span class="unit">LB</span></div>
+        <div class="popup-btn" tapmode="itemOn" onclick="buyCircleEvent()"><i class="rew_1"></i><span>打赏</span></div>
+    </div>
+<body>
+
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var params, price,cid,winName,frameName;
+//  apiready = function () {
+        params = api.pageParam;
+        price = params.price;
+        cid = params.id;
+        winName=params.winName;
+        frameName=params.frameName;
+        $api.text($api.dom('.price'),price);
+//  };
+
+    //跳转详情页
+    function buyCircleEvent() {
+
+        quakooData.ajaxSubmitData(config.getUrl_circle_buyCircle(), {cid: cid}, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('打赏成功');
+                api.sendEvent({
+                    name:params.scriptEvent,
+                    extra: {
+                        cid: cid,
+                        price:price
+                    }
+                });
+                setTimeout(function () {
+                    closeCurFrame()
+                },300)
+            }
+        });
+    }
+
+    //取消打赏
+   function closeCurFrame() {
+       api.closeFrame()
+   }
+</script>
+</body>
+
+</html>

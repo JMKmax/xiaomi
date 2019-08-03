@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的收益</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            background: #F5F5F5;
+        }
+
+        .record-ul {
+            padding-top: 0.267rem;
+        }
+
+        .record-ul li {
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.427rem 0.4rem;
+            position: relative;
+        }
+
+        .record-ul li:after {
+            content: '';
+            height: 1px;
+            background: #F1F1F1;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: scaleY(.5);
+        }
+
+        .record-left {
+            display: flex;
+        }
+
+        .user-icon {
+            flex-shrink: 0;
+            width: 0.96rem;
+            height: 0.96rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            position: relative;
+            z-index: 1;
+        }
+        .record-type {
+            line-height: 1.5em;
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .record-time {
+            margin-top: 0.107rem;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        .record-right {
+            line-height: 2;
+        }
+
+        .record-money {
+            text-align: right;
+            font-size: 20px;
+            height: 100%;
+            /*color:#333333;*/
+            color: #ff5c98;
+        }
+    </style>
+</head>
+<body>
+<ul class="record-ul">
+<!--    <li>-->
+<!--        <div class="record-left">-->
+<!--            <div class="user-icon">-->
+<!--                <img src="../../icon/defaultHead.png" alt="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <div class="record-type">甜美教主打赏</div>-->
+<!--                <div class="record-time">05-21 19:22:19</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="record-right">-->
+<!--            <div class="record-money">+500</div>-->
+<!--        </div>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <div class="record-left">-->
+<!--            <div class="user-icon">-->
+<!--                <img src="../../icon/defaultHead.png" alt="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <div class="record-type">何以笙箫默打赏</div>-->
+<!--                <div class="record-time">05-21 19:22:19</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="record-right">-->
+<!--            <div class="record-money">+50000</div>-->
+<!--        </div>-->
+<!--    </li>-->
+</ul>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i < list.length ;i++){%>
+    <li>
+        <div class="record-left">
+            <div class="user-icon">
+                <img src="../../icon/defaultHead.png"  style="width: 100%;height: 100%;" data-echo="<%=list[i].info.costUserIcon%>" real-style="<%=list[i].info.costUserIconStyle%>" alt="">
+            </div>
+            <div>
+                <div class="record-type"><%=list[i].title%></div>
+                <div class="record-time"><%=list[i].ctime%></div>
+            </div>
+        </div>
+
+        <div class="record-right">
+            <div class="record-money">+<%=list[i].money%></div>
+        </div>
+    </li>
+    <%}%>
+</script>
+<script>
+	 var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    apiready = function () {
+        pageEvent()
+    };
+
+    function pageEvent() {
+        /**
+         * type 记录类型 0充值 1消费 2获得 3提现
+         * 1购买微信 2购买作品 3订阅 4打赏
+         */
+        new QuakooPage(consumeRecordCb, config.getUrl_wallet_getWalletRecordPager(), {type: 2, objectType: 0})
+    }
+	function consumeLista(index){
+    	var params;
+    	if(index == 1){
+    		params ={type: 2,objectType:0,subType:4 }
+    	}else if(index == 2){
+    		params ={type: 2,objectType:0,subType:5 }
+    	}else if(index == 3){
+    		params ={type: 2,objectType:4,subType:0 }
+    	}
+    	 new QuakooPage(consumeRecordCb, config.getUrl_wallet_getWalletRecordPager(),params)
+    }
+    function consumeRecordCb(results, append) {
+    	var feilKey = quakooUtils.getImgKey();
+        for (var i = 0; i < results.length; i++) {
+            results[i].ctime = quakooUtils.formatTimeToMonthSeconds(results[i].ctime)
+            results[i].info = JSON.parse(results[i].info)
+            console.log(JSON.stringify(results[i].info))
+             if(quakooUtils.isNotBlack(results[i].info.costUserIcon)){
+                var _iconObg = quakooImg.processImg(results[i].info.costUserIcon,0.96*fontSize,0.96*fontSize);
+                results[i].info.costUserIcon = _iconObg.url+feilKey;
+                results[i].info.costUserIconStyle =  _iconObg.style
+            }else {
+                results[i].info.costUserIcon = '../../icon/defaultHead.png';
+                rresults[i].info.costUserIconStyle =  'width:100%;height:100%'
+            }
+        }
+        var data = {
+            list: results
+        };
+        var html = template('scriptDiv1', data);
+        if (append) {
+            $api.append($api.dom('.record-ul'), html)
+        } else {
+            $api.html($api.dom('.record-ul'), html)
+        }
+        setTimeout(function () {
+            if (!echo.isInit()) {
+                echoExt.init({
+                    offset: 0,
+                    throttle: 0//设置图片延迟加载的时间
+                });
+            } else {
+                echo.render()
+            }
+        }, 100);
+        api.parseTapmode()
+    }
+</script>
+
+</html>

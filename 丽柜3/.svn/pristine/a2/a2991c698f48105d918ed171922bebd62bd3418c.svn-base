@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>举报</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .con {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0.347rem 0.4rem;
+            box-sizing: border-box;
+        }
+        .con:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            -webkit-transform: scaleY(.5);
+            -moz-transform: scaleY(.5);
+            -ms-transform: scaleY(.5);
+            -o-transform: scaleY(.5);
+            transform: scaleY(.5);
+        }
+        .section-tit {
+            font-size:16px;
+            color:#333333;
+        }
+        .report-type {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .report-type li{
+            display: flex;
+            align-items: center;
+            margin-top: 0.533rem;
+        }
+        .unsel {
+            display: inline-block;
+            width:0.427rem;
+            height:0.427rem;
+            margin-right: 0.267rem;
+            background: url("../../icon/pay-unsel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .report-type li.active .unsel{
+            background: url("../../icon/pay-sel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .border-wrap {
+            margin-top: 1.333rem;
+            border:1px solid #e1e1e1;
+            border-radius:0.107rem;
+            height: calc(100vw / 1.4258);
+            box-sizing: border-box;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .border-wrap label {
+            flex: 1;
+        }
+        label textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            font-size: 14px;
+            line-height: 1.5em;
+            text-align: justify;
+        }
+        textarea::-webkit-input-placeholder {
+            font-size: 14px;
+            line-height:  1.5em;
+            color: #999;
+        }
+        .addImage{
+            background:#e8e7e7 url("../../icon/white_add.png") no-repeat center center;
+            -webkit-background-size: 0.773rem 0.773rem;
+            background-size: 0.773rem 0.773rem;
+            border-radius:4px;
+            width:70px;
+            height:70px;
+        }
+        .submit {
+            margin: 0.533rem auto;
+            background-image:linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            border-radius:2.667rem;
+            width: 86.7%;
+            height:1.173rem;
+            line-height:1.173rem;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="section-tit">请选择类型</div>
+    <ul class="report-type">
+        <li class="active" tapmode="" onclick="checkSel(0)"><i class="unsel "></i>作品侵权</li>
+        <li tapmode="" onclick="checkSel(1)"><i class="unsel"></i>污言秽语</li>
+        <li tapmode="" onclick="checkSel(2)"><i class="unsel"></i>淫秽色情</li>
+    </ul>
+    <div class="border-wrap">
+        <label>
+            <textarea placeholder="请输入举报理由"></textarea>
+        </label>
+        <div>
+            <div class="addImage"></div>
+        </div>
+    </div>
+    <div class="submit">提交</div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        
+    }
+    function checkSel(index){
+    	var labs = $api.domAll('.report-type li');
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+</script>
+
+</html>

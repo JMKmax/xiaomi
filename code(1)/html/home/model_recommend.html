@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no"/>
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>模特-新人</title>
+	<style>
+		li {
+			width: 100%;
+			position: relative;
+			background: #fff;
+			height: 2.08rem;
+			box-sizing: border-box;
+			display: flex;
+			padding: 0 0.4rem;
+		}
+		.info-area {
+			height: 0.587rem;
+			display: flex;
+			align-items: center;
+		}
+		.data-area {
+			margin-bottom: 0.16rem;
+			height: 0.453rem;
+			/*line-height:0.453rem;*/
+			display: flex;
+			align-items: center;
+		}
+		.sIcon {
+			flex-shrink: 0 ;
+			margin-left: 0.16rem;
+			height: 0.587rem;
+			width:0.427rem;
+		}
+
+		.sIcon.wx {
+			background: url("../../icon/weixin.png") no-repeat center center;
+			-webkit-background-size:0.427rem 0.427rem;
+			background-size:0.427rem 0.427rem;
+		}
+		.sIcon.reward {
+			background: url("../../icon/reward.png") no-repeat center center;
+			-webkit-background-size: 0.427rem 0.427rem;
+			background-size:0.427rem 0.427rem;
+		}
+
+		li:after {
+			content: '';
+			height: 1px;
+			background: #F5F5F5;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transform: scaleY(.5);
+		}
+
+		li .item-left {
+			width: 80%;
+			display: flex;
+			align-items: center;
+		}
+
+		li .photo {
+			flex-shrink: 0;
+			width: 1.44rem;
+			height: 1.44rem;
+			border-radius: 100%;
+			overflow: hidden;
+			position: relative;
+			z-index: 1;
+		}
+		li .detail {
+			width: calc(100% - 1.44rem - 0.16rem - 0.533rem);
+			margin-left: 0.267rem;
+		}
+
+		li .detail .name {
+			font-size: 0.373333rem;
+			color: #333;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		li .detail .num {
+			font-size: 0.32rem;
+			color: #666;
+			margin-right: 0.266666rem;
+		}
+
+		li .detail .product-num {
+			font-size: 0.32rem;
+			color: #666;
+
+		}
+
+		li  .attentionWrap {
+			width:20%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+		li .attention {
+			padding: 0.053rem 0.267rem;
+			height: 0.533rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 0.027rem solid #FF77A9;
+			color: #FF77A9;
+			border-radius: 0.107rem;
+		}
+
+		li .attention.ready {
+			color: #999;
+			border-color: #999;
+		}
+
+
+	</style>
+</head>
+<body>
+
+<ul class="model-ul ">
+<!--		<li  onclick="openHome(<%=list[i].uid%>)">-->
+<!--			<div class="item-left">-->
+<!--				<div class="photo" >-->
+<!--					<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%"-->
+<!--						 onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"-->
+<!--						 data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""/>-->
+<!--				</div>-->
+<!--				<div class="detail">-->
+<!--					<div class="info-area">-->
+<!--						<div class="name">嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿</div>-->
+<!--						<div class="sIcon wx"></div>-->
+<!--						<div class="sIcon reward"></div>-->
+<!--					</div>-->
+<!--					<div class="data-area">-->
+<!--						<div class="num">粉丝55</div>-->
+<!--						<div class="product-num">作品88</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="attentionWrap">-->
+<!--				<div class="attention ready"  data-mid="<%=list[i].uid%>" data-flag="0" data-attend="<%=list[i].uid%>" onclick="switchAttendEvent(this)" >已关注</div>-->
+<!--&lt;!&ndash;						<p class="attention"  data-mid="<%=list[i].uid%>" data-flag="0"  data-attend="0" onclick="switchAttendEvent(this)">关注</p>&ndash;&gt;-->
+<!--			</div>-->
+
+<!--		</li>-->
+</ul>
+
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="list" type="text/html">
+	<%for(var i = 0;i<list.length ;i++){%>
+
+		<li >
+			<div class="item-left" onclick="openHome(<%=list[i].uid%>)">
+				<div class="photo" >
+					<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%"
+						 onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"
+						 data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""/>
+				</div>
+				<div class="detail">
+					<div class="info-area">
+						<div class="name "><%=list[i].userName%></div>
+						<%if(list[i].showWeixin){%>
+							<div class="sIcon wx"></div>
+						<%}%>
+						<div class="sIcon reward"></div>
+					</div>
+					<div class="data-area">
+						<div class="num">粉丝<%=list[i].fansCount%></div>
+						<div class="product-num">作品<%=list[i].contentCount%></div>
+					</div>
+				</div>
+			</div>
+			<div class="attentionWrap">
+				<%if(selfId !== list[i].uid){%>
+				<%if(list[i].hasFlow){%>
+				<div class="attention ready"  data-mid="<%=list[i].uid%>" data-flag="0" data-attend="<%=list[i].uid%>" onclick="switchAttendEvent(this)" >已关注</div>
+				<%}else{%>
+				<div class="attention"  data-mid="<%=list[i].uid%>" data-flag="0"  data-attend="0" onclick="switchAttendEvent(this)">关注</div>
+				<%}%>
+				<%}%>
+			</div>
+
+		</li>
+		<%}%>
+</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+	var userInfo ;
+	apiready = function () {
+		userInfo = quakooUser.getUserInfo()
+		new QuakooPage(function(results,append){
+			var feilKey = quakooUtils.getImgKey();
+			for (var i = 0; i < results.length; i++) {
+				if (quakooUtils.isBlack(results[i].userIcon)) {
+					results[i].userIcon = '../../icon/defaultHead.png';
+					results[i].userIconStyle = 'width:100%;height:100%;'
+				} else {
+					var obj = quakooImg.processImg(results[i].userIcon,1.44*fontSize, 1.44*fontSize);
+					results[i].userIcon = obj.url+feilKey;
+					results[i].userIconStyle = obj.style;
+				}
+			}
+			var data = {
+				list:results,
+				selfId:userInfo.id
+			};
+			var html = template('list',data)
+			if(append){
+				var div = document.createElement('div');
+				div.innerHTML = html;
+				$api.dom('.model-ul').appendChild(div)
+			}else{
+				$api.html($api.dom('.model-ul'),html)
+			}
+			setTimeout(function () {
+				if (!echo.isInit()) {
+					echoExt.init({
+						offset: 0,
+						throttle: 0//设置图片延迟加载的时间
+					});
+				} else {
+					echo.render()
+				}
+			}, 100);
+			api.parseTapmode()
+		},config.getUrl_model_getRecommendModel(),{type:0})
+	};
+
+	//跳转主页
+	function openHome(id) {
+		var userInfo = quakooUser.getUserInfo()
+		userId = userInfo.id;
+		if(id == userId){
+			return;
+		}else{
+			quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+		}
+
+	}
+	// 切换关注取消
+	function switchAttendEvent(_this){
+		quakooUtils.stopEventBubble();
+		var mid = parseInt($api.attr(_this,'data-mid'),10); //关注模特的ID
+		var flag  = $api.attr(_this,'data-flag');// 防止重复点击
+		var attend =  parseInt($api.attr(_this,'data-attend'),10); // 关注状态 大于0  位关注中 等于0 未关注
+		if(flag == 1){
+			return
+		}
+		$api.attr(_this,'data-flag',1);
+
+		var _params ={
+			otherId: mid
+		};
+		if(attend === 0){ //  未关注 = 》 关注
+			quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+				if(ret && ret.success){
+					quakooMsg.toast('关注成功');
+					$api.attr(_this,'data-flag',0);
+					$api.attr(_this,'data-attend',mid)
+					$api.addCls(_this,'ready')
+					$api.html(_this,'已关注')
+				}
+			})
+
+		}else { //关注 == 未关注
+			quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+				if(ret && ret.success){
+					quakooMsg.toast('取消成功')
+					$api.attr(_this,'data-flag',0);
+					$api.attr(_this,'data-attend',0)
+					$api.removeCls(_this,'ready')
+					$api.html(_this,'关注')
+				}
+			})
+		}
+
+	}
+
+
+</script>
+</html>

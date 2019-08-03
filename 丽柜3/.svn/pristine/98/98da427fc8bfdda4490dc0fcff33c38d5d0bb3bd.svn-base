@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>摄影机构订阅</title>
+	<style type="text/css">
+		body{
+			background-color: #F5F5F5;
+		}
+		.items{
+			width: 100%;
+			height: 2.026666rem;
+			margin-top: 0.026666rem;
+			background:#ffffff;
+			/*background-color: pink;*/
+			font-family:PingFang-SC-Medium;
+			/*font-size: 0.48rem;*/
+			color:#333333;
+			position: relative;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+		}
+		.content{
+			box-sizing: border-box;
+			width: 100%;
+			height: 0.586666rem;
+			/*background-color: pink;*/
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+		}
+		.content>div{
+			height: 100%;
+			line-height: 0.586666rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#333333;
+		}
+		.content .checked {
+			margin-top: 0.053333rem;
+			width:0.427rem;
+            height:0.427rem;
+            margin-right: 0.267rem;
+            background: url("../../icon/pay-unsel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+		}
+		  .content .checked.active{
+            background: url("../../icon/pay-sel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+		.word{
+			margin-left: 0.266666rem;
+		}
+		.balance{
+			width: 100%;
+			height: 0.586666rem;
+			/*background-color: pink;*/
+			box-sizing: border-box;
+			padding-left: 0.4rem;
+			line-height: 0.586666rem;
+			margin-top: 0.426666rem;
+		}
+		.balance>span:nth-child(1){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.373333rem;
+			color:#999999;
+		}
+		.balance>span:nth-child(2){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.balance>span:nth-child(3){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color: white;
+			background:#ff5c98;
+			border-radius: 0.106666rem;
+			width: 1.226666rem;
+			height: 0.64rem;
+			text-align: center;
+			line-height: 0.64rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 2.666666rem;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+	</style>
+</head>
+<body>
+	
+    <div class="items item_first" tapmode="itemOn" onclick="checkSel(0)">
+    	<div class="content">
+    		<div class="checked" style="float: left;" ></div>
+    		<div class="word" style="float: left;">半年订阅</div>
+    		<div class="price" style="float: right;">5000LB/6月</div>
+    	</div>
+    </div>
+    <div class="items item_second" tapmode="itemOn" onclick="checkSel(1)">
+    	<div class="content">
+    		<div class="checked active" style="float: left;" ></div>
+    		<div class="word" style="float: left;">一年订阅</div>
+    		<div class="price" style="float: right;">9000LB/12月</div>
+    	</div>
+    </div>
+    <div class="balance">
+    	<span>账户余额</span>&nbsp;&nbsp;
+    	<span>0.0LB</span>&nbsp;&nbsp;
+    	<span tapmode="itemOn" onclick="openRechargeWin()">充值</span>
+    </div>
+    <div class="loginButton flex flex-align-center flex-pack-center" onclick="quakooApp.closeWin()">订阅</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+    	
+    };
+	function checkSel(index){
+    	var labs = $api.domAll('.checked');
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+	//打开充值窗口
+			 function openRechargeWin() {
+        		quakooApp.openNewWindow('recharge','../mine/recharge.html',{})
+   			 }
+</script>
+</body>
+</html>

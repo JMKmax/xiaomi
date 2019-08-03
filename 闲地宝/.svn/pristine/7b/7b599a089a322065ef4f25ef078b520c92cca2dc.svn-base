@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>圈子-全部</title>
+		<style type="text/css">
+			body{
+				background: #F5F5F5;
+				padding-top: 0.266666rem;
+				display: flex;
+				flex-direction: column;
+			}
+			.content{
+				background: #fff;
+				height: 1.333333rem;
+				padding:0 0.426666rem;
+				position: relative;
+			}
+			.content:after{
+				content: '';
+				height: 1px;
+				background: rgba(0,0,0,0.1);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(.5);
+			}
+			.left{
+				width: 100%;
+				height: 100%;
+			}
+			.icon{
+				width:0.4rem;
+				height: 0.4rem;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.import{
+				height: 100%;
+				width: 100%;
+				padding-right: 0.533333rem;
+			}
+			.import input{
+				height: 100%;
+				width: 100%;
+				padding-left: 0.426666rem;
+				font-size: 0.4rem;
+				color: #2D3134;
+			}
+			.right{
+				width: 0.4rem;
+				height: 0.4rem ;
+				background: url(../../icon/close.png) no-repeat center center;
+				border-radius: 100%;
+				background-size: 0.4rem 0.4rem;
+			}
+			.list{
+				background: #fff;
+				flex:1
+			}
+			.list .item{
+				margin-top: 0.426666rem;
+				padding: 0 0.426666rem;
+			}
+			.list .item .icon{
+				width: 1.066666rem;
+				height: 1.066666rem;
+				border-radius: 100%;
+				background: #0097FE;
+				box-sizing: border-box;
+				overflow: hidden;
+				position: relative;
+			}
+			.list .item .icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.list .item .item-info{
+				font-size: 0.4rem;
+				color: #2D3134;
+				margin-left: 0.293333rem;
+			}
+			.list .item .item-info span{
+				color: #08A3FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content flex flex-align-center flex-pack-justify">
+			<div class="left flex flex-align-center">
+				<div class="icon"><img src="../../icon/search.png" alt="" /></div>
+				<div class="import"><labal><input type="tel" maxlength="11" /></labal></div>
+			</div>
+			<div class="right"></div>
+		</div>
+		<div class="list">
+			<ul>
+				<li class="item flex flex-align-center" tapmode="" onclick="openDetail()">
+					<div class="icon"><img src="../../icon/add_de.png" alt="" /></div>
+					<div class="item-info">搜索:<span>157372075</span></div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+			function openDetail(){
+				quakooApp.openNewWindow('add_partner','./add_partner.html')
+			}
+		</script>
+	</body>
+
+</html>

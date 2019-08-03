@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>注册登录</title>
+	<style type="text/css">
+		.login_icon{
+			width: 2.08rem;
+			height: 2.08rem;
+			margin: 0 auto;
+			margin-top: 1.253333rem;
+			display: block;
+		}
+		.input_info{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 1.6rem;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.input_info .item{
+			position: relative;
+			border-radius: 0.586666rem;
+			background:#f2f2f2;
+		}
+		.input_info .left{
+			height: 100%;
+			position: absolute;
+			left: 0.533333rem;
+			top: 0;
+			
+		}
+		.input_info .right{
+			width: 100%;
+			height: 1.173333rem;
+			box-sizing: border-box;
+			padding-left: 1.573333rem;
+		}
+		.input_info .right input{
+			width: 100%;
+			height: 0.64rem;
+			margin-top: 0.266666rem;
+			border-left: 1px solid #d8d8d8;
+			padding-left: 0.266666rem;
+		}
+		.input_info .item:nth-child(2){
+			margin-top: 0.533333rem;
+			
+		}
+		.input_info .item:nth-child(2) .right{
+			padding-left: 0.533333rem;
+		}
+		.input_info .item:nth-child(2) .right input{
+			border: none;
+			padding-left: 0;
+		}
+		
+		
+		.container{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 0.266666rem;
+			color: #333;
+			font-size: 0.32rem;
+			box-sizing: border-box;
+			padding: 0 0.533333rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 0.533333rem;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+		.bottom{
+			width: 5.2rem;
+			/*height: 0.853333rem;*/
+			position: absolute;
+			bottom: 2rem;
+			left: 50%;
+			margin-left: -2.6rem;
+		}
+		.imgList{
+			margin-top: 0.693333rem;
+		}
+		.imgList img{
+			width: 0.853333rem;
+			height: 0.853333rem;
+		}
+		
+		.notice{
+			width: 100%;
+			text-align: center;
+			font-size: 0.32rem;
+			color: #666;	
+		}
+	</style>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick=" quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>手机号登录</div>
+    </div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+    	 quakooApp.initFrameInWin(api.pageParam);
+    };
+</script>
+</body>
+</html>

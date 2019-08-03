@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<title>圈子-全部</title>
+		<style type="text/css">
+			html,body{
+				background: #F5F5F5;
+			}
+			body{
+				padding-top: 0.266666rem;
+			}
+			.head-wrap{
+				padding: 0.4rem 0.426666rem;
+				background: #fff;
+				padding-bottom: 0;
+				margin-bottom: 0.266666rem;
+			}
+			.head-wrap .title{
+				font-size: 0.48rem;
+				color: #2D3134;
+				margin-bottom: 0.4rem;
+			}
+			.head-wrap .info{
+				font-size: 0.32rem;
+				color: #B1B1B1;
+				word-wrap: break-word;
+				margin-bottom: 0.693333rem;
+			}
+			.head-wrap .introduce{
+				padding-bottom: 0.4rem;
+				position: relative;
+			}
+			.head-wrap .introduce:after{
+				content: '';
+				height: 1px;
+				background: rgba(0,0,0,0.1);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(0.5);
+			}
+			.head-wrap .introduce .user-icon{
+				width: 1.066666rem;
+				height: 1.066666rem;
+				border-radius: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-right: 0.293333rem;
+			}
+			.head-wrap .introduce .user-icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.head-wrap .introduce .name{
+				font-size: 0.4rem;
+				color: #646769;
+				margin-right: 0.133333rem;
+			}
+			.head-wrap .introduce .name-des{
+				font-size: 0.266666rem;
+				color: #B1B1B1;
+			}
+			.head-wrap .introduce .introduce-right{
+				font-size: 0.32rem;
+				color: #08A3FF;
+			}
+			.head-wrap .bottom{
+				height: 1.12rem;
+			}
+			.head-wrap .bottom .sell_price{
+				font-size: 0.32rem;
+				color: #646769;
+				margin-right: 0.773333rem;
+			}
+			.head-wrap .bottom .sell_price span{
+				color: #F93D3D;
+			}
+			.head-wrap .bottom .own_profit{
+				font-size: 0.32rem;
+				color: #646769;
+			}
+			.head-wrap .bottom .own_profit span{
+				color: #2BD62F;
+			}
+			.partner-wrap{
+				padding: 0.4rem 0.426666rem;
+				background: #fff;
+			}
+			.partner-wrap .partner-title{
+				font-size: 0.4rem;
+				color: #646769;
+				margin-bottom: 0.133333rem;
+			}
+			.partner-wrap .partner-title span{
+				font-size: 0.4rem;
+				color: #b1b1b1;
+			}
+			.partner-wrap .partner-item{
+				margin-top: 0.266666rem;
+			}
+			.partner-wrap .partner-icon{
+				width: 0.8rem;
+				height: 0.8rem;
+				border-radius: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-right: 0.293333rem;
+				position: relative;
+				z-index: 1;
+			}
+			.partner-wrap .partner-icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.partner-wrap .partner-name{
+				font-size: 0.32rem;
+				color: #646769;
+			}
+			.partner-wrap .partner-name span{
+				margin-left: 0.106666rem;
+				font-size: 0.266666rem;
+				color: #B1B1B1;
+			}
+			.partner-wrap .item-right{
+				font-size: 0.32rem;
+				color: #646769;
+			}
+			.partner-wrap .item-right span{
+				margin-left: 0.106666rem;
+				color: #08A3FF;
+			}
+			.partner-wrap .partner-bottom{
+				margin-top: 0.266666rem;
+			}
+			.partner-wrap .partner-bottom .desc{
+				font-size: 0.266666rem;
+				color: #F93D3D;
+			}
+			.partner-wrap .partner-bottom .tag{
+				width: 2.24rem;
+				height: 0.8rem;
+				border-radius: 0.186666rem;
+				box-sizing: border-box;
+				overflow: hidden;
+				background: #F29539;
+				color: #fff;
+				font-size: 0.266666rem;
+				line-height: 0.8rem;
+				text-align: center;
+			}
+			.fix-wrap{
+				height: 1.333333rem;
+				line-height: 1.333333rem;
+				width: 100%;
+				background: #fff;
+				font-size: 0.32rem;
+				color: #646769;
+				position: absolute;
+				bottom: 0;
+			}
+			.fix-wrap .info{
+				margin-left: 0.426666rem;
+			}
+			.modal{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,0.2);
+			}
+			.modal-wrap{
+				background: #fff;
+				border-top-left-radius: 0.4rem;
+				border-top-right-radius: 0.4rem;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				z-index: 1;
+			}
+			.modal-wrap .title{
+				font-size: 0.48rem;
+				color: #2D3134;
+				margin-top: 0.8rem;
+				text-align: center;
+				margin-bottom: 0.266666rem;
+			}
+			.modal-wrap .item{
+				padding: 0 0.426666rem;
+				margin-top: 0.4rem;
+			}
+			.modal-wrap ul{
+				height: 7.2rem;
+				overflow: scroll;
+				padding-bottom: 1.333333rem;
+			}
+			.modal-wrap .icon{
+				width: 0.8rem;
+				height: 0.8rem;
+				border-radius: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-right: 0.293333rem;
+			}
+			.modal-wrap .icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.modal-wrap .name{
+				font-size: 0.32rem;
+				color: #646769;
+			}
+			.modal-wrap .name span{
+				color: #B1B1B1;
+				font-size: 0.266666rem;
+				margin-left: 0.106666rem;
+			}
+			.modal-wrap .right{
+				font-size: 0.32rem;
+				color: #08A3FF;
+			}
+			.modal-wrap .over{
+				height: 1.066666rem;
+				line-height: 1.066666rem;
+				background: #08A3FF;
+				text-align: center;
+				position: relative;
+				margin-left: 0.426666rem;
+				margin-right: 0.426666rem;
+				bottom: 0.4rem;
+				color: #fff;
+				font-size: 0.4rem;
+				border-radius: 0.186666rem;
+				box-shadow:-5px -39px 0px rgba(255,255,255,0.8);
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="modal"></div>
+		<div class="modal-wrap">
+			<div class="title">修改分账比例</div>
+			<ul>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+			</ul>
+			<div class="over">完成</div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script type="text/javascript" src="../../script/mui.min.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+			
+		</script>
+	</body>
+
+</html>

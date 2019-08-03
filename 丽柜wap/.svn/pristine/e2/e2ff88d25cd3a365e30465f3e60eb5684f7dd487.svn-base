@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/default-skin.css" />
+		<title>青年曲艺</title>
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				background: rgba(245, 245, 245, 1);
+			}
+			
+			.container {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0 0.32rem;
+				margin: 0 auto;
+				margin-top: 0.32rem;
+				background: rgba(243, 243, 243, 1);
+			}
+			
+			#sliderSegmentedControl {
+				border-bottom: none;
+			}
+			
+			.mui-bar {
+				padding: 0;
+				height: auto;
+			}
+			/*搜索结果*/
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+				border: none;
+			}
+			
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				/*background-color: #efeff4;*/
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			#circle_list li {
+				margin: 0.266666rem 0;
+			}
+			
+			.mui-table-view {
+				background: none;
+			}
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				padding: 0;
+			}
+			
+			.item_title {
+				font-size: 0.48rem;
+				color: #333;
+				font-weight: 500;
+				padding-top: 0.373333rem;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 44px;
+			}
+			
+			.info_list li {
+				padding-bottom: 0.64rem;
+				background: #fff;
+				border-radius: 0.106666rem;
+				margin-bottom: 0.64rem;
+			}
+			
+			.infoImgCon {
+				position: relative;
+				width: 100%;
+				height: 5.28rem;
+				border-radius: 0.106666rem 0.106666rem 0 0;
+				overflow: hidden;
+				margin-bottom: 0.426666rem;
+			}
+			
+			.infoImgCon .numInfo {
+				position: absolute;
+				left: 0;
+				bottom: 0.293333rem;
+				color: #fff;
+				font-size: 0.373333rem;
+				line-height: 0.586666rem;
+			}
+			
+			.infoImgCon img {
+				/*width: 100%;*/
+				/*height: 100%;*/
+			}
+			
+			.infoImgCon .first {
+				background: url('../../icon/cr_left.png') 0.293333rem center no-repeat;
+				background-size: 0.586666rem 0.586666rem;
+				padding-left: 1.013333rem;
+			}
+			
+			.infoImgCon .second {
+				margin-left: 0.266666rem;
+				background: url('../../icon/cr_hot.png') 0.293333rem center no-repeat;
+				background-size: 0.586666rem 0.586666rem;
+				padding-left: 1.013333rem;
+			}
+			
+			.msg_title {
+				font-size: 0.426666rem;
+				color: #000;
+				margin-bottom: 0.106666rem;
+				font-weight: 500;
+			}
+			
+			.msg_title span {
+				float: right;
+				color: #333;
+				font-size: 0.373333rem;
+				border-radius: 0.053333rem;
+				line-height: 0.533333rem;
+				font-weight: 100;
+			}
+			
+			.tag {
+				color: #333;
+				font-size: 0.32rem;
+			}
+			
+			.infoCon {
+				padding: 0 0.32rem;
+			}
+			
+			.info_detail {
+				margin-top: 0.266666rem;
+				font-size: 0.373333rem;
+				color: #666;
+				line-height: 0.533333rem;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				/** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical;
+				/** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 2;
+				/** 显示的行数 **/
+				overflow: hidden;
+				border: 1px solid transparent;
+			}
+			
+			.areaInfo {
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+				background: url('../../image/area.png') 0 0 no-repeat;
+				background-size: 0.426666rem;
+				padding-left: 0.64rem;
+				margin-top: 0.266666rem;
+			}
+			
+			p {
+				margin-bottom: 0;
+			}
+			
+			.tabList {
+				width: 100%;
+				position: relative;
+				overflow: hidden;
+				background: #fff;
+				/*margin-bottom: 0.32rem;*/
+			}
+			
+			.tabList::after {
+				content: " ";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 1px;
+				background: #EDEDED;
+				transform: scaleY(0.5);
+			}
+			
+			.tabList a {
+				display: block!important;
+				width: 25.00%!important;
+				height: 1.173333rem;
+				line-height: 1.173333rem;
+				color: #666;
+				font-size: 0.373333rem;
+				text-align: center;
+				float: left;
+			}
+			
+			.tabList .mui-control-item {
+				color: #666!important;
+			}
+			
+			.tabList .active {
+				position: relative;
+				font-size: 0.426666rem;
+				color: #333;
+			}
+			
+			.tabList .mui-active span {
+				position: relative;
+				color: #333;
+				font-size: 0.426666rem;
+			}
+			
+			.tabList .mui-active span::after {
+				content: " ";
+				position: absolute;
+				left: 50%;
+				margin-left: -0.533333rem;
+				bottom: 0;
+				width: 1.066666rem;
+				height: 0.08rem;
+				background: rgba(255, 111, 97, 1);
+			}
+			
+			.menuList {
+				overflow: hidden;
+				padding: 0.32rem 0.48rem;
+				background: #fff;
+			}
+			
+			.menuList li {
+				width: 1.866666rem;
+				height: 0.64rem;
+				color: #666;
+				font-size: 0.373333rem;
+			}
+			
+			.menuList .active {
+				color: #fff;
+				background: #D7533D;
+				border-radius: 0.32rem;
+			}
+			
+			.list li {
+				padding: 0.32rem;
+				border-radius: 0.106666rem;
+				margin-bottom: 0.266666rem;
+				background: #fff;
+			}
+			
+			.list .orderNum {
+				color: #666;
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+			}
+			
+			.list .topTag {
+				width: 3.146666rem;
+				color: #D7533D;
+				font-size: 0.346666rem;
+			}
+			
+			.list .topTag div:nth-child(1) {
+				font-size: 0.293333rem;
+				width: 1.226666rem;
+				border-radius: 0.053333rem;
+				background: rgba(255, 248, 247, 1);
+				text-align: center;
+			}
+			
+			.list .topTag div:nth-child(2) {
+				width: 1px;
+				height: 0.48rem;
+				background: rgba(221, 221, 221, 1);
+			}
+			
+			.list .midCon {
+				margin-top: 0.666666rem;
+			}
+			
+			.list .imgCon {
+				width: 2.133333rem;
+				height: 2.133333rem;
+				border-radius: 0.053333rem;
+				overflow: hidden;
+				margin-right: 0.32rem;
+				flex-shrink: 0;
+			}
+			
+			.list .imgCon img {
+				/*width: 100%;*/
+				/*height: 100%;*/
+			}
+			
+			.list .right {
+				color: #666;
+				font-size: 0.373333rem;
+				line-height: 0.533333rem;
+			}
+			
+			.list .right .title {
+				/*margin-bottom: 0.426666rem;*/
+				font-size: 0.453333rem;
+				/*height: 0.373333rem;*/
+				line-height: 0.64rem;
+				min-height: 1.066666rem;
+				color: #333;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				/** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical;
+				/** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 2;
+				/** 显示的行数 **/
+				overflow: hidden;
+				border: 1px solid transparent;
+				/** 隐藏超出的内容 **/
+			}
+			
+			.list .orderTime {
+				color: #666;
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+				margin-top: 0.64rem;
+			}
+			
+			.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+				top: 2.3rem;
+			}
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+				height: 44px;
+			}
+			
+			#wrap {
+				display: none;
+				position: relative;
+				width: 100%;
+				/*height: 100%;*/
+				box-sizing: border-box;
+				/*margin-top: 2.3rem;*/
+			}
+			
+			#wrap .null_con {
+				height: auto;
+				top: 2.3rem;
+				background: rgba(245, 245, 245, 1);
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="topbar">
+				<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+					<img src="../../image/back@3x.png">
+				</div>
+				<div>我的订单</div>
+				<!--<div class="right_button" onclick="openNewWindow('cr_addMore.html')">添加</div>-->
+			</div>
+			<div class="topbar"></div>
+		</header>
+		<div class=" mui-content" id="circle">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="tabList mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile" data-status="0">
+							<span class="">全部订单</span>
+						</a>
+						<a class="mui-control-item" href="#item2mobile" data-status="1">
+							<span class="">未支付</span>
+						</a>
+						<a class="mui-control-item" href="#item3mobile" data-status="2">
+							<span class="">未使用</span>
+						</a>
+						<a class="mui-control-item" href="#item4mobile" data-status="3">
+							<span class="">已完成</span>
+						</a>
+					</div>
+					<ul class="menuList flex flex-align-center flex-pack-center flex-pack-justify">
+						<li class="active flex flex-align-center flex-pack-center" data-type="-1">全部</li>
+						<li class="flex flex-align-center flex-pack-center" data-type="2">智库</li>
+						<li class="flex flex-align-center flex-pack-center" data-type="1">课程</li>
+						<li class="flex flex-align-center flex-pack-center" data-type="3">票务</li>
+					</ul>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class=" mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="list mui-table-view list mui-slider-item mui-control-content mui-active" id="list_00Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="mui-table-view list mui-slider-item mui-control-content mui-active" id="list_01Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="mui-table-view list mui-slider-item mui-control-content mui-active" id="list_02Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="mui-table-view list mui-slider-item mui-control-content mui-active" id="list_03Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrap">
+			<div id="">
+				<div class="null_con">
+					<img src="../../image/null/no_order.png" alt="" />
+					<div class="notice">暂无订单</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/html" id="scriptDiv_myUp">
+		<%for(var i = 0;i<list.length;i++){%>
+		<li data-status='<%=list[i].status%>' data-id="<%=list[i].id%>">
+			<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+				<div class="orderNum">订单号：
+					<%=list[i].id%>
+				</div>
+				<%if(list[i].type == 3&&list[i].status != 2){%>
+				<div class="topTag">
+					<%}else{%>
+					<div class="topTag flex flex-align-center flex-pack-center flex-pack-justify">
+						<%}%>
+						<%if(list[i].type == 3){%>
+						<%if(list[i].status != 2){%>
+						<div style="float: right;">票务</div>
+						<%}else{%>
+						<div>票务</div>
+						<%}%>
+						<%if(list[i].status == 2){%>
+						<div></div>
+						<div>未使用</div>
+						<%}%>
+						<%}%>
+					</div>
+				</div>
+				<div class="midCon flex flex-align-center">
+					<div class="imgCon">
+						<img data-echo="<%=list[i].objectIcon%>" style="<%=list[i].style%>" alt="" />
+					</div>
+					<div class="right">
+						<div class="title">
+							<%=list[i].objectName%>
+						</div>
+						<div>数量：
+							<%=list[i].num||1%>
+						</div>
+						<div>合计：￥
+							<%=list[i].payMoney%>
+						</div>
+					</div>
+				</div>
+				<div class="orderTime">订单时间：
+					<%=list[i].ctime%>
+				</div>
+		</li>
+		<%}%>
+	</script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js?v=1.01"></script>
+	<script type="text/javascript" src="../../script/uhpUtils.js?v=8.06"></script>
+	<script type="text/javascript" src="../../script/util.js"></script>
+	<script type="text/javascript" src="../../script/public.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/user.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/mui.pullToRefresh.js"></script>
+	<script type="text/javascript" src="../../script/mui.pullToRefresh.material.js"></script>
+	<script>
+		$(function() {
+			var isPageHide = false;
+			window.addEventListener('pageshow', function() {
+				if(isPageHide) {
+					window.location.reload();
+				}
+			});
+			window.addEventListener('pagehide', function() {
+				isPageHide = true;
+			});
+		})
+
+		//type类型 非必传 默认是-1 查全部 1课程 2智库 3门票
+		document.getElementById("wrap").style.height = document.body.clientHeight - 2.3 * document.querySelector("html").getAttribute("style").split(":")[1].split("px")[0] + "px";
+		var allResults = {};
+		var isClick_load = false;
+		var type = -1;
+		var parms = GetRequest();
+		var activeIndex = parms.index;
+		setDataItem("orderDetail", "");
+		var mui_item = document.querySelectorAll('.mui-control-item');
+		for(var i = 0; i < mui_item.length; i++) {
+			if(mui_item[i].classList.contains("mui-active")) {
+				mui_item[i].classList.remove("mui-active")
+			}
+			mui_item[parms.index].classList.add('mui-active');
+			var activeId = "#item" + (parseInt(parms.index) + 1) + "mobile";
+			document.querySelector(activeId).classList.add("mui-active");
+		}
+
+		var statusObj = {
+			0: -1,
+			1: 0,
+			2: 2,
+			3: 1
+		};
+		var activeIndexArr = ["0"];
+		var hasNest_myOrder = true;
+		var obj_myOrder = {
+			cursor: 0,
+			size: 8,
+			status: 0
+		}
+
+		var menuList = document.querySelector('.menuList').querySelectorAll("li");
+		for(var i = 0; i < menuList.length; i++) {
+			menuList[i].index = i;
+			menuList[i].onclick = function() {
+				for(var j = 0; j < menuList.length; j++) {
+					if(menuList[j].classList.contains("active")) {
+						menuList[j].classList.remove("active");
+					}
+				}
+				if(!this.classList.contains("active")) {
+					this.classList.add("active");
+					type = this.getAttribute("data-type");
+					getDataByIndex(activeIndex);
+				}
+			}
+		}
+
+		mui.init();
+		(function($) {
+			//阻尼系数
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+			$.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					$(pullRefreshEl).pullToRefresh({
+						down: {
+							callback: function() {
+								obj_myOrder.cursor = 0; //下拉
+								var self = this;
+								self.endPullDownToRefresh();
+								//								setTimeout(function() {
+								getDataByIndex(index, self);
+								//								}, 1000);
+							}
+						},
+						up: {
+							callback: function() {
+								var self = this;
+								//								setTimeout(function() {
+								getDataByIndex(index, self, true);
+								//								}, 1000);
+							}
+						}
+					});
+				});
+			});
+		})(mui);
+
+		function getDataByIndex(index, _this, append) {
+			obj_myOrder.type = type;
+			if(obj_myOrder.status != statusObj[index]) {
+				hasNest_myOrder = true;
+			}
+			if(!hasNest_myOrder && append) {
+				_this.endPullUpToRefresh(!hasNest_myOrder);
+				return;
+			}
+			obj_myOrder.status = statusObj[index];
+			ajaxGet(getMyBusinessOrderPagerUrl, obj_myOrder, function(ret, err) { //进入页面调取数据
+				if(ret) {
+					obj_myOrder.cursor = ret.nextCursor;
+					hasNest_myOrder = ret.hasnext;
+
+					var fontSize = document.querySelector("html").getAttribute("style").split(":")[1].split("px")[0];
+					var imgWidth = 2.133333 * fontSize;
+					var imgHeight = 2.133333 * fontSize;
+					if(ret.data.length > 0) {
+						for(var i = 0; i < ret.data.length; i++) {
+							if(ret.data[i].objectIcon) {
+								var obj_img = getImgByThisSize(ret.data[i].objectIcon, imgWidth, imgHeight);
+								ret.data[i].icon = ret.data[i].objectIcon;
+								ret.data[i].objectIcon = obj_img.url;
+								ret.data[i].style = obj_img.style;
+							}
+							ret.data[i].time = ret.data[i].ctime;
+							ret.data[i].ctime = formatTimeToDay(ret.data[i].ctime);
+							allResults[ret.data[i].id] = ret.data[i];
+						}
+					}
+					var data = {
+						list: ret.data
+					};
+					var html = template('scriptDiv_myUp', data);
+					if(append) {
+						_this.endPullUpToRefresh(!hasNest_myOrder);
+						var thisConId = "#list_0" + index + "Con";
+						$(thisConId).append(html)
+					} else {
+						var thisConId = "list_0" + index + "Con";
+						document.getElementById(thisConId).innerHTML = html;
+					}
+					if(ret.data.length == 0 && document.getElementById(thisConId).querySelectorAll("li").length == 0) {
+						document.getElementById("wrap").style.display = "block";
+						//						$("body").css("overflow","hidden");
+						return;
+					} else {
+						document.getElementById("wrap").style.display = "none";
+						//						$("body").css("overflow","scroll");
+					}
+					echo.init({
+						offset: 0,
+						throttle: 0 //设置图片延迟加载的时间
+					});
+					mui('.mui-slider-group').off();
+					mui('.mui-slider-group').on('tap', 'li', function(event) {
+						var id = this.getAttribute("data-id");
+						var status = this.getAttribute("data-status");
+						if(status == 1 || status == 2) { //1已支付(已完成) 
+							openNewWindow('order_detail.html', allResults[id])
+						} else if(status == 0) { //0未支付
+							openNewWindow('mine_order_pay.html', allResults[id])
+						} else if(status == 3) { //3已关闭
+							openNewWindow('order_detail_close.html', allResults[id])
+						} else {
+							openNewWindow('order_detail_finised.html', allResults[id])
+						}
+					});
+				}
+			})
+		}
+
+		getDataByIndex(parms.index);
+
+		setTimeout(function() {
+			mui('.tabList').on('tap', 'a', function(event) {
+				var index = this.getAttribute("data-status");
+				activeIndex = index;
+				isClick_load = true;
+				obj_myOrder.cursor = 0;
+				getDataByIndex(index);
+			});
+		}, 100)
+
+		document.getElementById('slider').addEventListener('slide', function(e) {
+			//			console.log(e.detail.slideNumber)
+			if(isClick_load) {
+				isClick_load = false;
+				return;
+			}
+			if(e.detail.slideNumber === 1) {
+				if(activeIndexArr.indexOf(1) == -1) {
+					obj_myOrder.cursor = 0;
+					getDataByIndex(1);
+					activeIndexArr.push(1);
+				}
+			} else if(e.detail.slideNumber === 2) {
+				if(activeIndexArr.indexOf(2) == -1) {
+					obj_myOrder.cursor = 0;
+					getDataByIndex(2);
+					activeIndexArr.push(2);
+				}
+			} else if(e.detail.slideNumber === 3) {
+				if(activeIndexArr.indexOf(3) == -1) {
+					obj_myOrder.cursor = 0;
+					getDataByIndex(3);
+					activeIndexArr.push(3);
+				}
+			}
+		});
+	</script>
+
+</html>

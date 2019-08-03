@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>绑定微信</title>
+    	<style>
+    			#topbar{
+    			height: 1.173333rem;
+    			padding-right: 0.4rem;
+    			display: flex!important;	
+    			justify-content: space-between;
+    		}
+    		.leftButton{
+    			width: 1.12rem;
+    			height: 1.173333rem;
+    			line-height: 1.173333rem;
+    			display: flex;
+    			justify-content: center;
+    			align-items: center;
+    		}
+    		.topBar{
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		.rightButton{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			font-family:PingFang-SC-Medium;
+    			width: 1.28rem;
+    			height: 0.64rem;
+    			background: #FF5C98;
+    			border-radius: 0.106666rem;
+    			line-height: 0.64rem;
+    		}
+    		
+    	</style>
+	</head>
+	<body>
+		<div id="topbar" class=" flex-align-center">
+			<div class="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+				<img  src="../../image/back.png" onclick="">
+			</div>
+       		<div class="topBar">发布</div>
+        	<div class="rightButton">
+        		<span>发表</span>
+        	</div>
+		</div>
+	</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+		 quakooApp.initFrameInWin(api.pageParam);
+    };
+</script>
+</html>

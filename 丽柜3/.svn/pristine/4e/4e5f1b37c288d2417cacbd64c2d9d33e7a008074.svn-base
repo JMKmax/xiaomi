@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的关注</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html,body {
+            background: #F5F5F5;
+        }
+        .focus-ul li {
+            position: relative;
+            padding: 0.32rem 0.4rem;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .focus-ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top:0;
+            height: 1px;
+            background: #F5F5F5;
+            transform: scaleY(.5);
+        }
+        .user-icon {
+            width:54px;
+            height:54px;
+            border-radius:50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+        }
+        .user-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        .user-info
+        {
+            display: flex;
+            align-items: center;
+        }
+        .user-name {
+            font-size:14px;
+            color:#333333;
+            height: 0.533rem;
+            line-height: 0.533rem;
+        }
+        .user-data{
+            margin-top:0.16rem;
+            font-size: 12px;
+            color:#666666;
+            height: 0.453rem;
+            line-height: 0.453rem;
+        }
+        .user-data span {
+            margin-right:0.267rem ;
+        }
+        .follow.followed{
+            border:1px solid #999999;
+            color: #999999;
+        }
+        .followed{
+            border:1px solid #ff5c98;
+            color: #ff5c98;
+            border-radius:0.107rem;
+            width: 1.28rem;
+            height:0.533rem;
+            box-sizing: border-box;
+            line-height: 0.533rem;
+            text-align: center;
+        }
+        .time {
+            margin-top: 0.16rem;
+            line-height: 0.453rem;
+            height: 0.453rem;
+            font-size:0.32rem;
+            color:#666666;
+        }
+        .user-right {
+            display: flex;
+            flex-direction: column;
+           align-items: flex-end;
+        }
+    </style>
+</head>
+<body>
+<ul class="focus-ul">
+    <li>
+        <div class="user-info">
+            <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+            <div>
+                <div class="user-name">周惠惠</div>
+                <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num">作品18</span></div>
+            </div>
+        </div>
+        <div class="user-right" tapmode="itemOn" onclick="chenckAttend(0)">
+            <div class="followed follow" >已订阅</div>
+            <div class="time">2018.12.11-2019.06.11</div>
+        </div>
+    </li>
+    <li>
+        <div class="user-info">
+            <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+            <div>
+                <div class="user-name">周惠惠</div>
+                <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num">作品18</span></div>
+            </div>
+        </div>
+        <div class="user-right" tapmode="itemOn" onclick="chenckAttend(1)">
+            <div class="followed" >订阅</div>
+            <div class="time">2018.12.11-2019.06.11</div>
+        </div>
+    </li>
+</ul>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        
+    }
+     //切换关注状态
+    var _idWrap = $api.domAll('li .user-info') //每一个item
+    var attend = $api.domAll('.followed')		
+    var isAttends = []
+    for(var i = 0;i<_idWrap.length;i++){
+    	var name = $api.dom(_idWrap[i],'.user-name').innerHTML;
+		var isAttend = $api.hasCls(attend[i],'follow')
+    	var wItem ={
+    		name:name,
+    		isAttend:isAttend
+    	}
+    	isAttends.push(wItem)
+    }
+    function chenckAttend(index){
+    	if(!isAttends[index].isAttend){
+    		$api.addCls(attend[index],'follow')
+    		attend[index].innerHTML = '已订阅'
+    		isAttends[index].isAttend = true
+    	}else{
+    		$api.removeCls(attend[index],'follow')
+    		attend[index].innerHTML = '订阅'
+    		isAttends[index].isAttend = false	
+    	}
+    }
+</script>
+
+</html>

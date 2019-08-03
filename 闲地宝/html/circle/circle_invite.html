@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>圈子-我的邀请</title>
+		<style type="text/css">
+			html,body{
+				background: #F5F5F5;
+			}
+			body{
+				padding-top: 0.266666rem;
+			}
+			.wrap li{
+				background: #fff;
+				padding: 0.4rem 0.426666rem;
+				position: relative;
+				margin-bottom: 0.266666rem;
+			}
+			.item-top .top-name{
+				font-size: 0.4rem;
+				color: #2D3134;
+				margin-right: 0.266666rem;
+			}
+			.item-top .top-desc{
+				font-size: 0.266666rem;
+				color: #F93D3D;
+			}
+			.item-top .top-right{
+				font-size: 0.266666rem;
+				color: #B1B1B1;
+			}
+			.item .info{
+				margin: 0.266666rem 0;
+				font-size: 0.32rem;
+				color:#646769;
+				word-wrap: break-word;
+			}
+			.item .tag-item{
+				width: 1.6rem;
+				height: 0.533333rem;
+				border-radius: 0.133333rem;
+				text-align: center;
+				line-height: 0.533333rem;
+				font-size: 0.266666rem;
+				margin-right: 0.426666rem;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-bottom: 0.4rem;
+			}
+			.item .tag-item.operation{
+				color: #2BD62F;
+				background: rgba(43,214,47,0.18);
+			}
+			.item .tag-item.build{
+				color: #EB671E;
+				background: rgba(235,103,30,0.18);
+			}
+			.item .tag-item.invite{
+				color: #1D93DD;
+				background: rgba(29,147,221,0.18);
+			}
+			.item .tag-item.audit{
+				color: #DBBD18;
+				background: rgba(219,189,24,0.18);
+			}
+			.item .tag-item.nub{
+				color: #08A3FF;
+				border: 1px solid #08A3FF;
+			}
+			.item .total-name{
+				font-size: 0.32rem;
+				color: #B1B1B1;
+			}
+			.item .total-nub{
+				font-size: 0.32rem;
+				color: #646769;
+				vertical-align: -0.026666rem;
+			}
+			.item .bottom-tag{
+				width: 1.786666rem;
+				height: 0.826666rem;
+				line-height: 0.826666rem;
+				text-align: center;
+				border-radius: 0.133333rem;
+				font-size: 0.32rem;
+				position: absolute;
+				bottom: 0.4rem;
+				right: 0.426666rem;
+			}
+			.item .bottom-tag.red{
+				color: #F93D3D;
+				border: 1px solid #F93D3D;
+			}
+			.item .bottom-tag.blue{
+				color: #84D1FF;
+				border: 1px solid #84D1FF;
+			}
+			.add{
+				position: absolute;
+				bottom: 0.746666rem;
+				right: 0.533333rem;
+			}
+			.add .add-wrap{
+				width: 1.173333rem;
+				height: 1.173333rem;
+				border-radius: 100%;
+				background: #08A3FF;
+				box-sizing: border-box;
+				overflow: hidden;
+				position: relative;
+			}
+			.add .add-wrap img{
+				width: 0.506666rem;
+				height: 0.506666rem;
+				position: absolute;
+				top: 50%;
+				right: 50%;
+				transform: translate(50%,-50%);
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div class="wrap">
+			<ul>
+				<li class="item" tapmode="itemOn" onclick="openDetail()">
+					<div class="item-top flex flex-align-center flex-pack-justify">
+						<div class="top-left flex">
+							<div class="top-name">我的圈子</div>
+							<div class="top-desc">(我的创建)</div>
+						</div>
+						<div class="top-right">2019年7月22日14:33</div>
+					</div>
+					<div class="info">圈子介绍，圈子介绍圈子介绍圈子介绍圈，子介绍圈子绍圈子介绍圈子介绍圈子介绍圈子介绍圈子介绍。</div>
+					<div class="tag-list flex">
+						<div class="tag-item invite">我的邀请</div>
+						<div class="tag-item nub">10个合伙人</div>
+					</div>
+					<div class="total"><span class="total-name">今日流水:</span><span class="total-nub">--</span></div>
+					<div class="bottom-tag blue">加入</div>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="add">
+			<div class="add-wrap"><img src="../../icon/add.png" alt="" /></div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+			function openDetail(){
+				quakooApp.openNewWindow('detail_invite','./detail_invite.html')
+			}
+		</script>
+	</body>
+
+</html>

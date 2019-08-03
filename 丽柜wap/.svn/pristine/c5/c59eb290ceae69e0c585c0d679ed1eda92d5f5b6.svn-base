@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>摄影机构订阅</title>
+	<style type="text/css">
+		body{
+			background-color: #F5F5F5;
+		}
+		.items{
+			width: 100%;
+			height: 2.026666rem;
+			margin-top: 0.026666rem;
+			background:#ffffff;
+			/*background-color: pink;*/
+			font-family:PingFang-SC-Medium;
+			/*font-size: 0.48rem;*/
+			color:#333333;
+			position: relative;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+		}
+		.gift{
+			font-size: 0.32rem;
+			color:#999;
+			position: absolute;
+			bottom: 0.133333rem;
+			right: 0.533333rem;
+		}
+		.content{
+			box-sizing: border-box;
+			width: 100%;
+			/*background-color: pink;*/
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+		}
+		.content>div{
+			height: 100%;
+			line-height: 0.586666rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#333333;
+		}
+		.content .checked {
+			margin-top: 0.053333rem;
+			width:0.427rem;
+            height:0.427rem;
+            margin-right: 0.267rem;
+            background: url("../../icon/pay-unsel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+		}
+		.wrap-item.active .checked{
+            background: url("../../icon/pay-sel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+		.word{
+			margin-left: 0.266666rem;
+		}
+		.balance{
+			width: 100%;
+			height: 0.586666rem;
+			/*background-color: pink;*/
+			box-sizing: border-box;
+			padding-left: 0.4rem;
+			line-height: 0.586666rem;
+			margin-top: 0.426666rem;
+		}
+		.balance>span:nth-child(1){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.373333rem;
+			color:#999999;
+		}
+		.balance>span:nth-child(2){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.balance>span:nth-child(3){
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color: white;
+			background:#ff5c98;
+			border-radius: 0.106666rem;
+			width: 1.226666rem;
+			height: 0.64rem;
+			text-align: center;
+			line-height: 0.64rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 2.666666rem;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+		/*礼物*/
+		/*    font-size: 14px;*/
+        /*    position: relative;*/
+        /*}*/
+
+        .item-name span {
+            line-height: 0.533333rem;
+        }
+
+        .label-wrap {
+            width: 100%;
+            height: 1.067rem;
+        }
+
+        .label-wrap input {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            padding-left: 0.267rem;
+        }
+
+        .label-wrap input {
+            font-size: 14px;
+            color: #999999;
+        }
+		.persent{
+			display: none;
+		}
+        .persent li {
+            padding: 0.267rem 0.4rem 0;
+            background: #f5f5f5;
+            position: relative;
+        }
+
+        .persent li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            transform: scaleY(.5);
+            background: #f0f0f0;
+        }
+	</style>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick=" quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>订阅</div>
+    </div>
+	<div class="wrap">
+	    <!--<div class="items item_first" tapmode="itemOn" onclick="checkSel(0)">
+	    	<div class="content">
+	    		<div class="checked" style="float: left;" ></div>
+	    		<div class="word" style="float: left;">半年订阅</div>
+	    		<div class="price" style="float: right;">5000LB/6月</div>
+	    	</div>
+	    	<div class="gift">可以看动态</div>
+	    </div>
+	    <ul class="persent">
+	    	<li>
+                <div class="item-name"><span>姓名</span> 
+                <label class="label-wrap">
+                    <input type="text" id="name">
+                </label>
+                </div>
+            </li>
+            <li>
+                <div class="item-name">电话 </div>
+                <label class="label-wrap">
+                    <input type="tel" id="tel">
+                </label>
+            </li>
+            <li>
+                <div class="item-name">地址 </div>
+                <label class="label-wrap">
+                    <input type="text" id="city">
+                </label>
+            </li>
+	    </ul>
+	    <div class="items item_second" tapmode="itemOn" onclick="checkSel(1)">
+	    	<div class="content">
+	    		<div class="checked active" style="float: left;" ></div>
+	    		<div class="word" style="float: left;">一年订阅</div>
+	    		<div class="price" style="float: right;">9000LB/12月</div>
+	    	</div>
+	    </div>-->
+    </div>
+    <div class="balance">
+    	<span>账户余额</span>&nbsp;&nbsp;
+    	<span><span class="nub">0.0</span>LB</span>&nbsp;&nbsp;
+    	<span tapmode="itemOn" onclick="openRechargeWin()">充值</span>
+    </div>
+    <div class="loginButton flex flex-align-center flex-pack-center" onclick="sureSubscribe()">订阅</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="renderList">
+	<%for(var i = 0;i<list.length;i++){%>
+		<div class="wrap-item" data-index="<%=i%>">
+		<div class="items item_first" tapmode="itemOn" onclick="checkSel(<%=i%>,<%=list[i].type%>,this)">
+	    	<div class="content">
+	    		<div class="checked" style="float: left;" ></div>
+	    		<div class="word" style="float: left;"><%=list[i].name%></div>
+	    		<div class="price" style="float: right;"><%=list[i].price%>LB/<%=list[i].month%>月</div>
+	    	</div>
+	    		<div class="gift"><%=list[i].info%></div>
+	    	
+	    </div>
+	   <% if(list[i].type == 1){%>
+	    	<ul class="persent block">
+		    	<li>
+	                <div class="item-name"><span>姓名</span> 
+	                <label class="label-wrap">
+	                    <input type="text" id="name">
+	                </label>
+	                </div>
+	            </li>
+	            <li>
+	                <div class="item-name">电话 </div>
+	                <label class="label-wrap">
+	                    <input type="tel" id="tel">
+	                </label>
+	            </li>
+	            <li>
+	                <div class="item-name">地址 </div>
+	                <label class="label-wrap">
+	                    <input type="text" id="city">
+	                </label>
+	            </li>
+		    </ul>
+	    <%}%>
+	    </div>
+	<%}%>
+</script>
+<script>
+	var type,subId,otherUserId,params;
+    	otherUserId = quakooUtils.GetRequest().id;
+    	quakooData.ajaxSubmitDataNotProcess(config.getUrl_postType_getPostTypeListByType(),{type:5},function(ret,err){
+    		if(ret && ret.success){
+    			type = ret.data.type;
+    			params = ret.data;
+    			for(var i = 0;i<ret.data.length;i++){
+    				ret.data[i].info = quakooUtils.tryDecodeURIComponent(ret.data[i].info)
+    			}
+    			var data = {
+    				list:ret.data
+    			}
+    			var html = template('renderList',data)
+    			$api.html($api.dom('.wrap'),html)
+    			addBalance()
+    		}
+    	})
+    function addBalance(){
+    	quakooData.ajaxSubmitDataNotProcess(config.getUrl_wallet_getMyWallet(),{},function(ret,err){
+    		if(ret && ret.success){
+    			$api.html($api.dom('.balance .nub'),ret.data.money)
+    		}
+    	})
+    }
+	function checkSel(index,type,_this){
+    	var labs = $api.domAll('.wrap-item');
+    	var pers = $api.domAll('.persent')
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    			if(type == 1){
+    				$api.css(_this.nextElementSibling,'display:block');
+	    		}else{
+    				for(var j = 0;j<pers.length;j++){
+    					$api.css(pers[j],'display:none')
+	    			}
+    			}
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+	//打开充值窗口
+	 function openRechargeWin() {
+		quakooApp.openNewWindow('recharge','../mine/recharge.html',{})
+	 }
+	 //订阅
+	 function sureSubscribe(){
+	 	var enderSur = $api.dom('.wrap-item.active')
+	 	var index = $api.attr($api.dom('.wrap-item.active'),'data-index');
+	 	var address;
+	 	var phone;
+	 	var userName;
+	 	subId = params[index].id;
+	 	if(params[index].type == 1){
+	 		address = $api.val($api.dom('#city'));
+	 		phone = $api.val($api.dom('#tel'));
+	 		userName = $api.val($api.dom('#name'));
+	 		if(quakooUtils.isBlack(userName)){
+	 			quakooMsg.toast('请填写姓名')
+	 			return;
+	 		}
+	 		if(quakooUtils.isBlack(phone)){
+	 			quakooMsg.toast('请填写手机号')
+	 			return;
+	 		}
+	 		if(quakooUtils.isBlack(address)){
+	 			quakooMsg.toast('请填写地址')
+	 			return;
+	 		}
+	 	}
+	 	var ajaxParams = {
+	 		subId:subId,
+	 		otherUserId:otherUserId,
+	 		address:address,
+	 		phone:phone,
+	 		userName:userName
+	 	}
+	 	quakooData.ajaxGetData(config.getUrl_model_buySubscription(),ajaxParams,function(ret,err){
+	 		if(ret && ret.success){
+	 			quakooMsg.toast('订阅成功')
+	 		}
+	 	})
+	 }
+</script>
+</body>
+</html>

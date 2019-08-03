@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>分享</title>
+		<style type="text/css">
+			html,body{
+				background: rgba(0,0,0,0);
+			}
+        .tenant-model{
+			    display: block;
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    left: 0;
+			    top: 0;
+			    z-index: 1000;
+			    background-color: rgba(0,0,0,0.25);
+			    /*pointer-events: none;*/
+			}
+		.share{
+			width: 100%;
+			height: 4.533333rem;
+			background-color: white;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+		}
+		.title{
+			width: 1.333333rem;
+			height: 0.586666rem;
+			position: fixed;
+			left: 50%;
+			margin-left: -0.666666rem;
+			bottom: 3.413333rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#333333;
+		}
+		.share_icons{
+			width: 8.64rem;
+			height: 0.96rem;
+			/*background-color: pink;*/
+			margin: 0 auto;
+			margin-top: 1.653333rem;
+		}
+		.share_icons>img{
+			width: 0.96rem;
+			height: 0.96rem;
+			margin-left: 0.96rem;
+		}
+		.cancel{
+			width: 0.88rem;
+			height: 0.586666rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#999999;
+			margin:  0 auto;
+			margin-top: 0.586666rem;
+		}
+		</style>
+	</head>
+
+	<body>
+    <div class="tenant-model">
+    	<div class="share">
+    		<div class="title">分享至</div>
+    		<div class="share_icons">
+    			<img src="../../icon/qq.png" alt="" />
+    			<img src="../../icon/weibo.png" alt="" />
+    			<img src="../../icon/wx.png" alt="" />
+    			<img src="../../icon/wx_pyq.png" alt="" />
+    		</div>
+    		<div class="cancel" tapmode="itemOn" onclick="api.closeFrame()">取消</div>
+    	</div>
+    </div>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+				
+			};
+			
+		</script>
+	</body>
+
+</html>

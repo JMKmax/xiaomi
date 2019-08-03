@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>资源</title>
+    <style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			background: #f7f5f6;
+		}
+		.ul{
+			padding-bottom: 1.333333rem;
+			padding-top: 0.28rem;
+			box-sizing: border-box;
+		}
+		.ul .list{
+			width: 100%;
+			padding: 0.573333rem 0.426666rem 0.493333rem 0.426666rem;
+			box-sizing: border-box;
+			background: #fff;
+			margin-bottom: 0.28rem;
+		}
+		.rightButton{
+			padding:0.146666rem 0.306666rem;
+			border:1px solid #282828;
+			border-radius: 0.093333rem;
+			font-size: 0.32rem;
+		}
+		.left .status{
+			display: inline-block;
+			padding: 0.106666rem 0.266666rem;
+			color: #2BD62F;
+			font-size: 0.266666rem;
+			background:rgba(43,214,47,0.18);
+			border-radius: 0.106666rem;
+			margin-left: 0.266666rem;
+		}
+		.left{
+			font-size: 0.453333rem;
+			color: #282828;
+		}
+		.left .name{
+			color: #8D8F90;
+			font-size: 0.32rem;
+			margin-top: 0.4rem;
+		}
+		.active{
+			color: #0097FE;
+			border: 1px solid #0097FE;
+		}
+		
+		.plus{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1.333333rem;
+			color: #0097FE;
+			font-size: 0.4rem;
+			background: #fff;
+		}
+		.plus div{
+			width: 0.533333rem;
+			height: 0.533333rem;
+			border-radius: 0.266666rem;
+			background: #0097FE;
+			margin-right: 0.266666rem;
+			color: #fff;
+			text-align: center;
+			line-height: 0.533333rem;
+			font-size: 0.4rem;
+		}
+		.mui-popover.mui-popover-action .mui-table-view{
+			margin: 0;
+		}
+		.mui-table-view-cell{
+			padding: 0;
+			height: 1.493333rem;
+			line-height: 1.493333rem;
+			color: #282828;
+			font-size: 0.48rem;
+		}
+		.mui-table-view-cell > a:not(.mui-btn){
+			margin: 0;
+		}
+		.mui-popover.mui-popover-action .mui-table-view {
+			border-radius:0;
+		}
+		.mui-popover.mui-popover-action.mui-active{
+			background:rgba(242,242,242,1);
+		}
+		.second:after{
+			height: 0!important;
+		}
+		.second{
+			height: 1.306666rem!important;
+			line-height: 1.306666rem!important;
+		}
+		.first{
+			color: #919191;
+			font-size: 0.426666rem;
+		}
+		.addResource{
+			position: relative;
+			width: 100%;
+			box-sizing: border-box;
+			padding-right: 0.44rem;
+			padding-left: 2.333333rem;
+		}
+		.addResource span{
+			position: absolute;
+			left: 0.44rem;
+			top: 0;
+			font-size: 0.4rem;
+			color: #2D3134;
+		}
+		.addResource input{
+			width: 100%;
+			height: 0.773333rem;
+			border:1px solid rgba(247,245,246,1);
+			border-radius: 0.093333rem;
+			line-height: normal;
+			font-size: 0.32rem;
+			padding-left: 0.266666rem;
+		}
+		a{ text-decoration:none!important;} 
+		.mui-popover.mui-popover-action .mui-table-view .addResourceCon:after{
+			height: 0!important;
+		}
+		.mui-popover.mui-popover-action .mui-table-view .addResourceCon{
+			height: 1.6rem;
+			line-height: 2rem;
+			font-size: 0.48rem;
+			color: #2D3134;
+		}
+		.addResourceButton div{
+			width: 9.146666rem;
+			height: 1.066666rem;
+			margin: 0 auto;
+			background: #08A3FF;
+			color: #fff;
+			font-size: 0.4rem;
+			border-radius: 0.2rem;
+			line-height: 1.066666rem;
+		}
+
+    </style>
+</head>
+
+<body>
+	<ul class="ul">
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton" onclick="openMuiModal3()">移除</div>
+		</li>
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton active" tapmode="" onclick="bindCircle()">绑定圈子</div>
+		</li>
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton">移除</div>
+		</li>
+	</ul>
+	<div class="plus flex flex-align-center flex-pack-center" onclick="openMuiModal1()">
+		<div>＋</div>
+		<span>添加资源</span>
+	</div>
+	
+	<div id="modal_01" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">添加资源</a>
+	        </li>
+	        <li class="mui-table-view-cell second" onclick="openMuiModal1(1)">
+	            <a href="#">手动添加</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell addResourceCon" onclick="openMuiModal1(2)">
+	            <a href="#" class="btm-cancle">文件夹导入</a>
+	        </li>
+	    </ul>
+	</div>
+	<div id="modal_02" class="mui-popover mui-popover-bottom mui-popover-action" style="border-radius: 0.4rem;background: #fff;">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;border-radius: 0.4rem;background: #fff;">
+	        <li class="mui-table-view-cell first addResourceCon">
+	            <a href="#">填写</a>
+	        </li>
+	        <li class="mui-table-view-cell second addResource">
+	            <span><i style="opacity: 0;">品牌</i>Key：</span><input id="thisKey" type="text" placeholder="输入柜机的唯一ID" />
+	        </li>
+	        <li class="mui-table-view-cell second addResource">
+	            <span><i style="opacity: 0;">品牌</i>品牌：</span><input id="thisName" type="text" placeholder="输入品牌名" />
+	        </li>
+	        <li class="mui-table-view-cell second addResource">
+	            <span>柜机名称：</span><input type="text" id="thisTitle" placeholder="柜机名称可以作为选填内容" />
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view" style="margin-top: 0.533333rem;">
+	        <li class="mui-table-view-cell addResourceButton addResourceCon" style="background: #fff;" onclick="addResource()">
+	            <div>完成</div>
+	        </li>
+	    </ul>
+	</div>
+	<div id="modal_03" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">是否确定移除？</a>
+	        </li>
+	        <li class="mui-table-view-cell second">
+	            <a href="#">是</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell addResourceCon">
+	            <a href="#" class="btm-cancle">否</a>
+	        </li>
+	    </ul>
+	</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+      
+    };
+	
+	
+	function openMuiModal1(type) {
+		quakooApp.openFrame("mask","mask.html",{type:1},0,0,{bgColor:'rgba(0,0,0,0)'})
+//      mui('#modal_01').popover('toggle');
+//      if (type == 1) {
+//          mui('#modal_02').popover('toggle');
+//      }
+   }
+	
+	function openMuiModal3() {
+		quakooApp.openFrame("mask","mask.html",{type:3},0,0,{bgColor:'rgba(0,0,0,0)'})
+//      mui('#modal_03').popover('toggle');
+    }
+	//绑定圈子
+	function bindCircle(){
+		quakooApp.openNewWindow('circleList','./circleList.html')
+	}
+	
+	
+	
+	//点击确定   添加资源
+	var flag = false;
+	function addResource(){
+		if (flag) {
+			return;
+		}
+		flag = true;
+		var obj = {};
+		if(quakooMsg.isBlack(document.getElementById("thisKey").value)){
+			quakooMsg.toast("请输入柜机的唯一ID");
+			flag = false;
+			return;
+		}
+		obj.key = trimAll(document.getElementById("thisKey").value);
+		
+		if(quakooMsg.isBlack(document.getElementById("thisName").value)){
+			flag = false;
+			quakooMsg.toast("请输入品牌名");
+			return;
+		}
+		obj.name = trimAll(document.getElementById("thisName").value);
+		
+		if(quakooMsg.isNotBlack(document.getElementById("thisTitle").value)){
+			obj.title = trimAll(document.getElementById("thisTitle").value);
+		}
+		ajaxGet("",obj,function(ret,err){
+			flag = false;
+			mui('#modal_02').popover('toggle');
+			if (ret&&ret.success) {
+				
+			}else{
+				quakooMsg.toast(ret.msg);
+			}
+		})
+	}
+</script>
+</body>
+</html>

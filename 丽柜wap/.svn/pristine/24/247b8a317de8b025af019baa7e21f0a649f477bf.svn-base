@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .wallet-top {
+            width: 100%;
+            height: calc(100vw / 3.98936);
+            background: url("../../icon/myWallet.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            background: #f5f5f5;;
+        }
+
+        ul {
+            background: #ffff;
+        }
+
+        .wallet-top .virtual-coin {
+            font-size: 24px;
+            line-height: 0.88rem;
+            height: 0.88rem;
+            margin-bottom: 0.213rem;
+        }
+
+        .wallet-top .virtual-coin span {
+            margin-right: 0.133rem;
+        }
+
+        .wallet-top > span {
+            font-size: 12px;
+        }
+
+        .wallet-ul li {
+            height: 1.28rem;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            position: relative;
+            background: url("../../icon/next.png") no-repeat center right 20px;
+            -webkit-background-size: 0.187rem 0.373rem;
+            background-size: 0.187rem 0.373rem;
+            background: #fff;
+        }
+
+        .wallet-ul li + li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: #f5f5f5;
+            transform: scaleY(.5);
+        }
+
+        .item-icon {
+            width: 0.64rem;
+            height: 0.64rem;
+            margin-right: 0.267rem;
+        }
+
+        .item-icon.deposit {
+            background-image: url(../../icon/mine/wl_money.png), url(../../icon/wallet/w4.png);
+            background-repeat: no-repeat, no-repeat;
+            background-size: 0.346666rem 0.4rem, 0.64rem 0.64rem;
+            background-position: center center, center center;
+        }
+
+        .item-icon img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../icon/back.png" alt="">
+	    </div>
+	    <div>我的钱包</div>
+	</div>
+<div class="con">
+
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <div class="wallet-top">
+        <div class="virtual-coin"><span><%=list.money%></span>LB</div>
+        <span>我的余额</span>
+    </div>
+    <ul class="wallet-ul">
+        <li tapmode="itemOn" onclick="openRechargeWin()">
+            <i class="item-icon"><img src="../../icon/wallet/w1.png" alt=""></i><span>充值</span>
+        </li>
+        <li tapmode="itemOn" onclick="openWithdrawWin()">
+            <i class="item-icon"><img src="../../icon/wallet/w2.png" alt=""></i><span>提现</span>
+        </li>
+        <li tapmode="itemOn" onclick="openConsumeRecordWin()">
+            <i class="item-icon"><img src="../../icon/wallet/w3.png" alt=""></i><span>消费记录</span>
+        </li>
+        <li tapmode="itemOn" onclick="openWithdrawRecordWin()">
+            <i class="item-icon deposit"></i><span>提现记录</span>
+        </li>
+        <li tapmode="itemOn" onclick="openRechargeRecordWin()">
+            <i class="item-icon"><img src="../../icon/wallet/w5.png" alt=""></i><span>充值记录</span>
+        </li>
+        <li tapmode="itemOn" onclick="openEarningsRecordWin()">
+            <i class="item-icon earings"><img src="../../icon/ear.png" alt=""></i><span>我的收益</span>
+        </li>
+    </ul>
+</script>
+<script>
+//  apiready = function () {
+        quakooData.ajaxGetDataWithOutProgress(config.getUrl_wallet_getMyWallet(), {}, function (ret, err) {
+            if (ret && ret.success) {
+                renderDom(ret.data)
+            }
+        })
+//  };
+
+    function renderDom(results) {
+        var data ={
+            list:results
+        };
+        var html = template('scriptDiv1',data);
+        $api.html($api.dom('.con'),html);
+        api.parseTapmode()
+    }
+
+    // 充值
+    function openRechargeWin() {
+        quakooApp.openNewWindow('recharge', './recharge.html', {})
+    }
+
+    // 提现
+    function openWithdrawWin() {
+        quakooApp.openNewWindow('withdraw', './withdraw.html', {})
+    }
+
+    // 消费记录
+    function openConsumeRecordWin() {
+        quakooApp.openNewWindow('consumeRecord', './consumeRecord.html', {})
+    }
+
+    // 提现记录
+    function openWithdrawRecordWin() {
+        quakooApp.openNewWindow('withdrawRecord', './withdrawRecord.html', {})
+    }
+
+    // 充值记录
+    function openRechargeRecordWin() {
+        quakooApp.openNewWindow('rechargeRecord', './rechargeRecord.html', {})
+    }
+
+    // 我的收益
+    function openEarningsRecordWin() {
+        quakooApp.openNewWindow('earningsRecord', './earningsRecord.html', {})
+    }
+
+    // 我的余额
+    function openBalanceWin() {
+        quakooMsg.toast('无跳转')
+    }
+</script>
+
+</html>

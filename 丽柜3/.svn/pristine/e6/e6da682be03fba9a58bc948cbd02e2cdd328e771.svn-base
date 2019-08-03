@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>更改手机号</title>
+    	<style>
+    		.changeTel{
+    			padding-top: 0.533333rem;
+    		}
+    		.import-item{
+    			position: relative;
+    			padding: 0 0.666666rem;
+    			margin-bottom: 0.533333rem;
+    			height: 1.173333rem;
+    		}
+    		.import-item input{
+    			width: 100%;
+    			height: 100%;
+    			background: #f2f2f2;
+    			border-radius: 2.666666rem;
+    			font-size: 0.426666rem;
+    			color: #999;
+    			padding: 0 0.533333rem;
+    			box-sizing: border-box;
+    			line-height: 1.5em;
+    		}
+    		input:-webkit-input-placeholder{
+    			line-height: 1.5em;
+    		}
+    		.ensure-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background: #FF5C98;
+    			border-radius: 2.666666rem;
+    			color: #fff;
+    			font-size: 0.48rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			margin: 0 auto;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="changeTel">
+			<ul>
+				<li class="import-item">
+					<input type="text" placeholder="输入原始密码" />
+				</li>
+				<li class="import-item">
+					<input type="text" placeholder="输入新密码" />
+				</li>
+				<li class="import-item">
+					<input type="text" placeholder="确认密码" />
+				</li>
+			</ul>
+			<div class="ensure-btn">提交</div>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

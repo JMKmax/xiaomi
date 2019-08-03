@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.css"/>
+    <link rel="stylesheet" href="../../css/swiper.min.css"/>
+    <title>作品-推荐</title>
+    <style>
+        .prod-ul {
+            background: #f5f5f5;
+        }
+
+
+        .prod-ul li .image {
+            position: relative;
+        }
+
+        .prod-ul li .image .title {
+            position: absolute;
+            top: 0.4rem;
+            left: 0.4rem;
+            color: #fff;
+        }
+
+        .prod-ul li .image .image-photo {
+            width: 100%;
+            height: 12rem;
+            overflow: hidden;
+        }
+
+        .prod-ul li .image .image-photo img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .prod-ul li .image .time {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            height: 0.533333rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.213333rem;
+            color: #fff;
+            background: rgba(0, 0, 0, .5);
+            border-radius: 0.08rem;
+        }
+
+        .prod-ul li .author {
+            height: 1.52rem;
+            display: flex;
+            align-items: center;
+            padding: 0 0.4rem;
+        }
+        .prod-ul li .author-info {
+            flex: 0 0 80%;
+            display: flex;
+            align-items: center;
+        }
+
+        .prod-ul li .author .user-icon {
+            width: 0.853rem;
+            height:  0.853rem;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .prod-ul li .author .user-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        .prod-ul li .author .user-name {
+            margin-left: 0.16rem;
+            font-size:0.373rem;
+            color:#333333;
+        }
+
+        .prod-ul li .author .sIcon {
+            height: 16px;
+            width: 16px;
+            margin-left:0.16rem ;
+        }
+        .prod-ul li .author .attendWrap{
+            flex: 0 0 20%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .prod-ul li .author .attention {
+            padding: 2px 10px;
+            height: 20px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #FF77A9;
+            color: #FF77A9;
+            border-radius: 4px;
+        }
+
+        .prod-ul li .author .attention.attend {
+            color: #999;
+            border-color: #999;
+        }
+
+        .prod-ul li .image .audio-photo {
+            width: 100%;
+            height: 5.866666rem;
+            overflow: hidden;
+        }
+
+
+        .swiper-container {
+            width: 100%;
+            height: 3.413333rem;
+            padding-bottom: 0.266666rem;
+        }
+
+        .swiper-container .swiper-slide img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .my-bullet {
+            width: 0.133333rem;
+            height: 0.133333rem;
+            border-radius: 100%;
+            background: #F0F0F0;
+            margin-right: 0.133333rem;
+        }
+
+        .my-bullet-active {
+            background: #FF5C98;
+        }
+
+        .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+            bottom: 10%;
+        }
+    </style>
+</head>
+<body>
+<!--                                             推荐                                                -->
+<div class="title-recommend">
+
+    <div class="swiper-container ">
+        <div class="swiper-wrapper swiper-no-swiping">
+            <!--<div class="swiper-slide"><img src="../../image/bg.png" alt="" /></div>
+            <div class="swiper-slide"><img src="../../image/bg_1.png" alt="" /></div>
+            <div class="swiper-slide"><img src="../../image/bg_2.jpg" alt="" /></div>-->
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+    <ul class="prod-ul">
+<!--        <li>-->
+<!--            <div class="image">-->
+<!--                <p class="title">巴厘岛的夏天</p>-->
+<!--                <div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">-->
+<!--                    <img src="../../image/bg.png" alt="" />-->
+<!--                </div>-->
+<!--                <p class="time">6P</p>-->
+<!--            </div>-->
+<!--            <div class="author">-->
+<!--                <div class="author-info">-->
+<!--                    <div class="user-icon"> <img  src="../../image/bg.png" alt="" /></div>-->
+<!--                    <div class="user-name">请叫我妲姬</div>-->
+<!--                    <img class="sIcon wx" src="../../icon/weixin.png" alt="" />-->
+<!--                </div>-->
+<!--                <div class="attendWrap">-->
+<!--                    <div class="attention" >关注</div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <div class="image">-->
+<!--                <p class="title">巴厘岛的夏天</p>-->
+<!--                <div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">-->
+<!--                    <img src="../../image/bg.png" alt="" />-->
+<!--                </div>-->
+<!--                <p class="time">6P</p>-->
+<!--            </div>-->
+<!--            <div class="author">-->
+<!--                <div class="author-info">-->
+<!--                    <div class="user-icon"> <img  src="../../image/bg.png" alt="" /></div>-->
+<!--                    <div class="user-name">请叫我妲姬</div>-->
+<!--                    <img class="sIcon wx" src="../../icon/weixin.png" alt="" />-->
+<!--                </div>-->
+<!--                <div class="attendWrap">-->
+<!--                    <div class="attention" >关注</div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </li>-->
+    </ul>
+</div>
+</body>
+
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="swiper" type="text/html">
+    <%for(var i=0; i< list.length; i++){%>
+    <div class="swiper-slide" tapmode="" onclick="bannerToDetail(<%=list[i].type%>,<%=list[i].contentType%>,<%=list[i].bannerType%>,<%=list[i].objectId%>,'<%=list[i].url%>')"><img src=<%=list[i].image%> alt="" /></div>
+    <%}%>
+</script>
+<script id="recommend" type="text/html">
+    <%for(var i=0; i< list.length; i++){%>
+        <li>
+            <div class="image">
+                <p class="title"><%=list[i].name%></p>
+                <%if(list[i].type == 0){%>
+                <div class="image-photo" tapmode="itemOn" onclick="ImageDetail(<%=list[i].id%>)">
+                    <img src="../../icon/worksbg.png" style="width: 100%;height: 100%"
+                         onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'"
+                         data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""/>
+                </div>
+                <p class="time"><%=list[i].length%>P</p>
+                <%}else{%>
+                <div class="audio-photo" tapmode="" onclick="AudioDetail(<%=list[i].id%>)">
+                    <img src="../../icon/worksbg.png" style="width: 100%;height: 100%"
+                         onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'"
+                         data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""/>
+                </div>
+                <p class="time"><%=list[i].length%></p>
+                <%}%>
+
+            </div>
+            <div class="author">
+                <div class="author-info" tapmode="" onclick="openHome(<%=list[i].mid%>)">
+                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%"
+                                                onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"
+                                                data-echo="<%=list[i].modelIcon%>" real-style="<%=list[i].modelIconStyle%>" alt=""/></div>
+                    <div class="user-name"><%=list[i].modelName%></div>
+                    <%if(list[i].showWeixin){%>
+                    <img class="sIcon wx" src="../../icon/weixin.png" alt=""/>
+                    <%}%>
+                </div>
+                <div class="attendWrap">
+                    <%if(selfId !== list[i].mid){%>
+                        <%if(list[i].hasFlowModel){%>
+                            <div class="attention attend"  data-mid="<%=list[i].mid%>" data-flag="0" data-attend="<%=list[i].mid%>" onclick="switchAttendEvent(this)" >已关注</div>
+                        <%}else{%>
+                            <div class="attention"  data-mid="<%=list[i].mid%>" data-flag="0"  data-attend="0" onclick="switchAttendEvent(this)">关注</div>
+                        <%}%>
+                    <%}%>
+                </div>
+            </div>
+        </li>
+    <%}%>
+</script>
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    var userInfo ;
+    apiready = function () {
+        userInfo = quakooUser.getUserInfo()
+        //轮播图
+        quakooData.ajaxGetDataWithOutProgress(config.getUrl_banner_getAllBannerList(), {}, function (ret, err) {
+            if (ret && ret.success) {
+                console.log(JSON.stringify(ret))
+                var feilKey = quakooUtils.getImgKey();
+                for (var i = 0 ; i<ret.data.length ;i ++){
+                    ret.data[i].image =ret.data[i].image+feilKey;
+                }
+                var data = {
+                    list: ret.data,
+                };
+
+                var html = template('swiper', data);
+                $api.html($api.dom('.swiper-wrapper'), html);
+                api.parseTapmode()
+                var swiper = new Swiper('.swiper-container', {
+                    effect: 'fade',
+                    autoplay: true,
+                    loop: true, // 循环模式选项
+                    speed: 1500,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        bulletClass: 'my-bullet',
+                        bulletActiveClass: 'my-bullet-active',
+                    },
+                });
+            }
+        })
+        // 推荐列表
+        new QuakooPage(function (results, append) {
+            var feilKey = quakooUtils.getImgKey();
+            
+            for (var i = 0; i < results.length; i++) {
+            	
+                if (quakooUtils.isBlack(results[i].modelIcon)) {
+                    results[i].modelIcon = '../../icon/defaultHead.png';
+                    results[i].modelIconStyle = 'width:100%;height:100%;'
+                } else {
+                    var obj = quakooImg.processImg(results[i].modelIcon,0.853333*fontSize, 0.853333*fontSize);
+                    results[i].modelIcon = obj.url+feilKey;
+                    results[i].modelIconStyle = obj.style;
+                }
+                if(results[i].type == 0){
+                    if (quakooUtils.isBlack(results[i].cover)) {
+                        results[i].cover = '../../icon/worksbg.png';
+                        results[i].coverStyle = 'width:100%;height:100%;'
+                    } else {
+                        var coverobj = quakooImg.processImg(results[i].cover,api.winWidth, 12*fontSize);
+                        results[i].cover = coverobj.url+feilKey;
+                        results[i].coverStyle = coverobj.style;
+                    }
+                }else {
+                    if (quakooUtils.isBlack(results[i].cover)) {
+                        results[i].cover = '../../icon/worksbg.png';
+                        results[i].coverStyle = 'width:100%;height:100%;'
+                    } else {
+                        var coverobj = quakooImg.processImg(results[i].cover,api.winWidth, 5.866666*fontSize);
+                        results[i].cover = coverobj.url+feilKey;
+                        results[i].coverStyle = coverobj.style;
+                    }
+                }
+                if(results[i].type == 1){
+                    results[i].length = quakooUtils.videoDuration(results[i].length)
+                }
+            }
+            var data = {
+                list: results,
+                selfId:userInfo.id
+            };
+            var html = template('recommend', data);
+            if (append) {
+                var div = document.createElement('div');
+                div.innerHTML = html;
+                $api.dom('.prod-ul').appendChild(div)
+            } else {
+                $api.html($api.dom('.prod-ul'), html);
+            }
+            setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+            api.parseTapmode();
+
+        }, config.getUrl_content_getMostPopularPager(), {});
+
+    };
+	
+	 //处理时间
+    function toStr(nub){
+    	return nub>10 ? ''+nub : '0'+nub
+    }
+    function checkTime(time){
+    	var iHour = parseInt(time / 3600);
+		var iMinute = parseInt((time % 3600) / 60);
+		var iSecond = (time % 3600) % 60;
+		
+		return time = ""+toStr(iMinute)+" : "+toStr(iSecond)+"";
+    }
+
+    // 视屏详情
+    function AudioDetail(id) {
+        quakooApp.openNewWindow('works_video_details'+id, './works_video_details.html', {cid: id});
+    }
+
+    //图片详情
+    function ImageDetail(id) {
+        quakooApp.openNewWindow('works_pic_details'+id, './works_pic_details.html', {cid: id});
+    }
+    //跳转主页
+	 function openHome(id) {
+       var userInfo = quakooUser.getUserInfo()
+    	userId = userInfo.id;
+    	if(id == userId){
+    		return;
+    	}else{
+    		quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+    	}
+    }
+    // 切换关注取消
+    function switchAttendEvent(_this){
+        var mid = parseInt($api.attr(_this,'data-mid'),10); //关注模特的ID
+        var flag  = $api.attr(_this,'data-flag');// 防止重复点击
+        var midBtnAll =  $api.domAll('div[data-mid="'+mid+'"]'); //获取列表中 模特的ID 的关注按钮
+        var attend =  parseInt($api.attr(_this,'data-attend'),10); // 关注状态 大于0  位关注中 等于0 未关注
+        if(flag == 1){
+            return
+        }
+        $api.attr(_this,'data-flag',1);
+
+        var _params ={
+            otherId: mid
+        };
+        if(attend === 0){ //  未关注 = 》 关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this,'data-flag',0);
+                    midBtnAll.forEach(function (item,i) {
+                        $api.attr(item,'data-attend',mid);
+                        $api.addCls(item,'attend');
+                        $api.html(item,'已关注')
+                    });
+                    api.sendEvent({
+                        name:'changeUserInfo'
+                    })
+                }
+            })
+
+        }else { //关注 == 未关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('取消成功');
+                    $api.attr(_this,'data-flag',0);
+                    midBtnAll.forEach(function (item,i) {
+                        $api.attr(item,'data-attend',0);
+                        $api.removeCls(item,'attend');
+                        $api.html(item,'关注')
+                    });
+                    api.sendEvent({
+                        name:'changeUserInfo'
+                    })
+                }
+            })
+        }
+
+    }
+
+    // banner跳转详情
+    function bannerToDetail(type,contentType,bannerType,id,url) {
+        // type 0外部链接 1内部链接
+        // contentType 0图片 1视频
+        // bannerType  1作品 2动态
+        if(+type === 0 ){//0外部链接
+            api.openApp({
+                    androidPkg: "android.intent.action.VIEW",
+                    mimeType: "text/html",
+                    iosUrl: url,
+                    uri: url
+                },
+                function(ret, err) {
+                    if (err) {
+                        api.prompt({
+                                title: "调用外部浏览器失败,请复制链接自行打开",
+                                text: url,
+                                buttons: ["已复制", "取消"]
+                            },
+                            function(ret, err) {
+
+                            });
+                    }
+                }
+            );
+        }
+        if(+type === 1 ){//1内部链接
+            if(+bannerType === 1){
+                if(contentType === 0 ){
+                    ImageDetail(id)
+                }else  if(contentType === 1 ){
+                    AudioDetail(id)
+                }
+            }
+            if(+bannerType === 2){
+                openDynamic(id)
+            }
+        }
+
+    }
+
+    // 打开动态详情
+    function openDynamic(id) {
+        quakooData.ajaxSubmitData(config.getUrl_circle_getCircleInfo(), {cid: id}, function(ret, err) {
+            if(ret && ret.success) {
+                if(quakooUtils.isNotBlack(ret.data)){
+                    if(ret.data.canView) {
+                        quakooApp.openNewWindow('model_communication', '../home/model_communication.html', {id: id})
+                    }else {
+                        quakooMsg.toast('此动态需打赏才可观看')
+                    }
+                }
+
+            }
+        });
+
+    }
+</script>
+</html>

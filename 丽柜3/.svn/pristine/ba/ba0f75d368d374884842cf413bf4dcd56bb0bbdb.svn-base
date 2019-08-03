@@ -1,0 +1,99 @@
+/**
+ *  雀科科技- http://www.quakoo.com
+ *
+ *  项目类
+ *
+ */
+
+
+//快速引用部分
+
+//APP开发 快速引用
+var config = new Config();
+var quakooUtils = new QuakooUtils();
+var md5 = new Md5();
+var base54 = new Base64();
+
+var quakooImg=new QuakooImg();
+var quakooVideo=new QuakooVideo();
+var quakooSound=new QuakooSound();
+var quakooLocation=new QuakooLocation();
+
+var quakooDb = new QuakooDb();
+var quakooFs = new QuakooFs();
+var quakooMsg = new QuakooMsg();
+var quakooApp = new App();
+var quakooUser = new User();
+var quakooData = new QuakooData();
+
+
+var quakooLogin =new QuakooLogin();
+var quakooPay =new QuakooPay();
+
+
+
+var context = {};
+
+
+//PC网站开发 快速引用
+
+
+//H5开发 快速引用
+
+
+//定义
+
+
+//覆盖和继承
+//继承参考Config，注意super
+//覆盖
+// QuakooPage.prototype.init=function () {
+//     //111111
+// }
+/**
+ *
+ * 获取数据的ajax请求,不带token,带加载圈，返回错误信息 ，有错误回调
+ * @param url 请求url
+ * @param reqData 请求的数据
+ * @param callBackOnServerData(ret) 服务器传输回数据，回调方法
+ * @param callBackOnError(ret,err) 当加载错误的时候回调方法
+ */
+QuakooData.prototype.ajaxSubmitDataNotToken = function (url, reqData, callBackOnServerData,callBackOnError) {
+    this._ajaxSubmitData(url, reqData, callBackOnServerData,false,true,true,callBackOnError);
+};
+/**
+ *
+ * 获取数据的ajax请求,带token,不加载圈，返回错误信息 ，有错误回调
+ * @param url 请求url
+ * @param reqData 请求的数据
+ * @param callBackOnServerData(ret) 服务器传输回数据，回调方法
+ * @param callBackOnError(ret,err) 当加载错误的时候回调方法
+ */
+QuakooData.prototype.ajaxSubmitDataNotProcess=function (url, reqData, callBackOnServerData,callBackOnError) {
+    this._ajaxSubmitData(url, reqData, callBackOnServerData,true,true,false,callBackOnError);
+};
+
+
+// 工具
+// 格式化时间 需引入monent.js
+QuakooUtils.prototype.commentFormatTime=function (timestamp) {
+    var commentTime = moment(timestamp),
+        curTime = moment(curTime);
+    var years =  curTime.diff(commentTime, 'years'),
+        days= curTime.diff(commentTime, 'days'),
+        hours = curTime.diff(commentTime, 'hours'),
+        minutes = curTime.diff(commentTime, 'minutes'),
+        seconds = curTime.diff(commentTime, 'seconds');
+    if(years || days){
+        return  moment(timestamp).format('YYYY-MM-DD hh:mm')
+    }
+    if(hours === 0 && minutes === 0 && seconds < 1000*60){
+        return '刚刚'
+    }else{
+        return  moment(timestamp).fromNow()
+    }
+};
+// 视频时长
+QuakooUtils.prototype.videoDuration=function (duration) {
+
+};

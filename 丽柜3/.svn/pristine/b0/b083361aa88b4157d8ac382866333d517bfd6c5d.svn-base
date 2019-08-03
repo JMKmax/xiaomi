@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>注册登录</title>
+    	<style>
+    		header{
+    			padding-top: 0.746666rem;
+    			margin-left: 0.4rem;
+    			margin-right: 0.4rem;
+    		}
+    		header .photo{
+    			width: 0.96rem;
+    			height: 0.96rem;	
+    			vertical-align:middle;
+    			border-radius: 0.373333rem;
+    			overflow: hidden;
+    		}
+    		header .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		header span{
+    			margin-left: 0.266666rem;
+    			font-size: 0.373333rem;
+    			font-family:PingFang-SC-Medium;
+    			color: #333;
+    		}
+    		header p{
+    			color: #333;
+    			font-size: 0.48rem;
+    			font-family:PingFang-SC-Medium;
+    			margin-top: 0.32rem;
+    			margin-bottom: 1.066666rem;
+    		}
+    		.main .topBat{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			margin-bottom: 0.533333rem;
+    			margin-left: 0.4rem;
+    		}
+    		.main li{
+    			height: 2.133333rem;
+    			box-sizing: border-box;
+    			position: relative;
+    			margin-left: 0.4rem;
+    			margin-right: 0.4rem;
+    		}
+    		.main li:after{
+    			content: '';
+    			height: 1px;
+    			background: #E1E1E1;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.main li .photo{
+    			width: 1.493333rem;
+    			height: 1.493333rem;	
+    			border-radius: 0.106666rem;
+    			margin-right: 0.266666rem;
+    		}
+    		.main li .autor{
+    			font-size: 0.48rem;
+    			color: #333;
+    			height: 0.666666rem;
+    			line-height: 0.666666rem;
+    		}
+    		.main li .desc{
+    			height: 0.586666rem;
+    			line-height: 0.586666rem;
+    			font-size: 0.426666rem;
+    			color: #999;
+    			margin-top: 0.213333rem;
+    		}
+    		.main li .right{
+    			width: 0.533333rem;
+    			height: 0.4rem;
+    		}
+    		.add{
+    			height: 2.133333rem;
+    			margin: 0 0.4rem;
+    			padding-left: 0.453333rem;
+    			padding-right: 0.293333rem;
+    			position: relative;
+    		}
+    		.add:before{
+    			content: '';
+    			height: 1px;
+    			background: #E1E1E1;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.add:after{
+    			content: '';
+    			height: 1px;
+    			background: #E1E1E1;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.add .left img{
+    			width: 0.586666rem;
+    			height: 0.586666rem;
+    			margin-right: 0.72rem;
+    		}
+    		.add span{
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		.add img.right{
+    			width:0.186666rem;
+    			height: 0.373333rem;
+    		}
+    		.footer{
+    			display: flex;
+    			justify-content: center;
+    		}
+    		.footer .reg{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background:#FF77A9;
+    			border-radius: 0.586666rem;
+    			margin-top:1.066666rem;
+    			display: flex;
+    			justify-content: center;
+    		}
+    		.footer .reg a{
+    			font-size: 0.48rem;
+    			color: #fff;
+    			margin-top: 0.266666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<header>
+			<div class="username flex flex-align-center">
+				<div class="photo">
+					<img src="../../icon/icon.png" alt="" />
+				</div>
+				<span>丽柜 申请使用</span>
+				</div>
+				<p>你的微信头像、昵称、地区和性别信息</p>
+		</header>
+		<div class="main">
+			<p class="topBat">你可以选择使用不同的个人信息登录</p>
+			<ul>
+				<li class="flex flex-align-center flex-pack-justify">
+					<div class="left flex">
+						<img class="photo" src="../../image/bg.png" alt="" />
+						<div class="text">
+							<p class="autor">大脸猫</p>
+							<p class="desc">微信个人信息</p>
+						</div>
+					</div>
+					<img class="right" src="../../icon/checked.png" alt="" />
+				</li>
+			</ul>
+			<div class="add flex flex-pack-justify flex-align-center">
+				<div class="left flex">
+					<img src="../../icon/add.png" alt="" />
+					<span>新建头像昵称</span>
+				</div>
+				<img class="right" src="../../icon/right.png"/>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="reg"><a href="#">同意</a></div>
+		</div>
+	</body>
+</html>

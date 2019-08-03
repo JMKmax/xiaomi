@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <title>圈子-全部</title>
+    <style type="text/css">
+        html,
+        body {
+            background: #F5F5F5;
+        }
+        ul{
+        	background: #fff;
+        	padding: 0 0.426666rem;
+        	margin-bottom: 0.266666rem;
+        }
+        li{
+        	height: 1.333333rem;
+        	position: relative;
+        	box-sizing: border-box;
+        	overflow: hidden;
+        }
+        li::after{
+        	content: '';
+        	height: 1px;
+        	background: #E6E6EB;
+        	position: absolute;
+        	bottom: 0;
+        	left: 0;
+        	right: 0;
+        	transform: scaleY(0.5);
+        }
+        li .left{
+        	font-size: 0.426666rem;
+        	color: #282828;
+        }
+        li .right{
+        	font-size: 0.426666rem;
+        	color: #999999;
+        }
+        li .right .right-desc{
+        	font-size: 0.426666rem;
+        	color: #282828;
+        }
+        li .right span{
+        	margin-left: 0.24rem;
+        	width: 0.213333rem;
+        	height: 0.373333rem;
+        	background: url(../../icon/next.png) no-repeat center center;
+        	background-size: 0.213333rem 0.373333rem;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+    	<li class="item flex flex-align-center flex-pack-justify" tapmode="" onclick="changeName()">
+    		<div class="left">姓名</div>
+    		<div class="right flex flex-align-center"><div class="right-desc">余秋雨</div><span></span></div>
+    	</li>
+    	<li class="item flex flex-align-center flex-pack-justify">
+    		<div class="left">手机号</div>
+    		<div class="right flex flex-align-center">1321*******6</div>
+    	</li>
+    </ul>
+    <ul>
+    	<li class="item flex flex-align-center flex-pack-justify">
+    		<div class="left">清除缓存</div>
+    		<div class="right flex flex-align-center"><div class="right-desc">406.10M</div><span></span></div>
+    	</li>
+    </ul>
+    <ul>
+    	<li class="item flex flex-align-center flex-pack-justify">
+    		<div class="left">退出当前账户</div>
+    	</li>
+    	
+    </ul>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+    <script>
+        apiready = function() {
+
+        };
+
+        function changeName() {
+           quakooApp.openNewWindow('changeName','./changeName.html')
+        }
+    </script>
+</body>
+
+</html>

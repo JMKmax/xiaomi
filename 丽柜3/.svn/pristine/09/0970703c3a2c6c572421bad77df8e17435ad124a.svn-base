@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>绑定微信</title>
+    	<style>
+    		#topbar{
+    			height: 1.173333rem;
+    			padding: 0 0.4rem;	
+    		}
+    		 img{
+    			width:0.293333rem;
+    			height:0.48rem;
+    		}
+    		.topBar{
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		.rightButton{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			font-family:PingFang-SC-Medium;
+    			width: 1.28rem;
+    			height: 0.64rem;
+    			background: #FF5C98;
+    			border-radius: 0.106666rem;
+    			line-height: 0.64rem;
+    		}
+    		
+    	</style>
+	</head>
+	<body>
+		<div id="topbar" class="flex flex-align-center flex-pack-justify">
+            <img src="../../image/back.png">
+       		<div class="topBar">发布</div>
+        	<div class="rightButton">发表</div>
+		</div>
+		
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	initFrameInWin(api.pageParam);
+    	}
+	</script>
+</html>

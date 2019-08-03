@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>绑定微信</title>
+    	<style>
+    		#topbar{
+    			height: 1.173333rem;
+    			border-bottom: 0.026666rem solid #F5F5F5;
+    			padding: 0 0.4rem;
+    		}
+    		.left-icon{
+    			width:0.293333rem;
+    			height:0.48rem;
+    		}
+    		.topBar{
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		.right-icon{
+    			width: 0.533333rem;
+    			height: 0.533333rem;
+    		}
+    		footer{
+    			width: 100%;
+    			height: 1.333333rem;
+    			background: #f0f0f0;
+    			position: fixed;
+    			left: 0;
+    			bottom: 0;
+    			display: flex;
+    			align-items: center;
+    		}
+    		footer input{
+    			margin-left: 0.4rem;
+    			width: 6.586666rem;
+    			height: 0.906666rem;
+    			padding-left: 0.266666rem;
+    			font-size: 0.373333rem;
+    			color: #aaa;
+    			background: #FFFFFF;
+    			line-height: 34px;
+    			flex-grow: 1;
+    			flex-shrink: 1;
+    		}
+    		footer .laugh img{
+    			width: 0.72rem;
+    			height: 0.72rem;
+    			margin-left: 0.266666rem;
+    			flex-grow: 0;
+    			flex-shrink: 0;
+    		}
+    		footer .comment-button{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			width: 1.386666rem;
+    			height: 0.746666rem;
+    			text-align: center;
+    			line-height: 0.746666rem;
+    			background: #FF5C98;
+    			margin-right: 0.373333rem;
+    			margin-left: 0.266666rem;
+    			flex-grow: 0;
+    			flex-shrink: 0;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div id="topbar" class="flex flex-align-center flex-pack-justify">
+            <img class="left-icon" src="../../image/back.png">
+       		<div class="topBar">详情</div>
+        	<img class="right-icon" src="../../icon/share.png" alt="" />
+        </div>
+		<footer>
+			<input type="text" value="写评论..." />
+			<div class="laugh">
+				<img src="../../icon/expression.png" alt="" />
+			</div>
+			<div class="comment-button">发送</div>
+		</footer>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	initFrameInWin(api.pageParam);
+    	}
+	</script>
+</html>

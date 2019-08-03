@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>公告通知</title>
+    <style type="text/css">
+        body, html {
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .fit {
+            box-sizing: border-box;
+            padding: 0 0.4rem 0 0.4rem;
+        }
+
+        #topbar {
+            box-shadow: 0 0.026666rem 0 0 #f2f2f2;
+        }
+
+        .notice_items {
+            margin-top: 0.266666rem;
+        }
+
+        .notice_item {
+            background-color: white;
+            position: relative;
+            padding-bottom: 0.4rem;
+            border-bottom: 0.026666rem solid #f5f5f5;
+        }
+
+        .notice_item > div {
+            display: inline-block;
+        }
+
+        .notice_item_icon {
+            position: absolute;
+            top: 50%;
+            margin-top: -0.626666rem;
+            width: 0.853333rem;
+            height: 0.853333rem;
+        }
+
+        .notice_item_icon > img {
+            width: 0.853333rem;
+            height: 0.853333rem;
+            border-radius: 50%;
+            background-color: #08d19f;
+            background-image: url("../../icon/m1.png"),url(../../icon/ms_1.png);
+            background-repeat: no-repeat,no-repeat;
+            background-position: 0.186666rem 0.24rem,0.506666rem 0.373333rem;
+            -webkit-background-size: 0.48rem 0.4rem,0.08rem 0.16rem;
+            background-size: 0.48rem 0.4rem,0.08rem 0.16rem;
+        }
+
+        .notice_item_content {
+            width: calc(98% - 0.853333rem);
+            margin-left: 1.12rem;
+            margin-top: 0.32rem;
+        }
+
+        .notice_item_content > p {
+            font-family: PingFang-SC-Regular;
+            font-size: 0.373333rem;
+            color: #333333;
+            text-align: justify
+        }
+
+        .notice_item_content > div {
+            font-family: PingFang-SC-Regular;
+            font-size: 0.32rem;
+            color: #999999;
+            margin-top: 0.266666rem;
+            margin-left: 0.133333rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="notice_items">
+    <!--<div class="notice_item fit">
+        <div class="notice_item_icon"><img src="" alt=""/></div>
+        <div class="notice_item_content">
+            <p>公告通知：苹果用户请更新最新版本，这几天系统调试给大家带来的不便请多多谅解，如果有问题在意见反馈里说一下，我们会尽快解决。</p>
+            <div class="notice_item_date">2019-05-20 12:23:43</div>
+        </div>
+    </div>-->
+   
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script id="contents" type="text/html">
+	<%for(var i = 0;i<list.length;i++){%>
+		<div class="notice_item fit">
+        <div class="notice_item_icon"><img src="" alt=""/></div>
+        <div class="notice_item_content">
+            <p><span><%=list[i].title%></span>：<%=list[i].title%></p>
+            <div class="notice_item_date"><%=list[i].utime%></div>
+        </div>
+    </div>
+	<%}%>
+</script>
+<script>
+    apiready = function () {
+		 new QuakooPage(function(results,append){
+		 	
+		 	for(var i = 0;i<results.length;i++){
+		 		results[i].info = quakooUtils.tryDecodeURIComponent(results[i].info);
+		 		results[i].utime = quakooUtils.formatTimeToDate(results[i].utime);
+		 	}
+		 	var data = {
+		 		list:results
+		 	}
+		 	var html = template('contents',data)
+		 	if(append){
+		 		var div = document.createElement('div');
+		 		div.innerHTML = html;
+		 		$api.dom('.notice_items').appendChild(div)
+		 	}else{
+		 		$api.html($api.dom('.notice_items'),html)
+		 	}
+		 	api.parseTapmode();	
+		 },config.getUrl_notify_getNoticePager(),{type:0})//0公告通知（系统消息） 系统回复反馈 用单独的接口 2评论消息 3微信验证通知
+    };
+</script>
+</body>
+
+</html>

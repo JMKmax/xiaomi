@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>收益明细</title>
+    <style type="text/css">
+		html,body{
+			 background: #F7F5F6;
+		}
+		body{
+			padding-top: 0.266666rem;
+		}
+		/*         头部*/
+		.head_wrap{
+			background: #fff;
+			padding: 0.4rem 0;
+			flex-direction: column;
+			margin-bottom: 0.266666rem;
+		}
+		.head_wrap .title{
+			font-size: 0.4rem;
+			color: #2D3134;
+			margin-bottom: 0.4rem;
+		}
+		.head_wrap .nub{
+			font-size: 0.666666rem;
+			color: #F29539;
+			margin-bottom: 0.666666rem;
+		}
+		.head_wrap .btn{
+			width: 2.666666rem;
+			height: 0.8rem;
+			background: #F29539;
+			border-radius: 0.4rem;
+			text-align: center;
+			line-height: 0.8rem;
+			font-size: 0.32rem;
+			color: #fff;
+		}
+		/*     收益列表*/
+		.earing_wrap{
+			background: #fff;
+			flex: 1;
+		}
+		.earing_wrap li{
+			height: 1.733333rem;
+			box-sizing: border-box;
+			overflow: hidden;
+			padding-left:0.426666rem;
+		}
+		.earing_wrap li .icon{
+			width: 0.933333rem;
+			height: 0.933333rem;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		.earing_wrap li .icon img{
+			width: 100%;
+			height: 100%;
+		}
+		.earing_wrap li .info{
+			flex: 1;
+			padding-left:0.266666rem ;
+			padding-right: 0.426666rem;
+			position: relative;
+		}
+		.earing_wrap li .info:after{
+			content: '';
+			height: 1px;
+			background: rgba(0,0,0,0.1);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transform: scaleY(.5);
+		}
+		.earing_wrap li .title{
+			font-size: 0.346666rem;
+			color: #2D3134;
+			margin-bottom: 0.266666rem;
+		}
+		.earing_wrap li .time{
+			font-size: 0.266666rem;
+			color: #B1B1B1;
+			line-height: 0.266666rem;
+		}
+		.earing_wrap li .info{
+			height: 100%;
+		}
+		.earing_wrap li .info .right{
+			font-size: 0.533333rem;
+			color: #0097FE;
+		}
+		.earing_wrap li .info .right.cut{
+			color: #B1B1B1;
+		}
+		.earing_wrap li .info .right.cut span{
+			display: inline-block;
+			width: 0.266666rem;
+			height: 0.053333rem;
+			background: url(../../icon/cut.png) no-repeat;
+			background-size: 0.266666rem 0.053333rem;
+			margin-right: 0.08rem;
+			vertical-align: 0.133333rem;
+		}
+		.earing_wrap li .info .right span{
+			display: inline-block;
+			width: 0.266666rem;
+			height: 0.266666rem;
+			background: url(../../icon/add_2.png) no-repeat;
+			background-size: 0.266666rem 0.266666rem;
+			margin-right: 0.08rem;
+			vertical-align: 1px;
+		}
+    </style>
+</head>
+
+<body>
+	<div class="head_wrap flex flex-align-center">
+		<div class="title">您当前的收益</div>
+		<div class="nub">288.66</div>
+		<div class="btn">立即提现</div>
+	</div>
+	<div class="earing_wrap">
+		<ul>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/earing.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">**圈子的收益</div>
+						<div class="time">2019年12月25日 17:25</div>
+					</div>
+					<div class="right"><span></span>100</div>
+				</div>
+			</li>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/earing.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">**圈子的收益</div>
+						<div class="time">2019年12月25日 17:25</div>
+					</div>
+					<div class="right"><span></span>100</div>
+				</div>
+			</li>
+			<!--<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/withdrow.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">**圈子的收益</div>
+						<div class="time">2019年12月25日 17:25</div>
+					</div>
+					<div class="right cut"><span></span>100</div>
+				</div>
+			</li>-->
+		</ul>
+	</div>
+	
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+      
+    };
+</script>
+</body>
+</html>

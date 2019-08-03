@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的作品</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .image-cover {
+            padding-top: 0.267rem;
+        }
+        .image-cover li{
+            width: 100%;
+            height: calc(100vw / 0.83333);
+            position: relative;
+        }
+        .image-cover li .img-wrap, .image-cover li .img-wrap img{
+            width: 100%;
+            height: 100%;
+        }
+        .works-name {
+            position: absolute;
+            left: 0.4rem;
+            top: 0.4rem;
+            display: inline-block;
+            font-size:14px;
+            color:#ffffff;
+        }
+        .weight {
+            position: absolute;
+            left: 0.4rem;
+            bottom: 0.4rem;
+            display: inline-block;
+            font-size:16px;
+            color:#ffffff;
+        }
+        .total-num {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            box-sizing: border-box;
+            border-radius:0.053rem;
+            height:0.533rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 0.053rem 0.24rem;
+            background:rgba(0,0,0,.5);
+            color: #fff;
+
+        }
+    </style>
+</head>
+<body>
+   <ul class="image-cover">
+       <li>
+           <div class="works-name">巴厘岛的夏天</div>
+           <div class="img-wrap"><img src="../../icon/worksbg.png" alt=""></div>
+           <div class="weight">20LB</div>
+           <div class="total-num">9P</div>
+       </li>
+   </ul>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+       
+    }
+</script>
+
+</html>

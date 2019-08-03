@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>首页-动态</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html,body{
+            height: auto;
+            background: #F5F5F5;
+
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        .dynamic-ul {
+            margin-bottom: 10px;
+        }
+        .dynamic-ul> li {
+            background: #fff;
+            margin-bottom: 0.267rem;
+        }
+        .dynamic-ul .dynamic-content{
+            padding: 0.267rem 0 0 0  ;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 0 0.4rem;
+        }
+        .user-icon {
+            width:1.227rem;
+            height:1.227rem;
+            border-radius:50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+        }
+        .user-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        .user-top-right {
+            flex: 1;
+        }
+        .stick {
+            flex-shrink: 0;
+            font-size:14px;
+            color:#ff5c98;
+        }
+        .user-name {
+            font-size:14px;
+            height: 0.533rem;
+            line-height: 0.533rem;
+            color:#333333
+        }
+        .pastTime {
+            margin-top: 0.107rem;
+            height: 0.453rem;
+            line-height: 0.453rem;
+            font-size:12px;
+            color:#999999;
+        }
+        .dynamic-text {
+            margin-top:0.32rem;
+            font-size:14px;
+            color:#333333;
+            line-height: 1.5em;
+            padding: 0 0.4rem;
+        }
+        /*视频*/
+        .dynamic-video {
+            margin:0.32rem 0.4rem 0.32rem;
+            color: #fff;
+            height: calc(100vw  / 1.7045);
+            position: relative;
+        }
+        .video-cover {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-cover img {
+            width: 100%;
+            height: 100%;
+        }
+        .play {
+            width:1.173rem;
+            height:1.173rem;
+            background: url("../../icon/play.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .total-num {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            box-sizing: border-box;
+            border-radius: 0.053rem;
+            height: 0.533rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 0.053rem 0.24rem;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+        }
+        .handle {
+            display: flex;
+            height: 1.067rem;
+            position: relative;
+        }
+        .handle:after {
+            content: '';
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleY(.5);
+            position: absolute;
+        }
+        .handle li{
+            height: 1.067rem;
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .handle li + li:after{
+            content: '';
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #f0f0f0;
+            transform: scaleX(.5);
+            position: absolute;
+        }
+        .handle li i {
+            margin-right: 0.133rem;
+        }
+        .view{
+            width:0.56rem;
+            height:0.4rem;
+            background: url("../../icon/view.png")no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .comment{
+            width:0.56rem;
+            height:0.48rem;
+            background: url("../../icon/comment.png")no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .reward {
+            width:0.56rem;
+            height:0.613rem;
+            background: url("../../icon/handle-reward.png")no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        /*照片*/
+        .photo-area {
+            margin-top: 0.32rem;
+            background:#f5f5f5;
+            padding: 0.32rem 0.4rem;
+        }
+        .photo-desc{
+            font-size:14px;
+            color:#333333;
+        }
+        .photo-desc .photo-desc-sign {
+            color:#ff5c98;
+        }
+        .dynamic-photo {
+            margin-top: 0.32rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap ;
+        }
+        .dynamic-photo li{
+            width: calc((100vw - 1.067rem)  / 3);
+            height: calc((100vw - 1.067rem)  / 3) ;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            margin-bottom: 0.133rem;
+            overflow: hidden;
+            font-size: 0;
+        }
+        .real-wrap, .real-wrap img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<ul class="dynamic-ul">
+    <li>
+        <div class="dynamic-content">
+            <div class="user-info">
+                <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+                <div class="user-top-right">
+                    <div class="user-name">长发及腰热不热i</div>
+                    <div class="pastTime">20小时前</div>
+                </div>
+                <div class="stick">已置顶</div>
+            </div>
+            <div class="dynamic-text">
+                赞助过旅拍活动的直接微信私聊我 赞助过旅拍活动的直接微信私聊我
+            </div>
+            <div class="dynamic-video">
+                <div class="video-cover"><img src="../../icon/worksbg.png" alt=""></div>
+                <div class="play"></div>
+                <div class="total-num">17:24</div>
+            </div>
+            <div class="photo-area">
+                <div class="photo-desc">
+                    <span class="photo-desc-sign">@乔乔qiii</span>赞助过旅拍活动的直接微信私聊我
+                </div>
+                <ul class="dynamic-photo">
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="handle">
+            <li class="handle-view"><i class="view"></i><span>1290</span></li>
+            <li class="handle-comment"><i class="comment"></i><span>21</span></li>
+            <li class="handle-reward"><i class="reward"></i><span>0</span></li>
+        </ul>
+    </li>
+    <li>
+        <div class="dynamic-content">
+            <div class="user-info">
+                <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+                <div class="user-top-right">
+                    <div class="user-name">长发及腰热不热i</div>
+                    <div class="pastTime">20小时前</div>
+                </div>
+                <div class="stick">已置顶</div>
+            </div>
+            <div class="dynamic-text">
+                赞助过旅拍活动的直接微信私聊我 赞助过旅拍活动的直接微信私聊我
+            </div>
+            <div class="dynamic-video">
+                <div class="video-cover"><img src="../../icon/worksbg.png" alt=""></div>
+                <div class="play"></div>
+                <div class="total-num">17:24</div>
+            </div>
+            <div class="photo-area">
+                <div class="photo-desc">
+                    <span class="photo-desc-sign">@乔乔qiii</span>赞助过旅拍活动的直接微信私聊我
+                </div>
+                <ul class="dynamic-photo">
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="handle">
+            <li class="handle-view"><i class="view"></i><span>1290</span></li>
+            <li class="handle-comment"><i class="comment"></i><span>21</span></li>
+            <li class="handle-reward"><i class="reward"></i><span>0</span></li>
+        </ul>
+    </li>
+    <li>
+        <div class="dynamic-content">
+            <div class="user-info">
+                <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+                <div class="user-top-right">
+                    <div class="user-name">长发及腰热不热i</div>
+                    <div class="pastTime">20小时前</div>
+                </div>
+                <div class="stick">已置顶</div>
+            </div>
+            <div class="dynamic-text">
+                赞助过旅拍活动的直接微信私聊我 赞助过旅拍活动的直接微信私聊我
+            </div>
+            <div class="dynamic-video">
+                <div class="video-cover"><img src="../../icon/worksbg.png" alt=""></div>
+                <div class="play"></div>
+                <div class="total-num">17:24</div>
+            </div>
+            <div class="photo-area">
+                <div class="photo-desc">
+                    <span class="photo-desc-sign">@乔乔qiii</span>赞助过旅拍活动的直接微信私聊我
+                </div>
+                <ul class="dynamic-photo">
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                    <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="handle">
+            <li class="handle-view"><i class="view"></i><span>1290</span></li>
+            <li class="handle-comment"><i class="comment"></i><span>21</span></li>
+            <li class="handle-reward"><i class="reward"></i><span>0</span></li>
+        </ul>
+    </li>
+</ul>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        
+    }
+</script>
+
+</html>

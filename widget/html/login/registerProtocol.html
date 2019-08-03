@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>注册协议</title>
+    <style type="text/css">
+        html, body {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .select_wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .select_box {
+            background: #fff;
+            border-radius: 0.16rem;
+            width: 8.773rem;
+            height: 13.853rem;
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .title {
+            padding: 0.533rem 0.533rem 0.16rem;
+            font-size: 0.426666rem;
+            color: #FF5C98;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .area-num-ul {
+            padding: 0.267rem;
+            height: calc(100% - 0.533rem - 0.533rem - 0.533rem);
+            overflow-y: scroll;
+        }
+
+        .area-num-ul::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .cancel {
+            flex-shrink:0 ;
+            font-size: 0.426666rem;
+            color: #FF5C98;
+            width: 100%;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
+            text-align: center;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="select_wrap">
+    <div class="select_box">
+        <div class="title">注册协议</div>
+        <div class="area-num-ul">
+        </div>
+        <div class="cancel" tapmode="itemOn" onclick="setHideFrame()">已阅读及同意</div>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+
+<script>
+    var params;
+    apiready = function () {
+        quakooData.ajaxGetData(config.getUrl_helpCenter_getDetail(),{type:1},function(ret,err){
+            if(ret && ret.success){
+                $api.html($api.dom('.area-num-ul'),ret.data.answer+ret.data.answer+ret.data.answer+ret.data.answer)
+            }
+
+        })
+    };
+    function setHideFrame() {
+        api.setFrameAttr({
+            name:api.frameName,
+            hidden:true
+        })
+    }
+</script>
+
+
+
+</body>
+</html>

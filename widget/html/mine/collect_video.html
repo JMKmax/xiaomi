@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>作品-视频</title>
+    <style>
+        .prod-ul {
+            background: #f5f5f5;
+        }
+
+
+        .prod-ul li .image {
+            position: relative;
+        }
+
+        .prod-ul li .image .title {
+            position: absolute;
+            top: 0.4rem;
+            left: 0.4rem;
+            color: #fff;
+        }
+
+        .prod-ul li .image .image-photo {
+            width: 100%;
+            height: 12rem;
+            overflow: hidden;
+        }
+
+        .prod-ul li .image .image-photo img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .prod-ul li .image .time {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            height: 0.533333rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.213333rem;
+            color: #fff;
+            background: rgba(0, 0, 0, .5);
+            border-radius: 0.08rem;
+        }
+
+        .prod-ul li .author {
+            height: 1.52rem;
+            display: flex;
+            align-items: center;
+            padding: 0 0.4rem;
+        }
+
+        .prod-ul li .author-info {
+            flex: 0 0 80%;
+            display: flex;
+            align-items: center;
+        }
+
+        .prod-ul li .author .user-icon {
+            width: 0.853rem;
+            height: 0.853rem;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prod-ul li .author .user-icon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .prod-ul li .author .user-name {
+            margin-left: 0.16rem;
+            font-size: 0.373rem;
+            color: #333333;
+        }
+
+        .prod-ul li .author .sIcon {
+            height: 16px;
+            width: 16px;
+            margin-left: 0.16rem;
+        }
+
+        .prod-ul li .author .attendWrap {
+            flex: 0 0 20%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .prod-ul li .author .attention {
+            padding: 2px 10px;
+            height: 20px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #FF77A9;
+            color: #FF77A9;
+            border-radius: 4px;
+        }
+
+        .prod-ul li .author .attention.attend {
+            color: #999;
+            border-color: #999;
+        }
+
+        .prod-ul li .image .audio-photo {
+            width: 100%;
+            height: 5.866666rem;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+<!--                            视频                                               -->
+
+<ul class="prod-ul">
+    <!--    <li>-->
+    <!--        <div class="image">-->
+    <!--            <p class="title">巴厘岛的夏天</p>-->
+    <!--            <div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">-->
+    <!--                <img src="../../image/bg.png" alt=""/>-->
+    <!--            </div>-->
+    <!--            <p class="time">6P</p>-->
+    <!--        </div>-->
+    <!--        <div class="author">-->
+    <!--            <div class="author-info">-->
+    <!--                <div class="user-icon"><img src="../../image/bg.png" alt=""/></div>-->
+    <!--                <div class="user-name">请叫我妲姬</div>-->
+    <!--                <img class="sIcon wx" src="../../icon/weixin.png" alt=""/>-->
+    <!--            </div>-->
+    <!--            <div class="attendWrap">-->
+    <!--                <div class="attention">关注</div>-->
+    <!--            </div>-->
+
+    <!--        </div>-->
+    <!--    </li>-->
+    <!--    <li>-->
+    <!--        <div class="image">-->
+    <!--            <p class="title">巴厘岛的夏天</p>-->
+    <!--            <div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">-->
+    <!--                <img src="../../image/bg.png" alt=""/>-->
+    <!--            </div>-->
+    <!--            <p class="time">6P</p>-->
+    <!--        </div>-->
+    <!--        <div class="author">-->
+    <!--            <div class="author-info">-->
+    <!--                <div class="user-icon"><img src="../../image/bg.png" alt=""/></div>-->
+    <!--                <div class="user-name">请叫我妲姬</div>-->
+    <!--                <img class="sIcon wx" src="../../icon/weixin.png" alt=""/>-->
+    <!--            </div>-->
+    <!--            <div class="attendWrap">-->
+    <!--                <div class="attention">关注</div>-->
+    <!--            </div>-->
+
+    <!--        </div>-->
+    <!--    </li>-->
+</ul>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="contents" type="text/html">
+    <%for(var i = 0;i< list.length;i++){%>
+    <li>
+        <div class="image">
+            <p class="title"><%=list[i].name%></p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(<%=list[i].id%>)">
+                <img src="../../icon/worksbg.png" style="width: 100%;height: 100%"
+                     onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'"
+                     data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""/>
+            </div>
+            <p class="time"><%=list[i].length%></p>
+        </div>
+        <div class="author">
+            <div class="author-info" tapmode="" onclick="openHome(<%=list[i].mid%>)">
+                <div class="user-icon"> <img src="../../icon/defaultHead.png" style="width: 100%;height: 100%"
+                                             onerror="this.src='../../defaultHead.png';this.style='width:100%;height:100%'"
+                                             data-echo="<%=list[i].modelIcon%>" real-style="<%=list[i].modelIconStyle%>" alt=""/></div>
+                <div class="user-name"><%=list[i].modelName%></div>
+                <%if(list[i].showWeixin){%>
+                <img class="sIcon wx" src="../../icon/weixin.png" alt=""/>
+                <%}%>
+            </div>
+            <div class="attendWrap">
+                <%if(selfId !== list[i].mid){%>
+                <%if(list[i].hasFlowModel ){%>
+                <div class="attention attend" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="<%=list[i].mid%>"
+                     onclick="switchAttendEvent(this)">已关注</div>
+                <%}else{%>
+                <div class="attention" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="0"
+                     onclick="switchAttendEvent(this)">关注</div>
+                <%}%>
+                <%}%>
+            </div>
+
+        </div>
+    </li>
+    <%}%>
+</script>
+
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var userInfo ;
+    apiready = function () {
+        userInfo = quakooUser.getUserInfo()
+        new QuakooPage(function (results, append) {
+            var feilKey = quakooUtils.getImgKey();
+            for (var i = 0; i < results.length; i++) {
+                if (quakooUtils.isBlack(results[i].modelIcon)) {
+                    results[i].modelIcon = '../../icon/defaultHead.png';
+                    results[i].modelIconStyle = 'width:100%;height:100%;'
+                } else {
+                    var obj = quakooImg.processImg(results[i].modelIcon, 0.853333 * fontSize, 0.853333 * fontSize);
+                    results[i].modelIcon = obj.url+feilKey;
+                    results[i].modelIconStyle = obj.style;
+                }
+                if (quakooUtils.isBlack(results[i].cover)) {
+                    results[i].cover = '../../icon/worksbg.png';
+                    results[i].coverStyle = 'width:100%;height:100%;'
+                } else {
+                    var coverobj = quakooImg.processImg(results[i].cover, api.winWidth, 5.866666 * fontSize);
+                    results[i].cover = coverobj.url+feilKey;
+                    results[i].coverStyle = coverobj.style;
+                }
+                if (results[i].type == 1) {
+                    results[i].length = quakooUtils.videoDuration(results[i].length)
+                }
+
+            }
+            var data = {
+                list: results,
+                selfId:userInfo.id
+            };
+            var html = template('contents', data)
+            if (append) {
+                var div = document.createElement('div')
+                div.innerHTML = html;
+                $api.dom('.prod-ul').appendChild(div)
+            } else {
+                $api.html($api.dom('.prod-ul'), html)
+            }
+            setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+            api.parseTapmode()
+        }, config.getUrl_collect_getCollectPager(), {type: 1})
+
+    };
+
+    //跳转详情页
+    function AudioDetail(id) {
+        quakooApp.openNewWindow('works_video_details'+id, './works_video_details.html', {cid: id});
+    }
+
+    //跳转主页
+    function openHome(id) {
+        var userInfo = quakooUser.getUserInfo()
+        userId = userInfo.id;
+        if(id == userId){
+            return;
+        }else{
+            quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+        }
+    }
+    //切换关注
+    function switchAttendEvent(_this) {
+        var mid = $api.attr(_this, 'data-mid')
+        var midBtnAll = $api.domAll('div[data-mid="' + mid + '"]')
+        var flag = $api.attr(_this, 'data-flag');
+        var attend = parseInt($api.attr(_this, 'data-attend'), 10);
+        if (flag == 1) {
+            return
+        }
+        $api.attr(_this, 'data-flag', 1);
+        var _params = {
+            otherId: mid
+        }
+        if (attend === 0) { //  未关注 = 》 关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this, 'data-flag', 0);
+                    midBtnAll.forEach(function (item, i) {
+                        $api.attr(item, 'data-attend', mid)
+                        $api.addCls(item, 'attend')
+                        $api.html(item, '已关注')
+                    });
+                    api.sendEvent({
+                        name:'changeUserInfo'
+                    })
+                }
+
+            })
+
+        } else { //关注 == 未关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('取消成功')
+                    $api.attr(_this, 'data-flag', 0);
+                    midBtnAll.forEach(function (item, i) {
+                        $api.attr(item, 'data-attend', 0)
+                        $api.removeCls(item, 'attend')
+                        $api.html(item, '关注')
+                    });
+                    api.sendEvent({
+                        name:'changeUserInfo'
+                    })
+                }
+            })
+        }
+
+    }
+
+</script>
+</html>

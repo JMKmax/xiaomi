@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>注册登录</title>
+    <style type="text/css">
+        body {
+            padding-top: 1.253333rem;
+        }
+
+        input::-webkit-input-placeholder {
+            line-height: 1.5em;
+            font-size: 0.426666rem;
+            color: #999999;
+        }
+
+        .login_icon {
+            width: 2.08rem;
+            height: 2.08rem;
+            margin: auto;
+            display: block;
+        }
+
+        .input_info {
+            width: 8.666666rem;
+            margin: 1.6rem auto 0;
+            font-size: 0.426666rem;
+            color: #999999;
+        }
+
+        .input_info .item {
+            position: relative;
+            box-sizing: border-box;
+            border-radius: 0.586666rem;
+            height: 1.173rem;
+            background: #f2f2f2;
+            padding: 0 0.267rem;
+        }
+
+        .item + .item {
+            margin-top: 0.533rem;
+        }
+
+        .input_info .left {
+            height: 100%;
+            line-height: 2;
+            min-width: 1.307rem;
+            padding: 0 0.267rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .input_info .left:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0.267rem;
+            bottom: 0.267rem;
+            width: 1px;
+            transform: scaleX(.5);
+            background: #d8d8d8;
+        }
+
+        .input_info .right {
+            flex: 1;
+            height: 100%;
+        }
+
+        .input_info .right input {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 0 0.267rem;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5em;
+        }
+
+        .container {
+            width: 8.666666rem;
+            margin: 0.266666rem auto 0;
+            color: #333;
+            font-size: 0.32rem;
+            box-sizing: border-box;
+            padding: 0 0.533333rem;
+        }
+
+        .loginButton {
+            width: 8.666666rem;
+            margin: 0.533333rem auto 0;
+            color: #fff;
+            background-image: linear-gradient(-227deg, #fe4f8a 13%, #ff77a9 87%);
+            font-size: 0.48rem;
+            height: 1.173333rem;
+            border-radius: 0.586666rem;
+        }
+
+        .bottom {
+            width: 5.2rem;
+            margin: 2.08rem auto 0;
+        }
+
+        .imgList {
+            margin-top: 0.693333rem;
+        }
+
+        .imgList img {
+            width: 0.853333rem;
+            height: 0.853333rem;
+        }
+
+        .notice {
+            width: 100%;
+            text-align: center;
+            font-size: 0.32rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+<img class="login_icon" src="../../icon/icon.png" alt=""/>
+<div class="input_info">
+    <div class="item flex">
+        <div class="left flex flex-align-center" id="domAreaNumber" tapmode="" onclick="selectAreaNumber()">+86</div>
+        <div class="right">
+            <input type="number" id="tel" onkeyup="quakooUtils.onlyInteger(this,11)" placeholder="输入手机号"/>
+        </div>
+    </div>
+    <div class="item">
+        <div class="right">
+            <input type="password" id="pwd" onkeyup="value = quakooUtils.passwordInput(this)"
+                   placeholder="输入密码"/>
+        </div>
+    </div>
+</div>
+<div class="container flex flex-align-center flex-pack-center flex-pack-justify">
+    <div tapmode="" onclick="openRegister()">立即注册</div>
+    <div tapmode="" onclick="openLose()">忘记密码</div>
+</div>
+<div class="loginButton flex flex-align-center flex-pack-center" onclick="openMain()">登录</div>
+<div class="bottom">
+    <div class="notice">其他登录方式</div>
+    <div class="imgList flex flex-pack-justify">
+        <img src="../../icon/qq.png" alt=""/>
+        <img src="../../icon/weibo.png" alt=""/>
+        <img tapmode='' onclick="registerUserByWeixin()" src="../../icon/weixin.png" alt=""/>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+        wx = api.require('wx');
+        qqPlus = api.require('QQPlus');
+        setTimeout(function () {
+            api.closeWin({
+                name: 'changePassword',
+                animation: {
+                    type: "none"
+                }
+            });
+
+        }, 400);
+        setTimeout(function () {
+            api.closeWin({
+                name: 'main',
+                animation: {
+                    type: "none"
+                }
+            });
+        }, 400);
+        setTimeout(function () {
+            api.closeWin({
+                name: 'changePhone',
+                animation: {
+                    type: "none"
+                }
+            });
+        }, 400)
+    };
+
+    // 立即注册
+    function openRegister() {
+        quakooApp.openNewWindow('register', './register.html');
+    }
+
+    // 忘记密码
+    function openLose() {
+        quakooApp.openNewWindow('lose_password', './lose_password.html');
+    }
+
+    // 登录
+    function openMain() {
+        if (quakooUtils.isBlack($api.val($api.dom('#tel')))) {
+            quakooMsg.toast('请输入手机号');
+            return
+        }
+        if (quakooUtils.isBlack($api.val($api.dom('#tel')))) {
+            quakooMsg.toast('请输入密码');
+            return
+        }
+
+        if (quakooUtils.isBlack($api.val($api.dom('#pwd')))) {
+            quakooMsg.toast('请输入密码');
+            return
+        }
+        if ($api.val($api.dom('#pwd')).length<6) {
+            quakooMsg.toast('密码不可小于6位');
+            return
+        }
+        var _params = {
+            phone: $api.val($api.dom('#tel')), //是	long	手机号码
+            password: $api.val($api.dom('#pwd')), //是	string	密码
+            areaAccount: config.areaAccount
+        };
+        quakooData.ajaxSubmitDataNotToken(config.getUrl_web_user_login(), _params, function (ret, err) {
+            if (ret && ret.success) {
+                var userInfo = ret.data;
+                quakooUser.setUserInfo(ret.data);
+                api.accessNative({
+                    name:'login',
+                    extra:{
+                        token:userInfo.token,
+                        id:userInfo.id,
+                        chatid: userInfo.id,
+                        noticeId: userInfo.id,
+                        icon:userInfo.icon,
+                        name:userInfo.name,
+                        chatServerUrl:config.chatServerUrl,
+                        chatPort:config.chatPort,
+                        pushServerUrl:config.pushServerUrl,
+                        pushPort:config.pushPort,
+                        uploadImgUrl:config.uploadImageUrl,
+                        serverUrl:config.uploadImageDomain,
+                    }
+                });
+                // api.sendEvent({
+                //     name: 'ExportLogin',
+                //     extra: quakooUser.getUserInfo()
+                // });
+                quakooApp.bindPush();
+                quakooApp.openWin_noAnimation("main", "../main/main.html", {}, {
+                    slidBackEnabled: false
+                });
+                setTimeout(function () {
+                    quakooApp.closeThisWin()
+                }, 300)
+            }
+        })
+
+    }
+
+    // 选择区号
+    function selectAreaNumber() {
+        quakooApp.openFrame('select_phone', './select_phone.html', {
+            winName: api.winName,
+            frameName: api.frameName,
+            propsEvent: 'setAreaNumber'
+        }, 0, 0, {
+            bgColor: 'rgba(0,0,0,0)'
+        })
+    }
+
+    function setAreaNumber(_num) {
+        config.areaAccount = _num;
+        $api.text($api.dom('#domAreaNumber'), '+' + _num)
+    }
+
+    // 微信登录
+    function registerUserByWeixin() {
+        wx.isInstalled(function (ret, err) {
+            if (ret.installed) {
+                wx.auth({
+                    apiKey: ''
+                }, function (ret, err) {
+                    if (ret.status) {
+                        wx.getToken({
+                            apiKey: '',
+                            apiSecret: '',
+                            code: ret.code
+                        }, function (data, err) {
+                            if (data.status) {
+                                wx.getUserInfo({
+                                    accessToken: data.accessToken,
+                                    openId: data.openId
+                                }, function (rets, err) {
+                                    console.log(JSON.stringify(rets));
+                                    if (rets.status) {
+                                        var obj = {};
+                                        obj.weiXinId = rets.openid;
+                                        obj.weiXinInfo = rets.nickname;
+                                        obj.icon = rets.headimgurl;
+                                        quakooData.ajaxSubmitDataNotToken(config.getUrl_web_user_registerWeiXin(), obj, function (rets, err) {
+                                            if(rets && rets.success){
+                                                var  userInfo =rets.data
+                                                quakooUser.setUserInfo(rets.data);
+
+                                                if(rets.data.phone){
+                                                    api.accessNative({
+                                                        name:'login',
+                                                        extra:{
+                                                            token:userInfo.token,
+                                                            id:userInfo.id,
+                                                            chatid: userInfo.id,
+                                                            noticeId: userInfo.id,
+                                                            icon:userInfo.icon,
+                                                            name:userInfo.name,
+                                                            chatServerUrl:config.chatServerUrl,
+                                                            chatPort:config.chatPort,
+                                                            pushServerUrl:config.pushServerUrl,
+                                                            pushPort:config.pushPort,
+                                                            uploadImgUrl:config.uploadImageUrl,
+                                                            serverUrl:config.uploadImageDomain,
+                                                        }
+                                                    });
+                                                    // api.sendEvent({
+                                                    //     name: 'ExportLogin',
+                                                    //     extra: quakooUser.getUserInfo()
+                                                    // });
+                                                    quakooApp.openWin_noAnimation("main", "../main/main.html", {}, {
+                                                        slidBackEnabled: false
+                                                    });
+                                                    setTimeout(function () {
+                                                        quakooApp.closeThisWin()
+                                                    }, 300)
+                                                }else {
+                                                    if(rets.data.token){
+                                                        quakooApp.openNewWindow('bindPhone','./bindPhone.html',obj)
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    } else {
+
+                                    }
+                                });
+
+                            } else {
+//							        alert(err.code);
+                            }
+                        });
+                    } else {
+                        toast('当前设备未安装微信客户端');
+                    }
+                });
+            }
+        });
+    }
+
+    //qq授权登录
+    function login_qq() {
+        qqPlus.installed(function (ret, err) {
+            if (ret.status) {
+                qqPlus.login(function (data, err) {
+                    var obj = {
+                        key: data.openId,
+                        type: 4
+                    }
+                    qqPlus.getUserInfo(function (ret, err) {
+                        if (ret.status) {
+                            // var data_info = tryJsonParse(ret.info);
+                            // if(data_info.gender == "男"){
+                            //     obj.sex = 1;
+                            // }else{
+                            //     obj.sex = 2;
+                            // }
+                            // obj.name = data_info.nickname;
+                            // obj.icon = data_info.figureurl_qq_1;
+
+                            ajaxGet(qqForLoginUrl, {key: data.openId}, function (rets, err) {
+                                if (rets && rets.success) {
+                                    if (rets.data) {
+                                        api.showProgress({
+                                            title: '',
+                                            text: '正在登录...',
+                                            modal: true
+                                        });
+                                        setUserInfo(rets.data);
+                                        loginSuccess()
+                                    } else {
+                                        openNewWindow('bindPhone', '../account/bindPhone.html', obj);
+                                    }
+                                }
+                            })
+                        } else {
+                            toast("登录失败！")
+                        }
+                    });
+                });
+            } else {
+                toast("未安装QQ客户端");
+            }
+        });
+    }
+
+    // 第三方成功 需要做的事情
+    function loginSuccess() {
+        // bindPush()
+
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>认证模特</title>
+    <link rel="stylesheet" href="../../css/mui.css">
+    <link href="../../css/mui.picker.all.css" rel="stylesheet"/>
+    <link href="../../css/mui.poppicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            height: auto;
+        }
+
+        .section-tit {
+            background: #f5f5f5;
+            height: 1.173rem;
+            line-height: 1.173rem;
+            font-size: 16px;
+            color: #333333;
+            padding: 0 0.4rem;
+        }
+
+        .item-name {
+            font-size: 14px;
+            position: relative;
+        }
+
+        .item-name span {
+            margin-left: 0.267rem;
+            line-height: 0.533333rem;
+        }
+
+        .label-wrap {
+            width: 100%;
+            height: 1.067rem;
+        }
+
+        .label-wrap input {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            padding-left: 0.267rem;
+        }
+
+        .label-wrap input {
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .item-ul li {
+            padding: 0.267rem 0.4rem 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .item-ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            transform: scaleY(.5);
+            background: #f0f0f0;
+        }
+
+        .mustFill {
+            position: absolute;
+            top: 0.106666rem;
+            color: #ff5c98;
+            width: 0.16rem !important;
+            height: 0.16rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.333333rem !important;
+        }
+
+        .uploadImg-area {
+            padding: 0.32rem 0.4rem;
+        }
+
+        .tip {
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.4em;
+            text-align: justify;
+        }
+
+        .tip span {
+            color: #ff5c98;
+        }
+
+        .show-img {
+            margin-top: 0.533rem;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .show-img li {
+            border-radius: 0.107rem;
+            width: 2.667rem;
+            height: 2.667rem;
+            margin-right: 0.267rem;
+            margin-bottom: 0.267rem;
+            overflow: hidden;
+        }
+
+        .show-img li img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .uploadBTn {
+            background: #e8e7e7 url("../../icon/uploadImg.png") no-repeat center center;
+            -webkit-background-size: 1.12rem 1.12rem;
+            background-size: 1.12rem 1.12rem;
+
+        }
+
+        .submit {
+            background-image: linear-gradient(-270deg, #ff77a9 0%, #fe4f8a 100%);
+            border-radius: 2.667rem;
+            width: 8.533rem;
+            height: 1.173rem;
+            line-height: 1.173rem;
+            text-align: center;
+            font-size: 18px;
+            color: #ffffff;
+            margin: 0.213rem auto 0.32rem;
+        }
+
+        .submit.submitted {
+            background: #ececec;
+        }
+
+        /*审核状态样式*/
+        .auth-status {
+            padding: 0.32rem 0.4rem;
+        }
+
+        .auth-status-tit {
+            font-size: 14px;
+            color: #ff5c98;
+
+        }
+
+        .cause {
+            margin-top: 0.32rem;
+            width: 100%;
+            border: 1px solid #d8d8d8;
+            border-radius: 0.107rem;
+            height: 2.187rem;
+        }
+
+        .cause textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            box-sizing: border-box;
+            padding: 0.133rem;
+        }
+
+        /*审核状态样式 over*/
+    </style>
+</head>
+<body>
+<div id="con">
+    <!--    <div class="auth-status">-->
+    <!--        <div class="auth-status-tit">未通过审核原因</div>-->
+    <!--        <label class="cause">-->
+    <!--            <textarea readonly></textarea>-->
+    <!--        </label>-->
+    <!--    </div>-->
+    <!--    <div class="auth-status">-->
+    <!--        <div class="auth-status-tit">已通过</div>-->
+    <!--    </div>-->
+    <!--    <div class="auth-status">-->
+    <!--        <div class="auth-status-tit">审核中</div>-->
+    <!--    </div>-->
+    <!--    <div class="section-tit">个人资料</div>-->
+    <!--    <ul class="item-ul">-->
+    <!--        <li>-->
+    <!--            <div class="item-name">-->
+    <!--                <div class="mustFill">*</div>-->
+    <!--                <span>姓名</span>-->
+    <!--            </div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="name">-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li id="click_province">-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>居住地</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="value_province" readonly="readonly"/>-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li id="click_sex">-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>性别</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="value_sex" readonly="readonly"/>-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li class="click_stature">-->
+    <!--            <div class="item-name"><sup class="mustFill"></sup><span>身高</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" readonly="readonly" id="value_stature" class="value_stature"/>-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li id="click_weight">-->
+    <!--            <div class="item-name"><sup class="mustFill"></sup><span>体重</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="value_weight" readonly="readonly"/>-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li id="click_sanWei">-->
+    <!--            <div class="item-name"><span>三围</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" readonly="readonly" id="value_sanWei"/>-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--    </ul>-->
+    <!--    <div class="section-tit">联系人信息</div>-->
+    <!--    <ul class="item-ul">-->
+    <!--        <li>-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="tel" id="phone" maxlength="11">-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="tel" id="qq">-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="weChat">-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--            <div class="item-name"><sup class="mustFill">*</sup><span>模特简介</span></div>-->
+    <!--            <label class="label-wrap">-->
+    <!--                <input type="text" id="info">-->
+    <!--            </label>-->
+    <!--        </li>-->
+    <!--    </ul>-->
+    <!--    <div class="section-tit">上传照片</div>-->
+    <!--    <div class="uploadImg-area">-->
+    <!--        <div class="tip">-->
+    <!--            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。-->
+    <!--        </div>-->
+    <!--        <ul class="show-img">-->
+    <!--            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>-->
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--    <div class="submit" tapmode="" onclick="submitParams()">-->
+    <!--        审核认证-->
+    <!--    </div>-->
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/city.data-3.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i< list.length;i++){%>
+    <li><img src="<%=list[i].imgurl%>" style="<%=list[i].imgStyle%>" alt=""></li>
+    <%}%>
+</script>
+<script type="text/html" id="scriptDiv02">
+    <%if(list.checkStatus == 0){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">审核中</div>
+    </div>
+    <%}else if(list.checkStatus == 1){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">已通过</div>
+    </div>
+    <%}else if(list.checkStatus == 2){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">未通过审核原因</div>
+        <label class="cause">
+            <textarea readonly><%=list.reason%></textarea>
+        </label>
+    </div>
+    <%}%>
+    <%if(list.type == 0){%>
+    <div class="section-tit">个人资料</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name">
+                <div class="mustFill">*</div>
+                <span>姓名</span>
+            </div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.name%>' <%=list.checkStatus == 0 || list.checkStatus == 1 ? 'readonly' : '' %> id="name">
+            </label>
+        </li>
+        <li id="click_province">
+            <div class="item-name"><sup class="mustFill">*</sup><span>居住地</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.place%>' id="value_province" readonly>
+            </label>
+        </li>
+        <li id="click_sex">
+            <div class="item-name"><sup class="mustFill">*</sup><span>性别</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.sex  == 1 && "男"%><%=list.sex  == 2 && "女"%>' id="value_sex"
+                       readonly="readonly"/>
+            </label>
+        </li>
+        <li class="click_stature">
+            <div class="item-name"><sup class="mustFill"></sup><span>身高</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.height%>' id="value_stature" readonly>
+            </label>
+        </li>
+        <li id="click_weight">
+            <div class="item-name"><sup class="mustFill"></sup><span>体重</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.weight%>' id="value_weight" readonly>
+            </label>
+        </li>
+        <li id="click_sanWei">
+            <div class="item-name"><span>三围</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.bodySize%>' id="value_sanWei" readonly>
+            </label>
+        </li>
+    </ul>
+    <%}%>
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" value='<%=list.phone%>' id="phone" maxlength="11" <%=list.checkStatus == 0 ||
+                list.checkStatus == 1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel" value='<%=list.qq%>' id="qq" <%=list.checkStatus == 0|| list.checkStatus == 1 ?
+                'readonly' : '' %>>
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.weixin%>' id="weChat" <%=list.checkStatus == 0 || list.checkStatus ==
+                1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+        <%if(list.type == 0 || list.type == 1){%>
+        <li>
+
+            <div class="item-name"><sup class="mustFill">*</sup><span><%=list.type == 0 && '模特'%><%=list.type == 0 && '摄影师'%>简介</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.info%>' id="info" <%=list.checkStatus == 0 || list.checkStatus == 1 ?
+                'readonly' : '' %>>
+            </label>
+        </li>
+        <%}%>
+
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <ul class="show-img">
+            <%for(var o = 0 ; o < list.images.length; o++){%>
+            <li><img src="<%=list.images[o].imgUrl%>" style="<%=list.images[o].imgStyle%>" alt=""></li>
+            <%}%>
+            <%if(list.checkStatus == 2){%>
+            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>
+            <%}%>
+        </ul>
+    </div>
+    <%if(list.checkStatus != 0 && list.checkStatus != 1){%>
+    <div class="submit " tapmode="" onclick="submitParams()">审核认证</div>
+    <%}%>
+</script>
+<script type="text/html" id="scriptDiv03">
+    <div class="section-tit">个人资料</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name">
+                <div class="mustFill">*</div>
+                <span>姓名</span>
+            </div>
+            <label class="label-wrap">
+                <input type="text" id="name">
+            </label>
+        </li>
+        <li id="click_province">
+            <div class="item-name"><sup class="mustFill">*</sup><span>居住地</span></div>
+            <label class="label-wrap">
+                <input type="text" id="value_province" readonly="readonly"/>
+            </label>
+        </li>
+        <li id="click_sex">
+            <div class="item-name"><sup class="mustFill">*</sup><span>性别</span></div>
+            <label class="label-wrap">
+                <input type="text" id="value_sex" readonly="readonly"/>
+            </label>
+        </li>
+        <li class="click_stature">
+            <div class="item-name"><sup class="mustFill"></sup><span>身高</span></div>
+            <label class="label-wrap">
+                <input type="text" readonly="readonly" id="value_stature" class="value_stature"/>
+            </label>
+        </li>
+        <li id="click_weight">
+            <div class="item-name"><sup class="mustFill"></sup><span>体重</span></div>
+            <label class="label-wrap">
+                <input type="text" id="value_weight" readonly="readonly"/>
+            </label>
+        </li>
+        <li id="click_sanWei">
+            <div class="item-name"><span>三围</span></div>
+            <label class="label-wrap">
+                <input type="text" readonly="readonly" id="value_sanWei"/>
+            </label>
+        </li>
+    </ul>
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="phone" maxlength="11">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="qq">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text" id="weChat">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>模特简介</span></div>
+            <label class="label-wrap">
+                <input type="text" id="info">
+            </label>
+        </li>
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <ul class="show-img">
+            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>
+        </ul>
+    </div>
+    <div class="submit" tapmode="" onclick="submitParams()">
+        审核认证
+    </div>
+</script>
+<script type="text/html" id="scriptDiv04">
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="phone" maxlength="11">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="qq">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text" id="weChat">
+            </label>
+        </li>
+        <%if(type==1){%>
+            <li>
+                <div class="item-name"><sup class="mustFill">*</sup><span>摄影师简介</span></div>
+                <label class="label-wrap">
+                    <input type="text" id="info">
+                </label>
+            </li>
+        <%}%>
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <ul class="show-img">
+            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>
+        </ul>
+    </div>
+    <div class="submit" tapmode="" onclick="submitParams()">
+        审核认证
+    </div>
+</script>
+<script>
+    var imagesMap = [];// 存放上传图片路径
+    var maxstr = 20;// 最多可上传 图片数
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var params;// params.type
+    // 身高
+    var statureParams = (function () {
+        var arr = [];
+        for (var w = 150; w <= 180; w++) {
+            var wItem = {
+                text: w + 'cm',
+                value: w
+            };
+            arr.push(wItem)
+        }
+        return arr
+    })();
+    //性别
+    var sexParams = [
+        {
+            text: '男',
+            value: 0
+        },
+        {
+            text: '女',
+            value: 1
+        }
+    ];
+    //体重
+    var weightParams = (function () {
+        var arr = [];
+        for (var w = 42; w < 52; w++) {
+            var wItem = {
+                text: w + 'kg',
+                value: w
+            };
+            arr.push(wItem)
+        }
+        return arr
+    })();
+    // 三围
+    var sanWeiParams = (function () {
+        var arr = [];
+        var x = [], y = [], t = [];
+        for (var i = 20; i < 100; i++) {
+            x.push(i);
+            y.push(i);
+            t.push(i);
+        }
+        arr.push(x, y, t);
+        return arr;
+    })();
+
+    // mui 实例化
+    var picker_stature;
+    var picker_sex;
+    var picker_weight;
+    var picker_province;
+    var picker_sanWei;
+    // mui 实例化 over
+    var authType;	//类型 认证类型 0模特 1摄影师 2摄影机构
+
+    apiready = function () {
+        params = api.pageParam;
+        authType = params.type;
+        getAuthInfo()
+    };
+
+    // 获取认证信息
+    function getAuthInfo() {
+        quakooData.ajaxSubmitData(config.getUrl_model_getMyCertificationInfo(), {}, function (ret, err) {
+            if (ret && ret.success) {
+                if (quakooUtils.isNotBlack(ret.data)) {
+                    if (authType == ret.data.type) {
+                        authInfoRender(ret.data)
+                    } else {
+                        if (ret.data.type == 0) {//0模特
+                            quakooMsg.toast('你已认证过模特')
+                        }
+                        if (ret.data.type == 1) {//1摄影师
+                            quakooMsg.toast('你已认证过摄影师')
+                        }
+                        if (ret.data.type == 2) {//2摄影机构
+                            quakooMsg.toast('你已认证过摄影机构')
+                        }
+                    }
+
+                } else {
+                    if(authType == 0 ){
+                        notAuth('scriptDiv03',0)
+                    }
+                    if (authType == 1){
+                        notAuth('scriptDiv04',1)
+                    }
+                    if (authType == 2){
+                        notAuth('scriptDiv04',2)
+                    }
+                }
+            }
+        })
+    }
+
+    // 未提交过审核  渲染dom
+    function notAuth(tempId,type) {
+        var html = template(tempId, {type:type});
+        $api.html($api.dom('#con'), html);
+        api.parseTapmode();
+        if(type == 0){
+            muiBindEvent()
+        }
+
+    }
+
+    // 认证信息渲染
+    function authInfoRender(results) {
+
+
+        var newArr = [];
+        var size = 2.667 * fontSize;
+        if (quakooUtils.isNotBlack(results.images)) { //认证上传的图片
+            results.images = results.images.split(',');
+            results.images.forEach(function (item, i) {
+                if(quakooUtils.isNotBlack(item)){
+                    imagesMap.push(item);
+                    var _obj = {};
+                    var itemObj = quakooImg.processImg(item, size, size);
+                    _obj.imgUrl = itemObj.url;
+                    _obj.imgStyle = itemObj.style;
+                    newArr.push(_obj)
+                }
+            });
+            results.images = newArr
+        } else {
+            results.images = newArr
+        }
+        maxstr = maxstr - imagesMap.length;
+
+        var data = {
+            list: results
+        };
+
+        var html = template('scriptDiv02', data);
+        $api.html($api.dom('#con'), html);
+        api.parseTapmode();
+        // 审核状态 0审核中 1审核通过 2审核不通过
+        if (results.checkStatus == 0 || results.checkStatus == 1 ) {  //0审核中 1审核通过  认证类型 不是 模特 不进行mui 事件绑定
+            return
+        }
+        if(results.type == 0){
+            muiBindEvent() //mui 事件绑定
+        }
+
+    }
+
+    // 提交审核
+    function submitParams() {
+
+        var ajaxParams = {
+            type: authType,//是	int	认证类型 0模特 1摄影师 2摄影机构
+        };
+        // 必填项
+        if(authType == 0 ){// 模特必填项
+            if (quakooUtils.isBlack($api.val($api.dom('#name')))) {
+                quakooMsg.toast('请填写姓名');
+                return
+            }
+            if (!($api.val($api.dom('#name')).length >= 2 && $api.val($api.dom('#name')).length <= 6)) {
+                quakooMsg.toast('姓名长度2-6位');
+                return
+            }
+            ajaxParams.name = $api.val($api.dom('#name'));
+            if (quakooUtils.isBlack($api.val($api.dom('#value_province')))) {
+                quakooMsg.toast('请选择居住地');
+                return
+            }
+            ajaxParams.place = $api.val($api.dom('#value_province'));
+
+            if (quakooUtils.isBlack($api.val($api.dom('#value_sex')))) {
+                quakooMsg.toast('请选择性别');
+                return
+            }
+            ajaxParams.sex = $api.val($api.dom('#value_sex')) === '男' ? 1 : 2;
+
+            // 模特可选项
+            if (quakooUtils.isNotBlack($api.val($api.dom('#value_stature')))) {
+                ajaxParams.height = $api.val($api.dom('#value_stature')).split('cm')[0];
+            }
+            if (quakooUtils.isNotBlack($api.val($api.dom('#value_weight')))) {
+                ajaxParams.weight = $api.val($api.dom('#value_weight')).split('kg')[0];
+            }
+
+            if (quakooUtils.isNotBlack($api.val($api.dom('#value_sanWei')))) {
+                ajaxParams.bodySize = $api.val($api.dom('#value_sanWei')).replace(/\s/g,'-');
+            }
+        }
+
+        // 必填项
+        if (quakooUtils.isBlack($api.val($api.dom('#phone')))) {
+            quakooMsg.toast('请填写手机号');
+            return
+        }
+        if (!quakooUtils.isMobileNum($api.val($api.dom('#phone')))) {
+            quakooMsg.toast('手机号格式不正确');
+            return
+        }
+        ajaxParams.phone = $api.val($api.dom('#phone'));
+
+        if (quakooUtils.isBlack($api.val($api.dom('#qq')))) {
+            quakooMsg.toast('请填写QQ');
+            return
+        }
+        if (quakooUtils.isQQReg($api.val($api.dom('#qq')))) {
+            quakooMsg.toast('qq格式不正确');
+            return;
+        }
+        ajaxParams.qq = $api.val($api.dom('#qq'));
+
+        if (quakooUtils.isBlack($api.val($api.dom('#weChat')))) {
+            quakooMsg.toast('请填写微信');
+            return
+        }
+        if (quakooUtils.isWxReg($api.val($api.dom('#weChat')))) {
+            quakooMsg.toast('微信格式不正确');
+            return;
+        }
+        ajaxParams.weiXin = $api.val($api.dom('#weChat'));
+        if(authType == 0 || authType == 1){
+            if (quakooUtils.isBlack($api.val($api.dom('#info')))) {
+                quakooMsg.toast('请填写简介');
+                return
+            }
+            ajaxParams.info = $api.val($api.dom('#info'));
+        }
+
+
+        if (quakooUtils.isBlack(imagesMap)) {
+            quakooMsg.toast('请上传照片');
+            return
+        }
+        if (imagesMap.length < 6) {
+            quakooMsg.toast('照片不少于6张');
+            return
+        }
+        ajaxParams.images = imagesMap.join(',');
+
+        alert(JSON.stringify(ajaxParams))
+        quakooData.ajaxGetData(config.getUrl_model_certificationOtherUser(), ajaxParams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('已提交审核');
+                getAuthInfo();
+                setTimeout(function () {
+                    (function smoothscroll(){
+                        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                        if (currentScroll > 0) {
+                            window.requestAnimationFrame(smoothscroll);
+                            window.scrollTo (0,currentScroll - (currentScroll/5));
+                        }
+                    })();
+                },500)
+            }
+        })
+
+    }
+
+    // 上传图片
+    function commonUploadImg() {
+        var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+        var _h;
+        var _w = _h = 2.667 * fontSize;
+        var resultList = api.hasPermission({
+            list: ['camera', 'photos']
+        });
+        var list = [];
+
+        for (var i = 0; i < resultList.length; i++) {
+            if (!resultList[i].granted) {
+                list.push(resultList[i].name);
+            }
+        }
+        if (list.length > 0) {
+            api.requestPermission({
+                list: list,
+                code: 1
+            }, function (ret, err) {
+
+            });
+        } else {
+            var Multiplechoice = api.require('Multiplechoice');
+            Multiplechoice.choice({
+                maxstr: maxstr,
+                uploadflowUrl: config.uploadImageUrl
+            }, function (ret, err) {
+
+                if (quakooUtils.isNotBlack(ret.allimgjs)) {
+                    var _results = [];
+
+                    ret.allimgjs.forEach(function (item, index) {
+                        imagesMap.push(item);
+                        var imgObj = quakooImg.processImg(item, _w, _h);
+                        var _obj = {
+                            imgUrl: imgObj.url,
+                            imgStyle: imgObj.style,
+                        };
+                        _results.push(_obj)
+                    });
+                    var _data = {
+                        list: _results
+                    };
+                    var html = template('scriptDiv1', _data);
+                    $api.prepend($api.dom('.show-img'), html);
+
+                    maxstr = maxstr - _results.length;
+                }
+
+            })
+        }
+    }
+
+    // mui绑定事件
+    function muiBindEvent() {
+        (function ($, doc) {
+            $.init();
+            // 身高
+            var click_stature = doc.querySelector('.click_stature');
+            var value_stature = doc.querySelector('#value_stature');
+            click_stature.addEventListener('tap', function (event) {
+                if (!picker_stature) {
+                    picker_stature = new $.PopPicker({
+                        layer: 1
+                    });
+                    picker_stature.setData(statureParams);
+                    picker_stature.setTitle('身高');
+                }
+                picker_stature.show(function (items) {
+                    value_stature.value = items[0].text
+
+                })
+            }, false);
+            // 性别
+            var click_sex = doc.querySelector('#click_sex');
+            var value_sex = doc.querySelector('#value_sex');
+            click_sex.addEventListener('tap', function (event) {
+                if (!picker_sex) {
+                    picker_sex = new $.PopPicker({
+                        layer: 1
+                    });
+                    picker_sex.setData(sexParams);
+                    picker_sex.setTitle('性别');
+                }
+                picker_sex.show(function (items) {
+                    value_sex.value = items[0].text
+                })
+            }, false);
+            // 体重
+            var click_weight = doc.querySelector('#click_weight');
+            var value_weight = doc.querySelector('#value_weight');
+            click_weight.addEventListener('tap', function (event) {
+                if (!picker_weight) {
+                    picker_weight = new $.PopPicker({
+                        layer: 1
+                    });
+                    picker_weight.setData(weightParams);
+                    picker_weight.setTitle('体重');
+                }
+                picker_weight.show(function (items) {
+                    value_weight.value = items[0].text
+                })
+            }, false)
+            // 居住地
+            var click_province = doc.querySelector('#click_province');
+            var value_province = doc.querySelector('#value_province');
+            click_province.addEventListener('tap', function (event) {
+                if (!picker_province) {
+                    picker_province = new $.PopPicker({
+                        layer: 1,
+
+                    });
+                    picker_province.setData(cityData3);
+                    picker_province.setTitle('居住地');
+                }
+                picker_province.show(function (items) {
+                    if ((items[0] || {}).text == undefined) {
+                        (items[0] || {}).text = "";
+                    }
+                    value_province.value = (items[0] || {}).text
+                })
+            }, false);
+            // 三围
+            var click_sanWei = doc.querySelector('#click_sanWei');
+            var value_sanWei = doc.querySelector('#value_sanWei');
+            click_sanWei.addEventListener('tap', function (event) {
+                if (!picker_sanWei) {
+                    picker_sanWei = new $.PopPicker({
+                        layer: 3,
+                        noLinkage: true
+                    });
+                    picker_sanWei.setData_noLinkage(sanWeiParams);
+                    picker_sanWei.setTitle('胸围-腰围-臀围');
+                }
+                picker_sanWei.show(function (items) {
+                    value_sanWei.value = items[0] + ' ' + items[1] + ' ' + items[2] + ' '
+                })
+            }, false);
+        })(mui, document);
+    }
+</script>
+</html>

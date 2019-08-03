@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style type="text/css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            justify-content: space-between;
+        }
+
+        #nav {
+            height: 49px;
+            background: #fafafa;
+            display: flex;
+            box-sizing: border-box;
+            padding: 0 8px;
+        }
+
+        #nav li {
+            flex: 1;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center
+        }
+
+        #nav span {
+            width: 100%;
+            height: 22px;
+            line-height: 22px;
+            font-size: 16px;
+            text-align: center;
+            color: #333333;
+            position: relative;
+        }
+
+        #nav li.active span,
+        #nav li.active-tapMode span {
+            color: #ff5c98;
+        }
+
+        #nav li.active span:after,
+        #nav li.active-tapMode span:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: url("../../icon/nav_active.png") no-repeat center center;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        /*头部*/
+
+        #header {
+            background: #fff;
+        }
+
+        #header .header {
+            display: none;
+        }
+
+        #header .header.active {
+            display: block;
+        }
+
+        /*头部*/
+        /*首页*/
+
+        #header .home .home-nav {
+            box-sizing: border-box;
+            font-size: 18px;
+            position: relative;
+        }
+
+        #header .home .home-nav .home-nav-ul {
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 43px;
+            background: #fafafa;
+        }
+
+        #header .home .home-nav .home-nav-ul li {
+            flex: 1;
+            text-align: center;
+        }
+
+        #header .home .home-nav .home-nav-ul li span {
+            padding: 0 4px;
+            box-sizing: border-box;
+            height: 100%;
+        }
+
+        #header .home .home-nav .home-nav-ul li.home-active,
+        #header .home .home-nav .home-nav-ul li.home-active-tapMode {
+            color: #ff5c98;
+        }
+
+        #header .home .home-nav .home-nav-ul li.home-active span,
+        #header .home .home-nav .home-nav-ul li.home-active-tapMode span {
+            border-bottom: 2px solid #ff5c98;
+        }
+
+        .home-search {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            right: 0;
+            bottom: 0;
+            background: url("../../icon/search.png") no-repeat center right 15px;
+            -webkit-background-size: 22px 22px;
+            background-size: 22px 22px;
+        }
+
+        /*内容类型切换*/
+
+        #header .content-switch {
+            height: 68px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5F5F5;
+        }
+        #header .content-switch-ul{
+            background: #ffffff;
+            border: 1px solid #ff84b2;
+            border-radius: 100px;
+            overflow: hidden;
+            height: 26px;
+        }
+        #header .content-switch-ul {
+            display: none;
+        }
+        #header .content-switch-ul.sNav  {
+            display: flex;
+        }
+        #header .content-switch-ul li {
+            width: 68px;
+            text-align: center;
+            background: #fff;
+            font-size: 14px;
+            color: #ff5c98;
+            line-height: 26px;
+        }
+        #header .content-switch-ul li + li {
+            border-left: 1px solid #ff5c98;
+        }
+
+
+
+        #header .content-switch-ul li.sActive {
+            background: #ff5c98;
+            color: #fff;
+        }
+
+        #header .content-switch-ul li.sActive-tapMode {
+            background: #ff5c98;
+            color: #fff;
+        }
+
+        /*消息*/
+
+        #header .message .message-nav {
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            font-size: 18px;
+            color: #333333;
+            background: #fafafa;
+        }
+
+        /*动态*/
+
+        #header .dynamic-nav {
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+            box-sizing: border-box;
+            padding: 0 15px;
+            position: relative;
+            background: #fafafa;
+        }
+
+        #header .dynamic-nav:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: #F5F5F5;
+            transform: scaleY(.5);
+        }
+
+        #header .dynamic-nav li {
+            flex: 1;
+            font-size: 18px;
+            color: #333333;
+            text-align: center;
+        }
+
+        #header .dynamic-nav li.dynamic-active span,
+        #header .dynamic-nav li.dynamic-active-tapMode span {
+            color: #ff5c98;
+            position: relative;
+        }
+
+        #header .dynamic-nav li.dynamic-active span:after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: #FF5C98;
+        }
+
+        #header .dynamic-nav li.dynamic-active-tapMode span:after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: url("../../icon/nav_active.png") no-repeat center center;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        /*商城*/
+
+        #header .store-nav {
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /*我的*/
+
+        #header {
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrap">
+    <div id="header">
+        <div class="home header active">
+            <div class="home-nav">
+                <ul class="home-nav-ul">
+                    <li class="home-active" tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(0)">
+                        <span>作品</span>
+                    </li>
+                    <li tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(1)"><span>模特</span></li>
+                    <li tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(2)"><span>摄影</span></li>
+                </ul>
+                <div class="home-search" tapmode="" onclick="openSearch()"></div>
+            </div>
+                <div class="content-switch">
+                        <ul class="content-switch-ul sNav" id="homeProd">
+                            <li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',0)">推荐</li>
+                            <li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',1)">图片</li>
+                            <li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',2)">视频</li>
+                            <li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',3)">VR</li>
+                        </ul>
+                        <ul class="content-switch-ul" id="homeModel">
+                            <li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeModel',0)">推荐</li>
+                            <li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeModel',1)">新人</li>
+                        </ul>
+                        <ul class="content-switch-ul" id="homeShoot">
+                            <li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeShoot',0)">摄影师</li>
+                            <li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeShoot',1)">摄影机构</li>
+                        </ul>
+                </div>
+
+        </div>
+
+        <div class="message header ">
+            <div class="message-nav">消息</div>
+        </div>
+
+        <div class="dynamic header ">
+            <ul class="dynamic-nav">
+                <li class="dynamic-active" tapmode="dynamic-active-tapMode" onclick="groupFrameSwitch_dynamic(0)">
+                    <span>推荐</span></li>
+                <li tapmode="dynamic-active-tapMode" onclick="groupFrameSwitch_dynamic(1)"><span>关注</span></li>
+                <li tapmode="dynamic-active-tapMode" onclick="groupFrameSwitch_dynamic(2)"><span>我的</span></li>
+                <li tapmode="dynamic-active-tapMode" onclick="release()"><span>发布</span></li>
+            </ul>
+        </div>
+
+        <div class="store header">
+            <div class="store-nav">商城</div>
+        </div>
+
+        <div class="mine header"></div>
+    </div>
+    <div id="main"></div>
+    <ul id="nav">
+        <li class="home active" tapmode="active-tapMode" onclick="openTab('home')"><span>首页</span></li>
+        <li class="message" tapmode="active-tapMode" onclick="openTab('message')"><span>消息</span></li>
+        <li class="dynamic" tapmode="active-tapMode" onclick="openTab('dynamic')"><span>动态</span></li>
+        <li class="store" tapmode="active-tapMode" onclick="openTab('store')"><span>商城</span></li>
+        <li class="mine" tapmode="active-tapMode" onclick="openTab('mine')"><span>我的</span></li>
+    </ul>
+</div>
+</body>
+
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/tab.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+
+<script type="text/javascript">
+    var tabs;
+    apiready = function () {
+        quakooApp.startHotUpdate(function (ret) {
+            if(ret.value.status){
+                quakooDb.setItem('removeUserInfo','true');
+                quakooMsg.toast('更新成功，重启后生效');
+            }
+        });
+        setTimeout(function () {
+            api.closeWin({
+                name: 'login'
+            })
+        }, 300);
+        var systemType = api.systemType;
+        if (systemType == 'ios') {
+            api.setStatusBarStyle({
+                style: 'dark',
+            });
+        } else {
+            api.setStatusBarStyle({
+                style: 'light',
+                color: '#ff5c98'
+            });
+        }
+
+        var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+        if (statusBarAppearance) {
+            var header = $api.dom('#header');
+            $api.fixStatusBar(header);
+        }
+        $api.fixTabBar($api.byId('nav'));
+        getTabs();
+
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                quakooApp.closeApp();
+            } else {
+                quakooMsg.toast('再按一次退出应用');
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+    };
+
+    //配置tab选项卡 各个页面
+    function getTabs() {
+        tabs = {
+            home: {
+                isGroup: false,
+                frame: {
+                    name: 'homeShell',
+                    url: '../home/homeShell.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: api.safeArea.top + 44 + 68,
+                        w: "auto",
+                        marginBottom: 49 + api.safeArea.bottom
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false
+                }
+            },
+            message: {
+                isGroup: false,
+                frame: {
+                    name: 'message',
+                    url: '../message/message.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: 44 + api.safeArea.top,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false
+                }
+            },
+            dynamic: {
+                isGroup: true,
+                group: {
+                    name: 'dynamic',
+                    background: "#fff",
+                    scrollEnabled: true,
+                    rect: {
+                        x: 0,
+                        marginTop: 44 + api.safeArea.top,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+                    },
+
+                    index: 0,
+                    frames: [{
+                        name: 'dynamicRecommend',
+                        bgColor: "#F5F5F5",
+                        reload: 'true',
+                        pageParam: {type:0},
+                        url: '../dynamic/dynamicRecommend.html',
+                        bounces: true
+                    },
+                        {
+                            name: 'dynamicFollow',
+                            bgColor: "#F5F5F5",
+                            pageParam: {type:1},
+                            url: '../dynamic/dynamicRecommend.html',
+                            bounces: true
+                        },
+                        {
+                            name: 'dynamicMine',
+                            bgColor: "#F5F5F5",
+                            pageParam: {type:2},
+                            url: '../dynamic/dynamicRecommend.html',
+                            bounces: true
+                        }
+                    ]
+                },
+                groupCallBack: function (ret) {
+                    dynamicNavSwitch(ret.index)
+                }
+            },
+            store: {
+                isGroup: false,
+                frame: {
+                    name: 'store',
+                    url: '../home/store.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: 44 + api.safeArea.top,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false
+                }
+            },
+            mine: {
+                isGroup: false,
+                frame: {
+                    name: 'mine',
+                    url: '../mine/mine.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: 0,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false
+                }
+            }
+        };
+        openTab('home');
+        return tabs;
+    }
+
+    //=========================== main  导航切换 ====================================
+    // 首页部分 一级导航 切换
+    function  homeNavSwitch(index) {
+        var lis = $api.domAll('.home-nav-ul li');
+        lis.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'home-active')
+            } else {
+                $api.removeCls(item, 'home-active')
+            }
+        })
+    }
+    // 顶部nav切换
+    function groupFrameSwitch_home(index) {
+        // 切换[作品  模特 摄影]相应的 二级菜单 显示
+        var sNavs = $api.domAll('.content-switch-ul');
+        sNavs.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'sNav')
+            } else {
+                $api.removeCls(item, 'sNav')
+            }
+        });
+        homeNavSwitch(index);
+        api.execScript({
+            name:'main',
+            frameName:'homeShell',
+            script: 'openOrSwitchFrameGroup('+index+')'
+        })
+    }
+
+    // 首页部分 二级导航 切换
+    function homeContentSwitch_domStyle(parentId,index) {
+        var lis = $api.domAll('#'+parentId+'.content-switch-ul li');
+        lis.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'sActive')
+            } else {
+                $api.removeCls(item, 'sActive')
+            }
+        });
+
+    }
+    function homeContentSwitch_groupIndex(parentId,index) {
+        homeContentSwitch_domStyle(parentId,index)
+        // 这里需要根据parentId异步执行相应group事件
+        api.execScript({
+            name:'main',
+            frameName:'homeShell',
+            script:'groupFrameSwitch('+index+',"'+parentId+'")'
+        })
+    }
+
+    //  动态部分 导航 切换
+    function dynamicNavSwitch(index) {
+        var lis = $api.domAll('.dynamic-nav li');
+        lis.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'dynamic-active')
+            } else {
+                $api.removeCls(item, 'dynamic-active')
+            }
+        })
+    }
+
+    function groupFrameSwitch_dynamic(index) {
+        dynamicNavSwitch(index);
+        api.setFrameGroupIndex({
+            name: "dynamic",
+            index: index,
+            scroll: true
+        });
+    }
+
+    //动态部分发布
+    function release() {
+        quakooApp.openFrame('release', '../dynamic/release.html', {}, 0, 0, {
+            bgColor: 'rgba(0,0,0,0)',
+            animation:{
+                type:'fade',
+                duration:300
+            }
+        })
+    }
+
+    //打开搜索
+    function openSearch() {
+        quakooApp.openNewWindow('search', '../home/search.html')
+    }
+</script>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>发布视频</title>
+		<style type="text/css">
+			body,html{
+				/*background-color: #f5f5f5;*/
+			}
+			.fit{
+				box-sizing: border-box;
+				padding: 0 0.4rem 0 0.4rem;
+			}
+			#topbar{
+				box-shadow:0 0.026666rem 0 0 #f2f2f2;
+				position: relative;
+			}
+			.release{
+				width: 1.28rem;
+				height: 0.64rem;
+				border-radius: 0.106666rem;
+				background-color: #e1e1e1;
+				font-family:PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color:#999999;
+				position: absolute;
+				right: 0.4rem;
+				top: 50%;
+				margin-top: -0.32rem;
+			}
+			.release_active{
+				background-color: #ff5c98;
+				color:white;
+			}
+			.release_content{
+				width: 100%;
+				height: 4rem;
+				background-color: white;
+				
+				border-top: 0.266666rem solid #f5f5f5;
+			}
+			.release_content>textarea{
+				width: 100%;
+				height: 100%;
+				/*background-color: cornflowerblue;*/
+				font-family:PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: black;
+				padding-top: 0.533333rem;
+				padding-bottom: 0.266666rem;
+			}
+			.release_content>textarea::placeholder{
+				font-family:PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color:#999999;
+			}
+			.cover{
+				width: 100%;
+				background-color: white;
+				border-top: 0.266666rem solid #f5f5f5;
+				float: left;
+				padding-top: 0.48rem;
+				padding-bottom: 0.293333rem;
+			}
+			.cover>div{
+				width: 2.666666rem;
+				height: 2.666666rem;
+				background: #e8e7e7;
+				float: left;
+				margin-right: 0.386666rem;
+				margin-top: 0.266666rem;
+				border-radius: 0.106666rem;
+				position: relative;
+			}
+			.cover>div:last-child>img{
+				width: 1.12rem;
+				height: 0.853333rem;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -0.56rem;
+				margin-top: -0.424141rem;
+			}
+			.cover>div>div{
+				width: 0.533333rem;
+				height: 0.533333rem;
+				background-color: #333;
+				border-radius: 50%;
+				position: absolute;
+				top: -0.266666rem;
+				right: -0.266666rem;
+				
+			}
+			.cover>div>div>img{
+				width: 0.213333rem;
+				height: 0.213333rem;
+				margin-top: 50%;
+				margin-left: 50%;
+				transform: translate(-50%,-50%);
+			}
+			/*.cover>div:nth-child(3n+0){
+				margin-right: 0;
+			}*/
+			.choose_price{
+				padding-top: 0.32rem;
+				border-top: 0.266666rem solid #f5f5f5;
+				float: left;
+				width: 100%;
+			}
+			.choose_price_title{
+				font-family:PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color:#333333;
+			}
+			.choose_price_option{
+				width: fit-content;
+				height: 0.8rem;
+				float: left;
+				margin-right: 0.533333rem;
+				box-sizing: border-box;
+				padding-top: 0.266666rem;
+			}
+			.choose_price_option>div{
+				display: inline-block;
+			}
+			.choose_price_options{
+				float: left;
+				margin-top: 0.266666rem;
+			}
+			.choose_price_option>div:nth-child(1){
+				width: 0.426666rem;
+				height: 0.426666rem;
+				background-color: #e1e1e1;
+				border-radius: 50%;
+			}
+			.choose_price_option>div:nth-child(1)>img{
+				width: 0.293333rem;
+				height: 0.213333rem;
+				margin-left: 50%;
+				margin-top: 50%;
+				transform: translate(-50%,-50%);
+			}
+			.choose_price_option>div:nth-child(2){
+				position: relative;
+				top: -0.106666rem;
+				font-family:PingFang-SC-Regular;
+				font-size: 0.373333rem;
+				color:#333333;
+			}
+			.choose_price_option_active{
+				background-color: #ff5c98 !important;
+			}
+			.release_video{
+				width: 100%;
+				border-top: 0.026666rem solid #f5f5f5;
+				float: left;
+				margin-top: 0.3rem;
+			}
+			.release_video>div{
+				width: 2.666666rem;
+				height: 2.666666rem;
+				background-color: pink;
+				position: relative;
+				margin-top: 0.32rem;
+			}
+			.release_video_play{
+				width: 0.64rem;
+				height: 0.64rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+			.cover .add{
+    			width: 2.666666rem;
+    			height: 2.666666rem;
+    			margin-right: 0.586666rem;
+    			overflow: hidden;
+    			position: relative;
+    		}
+    		.cover .add .wrap{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.cover .add .icon{
+    			width: 1.12rem;
+    			height: 1.12rem;
+    			position: absolute;
+    			top: 50%;
+    			left: 50%;
+    			margin-top: -0.56rem;
+    			margin-left: -0.56rem;
+    		}
+    		.cover .add .title{
+    			font-size: 0.32rem;
+    			color: #999;
+    			font-family:PingFang-SC-Medium;
+    			position: absolute;
+    			bottom: 0.266666rem;
+    			left: 0.693333rem;
+    		}
+    		.unsel {
+            	display: inline-block;
+            	width:0.427rem;
+           	 	height:0.427rem;
+            	background: url("../../icon/pay-unsel.png") no-repeat center center;
+            	-webkit-background-size: cover;
+            	background-size: cover;
+        	}
+        	.choose_price_option.active .unsel{
+            	background: url("../../icon/pay-sel.png") no-repeat center center;
+            	-webkit-background-size: cover;
+            	background-size: cover;
+        	}
+		</style>
+	</head>
+
+	<body>
+	
+  <div class="release_content fit">
+  	<textarea name="" id="" placeholder="发布内容..."></textarea>
+  </div>
+  <div class="cover fit">
+  	<div class="add">
+		<img class="wrap" src="../../icon/Head_portrait_null.png" alt="" />
+		<img class="icon" src="../../icon/add.png" alt="" />
+		<span class="title">添加封面</span>
+	</div>
+  	<div><img src="../../icon/Camera.png" alt="" /></div>
+  </div>
+  <div class="choose_price fit">
+  	<div class="choose_price_title">选择价值</div>
+  	<div class="choose_price_options">
+  		<div class="choose_price_option" tapmode="itemOn" onclick="checkSel(0)">
+  			<div class="unsel"></div>
+  			<div>免费</div>
+  		</div>
+  		<div class="choose_price_option active" tapmode="itemOn" onclick="checkSel(1)">
+  			<div class="unsel"></div>
+  			<div>30LB</div>
+  		</div>
+  		<div class="choose_price_option" tapmode="itemOn" onclick="checkSel(2)">
+  			<div class="unsel"></div>
+  			<div>40LB</div>
+  		</div>
+  		<div class="choose_price_option" tapmode="itemOn" onclick="checkSel(3)">
+  			<div class="unsel"></div>
+  			<div>50LB</div>
+  		</div>
+  	</div>
+  </div>
+  <div class="release_video fit">
+  	<div><img src="../../icon/play.png" alt="" class="release_video_play"/></div>
+  </div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+		
+    };
+    function delPicture(_this){
+    	var parent =  _this.parentNode;
+    	$api.remove(parent)
+    }
+    //选择价值
+     function checkSel(index){
+    	var labs = $api.domAll('.choose_price_option');
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+</script>
+	</body>
+
+</html>

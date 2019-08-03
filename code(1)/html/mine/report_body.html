@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>举报</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .con {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0.347rem 0.4rem;
+            box-sizing: border-box;
+        }
+        .con:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            -webkit-transform: scaleY(.5);
+            -moz-transform: scaleY(.5);
+            -ms-transform: scaleY(.5);
+            -o-transform: scaleY(.5);
+            transform: scaleY(.5);
+        }
+        .section-tit {
+            font-size:16px;
+            color:#333333;
+        }
+        .report-type {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .report-type li{
+            display: flex;
+            align-items: center;
+            margin-top: 0.533rem;
+        }
+        .unsel {
+            display: inline-block;
+            width:0.427rem;
+            height:0.427rem;
+            margin-right: 0.267rem;
+            background: url("../../icon/pay-unsel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .report-type li.active .unsel{
+            background: url("../../icon/pay-sel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .border-wrap {
+            margin-top: 1.333rem;
+            border:1px solid #e1e1e1;
+            border-radius:0.107rem;
+            height: calc(100vw / 1.4258);
+            box-sizing: border-box;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .border-wrap label {
+            flex: 1;
+        }
+        label textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            font-size: 14px;
+            line-height: 1.5em;
+            text-align: justify;
+        }
+        textarea::-webkit-input-placeholder {
+            font-size: 14px;
+            line-height:  1.5em;
+            color: #999;
+        }
+        .report-img-ul {
+            display: flex;
+        }
+        .report-img-ul li{
+            width:1.867rem;
+            height:1.867rem;
+            position: relative;
+            z-index: 1;
+            margin: 0 0.267rem 0.267rem 0;
+            border-radius:0.107rem;
+            overflow: hidden;
+        }
+        .report-img-ul li img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+        .addImage{
+            background:#e8e7e7 url("../../icon/white_add.png") no-repeat center center;
+            -webkit-background-size: 0.773rem 0.773rem;
+            background-size: 0.773rem 0.773rem;
+            border-radius:0.107rem;
+        }
+        .submit {
+            margin: 0.533rem auto;
+            background-image:linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            border-radius:2.667rem;
+            width: 86.7%;
+            height:1.173rem;
+            line-height:1.173rem;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="section-tit">请选择类型</div>
+    <ul class="report-type">
+        <li class="active" tapmode="" onclick="checkSel(0)"><i class="unsel "></i>作品侵权</li>
+        <li tapmode="" onclick="checkSel(1)"><i class="unsel"></i>污言秽语</li>
+        <li tapmode="" onclick="checkSel(2)"><i class="unsel"></i>淫秽色情</li>
+    </ul>
+    <div class="border-wrap">
+        <label>
+            <textarea id="content" maxlength="200" placeholder="请输入举报理由"></textarea>
+        </label>
+        <ul class="report-img-ul">
+<!--            <li><img src="../../icon/worksbg.png" alt=""></li>-->
+<!--            <li><img src="../../icon/worksbg.png" alt=""></li>-->
+            <li class="addImage" tapmode="" onclick="commonUploadImg()"></li>
+        </ul>
+    </div>
+    <div class="submit" tapmode="" onclick="submitSugg()">提交</div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+    <script type="text/javascript" src="../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+    <script type="text/javascript" src="../../script/echo.min.js"></script>
+    <script type="text/html" id="scriptDiv1">
+        <%for(var i = 0 ; i < list.length ;i++){%>
+            <li><img src="../../icon/worksbg.png"  style="width:100%;height:100%"  data-echo="<%=list[i].imgUrl%>" real-style="<%=list[i].imgStyle%>" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'"alt=""></li>
+        <%}%>
+    </script>
+<script>
+    var imagesMap = [];
+    var maxstr = 3;
+    var type =0 ; //投诉类型
+    var feilKey;
+    apiready = function () {
+        feilKey =quakooUtils.getImgKey()
+    };
+    function checkSel(index){
+    	var labs = $api.domAll('.report-type li');
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+                type = i
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+    // 上传图片
+    function commonUploadImg() {
+        if(maxstr <= 0) {quakooMsg.toast('最多上传三张图片');return}
+        var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+        var _w =1.867 * fontSize;
+        quakooImg.openMedia(maxstr, 'img', function (ret) {
+            quakooImg.uploadImgs(ret.value.imgsList, function (ret) {
+                var _results = [];
+                ret.value.urls.forEach(function (item, index) {
+                    imagesMap.push(item);
+                    endIndex=imagesMap.length-1;
+                    var imgObj = quakooImg.processImg(item, _w, _w);
+                    var _obj = {
+                        imgUrl: imgObj.url+feilKey,
+                        imgStyle: imgObj.style,
+                    };
+                    _results.push(_obj)
+                });
+                var _data = {
+                    list: _results,
+                };
+                var html = template('scriptDiv1', _data);
+                $api.prepend($api.dom('.report-img-ul'), html);
+                maxstr = maxstr - _results.length;
+                setTimeout(function () {
+                    if (!echo.isInit()) {
+                        echoExt.init({
+                            offset: 0,
+                            throttle: 0//设置图片延迟加载的时间
+                        });
+                    } else {
+                        echo.render()
+                    }
+                }, 100);
+
+            })
+        });
+
+    }
+
+    function submitSugg() {
+       var content= $api.val($api.dom('#content'));
+       if(quakooUtils.isBlack(content)){
+            quakooMsg.toast('请输入内容');
+           return
+       }
+        var ajaxParams = {
+            type:type,
+            content:content
+        };
+        if(quakooUtils.isNotBlack(imagesMap)){
+            ajaxParams.image =imagesMap.join(',')
+        }
+      quakooData.ajaxGetData(config.getUrl_suggestion_addSuggestion(),ajaxParams,function (ret) {
+            if(ret && ret.success){
+                quakooMsg.toast('提交成功');
+                setTimeout(function () {
+                    quakooApp.closeWin();
+                },1000)
+            }
+        })
+    }
+</script>
+
+</html>

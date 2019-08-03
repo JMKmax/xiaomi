@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>搜索</title>
+		<style type="text/css">
+			.fit {
+				box-sizing: border-box;
+				padding: 0 0.4rem 0 0.4rem;
+			}
+			
+			.topbar {
+				padding: 0.16rem 0 0 0;
+				height: 1.173333rem;
+				/*border-bottom: 1px solid red;*/
+				overflow: initial;
+			}
+			
+			.topbar>div {
+				float: left;
+				/*overflow: hidden;*/
+			}
+			
+			#leftButton {
+				width: 1.066666rem;
+				height: 0.96rem;
+			}
+			
+			#leftButton>img {
+				width: 0.293333rem;
+				height: 0.48rem;
+			}
+			
+			.input {
+				width: 7.12rem;
+				height: 0.853333rem;
+				margin-left: 1.093333rem;
+				background-color: #e8e7e7;
+				border-radius: 0.106666rem;
+				overflow: hidden;
+				box-sizing: border-box;
+				padding-left: 0.32rem;
+			}
+			
+			.input>input {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.input>input::placeholder {
+				font-family: PingFang-SC-Regular;
+				font-size: 0.373333rem;
+				color: #999999;
+			}
+			
+			.search {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #333333;
+				width: 1.653333rem;
+				height: 0.853333rem;
+				line-height: 0.853333rem;
+				text-align: center;
+			}
+			
+			@media only screen and (min-width: 768px) {
+				.input {
+					width: calc(100% - 150px);
+				}
+			}
+			
+			.hot {}
+			
+			.title {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color: #999999;
+				margin-top: 0.32rem;
+			}
+			
+			.words {
+				width: 100%;
+				/*box-sizing: border-box;*/
+				/*padding-right: 1.066666rem;*/
+			}
+			
+			.word {
+				display: inline-block;
+				margin-top: 0.32rem;
+				margin-right: 0.20rem;
+				height: 0.64rem;
+				padding: 0.053333rem 0.293333rem 0.053333rem 0.293333rem;
+				background-color: #f0f0f0;
+				border-radius: 0.106666rem;
+				width: -webkit-fit-content;
+				text-align: center;
+				line-height: 0.64rem;
+				font-family: PingFang-SC-Regular;
+				font-size: 0.373333rem;
+				color: #333333;
+				/*float: left;*/
+			}
+			
+			.history {
+				margin-top: 1.066666rem;
+			}
+			
+			.history_close {
+				display: inline-block;
+				float: right;
+				border: 0.026666rem solid #999;
+				border-radius: 50%;
+				width: 0.48rem;
+				height: 0.48rem;
+				position: relative;
+			}
+			
+			.history_close>img {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -0.12rem;
+				margin-top: -0.12rem;
+				width: 50%;
+				height: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="hot fit">
+			<div class="title">热门搜索</div>
+			<div class="words">
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+			</div>
+		</div>
+		<div class="history fit">
+			<div class="title">历史搜索
+				<div class="history_close" tapmode="" onclick="clearDom()"><img src="../../icon/close.png" alt="" /></div>
+			</div>
+			<div class="words">
+				<div class="word">高跟</div>
+				<div class="word">高跟</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {;
+			};
+			function clearDom(){
+				$api.remove($api.domAll('.words')[1])
+			}
+		</script>
+	</body>
+
+</html>

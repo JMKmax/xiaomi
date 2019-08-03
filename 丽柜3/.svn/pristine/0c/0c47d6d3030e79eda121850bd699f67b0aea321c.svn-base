@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>注册登录</title>
+    <style>
+        .recommend .image {
+            position: relative;
+        }
+
+        .recommend .image .title {
+            position: absolute;
+            top: 0.4rem;
+            left: 0.4rem;
+            color: #fff;
+        }
+
+        .recommend .image .time {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            height: 0.533333rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.213333rem;
+            color: #fff;
+            background: rgba(0, 0, 0, .5);
+            border-radius: 0.08rem;
+        }
+
+        .recommend .author {
+            width: 100%;
+            height: 1.493333rem;
+        }
+
+        .recommend .author .photo {
+            width: 0.853333rem;
+            height: 0.853333rem;
+            margin-left: 0.4rem;
+            margin-top: 0.32rem;
+            float: left;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /*.recommend .author .photo img{
+            width: 100%;
+            height: 100%;
+        }*/
+        .recommend .author .name {
+            float: left;
+            margin-left: 0.16rem;
+            margin-top: 0.48rem;
+            line-height: 20px;
+        }
+
+        .recommend .author .icon {
+            float: left;
+            width: 0.426666rem;
+            height: 0.426666rem;
+            margin-left: 0.16rem;
+            margin-top: 0.533333rem;
+        }
+
+        .recommend .author .attention {
+            float: right;
+            margin-right: 0.4rem;
+            margin-top: 0.426666rem;
+            width: 1.28rem;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            text-align: center;
+            border: 1px solid #FF77A9;
+            color: #FF77A9;
+            border-radius: 0.106666rem;
+        }
+
+        .recommend .author .attention.attend {
+            color: #999;
+            border-color: #999;
+        }
+
+        .recommend .image .audio-photo {
+            width: 100%;
+            height: 5.866666rem;
+            overflow: hidden;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--                            视频                                               -->
+
+<div class="title-video top_title">
+    <!--<div class="recommend">
+        <div class="image">
+            <p class="title">呼啦好</p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+                <img class="beach" src="../../image/bg_1.png" alt="" />
+            </div>
+            <p class="time">17:24</p>
+        </div>
+        <div class="author">
+            <div class="photo">
+                <img  src="../../image/bg.png" alt="" />
+            </div>
+            <p class="name">小o—毁了你的江山</p>
+            <img class="icon" src="../../icon/weixin.png" alt="" />
+            <p class="attention attend">已关注</p>
+        </div>
+    </div>
+    <div class="recommend">
+        <div class="image">
+            <p class="title">沙滩热辣辣</p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+                <img class="beach" src="../../image/bg_2.jpg" alt="" />
+            </div>
+            <p class="time">17:24</p>
+        </div>
+        <div class="author">
+            <div class="photo">
+                <img  src="../../image/bg.png" alt="" />
+            </div>
+            <p class="name">小o—毁了你的江山</p>
+            <img class="icon" src="../../icon/weixin.png" alt="" />
+            <p class="attention">关注</p>
+        </div>
+    </div>-->
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="contents" type="text/html">
+    <%for(var i = 0;i<list.length;i++){%>
+    <div class="recommend">
+        <div class="image">
+            <p class="title"><%=list[i].name%></p>
+            <div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(<%=list[i].id%>)">
+                <img src="../../icon/worksbg.png" style="width: 100%;height: 100%"
+                     onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'"
+                     data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""/>
+            </div>
+            <p class="time"><%=list[i].length%></p>
+        </div>
+        <div class="author">
+            <div class="photo" tapmode="" onclick="openHome(<%=list[i].mid%>)">
+                <img src="../../icon/defaultHead.png"
+                     onerror="this.src='../../defaultHead.png';this.style='width:100%;height:100%'"
+                     data-echo="<%=list[i].modelIcon%>" real-style="<%=list[i].modelIconStyle%>" alt=""/>
+            </div>
+            <p class="name"><%=list[i].modelName%></p>
+            <img class="icon" src="../../icon/weixin.png" alt=""/>
+            <%if(list[i].hasFlowModel){%>
+            <p class="attention attend" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="<%=list[i].mid%>"
+               onclick="switchAttendEvent(this)">已关注</p>
+            <%}else{%>
+            <p class="attention" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="0"
+               onclick="switchAttendEvent(this)">关注</p>
+            <%}%>
+        </div>
+    </div>
+    <%}%>
+</script>
+
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    apiready = function () {
+        var _params = {
+            type: 1
+        }
+        new QuakooPage(function (results, append) {
+            for (var i = 0; i < results.length; i++) {
+                if (quakooUtils.isBlack(results[i].modelIcon)) {
+                    results[i].modelIcon = '../../icon/defaultHead.png';
+                    results[i].modelIconStyle = 'width:100%;height:100%;'
+                } else {
+                    var obj = quakooImg.processImg(results[i].modelIcon, 0.853333 * fontSize, 0.853333 * fontSize);
+                    results[i].modelIcon = obj.url;
+                    results[i].modelIconStyle = obj.style;
+                }
+                if (quakooUtils.isBlack(results[i].cover)) {
+                    results[i].cover = '../../icon/worksbg.png';
+                    results[i].coverStyle = 'width:100%;height:100%;'
+                } else {
+                    var coverobj = quakooImg.processImg(results[i].cover, api.winWidth, 5.866666 * fontSize);
+                    results[i].cover = coverobj.url;
+                    results[i].coverStyle = coverobj.style;
+                }
+                if (results[i].type == '1') {
+                    results[i].length = checkTime(results[i].length)
+                }
+
+            }
+            var data = {
+                list: results
+            }
+            var html = template('contents', data)
+            if (append) {
+                var div = document.createElement('div')
+                div.innerHTML = html;
+                $api.dom('.title-video').appendChild(div)
+            } else {
+                $api.html($api.dom('.title-video'), html)
+            }
+            setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+            api.parseTapmode()
+        }, config.getUrl_content_getContentByTypePager(), _params)
+
+    };
+
+    //跳转详情页
+    function AudioDetail(id) {
+        quakooApp.openNewWindow('works_video_details'+id, './works_video_details.html', {cid: id});
+    }
+
+    //处理时间
+    function toStr(nub) {
+        return nub > 10 ? '' + nub : '0' + nub
+    }
+
+    function checkTime(time) {
+        var iHour = parseInt(time / 3600);
+        var iMinute = parseInt((time % 3600) / 60);
+        var iSecond = (time % 3600) % 60;
+
+        return time = "" + toStr(iMinute) + " : " + toStr(iSecond) + "";
+    }
+	//跳转主页
+	 function openHome(id) {
+       var userInfo = quakooUser.getUserInfo()
+    	userId = userInfo.id;
+    	if(id == userId){
+    		return;
+    	}else{
+    		quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+    	}
+    }
+    //切换关注
+    function switchAttendEvent(_this) {
+        var mid = $api.attr(_this, 'data-mid')
+        var midBtnAll = $api.domAll('p[data-mid="' + mid + '"]')
+        var flag = $api.attr(_this, 'data-flag');
+        var attend = parseInt($api.attr(_this, 'data-attend'), 10);
+        if (flag == 1) {
+            return
+        }
+        $api.attr(_this, 'data-flag', 1);
+        var _params = {
+            otherId: mid
+        }
+        if (attend === 0) { //  未关注 = 》 关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this, 'data-flag', 0);
+                    midBtnAll.forEach(function (item, i) {
+                        $api.attr(item, 'data-attend', mid)
+                        $api.addCls(item, 'attend')
+                        $api.html(item, '已关注')
+                    })
+                }
+            })
+
+        } else { //关注 == 未关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('取消成功')
+                    $api.attr(_this, 'data-flag', 0);
+                    midBtnAll.forEach(function (item, i) {
+                        $api.attr(item, 'data-attend', 0)
+                        $api.removeCls(item, 'attend')
+                        $api.html(item, '关注')
+                    })
+                }
+            })
+        }
+
+    }
+
+</script>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>绑定微信</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .bind-wrap {
+            position: relative;
+            padding-top: 1.68rem;
+            padding-bottom: 2.667rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bind-wrap:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background:#f5f5f5;
+            transform: scaleY(.5);
+        }
+
+        .bindLiGui {
+            width: 1.973rem;
+            height: 1.973rem;
+            border-radius: 0.267rem;
+            overflow: hidden;
+            background: #fff url("../../icon/bindligui.png") no-repeat center center;
+            -webkit-background-size: 1.333rem 1.333rem;
+            background-size: 1.333rem 1.333rem;
+            /*box-shadow: 0rem 0.08rem 0.107rem 0.027rem #f0f0f0*/
+            box-shadow:0 2px 4px 0 rgba(0,0,0,0.10);
+
+        }
+
+        .shift {
+            width: 0.56rem;
+            height: 0.507rem;
+            background: url("../../icon/shift.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            margin: 0 1.067rem;
+        }
+
+        .bindWeChat {
+            width: 1.973rem;
+            height: 1.973rem;
+            background: url("../../icon/bindwechat.png") no-repeat center center;
+            -webkit-background-size: 1.973rem 1.973rem;
+            background-size: 1.973rem 1.973rem;
+        }
+
+        .bind-btn {
+            width: 5.547rem;
+            height: 1.173rem;
+            line-height:1.173rem;
+            border-radius: 2.667rem;
+            font-size: 18px;
+            text-align: center;
+            margin: auto;
+        }
+
+        .not-bound {
+            background-image: linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            color: #ffffff;
+        }
+
+        .is-binding {
+            background: #e1e1e1;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="bind-wrap">
+        <div class="bindLiGui"></div>
+        <span class="shift"></span>
+        <div class="bindWeChat"></div>
+    </div>
+
+    <div class="bind-btn not-bound" tapmode="itemOn" onclick="bindWx()">绑定</div>
+
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        
+    }
+    function bindWx(){
+    	quakooApp.openNewWindow('bind_wx0','../login/bind_wx0.html',{})
+    }
+</script>
+
+</html>

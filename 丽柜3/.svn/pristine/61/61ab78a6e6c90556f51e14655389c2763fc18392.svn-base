@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>意见反馈</title>
+    	<style>
+    		body{
+    			overflow: hidden;
+    			background: #F5F5F5;
+    		}
+    		.content{
+    			margin-top: 0.266666rem;
+    			background: #fff;
+    			padding-top: 0.4rem;
+    			height: 100%;
+    		}
+			.time{
+				font-size: 0.32rem;
+				color: #999;
+				text-align: center;
+				/*margin-top: 0.4rem;*/
+				margin-bottom: 0.32rem;
+			}
+			.inform{
+				margin-bottom: 0.533333rem;
+			}
+			.person{
+				justify-content: flex-end;
+			}
+			.inform .inform-photo{
+				height: 0.853333rem;
+				position: relative;
+				margin-top: 0.32rem;
+				margin-left: 0.4rem;
+				margin-right: 0.24rem;
+			}
+			.item_icon{
+				width: 0.853rem;
+            	height: 0.853rem;
+            	border-radius: 50%;
+			}
+			
+			.feedback {
+            	background:#ffc009 url("../../icon/m2.png") no-repeat center center;
+            	-webkit-background-size: 0.48rem 0.48rem;
+            	background-size: 0.48rem 0.48rem;
+        	}
+			.person .person-photo{
+				height: 0.853333rem;
+				width:0.853333rem; ;
+				margin-top: 0.32rem;
+				margin-right: 0.4rem;
+				margin-left: 0.24rem;
+			} 
+			.person .person-photo img{
+				width: 100%;
+				height: 100%;
+			}
+			.inform .inform-photo img{
+				width: 0.853333rem;
+				height: 0.853333rem;
+				border-radius: 100%;
+			}
+			.inform .inform-photo .loca{
+				width: 0.48rem;
+				height: 0.48rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -0.24rem;
+				margin-left: -0.24rem;
+			}
+			.inform .inform-text{
+				background: #f5f5f5;
+				border-radius: 0.106666rem;
+				padding: 0.32rem 0.266666rem 0.346666rem 0.426666rem;
+				line-height: 0.533333rem;
+				font-size: 0.373333rem;
+				color: #333;
+				margin-right: 0.4rem;
+				position: relative;
+			}
+			.person .person-text{
+				background: #f5f5f5;
+				border-radius: 0.106666rem;
+				padding: 0 0.32rem 0 0.346666rem;
+				line-height: 0.613333rem;
+				font-size: 0.373333rem;
+				color: #333;
+				margin-left: 0.4rem;
+				position: relative;
+			}
+			.inform .inform-text:after{
+				content: '';
+				position: absolute;
+				top: 0.426666rem;
+				left: -0.133333rem;
+				border-bottom: 0.266666rem solid transparent;
+				border-top: 0.266666rem solid transparent;
+				border-right:0.266666rem solid #f5f5f5 ;
+			}
+			.person .person-text:after{
+				content: '';
+				position: absolute;
+				top: 0.426666rem;
+				right: -0.133333rem;
+				border-bottom: 0.266666rem solid transparent;
+				border-top: 0.266666rem solid transparent;
+				border-left:0.266666rem solid #f5f5f5 ;
+			}
+				footer{
+    			width: 100%;
+    			height: 1.333333rem;
+    			background: #f0f0f0;
+    			position: absolute;
+    			left: 0;
+    			bottom: 0;
+    			display: flex;
+    			align-items: center;
+    		}
+    		footer input{
+    			margin-left: 0.4rem;
+    			width: 6.586666rem;
+    			height: 0.906666rem;
+    			padding-left: 0.266666rem;
+    			font-size: 0.373333rem;
+    			color: #aaa;
+    			background: #FFFFFF;
+    			line-height: 34px;
+    			flex-grow: 1;
+    			flex-shrink: 1;
+    		}
+    		footer .laugh img{
+    			width: 0.72rem;
+    			height: 0.72rem;
+    			margin-left: 0.266666rem;
+    			flex-grow: 0;
+    			flex-shrink: 0;
+    		}
+    		footer .comment-button{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			width: 1.386666rem;
+    			height: 0.746666rem;
+    			text-align: center;
+    			line-height: 0.746666rem;
+    			background: #FF5C98;
+    			margin-right: 0.373333rem;
+    			margin-left: 0.266666rem;
+    			flex-grow: 0;
+    			flex-shrink: 0;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="time">2019-05-20 12:23:56</div>
+			<div class="inform flex">
+				<div class="inform-photo">
+					<div class="item_icon feedback"></div>
+				</div>
+				<div class="inform-text">这是自5月百度人事大动荡后多位高管的首次亮相。5月17日，百度发布今年第一季度未审计财报，宣布高级副总裁、搜索公司总裁向海龙正式离职，其职位将由沈抖代替。此后，副总裁郑子斌等传出离职消息，并陆续官宣加盟新公司。</div>
+			</div>
+			<div class=" person flex">
+				<div class="person-text flex flex-align-center">好的</div>
+				<div class="person-photo">
+					<img  src="../../image/photo.png" alt="" />
+				</div>
+			</div>
+		</div>
+		<footer>
+			<input type="text" value="写评论..." />
+			<div class="laugh">
+				<img src="../../icon/expression.png" alt="" />
+			</div>
+			<div class="comment-button">发送</div>
+		</footer>
+	</body>
+</html>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+		 var _params = {
+    		type:1
+    	}
+		 new QuakooPage(function(results,append){
+		 	console.log($api.jsonToStr(results))
+		 },config.getUrl_notify_getNoticePager(),_params)
+    };
+</script>

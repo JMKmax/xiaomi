@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>绑定微信</title>
+    	<style>
+    		.report{
+    			padding:0 0.4rem;
+    		}
+    		.report .title{
+    			font-family:PingFang-SC-Medium;
+				font-size:0.426666rem;
+				color:#333333;
+				padding: 0.346666rem 0 0.533333rem 0;
+    		}
+    		.report .report-item{
+    			
+    			margin-bottom: 0.533333rem;
+    		}
+    		.report .report-item.active .sel-status{
+    			display: inline-block;
+    			width: 0.426666rem;
+    			height: 0.426666rem;
+    			background: url(../../icon/pay-sel.png) no-repeat center center;
+    			background-size: cover;
+    			margin-right: 0.266666rem;
+    			vertical-align: bottom;
+    		}
+    		.report .report-item .sel-status{
+    			display: inline-block;
+    			width: 0.426666rem;
+    			height: 0.426666rem;
+    			background: url(../../icon/pay-unsel.png) no-repeat center center;
+    			background-size: cover;
+    			margin-right: 0.266666rem;
+    			vertical-align: bottom;
+    		}
+    		.report .report-item span{
+    			font-size: 0.373333rem;
+    			color: #333;
+    		}
+    		.report-content{
+    			margin-top: 0.8rem;
+    			border: 0.026666rem solid #e1e1e1;
+    			border-radius: 0.106666rem;
+    			padding: 0.266666rem;
+    			height: 7.066666rem;
+    			position: relative;
+    		}
+    		.report-content textarea{
+    			font-size: 0.373333rem;
+    			color: #999;	
+    		}
+    		.report-content .add-photo{
+    			position: absolute;
+    			bottom: 0.266666rem;
+    			left: 0.266666rem;
+    		}
+    		.report-content .add-photo .photo{
+    			width: 1.866666rem;
+    			height: 1.866666rem;
+    			overflow: hidden;
+    			margin-right: 0.266666rem;
+    		}
+    		.report-content .add-photo .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.report-content .add-photo .add-icon{
+    			position: relative;
+    		}
+    		.report-content .add-photo .wrap{
+    			width: 1.866666rem;
+    			height: 1.866666rem;
+    		}
+    		.report-content .add-photo .add{
+    			width: 0.773333rem;
+    			height: 0.773333rem;
+    			position: absolute;
+    			top: 50%;
+    			left: 50%;
+    			margin-top: -0.386666rem;
+    			margin-left: -0.386666rem;
+    		}
+    		.ensure-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background: #FF5C98;
+    			border-radius: 2.666666rem;
+    			color: #fff;
+    			font-size: 0.48rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			margin: 0 auto;
+    			margin-top: 0.533333rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="report">
+			<div class="title">请选择类型</div>
+			<ul>
+				<li class="report-item active"><i class="sel-status "></i><span>作品侵权</span></li>
+				<li class="report-item"><i class="sel-status"></i><span>污言秽语</span></li>
+				<li class="report-item"><i class="sel-status"></i><span>淫秽色情</span></li>
+			</ul>
+			<div class="report-content">
+				<textarea name="courseDescription" cols="45" rows="10" id="course">请输入要举报的内容
+				</textarea>
+				<div class="add-photo flex">
+					<div class="photo">
+						<img src="../../image/bg.png" alt="" />
+					</div>
+					<div class="add-icon">
+						<img class="wrap" src="../../icon/Head_portrait_null.png" alt="" />
+						<img class="add" src="../../icon/white_add.png" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="ensure-btn">提交</div>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

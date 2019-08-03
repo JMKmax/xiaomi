@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>绑定银行卡</title>
+    <style type="text/css">
+    	html,body{
+    		background: #fff;
+    	}
+    	li{
+    		height: 1.653333rem;
+    		padding: 0 0.426666rem;
+    		position: relative;
+    	}
+    	li:after{
+    		content: '';
+    		height: 1px;
+    		background: rgba(0,0,0,0.1);
+    		position: absolute;
+    		bottom: 0;
+    		left: 0;
+    		right: 0;
+    		transform: scaleY(.5);
+    	}
+		li label{
+			height: 100%;
+			width: 100%;
+		}
+		.item input{
+			width: 100%;
+			background: #fff;
+			box-sizing: border-box;
+			border: none;
+			flex: 1;
+			padding: 0;
+			margin: 0;
+		}
+		input::-webkit-input-placeholder{
+			font-size: 0.266666rem;
+			color: #B1B1B1;
+			line-height: 2em;
+		}
+		.ensureBtn{
+			margin-left: 0.426666rem;
+			margin-right: 0.426666rem;
+			margin-top: 1.333333rem;
+			border-radius: 0.533333rem;
+			background: #0097FE;
+			height: 1.066666rem;
+			line-height: 1.066666rem;
+			text-align: center;
+			font-size: 0.4rem;
+			color: #fff;
+		}
+    </style>
+</head>
+<body>
+	<ul>
+		<li class="item flex flex-align-center">
+			<label class="flex flex-align-center">
+				<input type="text" placeholder="请输入持卡人姓名" />
+			</label>
+		</li>
+		<li class="item flex flex-align-center">
+			<label class="flex flex-align-center" >
+				<input type="text" placeholder="请输入包商银行卡号" />
+			</label>
+		</li>
+		<li class="item flex flex-align-center">
+			<label class="flex flex-align-center">
+				<input type="text" placeholder="请输入手机号" />
+			</label>
+		</li>
+		<li class="item flex flex-align-center">
+			<label class="flex flex-align-center">
+				<input type="text" placeholder="请填写验证码" />
+			</label>
+		</li>
+	</ul>
+	<div class="ensureBtn" tapmode="" onclick="openWithdrawl()">立即绑定</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+      
+    };
+    function openWithdrawl(){
+    	quakooApp.openNewWindow('withdrawl_over','./withdrawl_over.html')
+    }
+</script>
+</body>
+</html>

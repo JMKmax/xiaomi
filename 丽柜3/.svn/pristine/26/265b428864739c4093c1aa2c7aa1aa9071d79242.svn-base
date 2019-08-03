@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>发布图片</title>
+    <style type="text/css">
+        body {
+            height: auto;
+            background: #f5f5f5;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .public-text {
+            height: 140px;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+
+        .public-text textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5em;
+        }
+
+        .public-text textarea::-webkit-input-placeholder {
+            color: #999;
+            line-height: 1.5em;
+        }
+
+        .public-upload-area {
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            background: #fff;
+            display: flex;
+            flex-flow: wrap;
+        }
+
+        .public-upload-area li {
+            width: 100px;
+            height: 100px;
+
+            margin-right: 22px;
+            margin-bottom: 22px;
+            position: relative;
+        }
+        .public-upload-area li:nth-child(3n){
+            margin-right: 0;
+        }
+
+        .upload-cover-img {
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            color: #999999;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .upload-cover-btn img {
+            width: 100%;
+            height: 100%;
+        }
+        .del {
+            position: absolute;
+            right: -5px;
+            top:-5px;
+            background:#333333 url("../../icon/close_2.png") no-repeat center center;
+            -webkit-background-size: 8px 8px;
+            background-size: 8px 8px;
+            width:20px;
+            height:20px;
+            z-index: 2;
+            border-radius: 50%;
+        }
+
+
+        .public-upload-area li.upload-video {
+            border-radius: 4px;
+            overflow: hidden;
+            background: #e8e7e7 url("../../icon/Camera.png") no-repeat center center;
+            -webkit-background-size: 42px 32px;
+            background-size: 42px 32px;
+        }
+
+        .public-dynamic-price {
+            background: #fff;
+            box-sizing: border-box;
+            padding: 12px 15px 0;
+        }
+
+        .sel-price {
+            height: 22px;
+            line-height: 22px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .price-ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .price-ul li {
+            height: 20px;
+            line-height: 20px;
+            box-sizing: border-box;
+            padding-left: 22px;
+            background: url("../../icon/pay-unsel.png") no-repeat center left;
+            -webkit-background-size: 16px 16px;
+            background-size: 16px 16px;
+            margin-right: 20px;
+        }
+
+        .price-ul li.active {
+            background: url("../../icon/pay-sel.png") no-repeat center left;
+            -webkit-background-size: 16px 16px;
+            background-size: 16px 16px;
+            margin-right: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="public-text">
+    <textarea placeholder="发布内容..." maxlength="200" id="public-title"></textarea>
+</div>
+<ul class="public-upload-area">
+<!--    <li class="upload-cover">-->
+<!--        <div class="upload-cover-img" tapmode="" onclick="openCover()"><img src="../../icon/worksbg.png" style="width: 100%;height: 100%;"></div>-->
+<!--        <div class="del"></div>-->
+<!--    </li>-->
+
+    <li class="upload-video" tapmode="" onclick="openCover()"></li>
+</ul>
+<div class="public-dynamic-price">
+    <div class="sel-price">选择价值</div>
+    <ul class="price-ul">
+<!--        <li>免费</li>-->
+<!--        <li>1LB</li>-->
+<!--        <li>2LB</li>-->
+<!--        <li>3LB</li>-->
+    </ul>
+</div>
+
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script type="text/html" id="scriptDiv1">
+        <%if(list && list.length){%>
+            <%for(var i = 0 ; i< list.length;i++){%>
+                <%if(i == 0){%>
+                    <li class="active" data-price="<%=list[i].name%>" tapmode="" onclick="selPrice(this,<%=i%>)"><%=list[i].text%></li>
+                <%}else {%>
+                    <li class="" data-price="<%=list[i].name%>" tapmode="" onclick="selPrice(this,<%=i%>)"><%=list[i].text%></li>
+                <%}%>
+            <%}%>
+        <%}%>
+</script>
+<script type="text/html" id="scriptDiv2">
+    <%for(var i = 0 ;i< list.length;i++){%>
+    <li class="upload-cover">
+        <div class="upload-cover-img" ><img src="../../icon/worksbg.png" style="width: 100%;height: 100%;"
+                                                                            onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'"
+                                                                            data-echo="<%=list[i].imgurl%>" real-style="<%=list[i].imgStyle%>" alt=""></div>
+        <div class="del" tapmode="" onclick="delPicture(this)"></div>
+    </li>
+    <%}%>
+</script>
+<script>
+    var imagesMap = [];//发布的照片 真实路径
+    var price = ''; //选择 动态价格
+    var maxstr = 9;// 上传图片张数
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var publicImageSize =2.667 * fontSize;
+
+    var publicParams = {
+        title: '',//标题
+        type: 0,// 0图片 1视频
+        imageStr: '',//图片地址
+        price: undefined,//价格
+        length: 0//图片张数 或者 视频时长
+    };//发表图片动态 的参数
+    var feilKey;
+    apiready = function () {
+         feilKey = quakooUtils.getImgKey();
+        quakooData.ajaxGetData(config.getUrl_postType_getPostTypeListByType(), {type: 2}, function (ret, err) {
+            if (ret && ret.success) {
+                if (quakooUtils.isNotBlack(ret.data)) {
+                    ret.data.forEach(function (item) {
+                        if (+item.name === 0) {
+                            item.text = '免费'
+                        } else {
+                            item.text = item.name + 'LB'
+                        }
+                    });
+                    publicParams.price = +ret.data[0].name;
+                    var data = {
+                        list: ret.data
+                    };
+                    var html = template('scriptDiv1', data)
+                    $api.html($api.dom('.price-ul'), html)
+                    api.parseTapmode()
+
+                }
+            }
+        })
+    };
+
+    //选择价值
+    function selPrice(_this, index) {
+        var labs = $api.domAll('.price-ul li');
+        labs.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'active');
+                publicParams.price = +$api.attr(item, 'data-price');
+            } else {
+                $api.removeCls(item, 'active')
+            }
+        })
+    }
+
+
+
+    //发布动态
+    function releasePic() {
+        var publicTitle = $api.val($api.dom('#public-title'));
+        if (quakooUtils.isBlack(publicTitle)) {
+            quakooMsg.toast('请填写发表内容');
+            return
+        }
+        publicParams.title = publicTitle;
+
+
+        if (quakooUtils.isBlack(imagesMap)) {
+            quakooMsg.toast('请上传动态图片');
+            return
+        }
+        publicParams.imageStr = imagesMap.join(',');
+        publicParams.length = imagesMap.length;
+
+        if (publicParams.price === undefined)  {
+            quakooMsg.toast('请选择你的动态价值');
+            return
+        }
+        quakooData.ajaxGetData(config.getUrl_circle_addCircle(), publicParams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('发布成功,等待后台审核');
+                setTimeout(function () {
+                    quakooApp.closeWin()
+                }, 500)
+            }
+        })
+    }
+
+    //添加图片
+    function openCover() {
+        quakooImg.openMedia(maxstr, 'img', function (ret) {
+            quakooImg.uploadImgs(ret.value.imgsList, function (ret) {
+                var _results = [];
+                ret.value.urls.forEach(function (item, index) {
+                    imagesMap.push(item);
+                    endIndex=imagesMap.length-1;
+                    var imgObj = quakooImg.processImg(item, publicImageSize, publicImageSize);
+                    var _obj = {
+                        imgurl: imgObj.url+feilKey,
+                        imgStyle: imgObj.style,
+                    };
+                    _results.push(_obj)
+                });
+                var _data = {
+                    list: _results,
+                };
+                var html = template('scriptDiv2', _data);
+                $api.prepend($api.dom('.public-upload-area'), html);
+                maxstr = maxstr - _results.length;
+                setTimeout(function () {
+                    if (!echo.isInit()) {
+                        echoExt.init({
+                            offset: 0,
+                            throttle: 0//设置图片延迟加载的时间
+                        });
+                    } else {
+                        echo.render()
+                    }
+                }, 100);
+            })
+        });
+    }
+
+    // 删除照片
+    function delPicture(_this) {
+        var $parentLi = $(_this).closest('li.upload-cover ');
+        var liIndex = $parentLi.index();
+        imagesMap.splice(liIndex,1);
+        maxstr = 9-imagesMap.length;
+        $parentLi.remove()
+    }
+
+</script>
+</body>
+
+</html>

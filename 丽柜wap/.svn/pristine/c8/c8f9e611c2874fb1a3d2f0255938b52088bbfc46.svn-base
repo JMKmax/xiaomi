@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>我的作品</title>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+    	.mui-bar.mui-bar-nav.mine{
+    		box-shadow: none;
+    	}
+        .mine-topbar {
+            height: 44px;
+            display: flex;
+            align-items: center;
+
+        }
+        .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+				border: none;
+				
+		}
+		.mui-segmented-control.mui-scroll-wrapper .mui-scroll{
+			width: 100%;
+			padding: 0 66px;
+			display: flex;
+        	justify-content: space-around;
+		}
+        .mui-scroll.tabList{
+        	
+        }
+
+        .switch-type {
+            flex: 1;
+            height: 44px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .switch-type span {
+            flex: 1;
+            text-align: center;
+            height: 44px;
+            line-height: 44px;
+            position: relative;
+            display: block;
+        }
+        .switch-type span.active {
+            color: #ff5c98;
+        }
+        .switch-type span.active:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            height: 2px;
+            width:40px;
+            background: #ff5c98;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+
+        .rect {
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            z-index: 6;
+        }
+        /*页面渲染*/
+       .item{
+    		background: #F1F1F1;
+    		padding-top: 0.266666rem;
+    		position: relative;
+    	}
+    	.item .img{
+    		width: 100%;
+    		height: 12rem;
+    		box-sizing: border-box;
+    		overflow: hidden;
+    	}
+    	.item .title{
+    		font-size: 0.373333rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Medium;
+    		position: absolute;
+    		top: 0.4rem;
+    		left: 0.4rem;
+    	}
+    	.item .time{
+    		font-size: 0.32rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Regular;
+    		width: 0.853333rem;
+    		height: 0.533333rem;
+    		line-height: 0.533333rem;
+    		text-align: center;
+    		background: #000;
+    		opacity: 0.5;
+    		border-radius: 0.053333rem;
+    		position: absolute;
+    		bottom: 0.4rem;
+    		right: 0.4rem;
+    	}
+    	.price{
+    		font-size: 0.426666rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Medium;
+    		position: absolute;
+    		bottom: 0.4rem;
+    		left: 0.4rem;
+    	}
+    </style>
+</head>
+<body>
+	<!--<header class="mui-bar mui-bar-nav mine">
+		<div class="mine-topbar">
+		    <div class="rect back" tapmode="" onclick="quakooApp.closeWin()"><img src="../../icon/back.png" width="11" height="18" alt=""></div>
+		    <div class="switch-type">
+		        <span class="active" tapmode="itemOn" onclick="groupFrameSwitch(0)">图片</span>
+		        <span tapmode="itemOn" onclick="groupFrameSwitch(1)">视频</span>
+		    </div>
+		    <div class="rect"></div>
+		</div>
+	</header>-->
+	<div class="rect back " tapmode="" onclick="quakooApp.closeWin()">
+    	<img src="../../icon/back.png" width="11" height="18" alt="">
+    </div>
+	<div class=" mui-content" id="circle">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="tabList mui-scroll">
+				        <a class="mui-control-item mui-active" href="#item1mobile" data-status="0">
+							<span class="">图片</span>
+						</a>
+				        <a class="mui-control-item" href="#item2mobile" data-status="1">
+							<span class="">视频</span>
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class=" mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="list mui-table-view list mui-slider-item mui-control-content mui-active" id="list_00Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll container">
+								<ul class="mui-table-view list mui-slider-item mui-control-content mui-active" id="list_01Con">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js"></script>
+	<script type="text/javascript" src="../../script/mui.pullToRefresh.js"></script>
+	<script type="text/javascript" src="../../script/mui.pullToRefresh.material.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+	<script id="scriptPic" type="text/html">
+		<%for(var i = 0;i<list.length;i++){%>
+			<li class="item" tapmode="" onclick="openPicDetail(<%=list[i].id%>)">
+				<div class="img"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+				<div class="title"><%=list[i].name%></div>
+				<div class="time"><%=list[i].length%></div>
+				<div class="price"><%=list[i].price%>LB</div>
+			</li>
+		<%}%>
+	</script>
+	<script>
+		var obj = {
+			size:8,
+			cursor:0
+		}
+		var hasNest = false;
+		var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+		var winWidth = document.body.clientWidth;
+	   mui.init();
+		(function($) {
+			//阻尼系数
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+			$.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					$(pullRefreshEl).pullToRefresh({
+						down: {
+							callback: function() {
+								obj.cursor = 0; //下拉
+								var self = this;
+								self.endPullDownToRefresh();
+								//								setTimeout(function() {
+								getDataByIndex(index, self);
+								//								}, 1000);
+							}
+						},
+						up: {
+							callback: function() {
+								var self = this;
+								//								setTimeout(function() {
+								getDataByIndex(index, self, true);
+								//								}, 1000);
+							}
+						}
+					});
+				});
+			});
+		})(mui);
+		function getDataByIndex(index, _this, append) {
+			obj.type = index;
+			quakooData.ajaxGetData(config.getUrl_content_getMyContentPager(), obj, function(ret, err) { //进入页面调取数据
+				if(ret) {
+					obj.cursor = ret.nextCursor;
+//					console.log($api.jsonToStr(results))
+		        	var feilKey = quakooUtils.getImgKey();
+		        	if(index == 1){
+		        		for(var i = 0;i<ret.data.length;i++){
+			        		 ret.data[i].length = checkTime(ret.data.length)
+			        		 if (quakooUtils.isBlack(ret.data[i].cover)) {
+			                    ret.data[i].cover = '../../icon/worksbg.png';
+			                    ret.data[i].coverStyle = 'width:100%;height:100%;'
+			                } else {
+			                    var imgObj = quakooImg.processImg(ret.data[i].cover, winWidth, 5.866666 * fontSize);
+			                    ret.data[i].cover = imgObj.url+feilKey;
+			                    ret.data[i].coverStyle = imgObj.style;
+			                }
+			        	}
+		        	}else{
+		        		for(var i = 0;i<ret.data.length;i++){
+			        		 if (quakooUtils.isBlack(ret.data[i].cover)) {
+			                    ret.data[i].cover = '../../icon/worksbg.png';
+			                    ret.data[i].coverStyle = 'width:100%;height:100%;'
+			                } else {
+			                    var imgObj = quakooImg.processImg(ret.data[i].cover, winWidth, 12 * fontSize);
+			                    ret.data[i].cover = imgObj.url+feilKey;
+			                    ret.data[i].coverStyle = imgObj.style;
+			                }
+			        	}
+		        	}
+		        	
+		        	var data = {
+		        		list:ret.data
+		        	}
+		        	var html = template('scriptPic',data)
+		        	if(append) {
+						_this.endPullUpToRefresh(!hasNest);
+						var thisConId = "#list_0" + index + "Con";
+						$(thisConId).append(html)
+					} else {
+						var thisConId = "list_0" + index + "Con";
+						document.getElementById(thisConId).innerHTML = html;
+					}
+		        	echo.init({
+						offset: 0,
+						throttle: 0 //设置图片延迟加载的时间
+					});
+
+					if(append) {
+						_this.endPullUpToRefresh(!hasNest);
+						var thisConId = "#list_0" + index + "Con";
+						$(thisConId).append(html)
+					} else {
+						var thisConId = "list_0" + index + "Con";
+						document.getElementById(thisConId).innerHTML = html;
+					}
+					
+					echo.init({
+						offset: 0,
+						throttle: 0 //设置图片延迟加载的时间
+					});
+					mui('.mui-slider-group').off();
+					mui('.mui-slider-group').on('tap', 'li', function(event) {
+						var id = this.getAttribute("data-id");
+						var status = this.getAttribute("data-status");
+						if(status == 1 || status == 2) { //1已支付(已完成) 
+							openNewWindow('order_detail.html', allResults[id])
+						} else if(status == 0) { //0未支付
+							openNewWindow('mine_order_pay.html', allResults[id])
+						} else if(status == 3) { //3已关闭
+							openNewWindow('order_detail_close.html', allResults[id])
+						} else {
+							openNewWindow('order_detail_finised.html', allResults[id])
+						}
+					});
+				}
+			})
+		}
+
+		getDataByIndex(0);
+//处理时间
+		    function toStr(nub){
+		    	return nub>10 ? ''+nub : '0'+nub
+		    }
+		    function checkTime(time){
+		    	var iHour = parseInt(time / 3600);
+				var iMinute = parseInt((time % 3600) / 60);
+				var iSecond = (time % 3600) % 60;
+				
+				return time = ""+toStr(iMinute)+" : "+toStr(iSecond)+"";
+		    }
+
+	</script>
+
+</html>

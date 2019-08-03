@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <title>圈子-全部</title>
+    <style type="text/css">
+        html,
+        body {
+            background: #F5F5F5;
+        }
+        
+        body {
+            padding-top: 0.533333rem;
+        }
+        
+        .import {
+            height: 1.333333rem;
+            background: #fff;
+        }
+        
+        label {
+            height: 100%;
+            width: 100%;
+        }
+        
+        input {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.426666rem;
+            color: #282828;
+            box-sizing: border-box;
+        }
+        
+        input::-webkit-input-placeholder {
+        	line-height: normal;
+            font-size: 0.426666rem;
+            color: #C1C1C1;
+        }
+        
+        .enterBtn {
+            width: 100%;
+            height: 1.333333rem;
+            background: #fff;
+            line-height: 1.333333rem;
+            text-align: center;
+            font-size: 0.426666rem;
+            color: #A1D9FF;
+            margin-top: 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="import">
+        <label>
+				<input type="text" placeholder="请输入姓名" oninput="checkColor(this)" />
+			</label>
+    </div>
+    <div class="enterBtn">确定提交</div>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+    <script>
+        apiready = function() {
+
+        };
+
+        function checkColor(_this) {
+        	if (quakooUtils.isNotBlack(_this.value)) {
+        		$api.css($api.dom('.enterBtn'), 'color:#0097FE');
+        	}else{
+        		$api.css($api.dom('.enterBtn'), 'color:#A1D9FF')
+        	}
+        }
+    </script>
+</body>
+
+</html>

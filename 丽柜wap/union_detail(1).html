@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" href="../../css/api.css">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commonWindow.css">
+		<link rel="stylesheet" type="text/css" href="../../css/photoswipe.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/default-skin.css" />
+		<title>青年曲艺</title>
+		<style>
+			.container {
+				position: relative;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.32rem;
+				padding-bottom: 0;
+				margin: 0 auto;
+				background: #fff;
+			}
+			
+			.container::after {
+				content: " ";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 1px;
+				background: #DDDDDD;
+				transform: scaleY(0.5);
+			}
+			
+			.right_button {
+				font-size: 0.373333rem;
+			}
+			
+			.basicInfo .left {
+				color: #333;
+				line-height: 0.56rem;
+			}
+			
+			.basicInfo .left .userIcon_user {
+				width: 1.066666rem;
+				height: 1.066666rem;
+				border-radius: 0.533333rem;
+				overflow: hidden;
+				margin-right: 0.213333rem;
+			}
+			
+			.basicInfo .left .userIcon_user img {
+				/*width: 100%;
+				height: 100%;*/
+			}
+			
+			.basicInfo .right {
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+				color: #777;
+			}
+			
+			.list .Introduction {
+				color: #333;
+				font-size: 0.4rem;
+				line-height: 0.64rem;
+				margin-top: 0.266666rem;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				/** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical;
+				/** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 3;
+				/** 显示的行数 **/
+				overflow: hidden;
+			}
+			
+			.list .imgList .imgCon {
+				width: 2.986666rem;
+				height: 2.986666rem;
+				border-radius: 0.053333rem;
+				overflow: hidden;
+				float: left;
+				margin-top: 0.32rem;
+			}
+			
+			.list .imgList .imgCon:nth-child(3n-1) {
+				margin-left: 0.2rem;
+			}
+			
+			.list .imgList .imgCon:nth-child(3n) {
+				float: right;
+			}
+			
+			.list .imgList .imgCon img {
+				/*				width: 100%;*/
+				/*height: 100%;*/
+			}
+			
+			.list .imgList {
+				padding-top: 0.106666rem;
+				padding-bottom: 0.426666rem;
+				position: relative;
+				width: 100%;
+				overflow: hidden;
+				/*				border-bottom: 0.026666rem solid #DDDDDD;*/
+			}
+			
+			.list .imgList::after {
+				content: " ";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 1px;
+				background: #DDDDDD;
+				transform: scaleY(0.5);
+			}
+			
+			.list .list_bottom .praise_num {
+				width: 50%;
+				height: 1.093333rem;
+				text-align: center;
+				line-height: 0.453333rem;
+				font-size: 0.32rem;
+				color: #333;
+			}
+			
+			.list .list_bottom .active {
+				color: #D7533D;
+			}
+			
+			.list .list_bottom img {
+				width: 0.426666rem;
+				margin-right: 0.09rem;
+			}
+			/*名家点评*/
+			
+			.cl_comment .cr_title img {
+				width: 0.346666rem;
+				height: 0.346666rem;
+			}
+			
+			.cl_comment .comment {
+				padding-bottom: 0.64rem;
+			}
+			
+			.cl_comment .comment li {
+				margin-top: 0.426666rem;
+				margin-bottom: 0.933333rem;
+			}
+			
+			.cl_comment .comment .comment_time {
+				color: #9A9A9A;
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+			}
+			
+			.cl_comment .comment .comment_right {
+				color: #D7533D;
+				font-size: 0.373333rem;
+				width: 1.866666rem;
+				height: 0.746666rem;
+				border: 1px solid #D7533D;
+				border-radius: 0.106666rem;
+			}
+			
+			.cl_comment .comment .userIcon_user {
+				width: 1.066666rem;
+				height: 1.066666rem;
+				overflow: hidden;
+				border-radius: 0.533333rem;
+				margin-right: 0.32rem;
+			}
+			
+			.cl_comment .comment .userIcon_user img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.cl_comment .comment .userName {
+				color: #211F20;
+				font-size: 0.4rem;
+				line-height: 0.56rem;
+				font-weight: 500;
+			}
+			
+			.cl_comment .comment .userComment {
+				color: #333;
+				font-size: 0.373333rem;
+				line-height: 0.533333rem;
+				width: 100%;
+				box-sizing: border-box;
+				padding-left: 1.386666rem;
+				margin-top: 0.366666rem;
+				/*overflow: hidden;*/
+			}
+			
+			.cl_comment .comment .more {
+				color: #D7533D;
+				padding: 0.16rem;
+				margin: 0;
+				font-size: 0.373333rem;
+			}
+			
+			.cl_comment .comment .userComment div {
+				position: relative;
+				/*width: 100%;*/
+				background: rgba(255, 248, 247, 1);
+				padding: 0.266666rem;
+				border-radius: 0.106666rem;
+			}
+			
+			.cl_comment .comment .userComment div::after {
+				content: '';
+				position: absolute;
+				top: -7px;
+				left: 0.533333rem;
+				transform: translateX(-50%);
+				background: rgba(255, 248, 247, 1);
+				width: 14px;
+				height: 14px;
+				transform: rotate(45deg);
+			}
+			
+			.cl_comment .comment .userComment div img {
+				width: 0.533333rem;
+				height: 0.533333rem;
+			}
+			
+			.cl_comment .comment .userComment div .timeNum {
+				color: #333;
+				font-size: 0.373333rem;
+				line-height: 0.533333rem;
+			}
+			
+			.list .flex {
+				position: relative;
+			}
+			
+			.list .flex .user {
+				width: 100%;
+			}
+			
+			.mui-scroll-wrapper {
+				top: 1.12rem;
+			}
+			
+			.backdrop {
+				z-index: 1000!important;
+			}
+			
+			#words {
+				display: none;
+				position: fixed;
+				width: 100%;
+				min-height: 2.48rem;
+				background: rgb(237, 237, 237);
+				bottom: 0;
+				left: 0;
+				box-sizing: border-box;
+				padding: 0.266666rem 0.32rem;
+				z-index: 10000;
+			}
+			
+			#words textarea {
+				width: 7.173333rem;
+				min-height: 2rem;
+				background: #fff;
+				box-sizing: border-box;
+				padding: 0.32rem;
+				font-size: 0.32rem;
+				font-family: PingFangSC-Regular;
+				font-weight: 400;
+				color: rgba(85, 85, 85, 1);
+				line-height: 0.48rem;
+				margin: 0;
+				border-radius: 0.106666rem;
+			}
+			
+			#words div {
+				position: absolute;
+				right: 0.32rem;
+				bottom: 0.426666rem;
+				width: 1.866666rem;
+				height: 0.746666rem;
+				background: rgba(215, 83, 61, 1);
+				border-radius: 0.106666rem;
+				text-align: center;
+				line-height: 0.746666rem;
+				color: #fff;
+			}
+			
+			.mui-table-view:after,
+			.mui-table-view:before {
+				height: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="topbar">
+			<div id="leftButton" tapmode="itemOn" onclick="closeWins()">
+				<img src="../../image/back@3x.png">
+			</div>
+			<div>
+				媒体联盟
+			</div>
+		</div>
+		<div class="topbar"></div>
+		<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefreshs" style="width: 100%;overflow: scroll;">
+			<div class="main" style="width: 100%;">
+				<div class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+					<div id="con">
+						<div class="container">
+							<ul id="detail">
+	
+							</ul>
+						</div>
+						<div class="container top cl_comment">
+							<ul class="comment" id="comment">
+	
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="words" class="flex flex-pack-center flex-pack-justify">
+			<textarea oninput="checkWordNum(this)" placeholder="请输入评论" id="edit" name="" cols=""></textarea>
+			<div onclick="addComment()">发送</div>
+		</div>
+		<div class="backdrop" onclick="showWords('none')"></div>
+		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+			<!-- Background of PhotoSwipe.
+		         It's a separate element, as animating opacity is faster than rgba(). -->
+			<div class="pswp__bg"></div>
+
+			<!-- Slides wrapper with overflow:hidden. -->
+			<div class="pswp__scroll-wrap">
+
+				<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+				<div class="pswp__container">
+					<!-- don't modify these 3 pswp__item elements, data is added later on -->
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+				</div>
+
+				<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+				<div id="showNum" class="pswp__ui pswp__ui--hidden">
+
+					<div class="pswp__top-bar">
+						<div class="pswp__counter">1 / 5</div>
+						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button></button>
+
+						<div class="pswp__preloader">
+							<div class="pswp__preloader__icn">
+								<div class="pswp__preloader__cut">
+									<div class="pswp__preloader__donut"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+						<div class="pswp__share-tooltip"></div>
+					</div>
+					<div class="pswp__caption">
+						<div class="pswp__caption__center" style="font-size: 15px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="scriptDiv1">
+			<div class="container">
+				<ul id="detail">
+					<li class="list ">
+						<div class="basicInfo flex flex-align-center flex-pack-center flex-pack-justify">
+							<div class="left flex flex-align-center flex-pack-center">
+								<div class="userIcon_user">
+									<img src="<%=list.icon%>" style="<%=list.style%>" alt="" />
+								</div>
+								<div class="userName">
+									<%=list.title%>
+								</div>
+							</div>
+							<div class="right">
+								<%=list.ctime%>
+							</div>
+						</div>
+						<div class="Introduction">
+							<%=list.info%>
+						</div>
+						<div class="imgList">
+							<%for(var j = 0;j<list.imageListStr.length;j++){%>
+							<div class="imgCon">
+								<img index="<%=j%>" src="<%=list.imageListStr[j].url%>" style="<%=list.imageListStr[j].style%>" alt="" />
+							</div>
+							<%}%>
+						</div>
+						<div class="list_bottom flex flex-align-center flex-pack-center">
+							<div class="praise_num flex flex-align-center flex-pack-center comment_button">
+								<%if(list.comment){%>
+								<img src="../../icon/msg_active.png" alt="" />
+								<span class="active"><%=list.comentcout%></span>
+								<%}else{%>
+								<img src="../../icon/msg.png" alt="" />
+								<%=list.comentcout%>
+								<%}%>
+							</div>
+							<%if(list.support){%>
+							<div data-id="<%=list.id%>" class="praise_num flex flex-align-center flex-pack-center active praise_button">
+								<%}else{%>
+								<div data-id="<%=list.id%>" class="praise_num flex flex-align-center flex-pack-center  praise_button">
+									<%}%>
+									<%if(list.support){%>
+									<img src="../../icon/praised.png" alt="" />
+									<span><%=list.likecout%></span>
+									<%}else{%>
+									<img src="../../icon/praise.png" alt="" />
+									<span><%=list.likecout%></span>
+									<%}%>
+								</div>
+							</div>
+					</li>
+				</ul>
+			</div>
+			<div class="container top cl_comment">
+				<ul class="comment" id="comment">
+					<%for(var i = 0;i<list_comment.length;i++){%>
+						<li class="list">
+							<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+								<div class="user flex flex-pack-center flex-align-center flex-pack-justify">
+									<div class="flex flex-pack-center flex-align-center">
+										<div class="userIcon_user" data-uid="<%=list_comment[i].user.id%>">
+											<img src="<%=list_comment[i].user.icon%>" style="<%=list_comment[i].user.style%>" alt="" />
+										</div>
+										<div class="">
+											<div class="userName">
+												<%=list_comment[i].user.name%>
+											</div>
+										</div>
+									</div>
+									<div class="comment_time">
+										<%=list_comment[i].ctime%>
+									</div>
+								</div>
+							</div>
+							<div class="userComment">
+								<div class="list_word">
+									<%=list_comment[i].content%>
+								</div>
+							</div>
+						</li>
+					<%}%>
+				</ul>
+			</div>
+			
+		</script>
+		<script type="text/html" id="scriptDiv_comment">
+			<%for(var i = 0;i<list.length;i++){%>
+				<li class="list">
+					<div class="flex flex-align-center flex-pack-center flex-pack-justify">
+						<div class="user flex flex-pack-center flex-align-center flex-pack-justify">
+							<div class="flex flex-pack-center flex-align-center">
+								<div class="userIcon_user" data-uid="<%=list[i].uid%>">
+									<img src="<%=list[i].user.icon%>" style="<%=list[i].user.style%>" alt="" />
+								</div>
+								<div class="">
+									<div class="userName">
+										<%=list[i].user.name%>
+									</div>
+								</div>
+							</div>
+							<div class="comment_time">
+								<%=list[i].ctime%>
+							</div>
+						</div>
+					</div>
+					<div class="userComment">
+						<div class="list_word">
+							<%=list[i].content%>
+						</div>
+					</div>
+				</li>
+			<%}%>
+		</script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../script/mui.min.js?v=1.01"></script>
+		<script type="text/javascript" src="../../script/uhpUtils.js?v=8.06"></script>
+		<script type="text/javascript" src="../../script/util.js"></script>
+		<script type="text/javascript" src="../../script/user.js"></script>
+		<script type="text/javascript" src="../../script/template-native.js"></script>
+		<script type="text/javascript" src="../../script/public.js"></script>
+		<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+		<!--<script type="text/javascript" src="../../script/echo.min.js"></script>-->
+
+		<script type="text/javascript" src="../../script/photoswipe.js?v=1.01"></script>
+		<script type="text/javascript" src="../../script/photoswipe-ui-default.min.js"></script>
+		<script>
+			var openPhotoSwipe, isSupport,unionDetail;
+			
+			var activeId = getItemData("activeUnionId");
+			var hasnext = false;
+			var commentListObj = {
+				cursor: 0,
+				type: 1,
+				size: 10,
+				typeId: activeId
+			}
+
+			
+
+			//评论
+			function addComment() {
+				if(isBlack(trimAll(document.getElementById("edit").value))) {
+					mui.toast("请输入评论内容！");
+					return;
+				}
+				showWords('none');
+				ajaxGet(addCommentUrl, {
+					typeId: activeId,
+					type: 1,
+					content: trimAll(document.getElementById("edit").value)
+				}, function(ret, err) {
+					if(ret && ret.success) {
+						mui.toast("评论成功！");
+						var data = {
+							content: trimAll(document.getElementById("edit").value),
+							ctime: new Date().getTime(),
+							user: getUserInfo()
+						}
+						addCommentToHtml([data], true);
+					} else {
+						mui.toast(ret.msg);
+					}
+				})
+			}
+
+			mui.init({
+				pullRefresh: {
+					container: "#pullrefreshs", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: getCommentPager //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+
+
+//			function closeWins(){
+//				history.back(-1);
+//			}
+
+			function getCommentPager() {
+				ajaxGet(getCommentPagerUrl, commentListObj, function(ret, err) {
+					if(ret) {
+						if(ret.hasnext) {
+							hasnext = false;
+						} else {
+							hasnext = true;
+						}
+						mui('#pullrefreshs').pullRefresh().endPullupToRefresh(hasnext);
+						if(isBlack(ret.data)) {
+							mui('#pullrefreshs').pullRefresh().endPullupToRefresh(true);
+						}
+						commentListObj.cursor = ret.nextCursor;
+						hasnext = ret.hasnext;
+						if(isBlack(unionDetail)){
+							ajaxGet(getMediaContentInfoUrl, {
+								id: activeId
+							}, function(rets, err) {
+								if(rets && rets.success) {
+									isSupport = rets.data.support;
+									unionDetail = rets.data;
+									addDataToHtml(rets.data,ret.data)
+								} else {
+									mui.toast(rets.msg);
+								}
+							})
+						}else{
+							addCommentToHtml(ret.data);
+						}
+						
+					}
+				})
+			}
+
+			function addDataToHtml(results,results_comment) {
+				var fontSize = getItemData("fontSize");
+				var imgWidth = 2.986666 * fontSize;
+				var imgHeight = 2.986666 * fontSize;
+				var imgsList = results.imageListStr.split(",");
+				var imgStyleArr = [];
+				for(var j = 0; j < imgsList.length; j++) {
+					if(isNotBlack(imgsList[j])) {
+						var obj = getImgByThisSize(imgsList[j], imgWidth, imgHeight);
+						imgStyleArr.push(obj);
+					}
+				}
+				results.imageListStr = imgStyleArr;
+				results.ctime = formatTimeToDay(results.ctime);
+				results.info = tryDecodeURIComponent(results.info);
+				if (results.icon) {
+					var obj_userIcon_user = getImgByThisSize(results.icon, 1.066666 * fontSize, 1.066666 * fontSize);
+					results.icon = obj_userIcon_user.url;
+					results.style = obj_userIcon_user.style;
+				}else{
+					results.icon = "../../image/person.png";
+					results.style = "width:100%;height:100%;"
+				}
+				
+				if (results_comment.length) {
+					for(var j = 0; j < results_comment.length; j++) {
+						results_comment[j].ctime = formatTimeToDay(results_comment[j].ctime);
+						if(results_comment[j].user.icon) {
+							var obj_userIcon_user = getImgByThisSize(results_comment[j].user.icon, 1.066666 * fontSize, 1.066666 * fontSize);
+							results_comment[j].user.icon = obj_userIcon_user.url;
+							results_comment[j].user.style = obj_userIcon_user.style;
+						}else{
+							results_comment[j].user.icon = "../../image/person.png";
+							results_comment[j].user.style = "width:100%;height:100%;"
+						}
+					}
+				}
+							
+				var data = {
+					list: results,
+					list_comment:results_comment
+				};
+				var html = template('scriptDiv1', data);
+				document.querySelector('#con').innerHTML = html;
+
+				var items = [];
+				for(var i = 0; i < results.imageListStr.length; i++) {
+					var obj = {
+						src: results.imageListStr[i].url,
+						w: results.imageListStr[i].img_width,
+						h: results.imageListStr[i].img_height
+					}
+					items.push(obj);
+				}
+
+				setTimeout(function() {
+					mui('.list').on('tap', '.praise_button', function(event) {
+						var id = this.getAttribute("data-id");
+						setPraise(this, id);
+					});
+					mui('.imgCon').on('tap', 'img', function(event) {
+						var index = this.getAttribute("index");
+						openPhotoSwipe(index);
+					});
+
+					mui('.list').on('tap', '.comment_button', function(event) {
+						showWords('block');
+					});
+				}, 100)
+
+				openPhotoSwipe = function(index) {
+					var cover;
+					var pswpElement = document.querySelectorAll('.pswp')[0];
+					var options = {
+						// history & focus options are disabled on CodePen
+						history: true,
+						index: parseInt(index),
+						//	                timeToIdle:items.length,
+						focus: true,
+						zoomEl: false,
+						showAnimationDuration: 0,
+						hideAnimationDuration: 0,
+						tapToClose: false,
+						shareEl: false,
+						tapToToggleControls: false,
+						closeOnVerticalDrag: false,
+						closeOnScroll: true,
+						loop: true
+					};
+
+					var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+					gallery.init();
+					pws = gallery;
+
+				};
+			}
+
+			//加载评论
+			function addCommentToHtml(results, prepend) {
+				var fontSize = getItemData("fontSize");
+				for(var j = 0; j < results.length; j++) {
+					results[j].ctime = formatTimeToDay(results[j].ctime);
+					if(results[j].user.icon) {
+						var obj_userIcon_user = getImgByThisSize(results[j].user.icon, 1.066666 * fontSize, 1.066666 * fontSize);
+						results[j].user.icon = obj_userIcon_user.url;
+						results[j].user.style = obj_userIcon_user.style;
+					}else{
+						results[j].user.icon = "../../image/person.png";
+						results[j].user.style = "width:100%;height:100%;"
+					}
+				}
+				var data = {
+					list: results
+				};
+				var html = template('scriptDiv_comment', data);
+				if(prepend) {
+					$("#comment").prepend(html);
+				} else {
+					document.querySelector('#comment').innerHTML = html;
+				}
+				echo.init({
+					offset: 0,
+					throttle: 0 //设置图片延迟加载的时间
+				});
+			}
+
+			//点赞
+			var flag_praise = false;
+
+			function setPraise(_this, typeId) {
+				if(flag_praise) {
+					return;
+				}
+				flag_praise = true;
+				var urls = addSupportUrl;
+				if(isSupport) {
+					urls = delSupportUrl;
+				}
+				ajaxGet(urls, {
+					type: 1,
+					typeId: typeId
+				}, function(ret, err) {
+					flag_praise = false;
+					if(ret && ret.success) {
+						if(isSupport) {
+							isSupport = false;
+							_this.classList.remove("active");
+							_this.querySelector("img").src = "../../icon/praise.png";
+							_this.querySelector("span").innerHTML = parseInt(_this.querySelector("span").innerHTML) - 1;
+						} else {
+							isSupport = true;
+							_this.classList.add("active");
+							_this.querySelector("img").src = "../../icon/praised.png";
+							_this.querySelector("span").innerHTML = parseInt(_this.querySelector("span").innerHTML) + 1;
+						}
+					} else {
+						mui.toast(ret.msg)
+					}
+				})
+			}
+
+			//打开评论框
+			function showWords(display) {
+				if(display == "none") {
+					document.body.removeEventListener('touchmove', bodyScroll, {
+						passive: false
+					});
+				} else {
+					document.body.addEventListener('touchmove', bodyScroll, {
+						passive: false
+					});
+				}
+
+				document.querySelector(".backdrop").style.display = display;
+				document.querySelector("#words").style.display = display;
+				if(display == "block") {
+					document.getElementById("edit").focus();
+				}
+			}
+
+			function checkWordNum(_this) {
+				if(_this.value.length > 100) {
+					_this.value = _this.value.slice(0, 100);
+					mui.toast("最多是输入100个字！");
+				}
+			}
+
+			
+		</script>
+	</body>
+
+</html>

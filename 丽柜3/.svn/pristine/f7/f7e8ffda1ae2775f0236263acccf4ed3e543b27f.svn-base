@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>设置</title>
+    	<style>
+    		body{
+    			background: #F5F5F5;
+    		}
+    		.set-push .title{
+    			font-size: 0.426666rem;
+    			color: #999;
+    			line-height: 1.226666rem;
+    			padding-left: 0.4rem;
+    			background: #F5F5F5;
+    		}
+    		.set-push{
+    			margin-bottom: 0.266666rem;
+    		}
+    		.push-item{
+    			padding: 0 0.4rem;
+    			height: 1.6rem;
+    			position: relative;
+    			background: #fff;
+    		}
+    		.push-item:after{
+    			content: '';
+    			height: 1px;
+    			background: #F5F5F5;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.push-item .item-name{
+    			font-size: 0.426666rem;
+    			color: #333;
+    		}
+    		.push-btn{
+    			width: 1.44rem;
+            	height: 0.667rem;
+            	border-radius: 2.667rem;
+            	-webkit-appearance: button;
+            	background: #cbcbcb;
+            	border: 0.026666rem solid #F5F5F5;
+            	position: relative;
+           	 	transition:0.3s;
+    		}
+    		.push-btn:before{
+    		 	content: '';
+            	width: 0.533rem;
+           	 	height: 0.533rem;
+            	border-radius: 100%;
+            	background-color: #fff;
+            	position: absolute;
+            	left: 0.08rem;
+            	top: 0.053rem;
+            	transition: 0.3s;
+    		}
+    		 
+    		.push-btn:checked:before{
+    			left:0.853rem;
+    		}
+    		.push-btn:checked{
+    			background: #FF5C98;
+    			border-color: #FF0000;
+    		}
+    		.push-item img{
+    			width: 0.186666rem;
+    			height: 0.373333rem;
+    		}
+    		.push-item .item-des{
+    			font-size: 0.373333rem;
+    			color: #999;
+    		}
+    		.set-content{
+    			margin-bottom: 0.533333rem;
+    		}
+    		.footer{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			font-size: 0.48rem;
+    			color: #fff;
+    			background: #FF5C98;
+    			margin: 0 auto;
+    			border-radius: 2.666666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="set-push">
+			<div class="title">推送</div>
+			<ul>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">作品推送</div>
+					<label ><input type="checkbox"   class="push-btn" /></label>
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">动态推送</div>
+					<label ><input type="checkbox"   class="push-btn" /></label>
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">消息推送</div>
+					<label ><input type="checkbox"   class="push-btn" /></label>
+				</li>
+			</ul>
+		</div>
+		<div class="set-content">
+			<ul>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">更改手机号</div>
+					<img src="../../icon/next.png" alt="" />
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">更改密码</div>
+					<img src="../../icon/next.png" alt="" />
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">清除缓存</div>
+					<div class="item-des">223.7MB</div>
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">关于我们</div>
+					<img src="../../icon/next.png" alt="" />
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">版本检测</div>
+					<div class="item-des">当前版本1.2.1</div>
+				</li>
+				<li class="push-item flex flex-align-center flex-pack-justify">
+					<div class="item-name">用户协议</div>
+					<img src="../../icon/next.png" alt="" />
+				</li>
+			</ul>
+		</div>
+		<div class="footer">推出</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

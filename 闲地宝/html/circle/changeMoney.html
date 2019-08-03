@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<title>圈子-全部</title>
+		<style type="text/css">
+			html,body{
+				background: rgba(0,0,0,0.2);
+			}
+			.modal{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,0.2);
+			}
+			.modal-wrap{
+				background: #fff;
+				border-top-left-radius: 0.4rem;
+				border-top-right-radius: 0.4rem;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				z-index: 1;
+			}
+			.modal-wrap .title{
+				font-size: 0.48rem;
+				color: #2D3134;
+				margin-top: 0.8rem;
+				text-align: center;
+				margin-bottom: 0.266666rem;
+			}
+			.modal-wrap .item{
+				padding: 0 0.426666rem;
+				margin-top: 0.4rem;
+			}
+			.modal-wrap ul{
+				height: 7.2rem;
+				overflow: scroll;
+				padding-bottom: 1.333333rem;
+			}
+			.modal-wrap .icon{
+				width: 0.8rem;
+				height: 0.8rem;
+				border-radius: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-right: 0.293333rem;
+			}
+			.modal-wrap .icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.modal-wrap .name{
+				font-size: 0.32rem;
+				color: #646769;
+			}
+			.modal-wrap .name span{
+				color: #B1B1B1;
+				font-size: 0.266666rem;
+				margin-left: 0.106666rem;
+			}
+			.modal-wrap .right{
+				font-size: 0.32rem;
+				color: #08A3FF;
+			}
+			.modal-wrap .over{
+				height: 1.066666rem;
+				line-height: 1.066666rem;
+				background: #08A3FF;
+				text-align: center;
+				position: relative;
+				margin-left: 0.426666rem;
+				margin-right: 0.426666rem;
+				bottom: 0.4rem;
+				color: #fff;
+				font-size: 0.4rem;
+				border-radius: 0.186666rem;
+				box-shadow:-5px -39px 0px rgba(255,255,255,0.8);
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="modal" tapmode="" onclick="api.closeFrame()"></div>
+		<div class="modal-wrap">
+			<div class="title">修改分账比例</div>
+			<ul>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王<span>(创建人)</span></div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex flex-align-center">
+						<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+						<div class="name">小王</div>
+					</div>
+					<div class="right">30%</div>
+				</li>
+			</ul>
+			<div class="over">完成</div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script type="text/javascript" src="../../script/mui.min.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>注册登录</title>
+	<style type="text/css">
+		input::-webkit-input-placeholder {
+			line-height: normal;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.login_icon{
+			width: 2.08rem;
+			height: 2.08rem;
+			margin: auto ;
+			 margin-top: 1.253333rem;
+			display: block;
+		}
+		.input_info{
+			width: 8.666666rem;
+			margin: 1.6rem auto 0;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.input_info .item{
+			position: relative;
+			box-sizing: border-box;
+			border-radius: 0.586666rem;
+			height: 1.173rem;
+			background:#f2f2f2;
+			padding: 0 0.267rem;
+		}
+		.item +.item {
+			margin-top: 0.533rem;
+		}
+		.input_info .left{
+			height: 100%;
+			line-height: 2;
+			min-width: 1.307rem;
+			padding: 0 0.267rem;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.input_info .left:after {
+			content: '';
+			position: absolute;
+			right: 0;
+			top: 0.267rem;
+			bottom: 0.267rem;
+			width: 1px;
+			transform: scaleX(.5);
+			background:#d8d8d8;
+		}
+		.input_info .right {
+			flex: 1;
+			height: 100%;
+		}
+		.input_info .right input{
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			padding:0 0.267rem;
+			font-size: 16px;
+			color: #333;
+		}
+
+		.container{
+			width: 8.666666rem;
+			margin: 0.266666rem auto 0 ;
+			color: #333;
+			font-size: 0.32rem;
+			box-sizing: border-box;
+			padding: 0 0.533333rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0.533333rem auto 0;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+		.code {
+			font-size:12px;
+			color:#ff5c98;
+			box-sizing: border-box;
+			min-width: 2.24rem;
+			position: relative;
+		}
+		.code:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0.267rem;
+			bottom: 0.267rem;
+			width: 1px;
+			transform: scaleX(.5);
+			background:#d8d8d8;
+		}
+		/*选择区号*/
+		        .select_wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .select_box {
+            background: #fff;
+            border-radius: 0.16rem;
+            width: 6.773rem;
+            height: 8.853rem;
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .title {
+            padding: 0.533rem 0.533rem 0.16rem;
+            font-size: 0.426666rem;
+            color: #FF5C98;
+            flex-shrink: 0;
+        }
+
+        .area-num-ul {
+            height: calc(100% - 0.533rem - 0.533rem - 0.533rem);
+            overflow-y: scroll;
+        }
+
+        .area-num-ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        .area-num-ul li {
+            font-size: 0.373333rem;
+            color: #333;
+            height: 1.387rem;
+            line-height: 1.387rem;
+            position: relative;
+            padding: 0 0.533rem;
+        }
+
+        .area-num-ul li:after {
+            content: '';
+            height: 1px;
+            background: #f2f2f2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: scaleY(.5);
+        }
+
+        .area-num-ul li:first-child:after {
+            content: none;
+        }
+
+        .cancel {
+            flex-shrink:0 ;
+            font-size: 0.426666rem;
+            color: #999;
+            width: 100%;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
+            text-align: center;
+        }
+	</style>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>注册</div>
+    </div>
+<img class="login_icon" src="../../icon/icon.png" alt="" />
+<div class="input_info">
+	<div class="item flex">
+		<div class="left flex flex-align-center" id="domAreaNumber" tapmode="" onclick="selectAreaNumber()" >+86</div>
+		<div class="right">
+			<input type="number" id="tel"  onkeyup="this.value = this.value.replace(/\./,'');if(this.value.length>11)this.value=this.value.slice(0,11)"  placeholder="输入手机号"  />
+		</div>
+		<div class="code flex flex-align-center flex-pack-center" id="sms" onclick="getCode()">获取验证码</div>
+	</div>
+	<div class="item">
+		<div class="right">
+			<input type="number" id="code" onkeyup="this.value = this.value.replace(/\./,'');if(this.value.length>5)this.value=this.value.slice(0,5)"  placeholder="输入验证码" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="right">
+			<input type="password" id="pwd" onkeyup="value = value.replace(/^[0-9][a-z][A-Z]{6,10}$/,'')" input placeholder="输入密码" />
+		</div>
+	</div>
+</div>
+<div class="container flex flex-align-center flex-pack-center flex-pack-justify">
+	<div></div>
+	<div tapmode="" onclick="openLose()">忘记密码</div>
+</div>
+<div class="select_wrap">
+    <div class="select_box">
+        <div class="title">选择国家或者地区电话号码</div>
+        <ul class="area-num-ul">
+        </ul>
+        <div class="cancel" tapmode="itemOn" onclick="api.closeFrame()">取消</div>
+    </div>
+</div>
+<div class="loginButton flex flex-align-center flex-pack-center" onclick="openMain()">注册</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/area-number.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="scriptDiv1">
+        <%for(var i = 0 ; i< list.length;i++){%>
+            <li  onclick="returnAreaNumber('<%=list[i].num%>')"><%=list[i].ch%>+<%=list[i].num%></li>
+        <%}%>
+</script>
+<script>
+
+	// 忘记密码
+	function openLose(){
+		quakooApp.openNewWindow('lose_password','./lose_password.html');
+	}
+	function getCode() {
+		var phone = $api.val($api.dom('#tel'));
+
+		if(quakooUtils.isBlack(phone)) {
+			quakooMsg.toast('请输入手机号');
+			return
+		}
+		quakooLogin.sms(config.getUrl_web_user_createAuthCodeOnReg(),false,{phone:phone,areaAccount:config.areaAccount})
+	}
+	function openMain() {
+		if (quakooUtils.isBlack($api.val($api.dom('#tel')))){
+			quakooMsg.toast('请输入手机号');
+			return
+		}
+		if (quakooUtils.isBlack($api.val($api.dom('#code')))){
+			quakooMsg.toast('请输入验证码');
+			return
+		}
+		if (quakooUtils.isBlack($api.val($api.dom('#pwd')))){
+			quakooMsg.toast('请输入密码');
+			return
+		}
+		var _params = {
+			phone:$api.val($api.dom('#tel'))	,//是	long	手机号码
+			code:$api.val($api.dom('#code'))	,//是	string	手机验证码
+			password:$api.val($api.dom('#pwd'))	,//是	string	密码
+			plat: api.systemType,//否	string	设备名
+			platVersion: api.systemVersion,//否	string	设备号
+			areaAccount:config.areaAccount
+		};
+		quakooData.ajaxSubmitDataNotToken(config.getUrl_web_user_register(),_params,function (ret,err) {
+			if(ret && ret.success){
+				quakooMsg.toast('注册成功');
+				setTimeout(function () {
+					api.closeWin()
+				},300)
+			}
+		})
+
+	}
+	// 选择区号
+	function selectAreaNumber() {
+		var oWrap = document.querySelector('.select_wrap')
+		oWrap.style.display = 'block';
+		renderAreaNumber(areaNumber)
+	}
+	 // 渲染国际区号
+    function  renderAreaNumber(results) {
+        var newResults = []
+        results.forEach(function (item,i) {
+            var _obj = {}
+            var itemArr = item.split('-');
+            _obj.en = itemArr[0];
+            _obj.ch = itemArr[1];
+            _obj.num = itemArr[2];
+            newResults.push(_obj)
+        });
+       var data = {
+           list:newResults
+       };
+       var html = template('scriptDiv1',data);
+       $api.html($api.dom('.area-num-ul'),html);
+    }
+    // 返回区域号
+    function returnAreaNumber(_number) {
+      var oWrap = document.querySelector('.select_wrap')
+      $api.text($api.dom('#domAreaNumber'),'+'+_number)
+      oWrap.style.display = 'none';
+    }
+</script>
+</body>
+</html>

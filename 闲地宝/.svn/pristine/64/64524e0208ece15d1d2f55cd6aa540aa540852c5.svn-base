@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>圈子-我的审核</title>
+		<style type="text/css">
+			html,body{
+				background: rgba(0,0,0,0.2);
+			}
+			.modal{
+				width: 100%;
+				height: 100%;
+				position:fixed;
+				top: 0;
+				left: 0;
+				background: rgba(0,0,0,0.2);
+			}
+			.modal-wrap{
+				width: 7.333333rem;
+				background: #fff;
+				position:absolute;
+				top:50%;
+				left: 50%;
+				transform:translate(-50%,-50%);
+				text-align: center;
+				border-radius: 0.266666rem;
+			}
+			.modal-wrap .title{
+				font-size: 0.48rem;
+				color: #2D3134;
+				margin-top: 0.8rem;
+			}
+			.modal-wrap .content{
+				font-size: 0.4rem;
+				color: #646769;
+				margin: 0.8rem 0;
+			}
+			.modal-wrap .button{
+				justify-content: space-around;
+				margin-bottom: 0.8rem;
+			}
+			.modal-wrap .button div{
+				width: 2.666666rem;
+				height: 1.066666rem;
+				border-radius: 0.133333rem;
+				line-height: 1.066666rem;
+				text-align: center;
+				border:1px solid #0097FE;
+				font-size: 0.4rem;
+				color: #0097FE;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div class="modal" tapmode="" onclick="api.closeFrame()"></div>
+		<div class="modal-wrap">
+			<div class="title">提示</div>
+			<div class="content">您是否同意**加入圈子？</div>
+			<div class="button flex">
+				<div class="left" tapmode="" onclick="api.closeFrame()">取消</div>
+				<div class="right">确认</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+				
+			};
+		</script>
+	</body>
+
+</html>

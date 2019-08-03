@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>动态发布</title>
+		<style type="text/css">
+			body,
+			html {
+				background-color: rgba(0, 0, 0, 0);
+			}
+			/* 模态框 */
+			
+			.tenant-model {
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0;
+				top: 0;
+				background-color: rgba(0, 0, 0, 0.25);
+				/*pointer-events: none;*/
+			}
+			
+			.release {
+				width: 100%;
+				height: 4.533333rem;
+				background-color: white;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				padding-top: 0.533333rem;
+			}
+			
+			.release_top {
+				width: 100%;
+				height: 0.426666rem;
+				/*background-color: pink;*/
+				position: relative;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #333333;
+				text-align: center;
+				line-height: 0.426666rem;
+			}
+			
+			.release_top_img {
+				width: 0.8rem;
+				height: 0.8rem;
+				position: absolute;
+				top: 50%;
+				right: 0.4rem;
+				margin-top: -0.4rem;
+			}
+			
+			.release_top_img img {
+				width: 0.426666rem;
+				height: 0.426666rem;
+				margin: 0 auto;
+				margin-top: 0.186666rem;
+			}
+			
+			.release_options {
+				display: flex;
+				box-sizing: border-box;
+				padding: 0 2rem 0 2rem;
+				margin-top: 0.533333rem;
+			}
+			
+			.release_options>div {
+				flex: 1;
+				height: 100%;
+				/*background-color: pink;*/
+				position: relative;
+			}
+			
+			.release_option>div {
+				width: 1.386666rem;
+				height: 2.133333rem;
+				position: relative;
+				margin: 0 auto;
+			}
+			
+			.release_option>div:nth-child(2) {
+				float: right;
+			}
+			
+			.release_option>div>div {
+				width: 100%;
+				height: 1.386666rem;
+				border-radius: 50%;
+				background-image: linear-gradient(90deg, #ff5c98 0%, #ff95c9 85%);
+				position: relative;
+			}
+			
+			.release_option>div>div>img {
+				margin-top: 0.373333rem;
+				margin-left: 0.373333rem;
+			}
+			
+			.release_options>div:nth-child(1)>div>div>img {
+				width: 0.64rem;
+				height: 0.586666rem;
+			}
+			
+			.release_options>div:nth-child(2)>div>div>img {
+				width: 0.746666rem;
+				height: 0.48rem;
+				margin-top: 0.453333rem;
+			}
+			
+			.release_option>div>p {
+				text-align: center;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color: #333333;
+				margin-top: 0.213333rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="tenant-model" onclick="api.closeFrame()"></div>
+		<div class="release fit">
+			<div class="release_top">发布
+				<div class="release_top_img" onclick="api.closeFrame()"><img src="../../icon/close.png" alt="" /></div>
+			</div>
+			<div class="release_options">
+				<div class="release_option" tapmode="itemOn" onclick="releasePicture()">
+					<div>
+						<div><img src="../../icon/pic.png" /></div>
+						<p>图片</p>
+					</div>
+				</div>
+				<div class="release_option" tapmode="itemOn" onclick="releaseVideo()">
+					<div>
+						<div><img src="../../icon/video_camera.png" /></div>
+						<p>视频</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+			//打开分享视频页面
+			function releaseVideo() {
+				quakooApp.openNewWindow('release_video', './release_video.html')
+				setTimeout(api.closeFrame(),3000)
+			}
+			//打开分享图片页面
+			function releasePicture() {
+				quakooApp.openNewWindow('release_picture', './release_picture.html')
+				setTimeout(api.closeFrame(),3000)
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>注册登录</title>
+	<style type="text/css">
+		body {
+			padding-top: 1.253333rem;
+		}
+		input::-webkit-input-placeholder {
+			line-height: normal;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.login_icon{
+			width: 2.08rem;
+			height: 2.08rem;
+			margin: auto ;
+			display: block;
+		}
+		.input_info{
+			width: 8.666666rem;
+			margin: 1.6rem auto 0;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.input_info .item{
+			position: relative;
+			box-sizing: border-box;
+			border-radius: 0.586666rem;
+			height: 1.173rem;
+			background:#f2f2f2;
+			padding: 0 0.267rem;
+		}
+		.item +.item {
+			margin-top: 0.533rem;
+		}
+		.input_info .left{
+			height: 100%;
+			line-height: 2;
+			min-width: 1.307rem;
+			padding: 0 0.267rem;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.input_info .left:after {
+			content: '';
+			position: absolute;
+			right: 0;
+			top: 0.267rem;
+			bottom: 0.267rem;
+			width: 1px;
+			transform: scaleX(.5);
+			background:#d8d8d8;
+		}
+		.input_info .right {
+			flex: 1;
+			height: 100%;
+		}
+		.input_info .right input{
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			padding:0 0.267rem;
+			font-size: 16px;
+			color: #333;
+		}
+
+		.container{
+			width: 8.666666rem;
+			margin: 0.266666rem auto 0 ;
+			color: #333;
+			font-size: 0.32rem;
+			box-sizing: border-box;
+			padding: 0 0.533333rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0.533333rem auto 0;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+		.code {
+			font-size:12px;
+			color:#ff5c98;
+			box-sizing: border-box;
+			min-width: 2.24rem;
+			position: relative;
+		}
+		.code:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0.267rem;
+			bottom: 0.267rem;
+			width: 1px;
+			transform: scaleX(.5);
+			background:#d8d8d8;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>注册</div>
+    </div>
+<img class="login_icon" src="../../icon/icon.png" alt="" />
+<div class="input_info">
+	<div class="item flex">
+		<div class="left flex flex-align-center" id="domAreaNumber" tapmode="" onclick="selectAreaNumber()" >+86</div>
+		<div class="right">
+			<input type="number" id="tel"  onkeyup="this.value = this.value.replace(/\./,'');if(this.value.length>11)this.value=this.value.slice(0,11)"  placeholder="输入手机号"  />
+		</div>
+		<div class="code flex flex-align-center flex-pack-center" id="sms" onclick="getCode()">获取验证码</div>
+	</div>
+	<div class="item">
+		<div class="right">
+			<input type="number" id="code" onkeyup="this.value = this.value.replace(/\./,'');if(this.value.length>5)this.value=this.value.slice(0,5)"  placeholder="输入验证码" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="right">
+			<input type="password" id="pwd" onkeyup="value = value.replace(/^[0-9][a-z][A-Z]{6,10}$/,'')" input placeholder="输入密码" />
+		</div>
+	</div>
+</div>
+<div class="container flex flex-align-center flex-pack-center flex-pack-justify">
+	<div></div>
+	<div tapmode="" onclick="openLose()">忘记密码</div>
+</div>
+<div class="loginButton flex flex-align-center flex-pack-center" onclick="openMain()">注册</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+
+	// 忘记密码
+	function openLose(){
+		quakooApp.openNewWindow('lose_password','./lose_password.html');
+	}
+	function getCode() {
+		var phone = $api.val($api.dom('#tel'));
+
+		if(quakooUtils.isBlack(phone)) {
+			quakooMsg.toast('请输入手机号');
+			return
+		}
+		quakooLogin.sms(config.getUrl_web_user_createAuthCodeOnReg(),false,{phone:phone,areaAccount:config.areaAccount})
+	}
+	function openMain() {
+		if (quakooUtils.isBlack($api.val($api.dom('#tel')))){
+			quakooMsg.toast('请输入手机号');
+			return
+		}
+		if (quakooUtils.isBlack($api.val($api.dom('#code')))){
+			quakooMsg.toast('请输入验证码');
+			return
+		}
+		if (quakooUtils.isBlack($api.val($api.dom('#pwd')))){
+			quakooMsg.toast('请输入密码');
+			return
+		}
+		var _params = {
+			phone:$api.val($api.dom('#tel'))	,//是	long	手机号码
+			code:$api.val($api.dom('#code'))	,//是	string	手机验证码
+			password:$api.val($api.dom('#pwd'))	,//是	string	密码
+			plat: api.systemType,//否	string	设备名
+			platVersion: api.systemVersion,//否	string	设备号
+			areaAccount:config.areaAccount
+		};
+		quakooData.ajaxSubmitDataNotToken(config.getUrl_web_user_register(),_params,function (ret,err) {
+			if(ret && ret.success){
+				quakooMsg.toast('注册成功');
+				setTimeout(function () {
+					api.closeWin()
+				},300)
+			}
+		})
+
+	}
+	// 选择区号
+	function selectAreaNumber() {
+		quakooApp.openFrame('select_phone','./select_phone.html',{winName:api.winName,frameName:api.frameName,propsEvent:'setAreaNumber'},0,0,{bgColor:'rgba(0,0,0,0)'})
+	}
+	function setAreaNumber(_num) {
+		config.areaAccount = _num;
+		$api.text($api.dom('#domAreaNumber'),'+'+_num)
+	}
+</script>
+</body>
+</html>

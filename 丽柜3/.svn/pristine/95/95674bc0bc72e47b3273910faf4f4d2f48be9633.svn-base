@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>我的</title>
+    	<style>
+    		header .mine{
+    			font-size: 0.48rem;
+    			color: #fff;
+    			background: #FF5C98;
+    			text-align: center;
+    			height: 1.173333rem;
+    			line-height: 1.173333rem;
+    		}
+    		footer{
+    			width: 100%;
+    			height: 1.306666rem;
+    			position: fixed;
+    			bottom: 0;	
+    		}
+    		footer ul{
+    			display: flex;
+    			justify-content: space-around;
+    			align-items: center;
+    		}
+    		footer li {
+    			margin-top: 0.4rem;
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		footer li:active{
+    			color: #FF77A9;
+    			border-bottom:0.026666rem solid #FF77A9 ;
+    			padding-bottom: 0.133333rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<header>
+			<div class="mine">我的</div>
+		</header>
+		<footer>
+			<ul>
+				<li class="active">首页</li>
+				<li>消息</li>
+				<li>动态</li>
+				<li>商城</li>
+				<li>我的</li>
+			</ul>
+		</footer>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

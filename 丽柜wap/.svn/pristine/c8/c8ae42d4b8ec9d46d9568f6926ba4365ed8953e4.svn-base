@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+    	.item{
+    		background: #F1F1F1;
+    		padding-top: 0.266666rem;
+    		position: relative;
+    	}
+    	.item .img{
+    		width: 100%;
+    		height: 12rem;
+    		box-sizing: border-box;
+    		overflow: hidden;
+    	}
+    	.item .title{
+    		font-size: 0.373333rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Medium;
+    		position: absolute;
+    		top: 0.4rem;
+    		left: 0.4rem;
+    	}
+    	.item .time{
+    		font-size: 0.32rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Regular;
+    		width: 0.853333rem;
+    		height: 0.533333rem;
+    		line-height: 0.533333rem;
+    		text-align: center;
+    		background: #000;
+    		opacity: 0.5;
+    		border-radius: 0.053333rem;
+    		position: absolute;
+    		bottom: 0.4rem;
+    		right: 0.4rem;
+    	}
+    	.price{
+    		font-size: 0.426666rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Medium;
+    		position: absolute;
+    		bottom: 0.4rem;
+    		left: 0.4rem;
+    	}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<!--<li class="item" tapmode="" onclick="openPicDetail()">
+				<div class="img"><img src="../../image/bg.png" alt="" /></div>
+				<div class="title">巴厘岛的夏天</div>
+				<div class="time">6P</div>
+				<div class="price">20LB</div>
+			</li>-->
+		</ul>
+	</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+	<script id="scriptPic" type="text/html">
+		<%for(var i = 0;i<list.length;i++){%>
+			<%if(list[i].type == 0){%>
+				<li class="item" tapmode="" onclick="openPicDetail(<%=list[i].id%>)">
+				<div class="img"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+				<div class="title"><%=list[i].name%></div>
+				<div class="time"><%=list[i].length%>P</div>
+				<div class="price"><%=list[i].price%>LB</div>
+			</li>
+			<%}%>
+			
+		<%}%>
+	</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    apiready = function () {
+        new QuakooPage(function(results,append){
+        	console.log($api.jsonToStr(results))
+        	var feilKey = quakooUtils.getImgKey();
+        	for(var i = 0;i<results.length;i++){
+        		 if (quakooUtils.isBlack(results[i].cover)) {
+                    results[i].cover = '../../icon/worksbg.png';
+                    results[i].coverStyle = 'width:100%;height:100%;'
+                } else {
+                    var obj = quakooImg.processImg(results[i].cover, api.winWidth, 12 * fontSize);
+                    results[i].cover = obj.url+feilKey;
+                    results[i].coverStyle = obj.style;
+                }
+        	}
+        	var data = {
+        		list:results
+        	}
+        	var html = template('scriptPic',data)
+        	if(append){
+        		$api.append($api.dom('ul'),html)
+        	}else{
+        		$api.html($api.dom('ul'),html)
+        	}
+        	setTimeout(function () {
+				if (!echo.isInit()) {
+					echoExt.init({
+						offset: 0,
+						throttle: 0//设置图片延迟加载的时间
+					});
+				} else {
+					echo.render()
+				}
+			}, 100);
+        	api.parseTapmode()
+        },config.getUrl_content_getMyContentPager(),{type:0})
+    }
+   
+		function openPicDetail(id){
+			quakooApp.openNewWindow('works_pic_details','../home/works_pic_details.html',{cid:id})
+		}
+</script>
+
+</html>

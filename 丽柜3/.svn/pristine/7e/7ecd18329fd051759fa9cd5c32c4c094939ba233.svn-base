@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>模特打赏自定义</title>
+		<style type="text/css">
+			html,
+			body {
+				background-color: rgba(0, 0, 0, 0)
+			}
+			/*模态框*/
+			
+			.tenant-model {
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 1000;
+				background-color: rgba(0, 0, 0, 0.25);
+				/*pointer-events: none;*/
+			}
+			
+			.content {
+				background-color: white;
+				border-radius: 0.213333rem;
+				width: 8.506666rem;
+				height: 9.333333rem;
+				position: fixed ;
+				top:50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				overflow: hidden;
+			}
+			
+			.content_title {
+				width: 4.426666rem;
+				height: 0.586666rem;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #333333;
+				margin: 0 auto;
+				margin-top: 0.533333rem;
+			}
+			
+			.content_little_title {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color: #999999;
+				position: absolute;
+				top: 1.653333rem;
+				left: 0.4rem;
+			}
+			
+			.content_moneys {
+				/*width: 7.36rem;*/
+				padding-left: 0.4rem;
+				margin: 0 auto;
+				margin-top: 1.12rem;
+				float: left;
+			}
+			
+			.content_moneys>div {
+				width: 2.1rem;
+				height: 1.186666rem;
+				border: 0.026666rem solid #cbcbcb;
+				border-radius: 0.08rem;
+				float: left;
+				margin-right: 0.266666rem;
+				margin-top: 0.266666rem;
+				text-align: center;
+				line-height: 1.186666rem;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #333333;
+			}
+			
+			.content_moneys_active {
+				color: #ff5c98 !important;
+				border: 0.026666rem solid #ff5c98 !important;
+			}
+			
+			.custom {
+				width: 100%;
+				height: 0.853333rem;
+				/*background-color: pink;*/
+				position: absolute;
+				top: 5.706666rem;
+				left: 0;
+				box-sizing: border-box;
+				padding-left: 0.4rem;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color: #999999;
+				line-height: 0.853333rem;
+			}
+			
+			.custom>input {
+				height: 100%;
+				box-sizing: border-box;
+				border: 0.026666rem solid #cbcbcb;
+				border-radius: 0.08rem;
+			}
+			input{
+			    outline-color: invert ;
+				outline-style: none ;
+				outline-width: 0px ;
+				border: none ;
+				border-style: none ;
+				text-shadow: none ;
+				-webkit-appearance: none ;
+				-webkit-user-select: text ;
+				outline-color: transparent ;
+				box-shadow: none;
+			}
+			.balance {
+				width: 100%;
+				height: 0.586666rem;
+				position: absolute;
+				top: 7.08rem;
+				left: 0;
+				/*background-color: pink;*/
+				box-sizing: border-box;
+				padding-left: 0.4rem;
+				line-height: 0.586666rem;
+			}
+			
+			.balance>span:nth-child(1) {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.373333rem;
+				color: #999999;
+			}
+			
+			.balance>span:nth-child(2) {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #999999;
+			}
+			
+			.balance>span:nth-child(3) {
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #ff5c98;
+			}
+			
+			.buttons {
+				width: 100%;
+				height: 1.226666rem;
+				/*background-color: pink;*/
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				border-top: 0.026666rem solid #e1e1e1;
+			}
+			
+			.buttons>button {
+				width: 50%;
+				height: 100%;
+				font-family: PingFang-SC-Medium;
+				font-size: 0.426666rem;
+				color: #999999;
+				box-sizing: border-box;
+				float: left;
+			}
+			
+			.buttons>button:nth-child(1) {
+				border-right: 0.026666rem solid #e1e1e1;
+			}
+			
+			.buttons>button:nth-child(2) {
+				color: #ff5c98;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="tenant-model">
+			<div class="content">
+				<div class="content_title">打赏给长发及腰热不热i</div>
+				<div class="content_little_title">打赏金额</div>
+				<div class="content_moneys fit">
+					<div class="content_moneys_active" tapmode="itemOn" onclick="checkSel(0)">10LB</div>
+					<div tapmode="itemOn" onclick="checkSel(1)">20LB</div>
+					<div tapmode="itemOn" onclick="checkSel(2)">50LB</div>
+					<div tapmode="itemOn" onclick="checkSel(3)">188LB</div>
+					<div tapmode="itemOn" onclick="checkSel(4)">520LB</div>
+					<div tapmode="itemOn" onclick="checkSel(5)">888LB</div>
+				</div>
+				<div class="custom">
+					任意赏&nbsp;&nbsp;
+					<input type="tel"  onclick="clearStyle()" /> &nbsp;&nbsp;LB
+				</div>
+				<div class="balance">
+					<span>账户余额</span>&nbsp;
+					<span>0LB</span>&nbsp;
+					<span tapmode="itemOn" onclick="openRechargeWin()">充值</span>
+				</div>
+				<div class="buttons">
+					<button tapmode="itemOn" onclick="api.closeFrame()">取消</button>
+					<button>确定</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/template-native.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script type="text/html" id="price_list">
+		    <%for(var i = 0 ; i< list.length;i++){%>
+		    	<%if(i == 0){%>
+		    		<div class="content_moneys_active" tapmode="itemOn" onclick="checkSel(<%=i%>)"><%=list[i].name%>LB</div>
+		    	<%}else{%>
+		  			<div  tapmode="itemOn" onclick="checkSel(<%=i%>)"><%=list[i].name%>LB</div>
+		    	<%}%>
+			  	
+		    <%}%>
+		</script>
+		<script>
+			apiready = function() {
+				quakooData.ajaxGetData(config.getUrl_postType_getPostTypeListByType(),{type:4},function(ret,err){
+					if(ret && ret.success){
+						var data = {
+							list:ret.data
+						}
+						console.log($api.jsonToStr(data))
+						var html = template('price_list',data)
+						$api.html($api.dom('.content_moneys'),html)
+						api.parseTapmode()
+					}
+				})
+			};
+
+			function checkSel(index) {
+				var labs = $api.domAll('.content_moneys div');
+				labs.forEach(function(item, i) {
+					if(index == i) {
+						$api.addCls(item, 'content_moneys_active')
+					} else {
+						$api.removeCls(item, 'content_moneys_active')
+					}
+				})
+			}
+			//点击input框，清除选择的样式
+			function clearStyle(){
+				var labs = $api.domAll('.content_moneys div');
+				for(var i = 0;i<labs.length;i++){
+					$api.removeCls(labs[i], 'content_moneys_active')
+				}
+			}
+				//打开充值窗口
+			 function openRechargeWin() {
+        		quakooApp.openNewWindow('recharge','../mine/recharge.html',{})
+   			 }
+			
+		</script>
+	</body>
+
+</html>

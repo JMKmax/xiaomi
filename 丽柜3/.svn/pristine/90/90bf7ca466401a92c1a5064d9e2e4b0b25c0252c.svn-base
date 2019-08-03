@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		
+    		.consume-list{
+    			background: #F5F5F5;
+    			padding-top: 0.266666rem;
+    		}
+    		.consume-item{
+    			padding: 0.586666rem 0.4rem;
+    			background: #fff;
+    			position: relative;
+    		}
+    		.consume-item:after{
+    			content: '';
+    			height: 1px;
+    			background: #F5F5F5;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.photo{
+    			width: 0.96rem;
+    			height: 0.96rem;
+    			border-radius: 100%;
+    			overflow: hidden;
+    			margin-right: 0.266666rem;
+    		}
+    		.photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.author-info .title{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			margin-bottom: 0.213333rem;
+    		}
+    		.author-info .time span{
+    			font-size: 0.32rem;
+    			color: #999;
+    		}
+    		.consume-item .num{
+    			flex-direction: column;
+    			align-items: flex-end;
+    		}
+    		.consume-item .num .figure{
+    			font-family:PingFang-SC-Medium;
+				font-size:20px;
+				color:#ff5c98;
+				letter-spacing:0;
+				text-align:left;
+				margin-bottom: 0.106666rem;
+    		}
+    		.consume-item .num.active .desc{
+    			font-family:PingFang-SC-Medium;
+				font-size:12px;
+				color:#333333;
+				letter-spacing:0;
+				text-align:left;
+    		}
+    		.consume-item .num .desc{
+    			font-family:PingFang-SC-Medium;
+				font-size:12px;
+				color:#999999;
+				letter-spacing:0;
+				text-align:left;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="consume-list">
+			<ul>
+				<li class="consume-item flex flex-align-center flex-pack-justify">
+					<div class="author-info">
+						<div class="title">钱包充值</div>
+						<div class="time">
+							<span class="date">05-21 19:22:19</span>
+						</div>
+					</div>
+					<div class="num flex active">
+						<div class="figure">+500</div>
+						<div class="desc">已到账</div>
+					</div>
+				</li>
+				<li class="consume-item flex flex-align-center flex-pack-justify">
+					<div class="author-info">
+						<div class="title">钱包充值</div>
+						<div class="time">
+							<span class="date">05-21 19:22:19</span>
+						</div>
+					</div>
+					<div class="num flex ">
+						<div class="figure">+500</div>
+						<div class="desc">失败，未绑定支付宝</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

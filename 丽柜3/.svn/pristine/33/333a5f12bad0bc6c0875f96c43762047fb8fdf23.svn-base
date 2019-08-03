@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		body{
+    			background: #F5F5F5;
+    		}
+    		.item{
+    			height: 2.026666rem;
+    			padding: 0 0.4rem;
+    			background: #fff;
+    			overflow: hidden;
+    			position: relative;
+    		}
+    		.item:after{
+    			content: '';
+    			height: 1px;
+    			background: #F0F0F0;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.left span{
+    			display: inline-block;
+    			width: 0.426666rem;
+    			height: 0.426666rem;
+    			margin-right: 0.266666rem;
+    			background: url(../../icon/pay-unsel.png) no-repeat center center;
+    			background-size: cover;
+    		}
+    		.left.active span{
+    			display: inline-block;
+    			width: 0.426666rem;
+    			height: 0.426666rem;
+    			margin-right: 0.266666rem;
+    			background: url(../../icon/pay-sel.png) no-repeat center center;
+    			background-size: cover;
+    		}
+    		.left .sel{
+    			font-size: 0.426666rem;
+    			color: #333;
+    			font-family:PingFang-SC-Medium;
+    		}
+    		.sprice{
+    			font-size: 0.426666rem;
+    			color: #333;
+    			font-family:PingFang-SC-Medium;
+    		}
+    		.extra{
+    			margin-top: 0.48rem;
+    			padding-left: 0.4rem;
+    		}
+    		.extra .title{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			font-family:PingFang-SC-Medium;
+    			margin-right: 0.373333rem;
+    		}
+    		.extra .nub{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			font-family:PingFang-SC-Medium;
+    			margin-right: 0.32rem;
+    		}
+    		.extra .info{
+    			font-size: 0.373333rem;
+    			color: #fff;
+    			font-family:PingFang-SC-Medium;
+    			width: 1.226666rem;
+    			height: 0.64rem;
+    			background: #FF5C98;
+    			border-radius: 0.106666rem;
+    			line-height: 0.64rem;
+    			text-align: center;
+    		}
+    		.ensure-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background: #FF5C98;
+    			border-radius: 2.666666rem;
+    			color: #fff;
+    			font-size: 0.48rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			margin: 0 auto;
+    			margin-top: 2.666666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="subscription">
+			<ul>
+				<li class="item flex flex-align-center flex-pack-justify">
+					<div class="left flex">
+						<span></span>
+						<div class="sel">半年订阅</div>
+					</div>
+					<div class="sprice">500LB/6月</div>
+				</li>
+				<li class=" item flex flex-align-center flex-pack-justify">
+					<div class="active left flex">
+						<span></span>
+						<div class="sel">半年订阅</div>
+					</div>
+					<div class="sprice">500LB/6月</div>
+				</li>
+			</ul>
+		</div>	
+		<div class="extra flex">
+			<div class="title">账户余额</div>
+			<div class="nub">0.0LB</div>
+			<div class="info">充值</div>
+		</div>
+		<div class="ensure-btn">订阅</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>模特主页</title>
+    	<style>
+    		body{
+    			background: #f5f5f5;
+    		}
+    		header{
+    			height: 5.706666rem;
+    			background:url(../../image/bg.png) no-repeat;
+    			background-size: 100% 100%;
+    		}
+    		header .top{
+    			display: flex;
+    			padding: 0.346666rem 0.4rem 0 0.4rem;
+    			justify-content: space-between;
+    		}
+    		header .top-left img{
+    			width: 0.293333rem;
+    			height: 0.48rem;
+    		}
+    		header .top-rig img{
+    			width: 0.506666rem;
+    			height: 0.506666rem;
+    		}
+    		.header-content{
+    			height: 4.88rem;
+    			
+    			padding: 0 0.8rem 0 0.4rem;
+    			
+    		}
+    		.header-content .author-info{
+    			display: flex;
+    			flex-direction: column;
+    			align-items: center;
+    		}
+    		.header-content .photo{
+    			position: relative;
+    			width: 1.706666rem;
+    			height: 1.706666rem;
+    			border-radius: 50%;
+    			
+    		}
+    		.header-content img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.header-content .rank{
+    			width: 0.426666rem;
+    			height: 0.4rem;
+    			position: absolute;
+    			left: 1.173333rem;
+    			top: 1.306666rem;
+    			overflow: hidden;
+    		}
+    		.header-content .author-name{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			margin-top: 0.266666rem;
+    		}
+    		.header-content .content-right{
+    			flex-direction: column;
+    			align-items: flex-end;
+    		}
+    		.content-right .attention{
+				margin-bottom: 1.066666rem;	
+    		}
+    		.content-right .attention>span{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			width: 1.6rem;
+    			height: 0.64rem;
+    			line-height: 0.64rem;
+    			text-align: center;
+    			background: #FF5C98;
+    			display: block;
+    			margin-left: 0.8rem;
+    			border-radius: 0.106666rem;
+    		}
+    		.content-right .attention .icon{
+    			width: 1.6rem;
+    			height: 0.64rem;
+    			text-align: center;
+    			background: #09bb07;
+    			border-radius: 0.106666rem;
+    		}
+    		.content-right .attention .icon img{
+    			width: 0.533333rem;
+    			height: 0.506666rem;
+    			vertical-align: text-bottom;
+    		}
+    		.content-right .attention .icon span{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			line-height: 0.64rem;
+    		}
+    		.content-right .fans-item{
+    			margin-left: 0.8rem;
+    			color: #fff;
+    			font-size: 0.373333rem;
+    			text-align: center;
+    		}
+    		.content-right .fans-item .fans-info{
+    			margin-top: 0.106666rem;
+    		}
+    		.top-footer{
+    			width: 100%;
+    			background: #fff;
+    			display: flex;
+    			justify-content: space-around;
+    			padding: 0.266666rem 0;
+    			text-align: center;
+    			font-size: 0;
+    		}
+    		.top-footer .item img{
+    			width: 0.613333rem;
+    			height: 0.533333rem;
+    			margin-bottom: 0.16rem;
+    		}
+    		.top-footer .item .name{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			line-height: 20px;
+    		}
+    		.content{
+    			background: #fff;
+    			
+    		}
+    		.content-header{
+    			margin-top: 0.266666rem;
+    			margin-left: 0.4rem;
+    		}
+    		.content-header .header-photo img{
+    			width: 1.226666rem;
+    			height: 1.226666rem;
+    			float: left;
+    			
+    			margin-top: 0.533333rem;
+    			margin-bottom: 0.32rem;
+    		}
+    		.content-header .header-author{
+    			float: left;
+    			margin-left: 0.266666rem;
+    			margin-top: 0.613333rem;
+    		}
+    		.content-header .header-author .author-name{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			line-height: 20px;
+    			margin-bottom: 0.106666rem;
+    		}
+    		.content-header .header-author .author-time{
+    			font-size: 0.32rem;
+    			color: #999;
+    			line-height: 17px;
+    		}
+    		.content-header .header-right{
+    			float: right;
+    			margin-right: 0.4rem;
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    			margin-top: 0.88rem;
+    		}
+    		.content .content-desc{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			margin-bottom: 0.053333rem;
+    			margin-left: 0.4rem;
+    			margin-right: 0.4rem;
+    		}
+    		.content .content-img{
+    			margin-left: 0.4rem;
+    			position: relative;
+    		}
+    		.content .content-img .item{
+    			float: left;	
+    			width: 31.9%;
+    			margin-right: 0.133333rem;
+    		}
+    		.content .content-img .item img{
+    			width: 100%;
+    			height: 2.986666rem;
+    			
+    			margin-top: 0.133333rem;
+    		}
+    		.content .content-img .item img:nth-child(3n+0){
+    			margin-right: 0;
+    		}
+    		/*@media only screen and (min-width: 550px) {
+				.content .content-img .item>img  {
+					width: 32.6%;
+				}
+			}*/
+			.content-explain{
+				margin: 0.32rem 0;
+				font-size: 0.32rem;
+				color: #FF5C98;
+				margin-left: 0.4rem;
+			}
+			.content-footer{
+				position: relative;
+				justify-content: space-around;
+			}
+			.content-footer:before{
+				content: '';
+				height: 1px;
+				background: #F5F5F5;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(0.5);
+			}
+			.content-footer:after{
+				content: '';
+				height: 1px;
+				background: #F5F5F5;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(0.5);
+			}
+			.content-footer-item{
+				width: 33.3%;
+				
+				box-sizing: border-box;
+				padding-top: 0.373333rem;
+				padding-bottom: 0.426666rem;
+			}
+			.content-footer-item.border-right{
+				border-right: 1px solid #F5F5F5;
+			}
+			.content-footer-item .content-icon img{
+				width: 0.56rem;
+				height: 0.4rem;
+			}
+			.content-footer-item .num{
+				font-size: 0.373333rem;
+				color: #666;	
+			}
+			.content .content-img>img{
+				width: 100%;
+				height: 5.866666rem;
+				margin-top: 0.266666rem;
+				margin-bottom: 0.32rem;
+			}
+			.content .content-img .play-icon img{
+				width: 1.173333rem;
+				height: 1.173333rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -0.586666rem;
+				margin-left: -0.586666rem;
+			}
+			.content .content-img .time{
+				font-size: 0.32rem;
+				color: #fff;
+				width: 1.173333rem;
+				height: 0.533333rem;
+				line-height: 17px;
+				text-align: center;
+				background: #333;
+				opacity: 0.5;
+				position: absolute;
+				bottom: 0.426666rem;
+				right: 0.533333rem;
+			}
+			.recharge{
+				position: fixed;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,0.2);
+				width: 100%;
+				height: 100%;
+			}
+			.recharge-box{
+				position: absolute;
+				left:50%;
+				top: 50%;
+				margin-left: -4.253333rem;
+				margin-top: -4.666666rem;
+				background: #fff;
+				width: 8.506666rem;
+				height: 9.333333rem;
+			}
+			.recharge-box .recharge-name{
+				font-size: 0.426666rem;
+				color: #333;
+				margin-top: 0.533333rem;
+				text-align: center;
+			}
+			.recharge-box .info{
+				padding-left: 0.4rem;
+				font-size: 0.373333rem;
+				color: #999;
+				margin-top: 0.533333rem;
+				margin-bottom: 0.053333rem;
+			}
+			.recharge-box .recharge-money{
+				padding-left: 0.4rem;
+			}
+			.recharge-box .recharge-money .recharge-num{
+				float: left;
+				width: 2.213333rem;
+				height: 1.013333rem;
+				border:1px solid #cbcbcb;
+				border-radius: 0.08rem;
+				text-align: center;
+				line-height: 1.013333rem;
+				font-size: 0.426666rem;
+				color: #333;
+				margin-right: 0.133333rem;
+				margin-top: 0.266666rem;
+			}
+			.import-name{
+				font-size: 0.373333rem;
+				color: #999;
+				margin-top: 0.693333rem;
+				margin-left: 0.4rem;
+				margin-right: 0.32rem;
+			}
+			.import input{
+				width: 4.24rem;
+				height: 0.853333rem;
+				border:1px solid #cbcbcb
+			}
+			.import-units{
+				font-size: 0.426666rem;
+				color: #999;
+				margin-left: 0.266666rem;
+			}
+			.account-balance{
+				margin-top: 0.56rem;
+			}
+			.account-balance .account-info{
+				font-size: 0.373333rem;
+				color: #999;
+				margin-left: 0.4rem;	
+			}
+			.account-balance .account-num{
+				margin-left: 0.32rem;
+				font-size: 0.426666rem;
+				color: #999;
+			}
+			.account-balance .account-enter{
+				margin-left: 0.346666rem;
+				font-size: 0.426666rem;
+				color: #FF5C98;
+			}
+			.recharge-footer{
+				width: 100%;
+				position: relative;
+				height: 1.226666rem;
+				position: absolute;
+				bottom: 0;
+			}
+			.recharge-footer:after{
+				content: '';
+				height: 1px;
+				background: #F5F5F5;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(.5);
+			}
+			.recharge-footer .footer-item{
+				width: 50%;
+				text-align: center;
+				position: relative;
+				font-size: 0.426666rem;
+				color: #999;
+				line-height:1.226666rem ;
+			}
+			.recharge-footer .footer-item:first-child:after{
+				content: '';
+				width: 1px;
+				background: #F5F5F5;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				transform: scaleY(.5);
+			}
+    	</style>
+	</head>
+	<body>
+		<header>
+			<div class="top">
+				<div class="top-left">
+					<img src="../../icon/back.png" alt="" />
+				</div>
+				<div class="top-rig">
+					<img src="../../icon/crown.png" alt="" />
+				</div>
+			</div>
+			<div class="header-content flex flex-align-center flex-pack-justify">
+				<div class="author-info">
+					<div class="photo">
+						<img src="../../image/photo.png" alt="" />
+						<div class="rank">
+							<img src="../../icon/V.png" alt="" />
+						</div>
+					</div>
+					<div class="author-name">长发及腰热不热i</div>
+				</div>
+				<div class="content-right flex">
+					<div class="attention flex">
+						<div class="icon">
+							<img src="../../icon/weixin.png" alt="" />
+							<span >微信</span>
+						</div>
+						<span>关注</span>
+					</div>
+					<div class="fans flex ">
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">粉丝</div>
+						</div>
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">关注</div>
+						</div>
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">积分</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="top-footer">
+			<div class="item">
+				<img src="../../icon/pic_0.png" alt="" />
+				<div class="name">图片</div>
+			</div>
+			<div class="item">
+				<img src="../../icon/video.png" alt="" />
+				<div class="name">视频</div>
+			</div>
+			<div class="item">
+				<img src="../../icon/reward.png" alt="" />
+				<div class="name">打赏</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="content-header clearfix">
+				<div class="header-photo">
+					<img src="../../image/photo.png" alt="" />
+				</div>
+				<div class="header-author">
+					<div class="author-name">长发及腰热不热</div>
+					<div class="author-time">41分钟以前</div>
+				</div>
+				<div class="header-right">已关注</div>
+			</div>
+			<div class="content-desc">花开花落又是雨季</div>
+			<div class="content-img">
+				<ul class="clearfix">
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+					<li class="item"><img src="../../image/bg.png" alt="" /></li>
+				</ul>
+			</div>
+			<div class="content-explain">需打赏90GB，已打赏300GB</div>
+			<div class="content-footer flex">
+				<div class="content-footer-item border-right flex flex-pack-center">
+					<div class="content-icon ">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+				<div class="content-footer-item border-right flex flex-pack-center">
+					<div class="content-icon">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+				<div class="content-footer-item flex flex-pack-center">
+					<div class="content-icon">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="content-header clearfix">
+				<div class="header-photo">
+					<img src="../../image/photo.png" alt="" />
+				</div>
+				<div class="header-author">
+					<div class="author-name">长发及腰热不热</div>
+					<div class="author-time">41分钟以前</div>
+				</div>
+				<div class="header-right">已关注</div>
+			</div>
+			<div class="content-desc">赞助过旅拍活动的可以直接私聊我，赞助过旅拍活动的直接微信私聊我</div>
+			<div class="content-img">
+				<img src="../../image/bg.png" alt="" />
+				<div class="play-icon"><img src="../../icon/play.png" alt="" /></div>
+				<div class="time">19:30</div>
+			</div>
+			
+			<div class="content-footer flex">
+				<div class="content-footer-item border-right flex flex-pack-center">
+					<div class="content-icon ">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+				<div class="content-footer-item border-right flex flex-pack-center">
+					<div class="content-icon">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+				<div class="content-footer-item flex flex-pack-center">
+					<div class="content-icon">
+						<img src="../../icon/eyes.png" alt="" />
+					</div>
+					<div class="num">1290</div>
+				</div>
+			</div>
+		</div>
+		<div class="recharge">
+			<div class="recharge-box">
+				<div class="recharge-name">长发及腰热不热</div>
+				<div class="info">打赏金额</div>
+				<div class="recharge-money clearfix">
+					<ul>
+						<li class="recharge-num">10LB</li>
+						<li class="recharge-num">10LB</li>
+						<li class="recharge-num">10LB</li>
+						<li class="recharge-num">10LB</li>
+						<li class="recharge-num">10LB</li>
+						<li class="recharge-num">10LB</li>
+					</ul>
+				</div>
+				<div class="import">
+					<span class="import-name">任意赏</span>
+					<input type="text" />
+					<span class="import-units">LB</span>
+				</div>
+				<div class="account-balance flex">
+					<div class="account-info">账户余额</div>
+					<div class="account-num">0LB</div>
+					<div class="account-enter">充值</div>
+				</div>
+				<div class="recharge-footer flex">
+					<div class="footer-item">确定</div>
+					<div class="footer-item">取消</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

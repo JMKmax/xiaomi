@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>注册登录</title>
+    	<style>
+    		.photo{
+    			width: 2.08rem;
+    			height: 2.08rem;
+    			border-radius: 0.266666rem;
+    			overflow: hidden;
+    			margin:0 auto;
+    			margin-top: 1.013333rem;
+    			margin-bottom:1.066666rem ;
+    			box-sizing: border-box;
+    		}
+    		.photo>img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.import-item{
+    			position: relative;
+    			padding: 0 0.666666rem;
+    			margin-bottom: 0.533333rem;
+    		}
+    		.import-item.first:before{
+    			content: '';
+    			width: 1px;
+    			height: 0.64rem;
+    			background: #d8d8d8;
+    			position: absolute;
+    			left: 2.24rem;
+    			top: 0.266666rem;
+    			transform: scaleY(.5);
+    		}
+    		.import-item.first:after{
+    			content: '';
+    			width: 1px;
+    			height: 0.64rem;
+    			background: #d8d8d8;
+    			position: absolute;
+    			right: 3.173333rem;
+    			top: 0.266666rem;
+    			transform: scaleY(.5);
+    		}
+    		.import-item .nub{
+    			font-size: 0.426666rem;
+    			color: #999;
+    			line-height: 0.586666rem;
+    			position: absolute;
+    			top: 0.293333rem;
+    			left: 1.2rem;
+    		}
+    		.import-item .get-code{
+    			font-size: 0.32rem;
+    			color: #FF5C98;
+    			line-height: 0.453333rem;
+    			position: absolute;
+    			top: 0.373333rem;
+    			right: 1.2rem;
+    		}
+    		
+    		.import-item.first input{
+    			width: 100%;
+    			height: 1.173333rem;
+    			background: #f2f2f2;
+    			border-radius: 2.666666rem;
+    			font-size: 0.426666rem;
+    			color: #999;
+    			padding-left: 1.866666rem;
+    			padding-right:2.773333rem ;
+    			box-sizing: border-box;
+    		}
+    		.import-item input{
+    			width: 100%;
+    			height: 1.173333rem;
+    			background: #f2f2f2;
+    			border-radius: 2.666666rem;
+    			font-size: 0.426666rem;
+    			color: #999;
+    			padding:0 0.533333rem;
+    			line-height: 1.5em;
+    			box-sizing: border-box;
+    		}
+    		input:-webkit-input-placeholder{
+    			line-height: 1.5em;
+    		}
+    		.ensure-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			background: #FF5C98;
+    			border-radius: 2.666666rem;
+    			color: #fff;
+    			font-size: 0.48rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			margin: 0 auto;
+    		}
+    		.right-btn{
+    			padding: 0 0.666666rem;
+    			font-size: 0.32rem;
+    			color: #333;
+    			line-height: 0.453333rem;
+    			justify-content: flex-end;
+    			margin-top: -0.266666rem;
+    			margin-bottom: 0.533333rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div id="topbar">
+        	<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+           	 <img src="../../image/back.png">
+        	</div>
+        	<div>绑定微信</div>
+    	</div>
+		<div class="photo">
+			<img src="../../image/bg.png"/>
+		</div>
+		<div class="changeTel">
+			<ul>
+				<li class="import-item first">
+					<span class="nub">+86</span>
+					<input type="tel" placeholder="请输入手机号" maxlength="11" />
+					<span class="get-code">获取验证码</span>
+				</li>
+				<li class="import-item">
+					<input type="tel" placeholder="输入验证码" maxlength="6" />
+				</li>
+				<li class="import-item">
+					<input type="text" placeholder="输入密码"  />
+				</li>
+			</ul>
+			<div class="right-btn flex">注册</div>
+			<div class="ensure-btn">提交</div>
+		</div>
+	</body>
+</html>

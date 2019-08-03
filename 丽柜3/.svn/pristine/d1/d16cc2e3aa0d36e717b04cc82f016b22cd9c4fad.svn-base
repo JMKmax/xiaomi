@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>搜索关键词</title>
+		<style>
+			.top {
+				background: #fff;
+				display: flex!important;
+				padding-right: 0.4rem;
+				align-items: center;
+			}
+			
+			#leftButton img {
+				width: 0.293333rem;
+			}
+			
+			.rightButton {
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+			
+			.rightButton span {
+				font-size: 0.426666rem;
+				color: #333;
+				line-height: 0.586666rem;
+			}
+			
+			.search {
+				/*width: 100%;*/
+				background: #e8e7e7;
+				height: 0.853333rem;
+				border-radius: 0.106666rem;
+				flex-grow: 1;
+				margin-left: 1.093333rem;
+				margin-right: 0.533333rem;
+				padding-left: 0.32rem;
+				padding-right: 0.32rem;
+				font-size: 0;
+			}
+			
+			.search input {
+				width: 100%;
+				height: 100%;
+				line-height: 1.5em;
+				font-size: 0.373333rem;
+				color: #999;
+			}
+			
+			input:-webkit-input-placeholder {
+				line-height: 1.5em;
+			}
+			
+			.header_title {
+				height: 1.813333rem;
+				width: 100%;
+				background: #F5F5F5;
+			}
+			
+			.header_title ul {
+				border: 0.026666rem solid #FF5C98;
+				height: 0.746666rem;
+				border-radius: 0.373333rem;
+				overflow: hidden;
+				box-sizing: border-box;
+			}
+			
+			.header_title .item {
+				font-size: 0.373333rem;
+				color: #FF5C98;
+				background: #fff;
+				width: 1.813333rem;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-sizing: border-box;
+			}
+			
+			.header_title .item:first-child {
+				border-right: 0.026666rem solid #FF5C98;
+			}
+			
+			.header_title .item.active {
+				background: #FF5C98;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="top">
+			<div id="topbar">
+				<div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+					<img src="../../icon/back.png" alt="">
+				</div>
+				<div>排行</div>
+			</div>
+			<div class="header_title flex flex-align-center flex-pack-center">
+				<ul class="flex ">
+					<li class="item" tapmode="itemOn" onclick="groupFrameSwitch(0)">贡献榜</li>
+					<li class="item active" tapmode="itemOn" onclick="groupFrameSwitch(1)">收益榜</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script>
+		apiready = function() {
+			var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+			var header = document.querySelector('#top');
+			if(statusBarAppearance) {
+				$api.fixStatusBar(header);
+			}
+			var pageParam = api.pageParam
+			api.openFrameGroup({
+				name: 'picture',
+				background: "#fff",
+				scrollEnabled: true,
+				rect: {
+					x: 0,
+					marginTop: 44 + 64 + api.safeArea.top,
+					w: "auto",
+					h: 'auto'
+				},
+				index: 1,
+				frames: [{
+						name: 'rank_earing',
+						bgColor: "#F5F5F5",
+						reload: 'true',
+						pageParam: {},
+						url: './rank_earing.html',
+						bounces: true
+					},
+					{
+						name: 'rank_tran',
+						bgColor: "#F5F5F5",
+						reload: 'true',
+						pageParam: {},
+						url: './rank_tran.html',
+						bounces: true
+					}
+				]
+			}, function(ret, err) {
+				groupFrameSwitch(ret.index)
+			})
+		};
+
+		function changeStyle(index) {
+			var labs = $api.domAll('.header_title .item')
+			labs.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'active')
+				} else {
+					$api.removeCls(item, 'active')
+				}
+			})
+		}
+
+		function groupFrameSwitch(index) {
+			changeStyle(index)
+			console.log(index)
+			api.setFrameGroupIndex({
+				name: "picture",
+				index: index,
+				reload: true
+			});
+		}
+
+		function openSearch() {
+			quakooApp.openNewWindow('search', './search.html')
+		}
+	</script>
+
+</html>

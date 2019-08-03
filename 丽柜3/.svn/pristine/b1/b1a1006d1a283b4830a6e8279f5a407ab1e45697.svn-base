@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		
+    		header{
+    			height: 5.706666rem;
+    			background:url(../../image/bg.png) no-repeat;
+    			background-size: 100% 100%;
+    		}
+    		header .top{
+    			display: flex;
+    			padding: 0.346666rem 0.4rem 0 0.4rem;
+    			justify-content: space-between;
+    		}
+    		header .top-left img{
+    			width: 0.293333rem;
+    			height: 0.48rem;
+    		}
+    		header .top-rig img{
+    			width: 0.506666rem;
+    			height: 0.506666rem;
+    		}
+    		.header-content{
+    			height: 4.88rem;
+    			
+    			padding: 0 0.8rem 0 0.4rem;
+    			
+    		}
+    		.header-content .author-info{
+    			display: flex;
+    			flex-direction: column;
+    			align-items: center;
+    		}
+    		.header-content .photo{
+    			position: relative;
+    			width: 1.706666rem;
+    			height: 1.706666rem;
+    			border-radius: 50%;
+    			
+    		}
+    		.header-content img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.header-content .rank{
+    			width: 0.426666rem;
+    			height: 0.4rem;
+    			position: absolute;
+    			left: 1.173333rem;
+    			top: 1.306666rem;
+    			overflow: hidden;
+    		}
+    		.header-content .author-name{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			margin-top: 0.266666rem;
+    		}
+    		.header-content .content-right{
+    			flex-direction: column;
+    			align-items: flex-end;
+    		}
+    		.content-right .attention{
+    			font-size: 0.426666rem;
+    			color: #fff;
+    			width: 1.6rem;
+    			height: 0.64rem;
+    			line-height: 0.64rem;
+    			text-align: center;
+    			background: #FF5C98;
+				margin-bottom: 1.066666rem;
+    		}
+    		.content-right .fans-item{
+    			margin-left: 0.8rem;
+    			color: #fff;
+    			font-size: 0.373333rem;
+    			text-align: center;
+    		}
+    		.content-right .fans-item .fans-info{
+    			margin-top: 0.106666rem;
+    		}
+    		.title-select{
+    			width: 100%;
+    			display: flex;
+    			justify-content: space-around;
+    			padding: 0.16rem 0;
+    			text-align: center;
+    			font-size: 0;
+    		}
+    		.title-select .item img{
+    			width: 0.613333rem;
+    			height: 0.533333rem;
+    			margin-bottom: 0.16rem;
+    		}
+    		.title-select .item .name{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			line-height: 20px;
+    		}
+    		.message-item:before{
+    			content: '';
+    			display: block;
+    			width: 100%;
+    			height: 0.266666rem;
+    			background: #F5F5F5;
+    		}
+    		.item-top{
+    			display: flex;
+    			justify-content: space-between;
+    			padding: 0.533333rem 0.4rem 0;
+    			align-items: center;
+    			margin-bottom: 0.32rem;
+    		}
+    		.item-top .own-info{
+    			display: flex;
+    			align-items: center;
+    		}
+    		.item-top .own-info .photo{
+    			width: 1.226666rem;
+    			height: 1.226666rem;
+    			border-radius: 50%;
+    			overflow: hidden;
+    			margin-right: 0.266666rem;
+    			
+    		}
+    		.item-top .own-info .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.item-top .own-info .name{
+    			display: flex;
+    			flex-direction: column;
+    		}
+    		.item-top .own-info .name span{
+    			font-size: 0.373333rem;
+    			color: #333;
+    		}
+    		.item-top .own-info .name .time{
+    			font-size: 0.32rem;
+    			color: #999;
+    			margin-top: 0.106666rem;
+    		}
+    		.top-right{
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    		}
+    		.top-desc{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			padding-left: 0.4rem;
+    			
+    			margin-bottom: 0.32rem;
+    		}
+    		.detail-message{
+    			background: #f5f5f5;
+    			padding: 0.32rem 0.373333rem 0.32rem 0.4rem;
+    		}
+    		.detail-message .detail-info{
+    			font-size: 0.373333rem;
+    			line-height: 0.533333rem;
+    		}
+    		.detail-message .detail-info .call{
+    			color: #FF5C98;
+    		}
+    		.detail-message .img-item{
+    			width: 2.986666rem;
+    			height: 2.986666rem;
+    			margin:0.32rem 0.133333rem 0.32rem 0;
+    			float: left;
+    			border-radius: 0.106666rem;
+    			overflow: hidden;
+    		}
+    		.detail-message .img-item:nth-child(3n+0){
+    			margin-right: 0;
+    		}
+    		.detail-message .img-item img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.message-footer .footer-item{
+    			height: 1.333333rem;
+    			border-right: 0.026666rem solid #F5F5F5;
+    			flex: 1;
+    		}
+    		.message-footer .footer-item .icon{
+    			width: 0.56rem;
+    			height: 0.4rem;
+    		}
+    		.message-footer .footer-item .icon img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.message-footer .footer-item .num{
+    			font-size: 0.373333rem;
+    			color: #666;
+    			margin-left: 0.106666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<header>
+			<div class="top">
+				<div class="top-left">
+					<img src="../../icon/back.png" alt="" />
+				</div>
+				<div class="top-rig">
+					<img src="../../icon/crown.png" alt="" />
+				</div>
+			</div>
+			<div class="header-content flex flex-align-center flex-pack-justify">
+				<div class="author-info">
+					<div class="photo">
+						<img src="../../image/photo.png" alt="" />
+						<div class="rank">
+							<img src="../../icon/V.png" alt="" />
+						</div>
+					</div>
+					<div class="author-name">长发及腰热不热i</div>
+				</div>
+				<div class="content-right flex">
+					<div class="attention"><span>关注</span></div>
+					<div class="fans flex ">
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">粉丝</div>
+						</div>
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">关注</div>
+						</div>
+						<div class="fans-item">
+							<div class="num">1.2万</div>
+							<div class="fans-info">积分</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="title-select">
+			<div class="item">
+				<img src="../../icon/pic_0.png" alt="" />
+				<div class="name">图片</div>
+			</div>
+			<div class="item">
+				<img src="../../icon/video.png" alt="" />
+				<div class="name">视频</div>
+			</div>
+			<div class="item">
+				<img src="../../icon/reward.png" alt="" />
+				<div class="name">打赏</div>
+			</div>
+		</div>
+		<div class="message-list">
+			<ul>
+				<li class="message-item">
+					<div class="item-top">
+						<div class="own-info">
+							<div class="photo">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="name">
+								<span>长发及腰热不热</span>
+								<span class="time">45分钟之前</span>
+							</div>
+						</div>
+						<div class="top-right">
+							<span>已置顶</span>
+						</div>
+					</div>
+					<div class="top-desc">新书上架</div>
+					<div class="detail-message">
+						<div class="detail-info">
+							<span class="call">@乔乔</span><span>赞助过旅拍活动的微信私聊我</span>
+						</div>
+						<ul class="clearfix">
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+						</ul>
+					</div>
+					<div class="message-footer flex flex-pack-justify">
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+					</div>
+				</li>
+				<li class="message-item">
+					<div class="item-top">
+						<div class="own-info">
+							<div class="photo">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="name">
+								<span>长发及腰热不热</span>
+								<span class="time">45分钟之前</span>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="detail-message">
+						<div class="detail-info">
+							<span class="call">@乔乔</span><span>赞助过旅拍活动的微信私聊我</span>
+						</div>
+						<ul class="clearfix">
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+						</ul>
+					</div>
+					<div class="message-footer flex flex-pack-justify">
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img src="../../icon/eyes.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

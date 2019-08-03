@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>详情</title>
+    <style>
+        .win-main {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+         .win-nav {
+             flex-shrink: 0;
+             height: 44px;
+             line-height: 44px;
+             font-size: 18px;
+             text-align: center;
+             position: relative;
+             color: #333;
+             background: #fafafa;
+        }
+        .prod-main {
+            flex: 1;
+        }
+        #leftButton img{
+            width: 11px;
+            height: 18px;
+        }
+        .prod-data {
+            display: flex;
+        }
+        .prod-data li {
+            height: 50px;
+            line-height: 50px;
+            flex: 0 0 33.33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .prod-data span{
+            margin-left: 5px;
+            display: inline-block;
+            line-height:14px;
+        }
+        .collect-icon {
+            display: inline-block;
+            width:21px;
+            height:20px;
+            background: url("../../icon/star.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .collectted .collect-icon{
+            background: url("../../icon/pink_star.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .comment-icon {
+            display: inline-block;
+            width:21px;
+            height:19px;
+            background: url("../../icon/com.png") no-repeat center center;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+        .buy-prod {
+            font-size:18px;
+            color:#ffffff;
+            background:#ff5c98;
+        }
+        .collect,.comment{
+            font-size:14px;
+            color:#666666;
+            position: relative;
+        }
+        .collect:after,.comment:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        .comment:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+	<div class="win-main">
+        <div class="win-nav">
+            <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+                <img src="../../image/back.png">
+            </div>
+            <div>详情</div>
+        </div>
+        <div class="prod-main"></div>
+        <ul class="prod-data">
+<!--            <li class="collect"><i class="collect-icon"></i><span>0</span></li>-->
+<!--            <li class="comment"><i class="comment-icon"></i><span>0</span></li>-->
+<!--            <li class="buy-prod">购买</li>-->
+        </ul>
+    </div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <li class="collect  <%=list.hasCollect && 'collectted'%>" tapmode="itemOn" data-flag="0"  onclick="switchCollectEvent(this,<%=list.id%>)"><i class="collect-icon"></i><span><%=list.collectNum%></span></li>
+    <li class="comment" tapmode="" onclick="commentInput()"><i class="comment-icon"></i><span><%=list.commentNum%></span></li>
+    <li class="buy-prod" tapmode="" onclick="buyProd(<%=list.id%>)">购买</li>
+</script>
+<script>
+    var params;
+    var cid;
+    var UIChatBox;
+    var price;//
+    apiready = function () {
+        UIChatBox = api.require('UIChatBox');
+        var statusBarAppearance = api.statusBarAppearance;//是否支持沉浸式
+        var foot = document.querySelector('.prod-data');
+        var header = document.querySelector('.win-nav');
+        if(statusBarAppearance){
+            $api.fixStatusBar(header);
+            $api.fixTabBar(foot);
+        }
+        params = api.pageParam;
+        cid = params.cid;
+        quakooData.ajaxGetData(config.getUrl_content_getContentInfo(), {cid: cid}, function(ret, err) {
+            if(ret && ret.success) {
+
+                renderFoot(ret.data)
+            }
+        });
+
+
+    };
+    function renderFoot(results){
+        if(quakooUtils.isNotBlack(results)){
+            price = results.price;
+            var data = {
+                list:results
+            };
+            var html  =template('scriptDiv1',data);
+            $api.html($api.dom('.prod-data'),html);
+            api.parseTapmode();
+            quakooApp.openFrame('works_pic_details_body','./works_pic_details_body.html',results,44+api.safeArea.top,49+api.safeArea.bottom,{})
+        }
+    }
+    // 切换收藏
+    function switchCollectEvent(_this,id) {
+        var flag = +$api.attr(_this, 'data-flag');
+        var collected = _this.classList.contains('collectted');
+        var nub = +$api.html($api.dom(_this, 'span'));
+        if (flag === 1) {
+            return
+        }
+        $api.attr(_this, 'data-flag', 1);
+        if (collected) {// 取消收藏
+            quakooData.ajaxGetData(config.getUrl_collect_del(), {id: id, type: 0}, function (ret, err) {
+                if (ret && ret.success) {
+                    $api.attr(_this, 'data-flag', 0);
+                    $api.html($api.dom(_this, 'span'),--nub);
+                    $api.removeCls(_this,'collectted');
+                    quakooMsg.toast('取消收藏')
+                }
+            })
+        } else {// 收藏
+            quakooData.ajaxGetData(config.getUrl_collect_add(), {id: id, type: 0}, function (ret, err) {
+                if (ret && ret.success) {
+                    $api.attr(_this, 'data-flag', 0);
+                    $api.html($api.dom(_this, 'span'),++nub);
+                    $api.addCls(_this,'collectted')
+                    quakooMsg.toast('收藏成功')
+                }
+            })
+
+        }
+    }
+    function commentInput() {
+        UIChatBox.popupKeyboard();
+        UIChatBox.open({
+            placeholder: '',
+            maxRows: 4,
+            emotionPath: 'widget://image/emotion',
+            autoFocus:true,
+            texts: {
+                sendBtn: {
+                    title: 'send'
+                }
+            },
+            styles: {
+                topDivider:{                        //(可选项)顶部分割线配置
+                    width:1,                        //(可选项)顶部分割线的粗细，默认：0
+                    color:'#f0f0f0'                    //(可选项)顶部分割线的颜色；默认：#000 ;支持图片设置(fs:// & widget://)
+                },
+                inputBar:{                          //（可选项）JSON对象；输入区域（输入框及两侧按钮）整体样式
+                    borderColor: '#f0f0f0',         //（可选项）字符串类型；输入框区域上下边框的颜色，支持 rgb，rgba，#；默认：'#d9d9d9'
+                    bgColor: '#fff',             //（可选项）字符串类型；输入框区域的整体背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    textColor:'#333',               //（可选项）字符串类型；输入文字的颜色；默认：#000
+                    textSize:16,                    //（可选项）数字类型；默认：16
+                    textMarginLeft:5                //（可选项）数字类型；光标距离左边框的距离，默认：5
+                },
+                inputBox: {                         //（可选项）JSON对象；输入框样式
+                    borderColor: '#f0f0f0',         //（可选项）字符串类型；输入框的边框颜色，支持 rgb，rgba，#；默认：'#B3B3B3'
+                    bgColor: '#fff',             //（可选项）字符串类型；输入框的背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    boardBgColor: '#fff',        //（可选项）字符串类型；面板的背景色(表情面板，附加面板)，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    topMargin:5,                   //（可选项）数字类型；输入框距离顶部的边距；默认：10
+                    borderCorner:5,                 //(可选项)数字类型；默认：5
+                    leftIcon:{                      //(可选项)JSON对象，输入框左侧图标  本参数仅支持android
+                        size:0,                //(可选项)数字类型；icon的大小；默认：20
+                    }
+                },
+                emotionBtn: {                       //（可选项）JSON对象；表情按钮样式；不传则不显示表情按钮
+                    normalImg: 'widget://'          //（可选项）字符串类型；表情按钮常态的背景图片（本地路径，fs://、widget://）；默认：笑脸小图标,
+                },
+                sendBtn: {                         //（可选项）JSON对象；发送按钮样式，本参数对 iOS 平台上的键盘内发送按钮无效
+                    bg: '#ff5c98',                 //（可选项）字符串类型；发送按钮背景颜色，支持 rgb、rgba、#、img；默认：#4cc518
+                    titleColor: '#ffffff',          //（可选项）字符串类型；发送按钮标题颜色；默认：#ffffff
+                    activeBg: '#ff5c98',            //（可选项）字符串类型；发送按钮背景颜色，支持 rgb、rgba、#、img；默认：无
+                    titleSize: 13                    //（可选项）数字类型；发送按钮标题字体大小；默认：13
+                }
+            }
+        }, function(ret, err) {
+            if(ret.eventType =='send'){
+                if(quakooUtils.isBlack(ret.msg.trim())) {
+                    quakooMsg.toast('请输入写内容');
+                    return
+                }
+                api.execScript({
+                    name:api.winName,
+                    frameName:api.winName+'_body',
+                    script:'addComment("'+ret.msg+'")'
+                })
+                UIChatBox.hide();
+                UIChatBox.closeKeyboard();
+
+
+            }
+        });
+        UIChatBox.addEventListener({
+            target: 'inputBar',
+            name: 'move'
+        }, function(ret, err) {
+            if(ret.panelHeight == 0){
+                UIChatBox.hide();
+            }
+        });
+    }
+    function commentNumAdd() {
+       var num = +$api.text($api.dom('.comment span'));
+        $api.text($api.dom('.comment span'),++num);
+    }
+
+    // 购买
+    function buyProd(cid){
+        var content ='购买此作品需支付'+price+'LB,确定购买吗?';
+        quakooMsg.showDialog('购买',content,'取消','购买',function () {
+            quakooData.ajaxSubmitData(config.getUrl_content_buyContent(),{cid:cid},function (ret,err) {
+               if(ret&& ret.success){
+                   quakooMsg.toast('购买成功');
+                   setTimeout(function () {
+                       apiready()
+                   },350)
+               }
+            })
+        });
+
+    }
+</script>
+</body>
+</html>

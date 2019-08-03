@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>绑定微信</title>
+    <style type="text/css">
+        html, body {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .select_wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .select_box {
+            background: #fff;
+            border-radius: 0.16rem;
+            width: 6.773rem;
+            height: 8.853rem;
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .title {
+            padding: 0.533rem 0.533rem 0.16rem;
+            font-size: 0.426666rem;
+            color: #FF5C98;
+            flex-shrink: 0;
+        }
+
+        .area-num-ul {
+            height: calc(100% - 0.533rem - 0.533rem - 0.533rem);
+            overflow-y: scroll;
+        }
+
+        .area-num-ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        .area-num-ul li {
+            font-size: 0.373333rem;
+            color: #333;
+            height: 1.387rem;
+            line-height: 1.387rem;
+            position: relative;
+            padding: 0 0.533rem;
+        }
+
+        .area-num-ul li:after {
+            content: '';
+            height: 1px;
+            background: #f2f2f2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: scaleY(.5);
+        }
+
+        .area-num-ul li:first-child:after {
+            content: none;
+        }
+
+        .cancel {
+            flex-shrink:0 ;
+            font-size: 0.426666rem;
+            color: #999;
+            width: 100%;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="select_wrap">
+    <div class="select_box">
+        <div class="title">选择国家或者地区电话号码</div>
+        <ul class="area-num-ul">
+        </ul>
+        <div class="cancel" tapmode="itemOn" onclick="api.closeFrame()">取消</div>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/area-number.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+        <%for(var i = 0 ; i< list.length;i++){%>
+            <li  onclick="returnAreaNumber('<%=list[i].num%>')"><%=list[i].ch%>+<%=list[i].num%></li>
+        <%}%>
+</script>
+<script>
+    var params;
+//  apiready = function () {
+        /**
+         * params: winName,frameName ,propsEvent
+         */
+        params = api.pageParam;
+        renderAreaNumber(areaNumber)
+//  };
+    // 渲染国际区号
+    function  renderAreaNumber(results) {
+        var newResults = []
+        results.forEach(function (item,i) {
+            var _obj = {}
+            var itemArr = item.split('-');
+            _obj.en = itemArr[0];
+            _obj.ch = itemArr[1];
+            _obj.num = itemArr[2];
+            newResults.push(_obj)
+        });
+       var data = {
+           list:newResults
+       };
+       var html = template('scriptDiv1',data);
+       $api.html($api.dom('.area-num-ul'),html);
+       api.parseTapmode();
+    }
+    // 返回区域号
+    function returnAreaNumber(_number) {
+        var propsEvent = params.propsEvent+'("'+_number+'")';
+        api.execScript({
+            name:params.winName,
+            frameName:params.frameName,
+            script:propsEvent,
+        });
+        setTimeout(function () {
+            api.closeFrame();
+        },200)
+    }
+</script>
+
+
+
+</body>
+</html>

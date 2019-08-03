@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>作品</title>
+    <style>
+        .header_title {
+            height: 68px;
+            width: 100%;
+            background: #F5F5F5;
+        }
+
+        .header_title ul {
+            border: 1px solid #FF5C98;
+            height: 28px;
+            border-radius:100px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .header_title li {
+            font-size:14px;
+            color: #FF5C98;
+            background: #fff;
+            width: 68px;
+        }
+
+        .header_title li + li{
+            border-left:1px solid  #FF5C98;
+        }
+
+        .header_title li.active {
+            background: #FF5C98;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="header_title flex flex-align-center flex-pack-center">-->
+<!--    <ul class="flex ">-->
+<!--        <li class=" flex flex-align-center flex-pack-center active" tapmode="" onclick="groupFrameSwitch_homeProd(0)">推荐</li>-->
+<!--        <li class=" flex flex-align-center flex-pack-center" tapmode="" onclick="groupFrameSwitch_homeProd(1)">图片</li>-->
+<!--        <li class=" flex flex-align-center flex-pack-center" tapmode="" onclick="groupFrameSwitch_homeProd(2)">视频</li>-->
+<!--        <li class=" flex flex-align-center flex-pack-center" tapmode="" onclick="groupFrameSwitch_homeProd(3)">VR</li>-->
+<!--    </ul>-->
+<!--</div>-->
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        api.openFrameGroup({
+            name: 'homeProd',
+            rect: {
+                x: 0,
+                marginTop: api.safeArea.top + 44 + 68,
+                w: "auto",
+                marginBottom: 49 + api.safeArea.bottom
+            },
+            frames: [{
+                name:'prod_recommend',                                //frame名字，字符串类型，不能为空字符串
+                url:'./prod_recommend.html',                                 //页面地址，可以为本地文件路径，支持相对路径和绝对路径，以及 widget://、fs://等协议路径，也可以为远程地址。 当data参数不为空时，url将做为baseUrl，data中的html引用的资源文件根路径以该url为基础。字符串类型
+                useWKWebView:true,                     //（可选项）是否使用WKWebView来加载页面。WKWebView具有Safari相同的JavaScript引擎，支持更多的HTML5特性，相比于UIWebView，在性能和功能方面都有很大提升。只支持iOS8.0及以上系统。注意使用WKWebView的页面localStorage有兼容性问题，建议使用Prefs代替。
+                pageParam:{},                           //（可选项）页面参数，页面中可以通过api.pageParam获取，JSON对象
+                bounces:true,                           //（可选项）是否弹动，布尔型，默认值：若在 config.xml 里面配置了pageBounce，则默认值为配置的值，否则为true。注意如果页面使用了上拉、下拉刷新等功能，该属性可能会被刷新组件重新设置。
+                bgColor:'#fff',                         //（可选项）背景色，支持图片和颜色，格式为#fff、#ffffff、rgba(r,g,b,a)等，图片路径支持fs://、widget://等APICloud自定义文件路径协议，同时支持相对路径
+                },
+                {
+                    name:'prod_image',                                //frame名字，字符串类型，不能为空字符串
+                    url:'./prod_image.html',                                 //页面地址，可以为本地文件路径，支持相对路径和绝对路径，以及 widget://、fs://等协议路径，也可以为远程地址。 当data参数不为空时，url将做为baseUrl，data中的html引用的资源文件根路径以该url为基础。字符串类型
+                    useWKWebView:true,                     //（可选项）是否使用WKWebView来加载页面。WKWebView具有Safari相同的JavaScript引擎，支持更多的HTML5特性，相比于UIWebView，在性能和功能方面都有很大提升。只支持iOS8.0及以上系统。注意使用WKWebView的页面localStorage有兼容性问题，建议使用Prefs代替。
+                    pageParam:{},                           //（可选项）页面参数，页面中可以通过api.pageParam获取，JSON对象
+                    bounces:true,                           //（可选项）是否弹动，布尔型，默认值：若在 config.xml 里面配置了pageBounce，则默认值为配置的值，否则为true。注意如果页面使用了上拉、下拉刷新等功能，该属性可能会被刷新组件重新设置。
+                    bgColor:'#fff',                         //（可选项）背景色，支持图片和颜色，格式为#fff、#ffffff、rgba(r,g,b,a)等，图片路径支持fs://、widget://等APICloud自定义文件路径协议，同时支持相对路径
+                },
+                {
+                    name:'prod_video',                                //frame名字，字符串类型，不能为空字符串
+                    url:'./prod-video.html',                                 //页面地址，可以为本地文件路径，支持相对路径和绝对路径，以及 widget://、fs://等协议路径，也可以为远程地址。 当data参数不为空时，url将做为baseUrl，data中的html引用的资源文件根路径以该url为基础。字符串类型
+                    useWKWebView:true,                     //（可选项）是否使用WKWebView来加载页面。WKWebView具有Safari相同的JavaScript引擎，支持更多的HTML5特性，相比于UIWebView，在性能和功能方面都有很大提升。只支持iOS8.0及以上系统。注意使用WKWebView的页面localStorage有兼容性问题，建议使用Prefs代替。
+                    pageParam:{},                           //（可选项）页面参数，页面中可以通过api.pageParam获取，JSON对象
+                    bounces:true,                           //（可选项）是否弹动，布尔型，默认值：若在 config.xml 里面配置了pageBounce，则默认值为配置的值，否则为true。注意如果页面使用了上拉、下拉刷新等功能，该属性可能会被刷新组件重新设置。
+                    bgColor:'#fff',                         //（可选项）背景色，支持图片和颜色，格式为#fff、#ffffff、rgba(r,g,b,a)等，图片路径支持fs://、widget://等APICloud自定义文件路径协议，同时支持相对路径
+                },
+                {
+                    name:'prod_vr',                                //frame名字，字符串类型，不能为空字符串
+                    url:'./prod_vr.html',                                 //页面地址，可以为本地文件路径，支持相对路径和绝对路径，以及 widget://、fs://等协议路径，也可以为远程地址。 当data参数不为空时，url将做为baseUrl，data中的html引用的资源文件根路径以该url为基础。字符串类型
+                    useWKWebView:true,                     //（可选项）是否使用WKWebView来加载页面。WKWebView具有Safari相同的JavaScript引擎，支持更多的HTML5特性，相比于UIWebView，在性能和功能方面都有很大提升。只支持iOS8.0及以上系统。注意使用WKWebView的页面localStorage有兼容性问题，建议使用Prefs代替。
+                    pageParam:{},                           //（可选项）页面参数，页面中可以通过api.pageParam获取，JSON对象
+                    bounces:true,                           //（可选项）是否弹动，布尔型，默认值：若在 config.xml 里面配置了pageBounce，则默认值为配置的值，否则为true。注意如果页面使用了上拉、下拉刷新等功能，该属性可能会被刷新组件重新设置。
+                    bgColor:'#fff',                         //（可选项）背景色，支持图片和颜色，格式为#fff、#ffffff、rgba(r,g,b,a)等，图片路径支持fs://、widget://等APICloud自定义文件路径协议，同时支持相对路径
+                }]
+        }, function(ret, err) {
+            productTitle(ret.index)
+        });
+    };
+
+    function productTitle(index) {
+        api.execScript({
+            name:'main',
+            script:'homeContentSwitch_domStyle("homeProd",'+index+')'
+        })
+    }
+    function groupFrameSwitch_homeProd(index) {
+        api.setFrameGroupIndex({
+            name: "homeProd",
+            index: index,
+            scroll: true, //可以左右滑动 reload: true //来回刷新
+            // reload: true
+        });
+    }
+</script>
+</html>

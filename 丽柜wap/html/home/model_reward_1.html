@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>模特打赏自定义</title>
+    <style type="text/css">
+        html,
+        body {
+            background: transparent;
+
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-area {
+            position: absolute;
+            background: #fff;
+            border-radius: 0.213rem;
+            width: 8.507rem;
+            height: 9.333rem;
+            overflow: hidden;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .popup-title {
+            flex-shrink: 0;
+            height: 1.653rem;
+            line-height: 1.653rem;
+            font-size: 0.427rem;
+            color: #333333;
+            text-align: center;
+            background: #fff;
+        }
+
+        .gray-font {
+            font-size: 0.373rem;
+            color: #999999;
+        }
+
+        .popup-main {
+            flex: 1;
+            padding: 0 0.4rem;
+        }
+
+        .reward-ul {
+            height: 3rem;
+            overflow-y: scroll;
+            padding: 0.16rem 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .reward-ul li {
+            flex-shrink: 0;
+            margin: 0.16rem 0.267rem 0.16rem 0;
+            border: 1px solid #cbcbcb;
+            border-radius: 0.08rem;
+            width: 2.213rem;
+            height: 1.013rem;
+            line-height: 1.013rem;
+            font-size: 0.427rem;
+            text-align: center;
+            color: #333333;
+            box-sizing: border-box;
+        }
+
+        .reward-ul li.active {
+            border: 1px solid #ff5c98;
+            color: #ff5c98;
+        }
+
+        .atWill {
+            margin-top: 0.213rem;
+        }
+
+        .user-input {
+            margin-left: 0.32rem;
+            margin-right: 0.267rem;
+            display: inline-block;
+            border: 1px solid #cbcbcb;
+            border-radius: 0.08rem;
+            width: 4.187rem;
+            height: 0.8rem;
+        }
+
+        .user-input input {
+            width: 100%;
+            height: 100%;
+            padding: 0 0.133rem;
+        }
+
+        .user-money {
+            margin-top: 0.533rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-money .user-money-total {
+            margin: 0 0.32rem;
+        }
+
+        .user-money .recharge {
+            color: #ff5c98;
+        }
+
+        .btn-group {
+            flex-shrink: 0;
+            height: 1.227rem;
+            line-height: 1.227rem;
+            display: flex;
+            position: relative;
+        }
+
+        .btn-group:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #F0F0F0;
+            transform: scaleY(.5);
+        }
+
+        .btn-group:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: #F0F0F0;
+            transform: scaleX(.5) translateX(-50%);
+        }
+
+        .btn-group span {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            color: #999999;
+        }
+
+        .btn-group span.submit {
+            color: #ff5c98;
+        }
+    </style>
+</head>
+
+<body>
+<div class="mask" tapmode="" onclick="closeCurFrame()"></div>
+<div class="popup-area">
+
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <div class="popup-title">打赏给长发及腰热不热i</div>
+    <div class="popup-main">
+        <div class="gray-font">打赏金额</div>
+        <ul class="reward-ul">
+            <%for(var i = 0 ; i< list.length;i++){%>
+            <li tapmode="itemOn" onclick="checkSel(<%=i%>,<%=list[i].name%>)"><%=list[i].name%>LB</li>
+            <%}%>
+        </ul>
+        <div class="atWill">
+            <span class="gray-font">任意赏</span><label class="user-input"><input type="number"
+                                                                               onfocus="clearStyle()"></label><span
+                class="gray-font">LB</span>
+        </div>
+        <div class="user-money gray-font"><span>账户余额</span>
+            <div class="user-money-total"><span>1</span>LB</div>
+            <div class="recharge" tapmode="" onclick="openRechargeWin()">充值</div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <span tapmode="itemOn" onclick="closeCurFrame()">取消</span><span tapmode="itemOn" class="submit"
+                                                                        onclick="RewardPro()">确定</span>
+    </div>
+
+</script>
+<script>
+    var params, price, cid, winName, frameName;
+//  apiready = function () {
+        params = api.pageParam;
+        cid = params.id;
+        winName = params.winName;
+        frameName = params.frameName;
+        quakooData.ajaxSubmitDataNotProcess(config.getUrl_postType_getPostTypeListByType(), {type: 4}, function (ret, err) {
+            if (ret && ret.success) {
+                var data = {
+                    list: ret.data
+                };
+                var html = template('scriptDiv1', data);
+                $api.html($api.dom('.popup-area'), html);
+                api.parseTapmode();
+                quakooData.ajaxSubmitDataNotProcess(config.getUrl_wallet_getMyWallet(), {}, function (ret, err) {
+                    if (ret && ret.success) {
+                        $api.text($api.dom('.user-money-total span'), ret.data.money);
+                        money = ret.data.money
+                    }
+                });
+            }
+        })
+//  };
+
+    function checkSel(index, nub) {
+        var labs = $api.domAll('.reward-ul li');
+        labs.forEach(function (item, i) {
+            if (index == i) {
+                if (!item.classList.contains('active')) {
+                    $api.addCls(item, 'active')
+                    $api.val($api.dom('.atWill input'), nub)
+                }
+            } else {
+                if (item.classList.contains('active')) {
+                    $api.removeCls(item, 'active')
+                }
+            }
+        })
+    }
+
+    //打赏
+    function RewardPro() {
+        price = $api.val($api.dom('.atWill input'));
+        if (quakooUtils.isBlack(price)) {
+            quakooMsg.toast('请选择金额')
+            return;
+        }
+        var ajaxparams = {
+            type: 1,
+            objectId: cid,
+            money: price
+        }
+        quakooData.ajaxSubmitData(config.getUrl_model_rewardModelOrCircle(), ajaxparams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('打赏成功');
+                api.sendEvent({
+                    name: params.scriptEvent,
+                    extra: {
+                        cid: cid,
+                        price: price
+                    }
+                });
+                setTimeout(function () {
+                    closeCurFrame()
+                }, 300)
+            }
+        })
+    }
+
+    //点击input框，清除选择的样式
+    function clearStyle() {
+
+        var labs = $api.dom('.reward-ul li.active');
+        if (quakooUtils.isNotBlack(labs)) {
+            $api.removeCls(labs, 'active')
+        }
+    }
+
+    //打开充值窗口
+    function openRechargeWin() {
+        quakooApp.openNewWindow('recharge', '../mine/recharge.html', {})
+    }
+
+    function closeCurFrame() {
+        api.closeFrame()
+    }
+</script>
+</body>
+
+</html>

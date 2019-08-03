@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>发布视频</title>
+    <style type="text/css">
+        body {
+            height: auto;
+            background: #f5f5f5;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .public-text {
+            height: 140px;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+
+        .public-text textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5em;
+        }
+
+        .public-text textarea::-webkit-input-placeholder {
+            color: #999;
+            line-height: 1.5em;
+        }
+
+        .public-upload-area {
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            background: #fff;
+            display: flex;
+        }
+
+        .public-upload-area li {
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 22px;
+            background: #e8e7e7;
+            position: relative;
+        }
+
+        .upload-cover-btn {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding-top: 19px;
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+        }
+
+        .upload-cover-btn img {
+            display: block;
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 12px;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .cover-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .public-upload-area li.upload-video {
+            background-image: url("../../icon/Camera.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            -webkit-background-size: 42px 32px;
+            background-size: 42px 32px;
+        }
+
+        .public-dynamic-price {
+            background: #fff;
+            box-sizing: border-box;
+            padding: 12px 15px 0;
+        }
+
+        .sel-price {
+            height: 22px;
+            line-height: 22px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .price-ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .price-ul li {
+            height: 20px;
+            line-height: 20px;
+            box-sizing: border-box;
+            padding-left: 22px;
+            background: url("../../icon/pay-unsel.png") no-repeat center left;
+            -webkit-background-size: 16px 16px;
+            background-size: 16px 16px;
+            margin-right: 20px;
+        }
+
+        .price-ul li.active {
+            background: url("../../icon/pay-sel.png") no-repeat center left;
+            -webkit-background-size: 16px 16px;
+            background-size: 16px 16px;
+            margin-right: 20px;
+        }
+
+        .public-video {
+            flex: 1;
+            background: #fff;
+            border-top: 1px solid #f0f0f0;
+            box-sizing: border-box;
+            padding: 15px;
+
+        }
+
+        .video-ali-cover {
+            /*background-image: url(" https://outin-01e45d1ac0a511e8852800163e1c60dc.oss-cn-shanghai.aliyuncs.com/image/cover/EB61250ED62149D5B3325EDDFB53E477-6-2.png?Expires=1563967933&OSSAccessKeyId=LTAIxSaOfEzCnBOj&Signature=x8hh8s1Me8zu8xba1tWpS3fbnT4%3D");*/
+            background-position: center center;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
+            border-radius: 4px;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play {
+            width: 24px;
+            height: 24px;
+            background: url("../../icon/play.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+<div class="public-text">
+    <textarea placeholder="发布内容..." maxlength="200" id="public-title"></textarea>
+</div>
+<ul class="public-upload-area">
+    <li class="upload-cover">
+        <div class="upload-cover-btn" tapmode="" onclick="openCover()"><img src="../../icon/add.png"
+                                                                            alt=""><span>添加封面</span></div>
+        <!--        <div class="cover-image"><img src="../../image/bg.png" alt=""></div>-->
+    </li>
+    <li class="upload-video" tapmode="" onclick="selectVideo()"></li>
+</ul>
+<div class="public-dynamic-price">
+    <div class="sel-price">选择价值</div>
+    <ul class="price-ul">
+        <li>免费</li>
+        <li>1LB</li>
+        <li>2LB</li>
+        <li>3LB</li>
+    </ul>
+</div>
+<div class="public-video">
+    <div class="video-ali-cover">
+        <div class="play"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%if(list && list.length){%>
+    <%for(var i = 0 ; i< list.length;i++){%>
+    <%if(i == 0){%>
+    <li class="active" data-price="<%=list[i].name%>" tapmode="" onclick="selPrice(this,<%=i%>)"><%=list[i].text%></li>
+    <%}else {%>
+    <li class="" data-price="<%=list[i].name%>" tapmode="" onclick="selPrice(this,<%=i%>)"><%=list[i].text%></li>
+    <%}%>
+    <%}%>
+    <%}%>
+</script>
+<script type="text/html" id="scriptDiv2">
+    <div class="cover-image"><img src="../../icon/worksbg.png" style="width: 100%;height: 100%;"
+                                  onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'"
+                                  data-echo="<%=list[0].imgurl%>" real-style="<%=list[0].imgStyle%>" alt=""></div>
+</script>
+<script type="text/html" id="scriptDiv3">
+    <div class="video-ali-cover" style="background:url('<%=list.cover%>') no-repeat center center;">
+        <div class="play" tapmode="" onclick="play('<%=list.video%>')"></div>
+    </div>
+</script>
+<script>
+
+    var maxstr = 1; // 上传封面 个数
+    var maxstr_video = 1; // 上传视频 个数
+    var publicParams = {
+        title: '',//标题
+        type: 1,// 0图片 1视频
+        imageStr: '',//图片地址
+        video: '',// 视频地址
+        price: undefined,//价格
+        length: 30//图片张数 或者 视频时长
+    };//发表视频动态 的参数
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var _w = _h = 2.667 * fontSize;
+
+    var
+    apiready = function () {
+        quakooData.ajaxGetData(config.getUrl_postType_getPostTypeListByType(), {type: 2}, function (ret, err) {
+            if (ret && ret.success) {
+                if (quakooUtils.isNotBlack(ret.data)) {
+                    ret.data.forEach(function (item) {
+                        if (+item.name === 0) {
+                            item.text = '免费'
+                        } else {
+                            item.text = item.name + 'LB'
+                        }
+                    });
+                    publicParams.price = +ret.data[0].name;
+                    var data = {
+                        list: ret.data
+                    };
+                    var html = template('scriptDiv1', data)
+                    $api.html($api.dom('.price-ul'), html)
+                    api.parseTapmode()
+
+                }
+            }
+        })
+    };
+
+
+    //选择价值
+    function selPrice(_this, index) {
+        var labs = $api.domAll('.price-ul li');
+        labs.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'active');
+                publicParams.price = +$api.attr(item, 'data-price');
+            } else {
+                $api.removeCls(item, 'active')
+            }
+        })
+    }
+
+    //选择视频
+    function selectVideo() {
+        quakooImg.openMedia(maxstr_video, 'video', function (ret) {
+            publicParams.length = parseInt(ret.value.duration/1000,10);
+            quakooVideo.uploadVideo(ret.value.cover, ret.value.video, function (ret) {
+                var data = {
+                    list: ret.value
+                };
+                publicParams.video = ret.value.video;
+                var html = template('scriptDiv3', data);
+                $api.html($api.dom('.public-video'), html);
+                api.parseTapmode();
+                --maxstr_video
+            })
+        });
+
+    }
+
+    //添加封面
+    function openCover() {
+        quakooImg.openMedia(maxstr, 'img', function (ret) {
+            quakooImg.uploadImgs(ret.value.imgsList, function (ret) {
+                var _results = [];
+                ret.value.urls.forEach(function (item, index) {
+                    publicParams.imageStr = item;
+                    var imgObj = quakooImg.processImg(item, _w, _h);
+                    var _obj = {
+                        imgurl: imgObj.url,
+                        imgStyle: imgObj.style,
+                    };
+                    _results.push(_obj)
+                });
+                var _data = {
+                    list: _results
+                };
+                var html = template('scriptDiv2', _data);
+                $api.append($api.dom('.upload-cover'), html);
+                maxstr = maxstr - _results.length;
+                setTimeout(function () {
+                    if (!echo.isInit()) {
+                        echoExt.init({
+                            offset: 0,
+                            throttle: 0//设置图片延迟加载的时间
+                        });
+                    } else {
+                        echo.render()
+                    }
+                }, 100);
+            })
+        });
+    }
+
+
+    //发布
+    function publicDynamic() {
+        var publicTitle = $api.val($api.dom('#public-title'));
+        if (quakooUtils.isBlack(publicTitle)) {
+          quakooMsg.toast('请填写发表内容');
+            return
+        }
+        publicParams.title = publicTitle;
+
+        if (quakooUtils.isBlack(publicParams.imageStr))  {
+            quakooMsg.toast('请上传视频封面');
+            return
+        }
+
+        if (quakooUtils.isBlack(publicParams.video) ) {
+            quakooMsg.toast('请选择你的视频');
+            return
+        }
+
+        if (publicParams.price === undefined)  {
+            quakooMsg.toast('请选择你的动态价值');
+            return
+        }
+
+        quakooData.ajaxGetData(config.getUrl_circle_addCircle(), publicParams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('发布成功');
+                setTimeout(function () {
+                    quakooApp.closeWin()
+                }, 500)
+            }
+        })
+    }
+    function play(video) {
+        api.accessNative({
+            name: "liguiPlay",
+            extra: {
+                url:video,
+                viewTime:0,
+                playTime:0,
+                outh:1,
+                title:publicParams.title
+            }
+        }, function (ret, err) {
+
+        });
+        api.addEventListener({
+            name: 'liguiPlay'
+        }, function(ret, err) {
+
+        });
+    }
+</script>
+</body>
+
+</html>

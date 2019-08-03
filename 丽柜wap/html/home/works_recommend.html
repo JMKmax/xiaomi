@@ -1,0 +1,429 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" />
+    	<title>注册登录</title>
+    	<style>
+     		.header_title{
+    			height: 1.813333rem;
+    			width: 100%;
+    			background: #F5F5F5;	
+    		}
+    		.header_title ul{
+    			border:0.026666rem solid #FF5C98;
+    			height: 0.746666rem;
+    			border-radius: 0.373333rem;
+    			overflow: hidden;
+    			box-sizing: border-box;
+    		}
+    		.header_title .item{
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    			background: #fff;
+    			width: 1.813333rem;
+    			box-sizing: border-box;
+    			
+    			border-left: 0.026666rem solid #FF5C98;
+    			box-sizing: border-box;
+    		}
+    		.header_title .item:first-child{
+    			border-left: none;
+    		}
+    		.header_title .item.active{
+    			background: #FF5C98;
+    			color: #fff;
+    		}
+    		.carousel{
+    			width:100%;
+    			height: 3.413333rem;
+    			
+    			background: #eee;
+    		}
+    		.carousel img{
+    			width:100%;
+    			height: 100%;
+    		}
+    		.main{
+    			background: #eee;
+    			
+    		}
+    		.recommend .image{
+    			position: relative;
+    		}
+    		.recommend .image .title{
+    			position: absolute;
+    			top: 0.4rem;
+    			left: 0.4rem;
+    			color:#fff;
+    		}
+    		.recommend .image .image-photo{
+    			width:100%;
+    			height: 12rem;
+    			overflow: hidden;
+    		}
+    		.recommend .image .image-photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.recommend .image .time{
+    			position: absolute;
+    			right: 0.4rem;
+    			bottom: 0.4rem;
+    			height: 0.533333rem;
+    			padding:0 0.213333rem;
+    			line-height: 0.533333rem;
+    			color: #fff;
+    			background: #5B5B5B;
+    			border-radius: 0.08rem;
+    		}
+    		.recommend .author{
+    			width:100%;
+    			height: 1.493333rem;
+    		}
+    		.recommend .author .photo{
+    			width: 0.853333rem;
+    			height: 0.853333rem;
+    			margin-left: 0.4rem;
+    			margin-top: 0.32rem;
+    			float: left;
+    			border-radius: 0.106666rem;
+    			border-radius: 100%;
+    			overflow: hidden;
+    		}
+    		.recommend .author .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.recommend .author .name{
+    			float: left;
+    			margin-left: 0.16rem;
+    			margin-top: 0.48rem;
+    			line-height: 20px;
+    		}
+    		.recommend .author .icon{
+    			float:left;
+    			width:0.426666rem;
+    			height: 0.426666rem;
+    			margin-left: 0.16rem;
+    			margin-top: 0.533333rem;
+    		}
+    		.recommend .author .attention{
+    			float: right;
+    			margin-right: 0.4rem;
+    			margin-top: 0.426666rem;
+    			width:1.28rem;
+    			height: 0.64rem;
+    			line-height: 0.64rem;
+    			text-align: center;
+    			border:1px solid #FF77A9;
+    			color: #FF77A9;
+    			border-radius: 0.106666rem;
+    		}
+    		.recommend .author .attention.attend{
+    			color: #999;
+    			border-color: #999;
+    		}
+    		.recommend .image .audio-photo{
+    			width: 100%;
+    			height: 5.866666rem;
+    			overflow: hidden;
+    		}
+    		.recommend .image .audio-photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.title-images{
+    			display: none;
+    		}
+    		.title-video{
+    			display: none;
+    		}
+    		.top_title{
+    			display: none;
+    		}
+    		.top_title.title_active{
+    			display: block;
+    		}
+    		.swiper-container {
+			    width: 100%;
+			    height: 3.413333rem;
+			    padding-bottom: 0.266666rem;
+			}  
+			.swiper-container .swiper-slide img{
+				width: 100%;
+				height: 100%;
+			}
+			.my-bullet{
+				width: 0.133333rem;
+				height: 0.133333rem;
+				border-radius: 100%;
+				background: #F0F0F0;
+				margin-right: 0.133333rem;
+			}
+			.my-bullet-active{
+				background: #FF5C98;
+			}
+    	</style>
+	</head>
+	<body>
+		<div class="header_title flex flex-align-center flex-pack-center">
+			<ul class="flex ">
+				<li class="item active flex flex-align-center flex-pack-center" tapmode="" onclick="productTitle(0)">推荐</li>
+				<li class="item flex flex-align-center flex-pack-center" tapmode="" onclick="productTitle(1)">图片</li>
+				<li class="item flex flex-align-center flex-pack-center" tapmode="" onclick="productTitle(2)">视频</li>
+				<li class="item flex flex-align-center flex-pack-center" tapmode="" onclick="productTitle(3)">VR</li>
+			</ul>
+		</div>
+<!--                                             推荐                                                -->
+		<div class="title-recommend top_title title_active" >
+			
+			<div class="swiper-container ">
+			    <div class="swiper-wrapper swiper-no-swiping">
+			        <!--<div class="swiper-slide"><img src="../../image/bg.png" alt="" /></div>
+			        <div class="swiper-slide"><img src="../../image/bg_1.png" alt="" /></div>
+			        <div class="swiper-slide"><img src="../../image/bg_2.jpg" alt="" /></div>-->
+			    </div>
+			    <!-- 如果需要分页器 -->
+			    <div class="swiper-pagination"></div>
+			    
+			</div>
+			
+			<div class="main">
+				<div class="recommend">
+					<div class="image">
+						<p class="title">巴厘岛的夏天</p>
+						<div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">
+							<img src="../../image/bg.png" alt="" />
+						</div>
+						<p class="time">6P</p>
+					</div>
+					<div class="author">
+						<div class="photo">
+							<img  src="../../image/bg.png" alt="" />
+						</div>
+						<p class="name">请叫我妲姬</p>
+						<img class="icon" src="../../icon/weixin.png" alt="" />
+						<p class="attention" >关注</p>
+					</div>
+				</div>
+				<div class="recommend">
+					<div class="image">
+						<p class="title">沙滩热辣辣</p>
+						<div class="audio-photo" tapmode="" onclick="AudioDetail(this)">
+							<img class="beach" src="../../image/bg.png" alt="" />
+						</div>
+						<p class="time">17:24</p>
+					</div>
+					<div class="author">
+						<div class="photo">
+							<img  src="../../image/bg.png" alt="" />
+						</div>
+						<p class="name">小o—毁了你的江山</p>
+						<img class="icon" src="../../icon/weixin.png" alt="" />
+						<p class="attention">关注</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--                              图片                                               -->
+		<div class="title-images top_title" >
+				<div class="recommend">
+					<div class="image">
+						<p class="title">巴厘岛的夏天</p>
+						<div class="image-photo" tapmode="itemOn" onclick="ImageDetail(this)">
+							<img src="../../image/bg.png" alt="" />
+						</div>
+						<p class="time">6P</p>
+					</div>
+					<div class="author">
+						<div class="photo">
+							<img  src="../../image/bg.png" alt="" />
+						</div>
+						<p class="name">请叫我妲姬</p>
+						<img class="icon" src="../../icon/weixin.png" alt="" />
+						<p class="attention">关注</p>
+					</div>
+				</div>
+				
+				<div class="recommend">
+					<div class="image">
+						<p class="title">巴厘岛的夏天</p>
+						<div class="image-photo" tapmode="" onclick="ImageDetail(this)">
+							<img src="../../image/bg.png" alt="" />
+						</div>
+						<p class="time">6P</p>
+					</div>
+					<div class="author">
+						<div class="photo">
+							<img  src="../../image/bg.png" alt="" />
+						</div>
+						<p class="name">请叫我妲姬</p>
+						<img class="icon" src="../../icon/weixin.png" alt="" />
+						<p class="attention">关注</p>
+					</div>
+				</div>
+		</div>
+		<!--                            视频                                               -->
+		
+		<div class="title-video top_title" >
+			<div class="recommend">
+				<div class="image">
+					<p class="title">呼啦好</p>
+					<div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+						<img class="beach" src="../../image/bg_1.png" alt="" />
+					</div>
+					<p class="time">17:24</p>
+				</div>
+				<div class="author">
+					<div class="photo">
+						<img  src="../../image/bg.png" alt="" />
+					</div>
+					<p class="name">小o—毁了你的江山</p>
+					<img class="icon" src="../../icon/weixin.png" alt="" />
+					<p class="attention">关注</p>
+				</div>
+			</div>
+			<div class="recommend">
+				<div class="image">
+					<p class="title">沙滩热辣辣</p>
+					<div class="audio-photo" tapmode="itemOn" onclick="AudioDetail(this)">
+						<img class="beach" src="../../image/bg_2.jpg" alt="" />
+					</div>
+					<p class="time">17:24</p>
+				</div>
+				<div class="author">
+					<div class="photo">
+						<img  src="../../image/bg.png" alt="" />
+					</div>
+					<p class="name">小o—毁了你的江山</p>
+					<img class="icon" src="../../icon/weixin.png" alt="" />
+					<p class="attention">关注</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/swiper-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	
+	<script id="swiper" type="text/html">
+		<%for(var i=0; i<list.length; i++){%>
+			<div class="swiper-slide"><img src=<%=list[i].image%> alt="" /></div>
+		<%}%>   
+	</script>
+	<script>
+		apiready = function() {
+			//轮播图
+			quakooData.ajaxGetData(config.getUrl_banner_getAllBannerList(),{},function(ret,err){
+				if(ret && ret.success){
+					console.log($api.jsonToStr(ret))
+					var data = {
+						list:ret.data
+					}
+					var html = template('swiper',data)
+					$api.html($api.dom('.swiper-wrapper'),html);
+					api.parseTapmode()
+					var mySwiper = new Swiper ('.swiper-container', {
+					    direction: 'horizontal', // 垂直切换选项
+					    loop: true, // 循环模式选项
+					    speed:1000,
+					    autoplay:{
+					    	delay:1000
+					    },
+					    // 如果需要分页器
+					    pagination: {
+					      el: '.swiper-pagination',
+					      clickable :true,
+					      bulletClass : 'my-bullet',
+					      bulletActiveClass: 'my-bullet-active',
+					    },
+					}) 
+				}
+			})
+			//推荐列表
+			//var quakooPage = new QuakooPage(cb,config.getUrl_content_getMostPopularPager(),{});
+			
+		};
+		function cb(ret,apped){
+			console.log(apped)
+			var div = document.createElement('div');
+			if(apped){
+				appendChild
+			}else {
+				inner
+			}
+		}
+		function productTitle(index) {
+			var lis = $api.domAll('.header_title li');
+			var labels = $api.domAll('.top_title');
+			lis.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'active')
+					$api.addCls(labels[i], 'title_active')
+				} else {
+					$api.removeCls(item, 'active')
+					$api.removeCls(labels[i], 'title_active')
+				}
+			})
+		}
+		
+		function AudioDetail(_this){
+				console.log(_this)
+				var imgUrl =$api.attr($api.dom(_this,'img'),'src');
+				var name =$api.dom($api.closest(_this,'.image'),'p').innerHTML;
+				quakooApp.openNewWindow('works_video_details','./works_video_details.html',{imgUrl:imgUrl,name:name});
+			}
+	
+		function ImageDetail(_this){
+			var imgUrl =$api.attr($api.dom(_this,'img'),'src');
+			var name =$api.dom($api.closest(_this,'.image'),'p').innerHTML;
+			quakooApp.openNewWindow('works_pic_details','./works_pic_details.html',{imgUrl:imgUrl,name:name});
+		}
+		
+		//                                      改变关注的状态
+			var author = $api.domAll('.recommend .author ')
+			var attend = $api.domAll('.recommend .attention');
+			var isAttends = []
+			for(var i = 0;i<author.length;i++){
+				var name = $api.dom(author[i],'.name');
+				var isAttend = $api.hasCls(attend[i],'ready')
+				var wItem = {
+					name:name,
+					isAttend:isAttend
+				}
+				isAttends.push(wItem)
+			}
+			for(var i = 0;i<attend.length;i++){
+				attend[i].index = i
+				attend[i].onclick  = function(){
+					if(!isAttends[this.index].isAttend){
+						this.innerHTML = '已关注'
+						$api.addCls(this,'attend');
+						isAttends[this.index].isAttend = true
+					}else{
+						this.innerHTML = '关注'
+						$api.removeCls(this,'attend');
+						isAttends[this.index].isAttend = false
+					
+					}
+				}
+			}
+		
+	</script>
+</html>

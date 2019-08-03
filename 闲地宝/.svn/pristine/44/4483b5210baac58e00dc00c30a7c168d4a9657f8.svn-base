@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>资源</title>
+    <style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+			background: #f7f5f6;
+		}
+		.ul{
+			padding-bottom: 1.333333rem;
+			padding-top: 0.28rem;
+			box-sizing: border-box;
+		}
+		.ul .list{
+			width: 100%;
+			padding: 0.573333rem 0.426666rem 0.493333rem 0.426666rem;
+			box-sizing: border-box;
+			background: #fff;
+			margin-bottom: 0.28rem;
+		}
+		.rightButton{
+			padding:0.146666rem 0.306666rem;
+			border:1px solid #282828;
+			border-radius: 0.093333rem;
+			font-size: 0.32rem;
+		}
+		.left .status{
+			display: inline-block;
+			padding: 0.106666rem 0.266666rem;
+			color: #2BD62F;
+			font-size: 0.266666rem;
+			background:rgba(43,214,47,0.18);
+			border-radius: 0.106666rem;
+			margin-left: 0.266666rem;
+		}
+		.left{
+			font-size: 0.453333rem;
+			color: #282828;
+		}
+		.left .name{
+			color: #8D8F90;
+			font-size: 0.32rem;
+			margin-top: 0.4rem;
+		}
+		.active{
+			color: #0097FE;
+			border: 1px solid #0097FE;
+		}
+		
+		.plus{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1.333333rem;
+			color: #0097FE;
+			font-size: 0.4rem;
+			background: #fff;
+		}
+		.plus div{
+			width: 0.533333rem;
+			height: 0.533333rem;
+			border-radius: 0.266666rem;
+			background: #0097FE;
+			margin-right: 0.266666rem;
+			color: #fff;
+			text-align: center;
+			line-height: 0.533333rem;
+			font-size: 0.4rem;
+		}
+		.mui-popover.mui-popover-action .mui-table-view{
+			margin: 0;
+		}
+		.mui-table-view-cell{
+			padding: 0;
+			height: 1.493333rem;
+			line-height: 1.493333rem;
+			color: #282828;
+			font-size: 0.48rem;
+		}
+		.mui-table-view-cell > a:not(.mui-btn){
+			margin: 0;
+		}
+		.mui-popover.mui-popover-action .mui-table-view {
+			border-radius:0;
+		}
+		.mui-popover.mui-popover-action.mui-active{
+			background:rgba(242,242,242,1);
+		}
+		.second:after{
+			height: 0!important;
+		}
+		.second{
+			height: 1.306666rem!important;
+			line-height: 1.306666rem!important;
+		}
+		.first{
+			color: #919191;
+			font-size: 0.426666rem;
+		}
+    </style>
+</head>
+
+<body>
+	<ul class="ul">
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton" onclick="openMuiModal3()">移除</div>
+		</li>
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton active" tapmode="" onclick="bindCircle()">绑定圈子</div>
+		</li>
+		<li class="list flex flex-align-center flex-pack-center flex-pack-justify"> 
+			<div class="left">
+				<div>
+					<span>Key:123456</span>
+					<span class="status">运行中</span>
+				</div>
+				<div class="name">品牌：飒飒打算</div>
+			</div>
+			<div class="rightButton">移除</div>
+		</li>
+	</ul>
+	<div class="plus flex flex-align-center flex-pack-center" onclick="openMuiModal1()">
+		<div>＋</div>
+		<span>添加资源</span>
+	</div>
+	
+	<div id="modal_01" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">添加资源</a>
+	        </li>
+	        <li class="mui-table-view-cell second">
+	            <a href="#">手动添加</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell">
+	            <a href="#" class="btm-cancle">文件夹导入</a>
+	        </li>
+	    </ul>
+	</div>
+	<div id="modal_02" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">是否确定绑定此圈子？</a>
+	        </li>
+	        <li class="mui-table-view-cell second">
+	            <a href="#">是</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell">
+	            <a href="#" class="btm-cancle">否</a>
+	        </li>
+	    </ul>
+	</div>
+	<div id="modal_03" class="mui-popover mui-popover-bottom mui-popover-action">
+	    <ul class="mui-table-view margin_B4px" style="margin-bottom: 0.133333rem;">
+	        <li class="mui-table-view-cell first">
+	            <a href="#">是否确定移除？</a>
+	        </li>
+	        <li class="mui-table-view-cell second">
+	            <a href="#">是</a>
+	        </li>
+	    </ul>
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell">
+	            <a href="#" class="btm-cancle">否</a>
+	        </li>
+	    </ul>
+	</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+      
+    };
+	
+	
+	function openMuiModal1() {
+        mui('#modal_01').popover('toggle');
+   }
+	
+	function openMuiModal3() {
+        mui('#modal_03').popover('toggle');
+    }
+	//绑定圈子
+	function bindCircle(){
+		quakooApp.openNewWindow('circleList','./circleList.html')
+	}
+</script>
+</body>
+</html>

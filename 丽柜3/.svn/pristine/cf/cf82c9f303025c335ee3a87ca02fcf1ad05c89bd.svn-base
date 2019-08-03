@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的关注</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            background: #F5F5F5;
+        }
+
+        .focus-ul {
+
+        }
+
+        .focus-ul li {
+            position: relative;
+            padding: 0.32rem 0.4rem;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .focus-ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #F5F5F5;
+            transform: scaleY(.5);
+        }
+
+        .user-icon {
+            width: 1.44rem;
+            height: 1.44rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .user-icon img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-name > div {
+            font-size: 14px;
+            color: #333333;
+            height: 0.533rem;
+            line-height: 0.533rem;
+            margin-right: 0.266666rem;
+        }
+
+        .user-name img {
+            width: 0.426666rem;
+            height: 0.426666rem;
+            margin-right: 0.16rem;
+        }
+
+        .user-data {
+            margin-top: 0.16rem;
+            font-size: 12px;
+            color: #666666;
+            height: 0.453rem;
+            line-height: 0.453rem;
+        }
+
+        .user-data span {
+            margin-right: 0.267rem;
+        }
+
+        .followed.follow {
+            border: 1px solid #999999;
+            color: #999999;
+        }
+
+        .followed {
+            border: 1px solid #ff5c98;
+            color: #ff5c98;
+            border-radius: 0.107rem;
+            width: 1.12rem;
+            height: 0.587rem;
+            line-height: 0.587rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul class="focus-ul">
+<!--    <li>-->
+<!--        <div class="user-info">-->
+<!--            <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+<!--            <div>-->
+<!--                <div class="user-name flex flex-align-center">-->
+<!--                    <div>周惠惠</div>-->
+<!--                    <img src="../../icon/weixin.png" alt=""/>-->
+<!--                    <img src="../../icon/reward.png" alt=""/>-->
+<!--                </div>-->
+<!--                <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num">作品18</span></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="followed follow" tapmode="itemOn" onclick="chenckAttend(0)">已关注</div>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <div class="user-info">-->
+<!--            <div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+<!--            <div>-->
+<!--                <div class="user-name flex flex-align-center">-->
+<!--                    <div>周惠惠</div>-->
+<!--                    <img src="../../icon/weixin.png" alt=""/>-->
+<!--                    <img src="../../icon/reward.png" alt=""/>-->
+<!--                </div>-->
+<!--                <div class="user-data"><span class="fenSi">粉丝3687</span><span class="prod-num">作品18</span></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="followed" tapmode="itemOn" onclick="chenckAttend(1)">关注</div>-->
+<!--    </li>-->
+</ul>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0; i < list.length;i++){%>
+        <li tapmode="" onclick="openHomepage(<%=list[i].type%>,<%=list[i].id%>)">
+            <div class="user-info" >
+                <div class="user-icon"><img src="../../icon/defaultHead.png"  style="width: 100%;height: 100%;" data-echo="<%=list[i].icon%>" real-style="<%=list[i].iconStyle%>" alt=""></div>
+                <div>
+                    <div class="user-name flex flex-align-center">
+                        <div><%=list[i].name%></div>
+                        <%if(list[i].type == 0){%>
+                            <img src="../../icon/weixin.png" alt=""/>
+                            <img src="../../icon/reward.png" alt=""/>
+                        <%}%>
+                    </div>
+                    <div class="user-data"><span class="fenSi">粉丝<%=list[i].fansCount%></span><span class="prod-num">作品<%=list[i].contentCount%></span></div>
+                </div>
+            </div>
+            <%if(list[i].flow){%>
+            <div class="followed follow" tapmode="" data-flag="0"  onclick="checkAttend(this,<%=list[i].id%>)">已关注</div>
+            <%}else {%>
+            <div class="followed" tapmode="" data-flag="0"  onclick="checkAttend(this,<%=list[i].id%>)">关注</div>
+            <%}%>
+        </li>
+    <%}%>
+</script>
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    apiready = function () {
+        new QuakooPage(mineFlowListRender,config.getUrl_flow_getMyFansPager(), {})
+    };
+
+    function mineFlowListRender(results,append) {
+        for (var i =0; i< results.length; i++){
+            if(quakooUtils.isNotBlack(results[i].icon)){
+                var _iconObg = quakooImg.processImg(results[i].icon,1.44*fontSize,1.44*fontSize);
+                results[i].icon = _iconObg.url;
+                results[i].iconStyle =  _iconObg.style
+            }else {
+                results[i].icon = '../../icon/defaultHead.png';
+                results[i].iconStyle =  'width:100%;height:100%'
+            }
+
+        }
+        var data = {
+            list:results
+        };
+        var html = template('scriptDiv1',data);
+        if(append){
+            $api.append($api.dom('.focus-ul'),html)
+        }else {
+            $api.html($api.dom('.focus-ul'),html)
+        }
+        setTimeout(function () {
+            if (!echo.isInit()) {
+                echoExt.init({
+                    offset: 0,
+                    throttle: 0//设置图片延迟加载的时间
+                });
+            } else {
+                echo.render()
+            }
+        }, 100);
+        api.parseTapmode()
+    }
+    function checkAttend(_this,id) {
+        console.log(id)
+        quakooUtils.stopEventBubble()
+        var flow = _this.classList.contains('follow');
+        var flag  = +$api.attr(_this,'data-flag');// 防止重复点击
+        var _params ={
+            otherId: id
+        };
+        if(flag == 1){
+            return
+        }
+
+
+        $api.attr(_this,'data-flag',1);
+       if(flow) {// 已关注 =》 未关注
+           quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+               if(ret && ret.success){
+                   quakooMsg.toast('取消成功');
+                   $api.attr(_this,'data-flag',0);
+                   $api.removeCls(_this,'follow');
+                   $api.text(_this,'关注')
+               }
+           })
+       }else {//  未关注  =》 已关注
+           quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+               if(ret && ret.success){
+                   quakooMsg.toast('关注成功');
+                   $api.attr(_this,'data-flag',0);
+                   $api.addCls(_this,'follow');
+                   $api.text(_this,'已关注')
+
+               }
+           })
+       }
+    }
+
+    function openHomepage(type,id) {
+        if(+type===0){ // 跳转模特主页
+            quakooApp.openNewWindow('model_detail'+id,'../home/model_detail.html',{id:id})
+        }else if(+type===1){ // 跳转摄影师主页
+            quakooApp.openNewWindow('photographer_detail'+id,'../home/photographer_detail.html',{id:id})
+        }else if(+type===2){// 跳转摄影机构主页
+            quakooApp.openNewWindow('photographic_institutions_detail'+id,'../home/photographic_institutions_detail.html',{id:id})
+        }
+
+    }
+
+
+</script>
+
+</html

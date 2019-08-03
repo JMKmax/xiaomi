@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>绑定微信</title>
+	<style type="text/css">
+		body{
+			padding-top:0.503333rem; ;
+		}
+		.apply{
+			position: relative;
+			width: 9.6rem;
+			height: 0.96rem;
+			/*margin-left: 0.4rem;*/
+			margin: 0 auto; 
+			padding-top: 0.213333rem;
+			box-sizing: initial;
+		}
+		.apply>img{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0.96rem;
+			height: 0.96rem;
+		}
+		.apply>div{
+			font-family:PingFang-SC-Medium;
+			font-size: 0.373333rem;
+			color:#333333;
+			width: 2.4rem;
+			height: 0.533333rem;
+			margin-left: 1.226666rem;
+		}
+		.word{
+			font-family:PingFang-SC-Medium;
+			font-size: 0.48rem;
+			color:#333333;
+			width: 9.2rem;
+			height: 0.666666rem;
+			margin-left: 0.4rem;
+			margin: 0 auto;
+			/*background-color: pink;*/
+		}
+		.tips{
+			font-family:PingFang-SC-Medium;
+			font-size: 0.373333rem;
+			color:#999999;
+			width: 9.2rem;
+			height: 0.533333rem;
+			margin: 0 auto;
+			margin-top: 1.066666rem;
+			/*background-color: pink;*/
+		}
+		.items{
+			border-bottom: 1px solid #e1e1e1;
+			position: relative;
+			width: 9.2rem;
+			height: 2.133333rem;
+			margin: 0 auto;
+			/*background-color: pink;*/
+		}
+		.item_first{
+			border-top: 1px solid #e1e1e1;
+			margin-top: 0.533333rem;
+		}
+		.items>img:nth-of-type(1){
+			width: 1.493333rem;
+			height: 1.493333rem
+			border-radius: 0.106666rem;
+			padding-top: 0.32rem;
+			box-sizing: initial;
+		}
+		.items>img:nth-of-type(2){
+			position: absolute;
+			right: 0;
+			top: 0.96rem;
+			width: 0.533333rem;
+			height: 0.4rem;
+		}
+		.add>img:nth-of-type(1){
+			position: absolute;
+			width: 0.586666rem;
+			left: 0.453333rem;
+			top: 0.533333rem;
+		}
+		.add>img:nth-of-type(2){
+			position: absolute;
+			right: 0;
+			top: 0.96rem;
+			width: 0.16rem;
+			height: 0.373333rem;
+		}
+		.items .info_name{
+			position: absolute;
+			left: 1.76rem;
+			top: 0.2rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.48rem;
+			color:#333333;
+		}
+		.add .info_new{
+			position: absolute;
+			left: 1.76rem;
+			top: 0.8rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.48rem;
+			color:#333333;
+		}
+		.items .info_wx{
+			position: absolute;
+			left: 1.76rem;
+			top: 1.2rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.426666rem;
+			color:#999999;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 1.066666rem;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+	</style>
+</head>
+<body>
+    <div class="apply">
+    	<img src="../../icon/logo_null.png" alt="" />
+    	<div>丽柜  申请使用</div>
+    </div>
+    <div class="word">你的微信头像、昵称、地区和性别信息</div>
+    <div class="tips">你可以使用不同的个人信息登陆</div>
+    <div class="items item_first">
+    	<img src="../../icon/Head_portrait_null.png" alt="" />
+    	<div class="info_name">大脸猫</div>
+    	<div class="info_wx">微信个人信息</div>
+    	<img src="../../icon/checked.png" alt="" />
+    </div>
+    <div class="items add" onclick="BindUser()">
+    	<img src="../../icon/add.png" alt="" />
+    	<div class="info_new">新建头像昵称</div>
+    	<img src="../../icon/right.png" alt="" />
+    </div>
+    <div class="loginButton flex flex-align-center flex-pack-center">同意</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+    	
+    };
+    function BindUser(){
+    	quakooApp.openNewWindow('bind_wx1','./bind_wx1.html')
+    }
+</script>
+</body>
+</html>

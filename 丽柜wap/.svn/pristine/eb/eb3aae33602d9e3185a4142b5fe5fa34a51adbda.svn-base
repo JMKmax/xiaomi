@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>模特-新人</title>
+    <style>
+        .author {
+            position: relative;
+            background: #fff;
+            height: 2.08rem;
+            box-sizing: border-box;
+        }
+
+        .author:after {
+            content: '';
+            height: 1px;
+            background: #F5F5F5;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: scaleY(.5);
+        }
+
+        .author .photo {
+            width: 1.44rem;
+            height: 1.44rem;
+            border-radius: 100%;
+            position: absolute;
+            top: 0.32rem;
+            left: 0.4rem;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .author .detail {
+            position: absolute;
+            top: 0.453333rem;
+            left: 2.106666rem;
+
+        }
+
+        .author .detail .name {
+            font-size: 0.373333rem;
+            color: #333;
+            margin-right: 0.266666rem;
+            margin-bottom: 0.16rem;
+            max-width: 4rem;
+            height: 0.533333rem;
+            line-height: 0.533333rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .author .detail img {
+            width: 0.426666rem;
+            height: 0.426666rem;
+            margin-right: 0.16rem;
+        }
+
+        .author .detail .num {
+            font-size: 0.32rem;
+            color: #666;
+            margin-right: 0.266666rem;
+        }
+
+        .author .detail .product-num {
+            font-size: 0.32rem;
+            color: #666;
+           
+        }
+
+        .author .attention {
+            font-size: 0.373333rem;
+            color: #FF5C98;
+            width: 1.28rem;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            text-align: center;
+            position: absolute;
+            right: 0.533333rem;
+            top: 0.72rem;
+            border: 1px solid #FF5C98;
+            border-radius: 0.106666rem;
+        }
+
+        .author .attention.ready {
+            color: #999;
+            border-color: #999;
+        }
+
+      
+    </style>
+</head>
+<body>
+
+<div class="top_title ">
+<!--    <div class="author">-->
+<!--        <div class="photo" tapmode="itemOn" onclick="openHome()">-->
+<!--            <img src="../../icon/defaultHead.png" alt=""/>-->
+<!--        </div>-->
+<!--        <div class="detail flex">-->
+<!--            <div class="name ">请叫我妲姬</div>-->
+<!--            <img src="../../icon/weixin.png" alt=""/>-->
+<!--            <img src="../../icon/reward.png" alt=""/>-->
+<!--            <div class="num">粉丝22901</div>-->
+<!--            <div class="product-num">作品23</div>-->
+<!--        </div>-->
+<!--        <div class="attention">关注</div>-->
+<!--    </div>-->
+<!--    <div class="author">-->
+<!--        <div class="photo" tapmode="itemOn" onclick="openHome()">-->
+<!--            <img src="../../icon/defaultHead.png" alt=""/>-->
+<!--        </div>-->
+<!--        <div class="detail ">-->
+<!--        	<div class="top flex">-->
+<!--        		 <div class="name ">请叫我妲姬</div>-->
+<!--           		 <img src="../../icon/weixin.png" alt=""/>-->
+<!--            	<img src="../../icon/reward.png" alt=""/>-->
+<!--        	</div>-->
+<!--           <div class="bottom flex">-->
+<!--           		<div class="num">粉丝22901</div>-->
+<!--            <div class="product-num">作品23</div>-->
+<!--           </div>-->
+
+<!--        </div>-->
+<!--        <div class="attention">关注</div>-->
+<!--    </div>-->
+<!--    <div class="author">-->
+<!--        <div class="photo" tapmode="itemOn" onclick="openHome()">-->
+<!--            <img src="../../icon/defaultHead.png" alt=""/>-->
+<!--        </div>-->
+<!--        <div class="detail flex">-->
+<!--            <div class="name ">请叫我妲姬</div>-->
+<!--            <img src="../../icon/weixin.png" alt=""/>-->
+<!--            <img src="../../icon/reward.png" alt=""/>-->
+<!--            <div class="num">粉丝22901</div>-->
+<!--            <div class="product-num">作品23</div>-->
+<!--        </div>-->
+<!--        <div class="attention">关注</div>-->
+<!--    </div>-->
+</div>
+
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="list" type="text/html">
+	<%for(var i = 0;i<list.length;i++){%>
+		<div class="author"  onclick="openHome(<%=list[i].id%>)">
+	        <div class="photo" >
+	            <img src="../../icon/defaultHead.png" style="width: 100%;height: 100%"
+                         onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"
+                         data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""/>
+	        </div>
+	        <div class="detail">
+	        	<div class="top flex">
+        		 	<div class="name "><%=list[i].name%></div>
+           		 	<%if(list[i].type == 0){%>
+						<img src="../../icon/weixin.png" alt=""/>
+					<%}%>
+					<%if(list[i].type == 0 || list[i].type == 1){%>
+						<img src="../../icon/reward.png" alt=""/>
+					<%}%>
+        		</div>
+	           <div class="bottom flex">
+	           		<div class="num">粉丝<%=list[i].fansCount%></div>
+	           	 	<div class="product-num">作品<%=list[i].contentCount%></div>
+	           	</div>
+	        </div>
+	         <%if(list[i].flow){%>
+                	 <p class="attention ready"  data-mid="<%=list[i].id%>" data-flag="0" data-attend="<%=list[i].id%>" onclick="switchAttendEvent(this)" >已关注</p>
+                <%}else{%>
+                     <p class="attention"  data-mid="<%=list[i].id%>" data-flag="0"  data-attend="0" onclick="switchAttendEvent(this)">关注</p>
+                <%}%>
+	    </div>
+	<%}%>
+</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+    apiready = function () {
+		new QuakooPage(function(results,append){
+			var feilKey = quakooUtils.getImgKey();
+			 for (var i = 0; i < results.length; i++) {
+                if (quakooUtils.isBlack(results[i].icon)) {
+                    results[i].userIcon = '../../icon/defaultHead.png';
+                    results[i].userIconStyle = 'width:100%;height:100%;'
+                } else {
+                    var obj = quakooImg.processImg(results[i].icon,1.44*fontSize, 1.44*fontSize);
+                    results[i].userIcon = obj.url+feilKey;
+                    results[i].userIconStyle = obj.style;
+                }
+            }
+			var data = {
+				list:results
+			};
+			var html = template('list',data);
+			if(append){
+				var div = document.createElement('div');
+				div.innerHTML = html;
+				$api.dom('.top_title').appendChild(div)
+			}else{
+				$api.html($api.dom('.top_title'),html)
+			}
+			setTimeout(function () {
+                if (!echo.isInit()) {
+                    echoExt.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+                } else {
+                    echo.render()
+                }
+            }, 100);
+            api.parseTapmode()
+		},config.getUrl_flow_searchUser(),{name:api.pageParam.txt})
+    };
+
+    //跳转主页
+    function openHome(id) {
+       var userInfo = quakooUser.getUserInfo()
+    	userId = userInfo.id;
+    	if(id == userId){
+    		return;
+    	}else{
+    		quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+    	}
+    }
+ // 切换关注取消
+    function switchAttendEvent(_this){
+    	quakooUtils.stopEventBubble()
+        var mid = parseInt($api.attr(_this,'data-mid'),10); //关注模特的ID
+        var flag  = $api.attr(_this,'data-flag');// 防止重复点击
+        var attend =  parseInt($api.attr(_this,'data-attend'),10); // 关注状态 大于0  位关注中 等于0 未关注
+        if(flag == 1){
+            return
+        }
+        console.log(attend)
+        $api.attr(_this,'data-flag',1);
+
+        var _params ={
+            otherId: mid
+        };
+        if(attend === 0){ //  未关注 = 》 关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this,'data-flag',0);
+                    $api.attr(_this,'data-attend',mid)
+                    $api.addCls(_this,'ready')
+                    $api.html(_this,'已关注')
+                }
+            })
+
+        }else { //关注 == 未关注
+            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+                if(ret && ret.success){
+                    quakooMsg.toast('取消成功')
+                    $api.attr(_this,'data-flag',0);
+                    $api.attr(_this,'data-attend',0)
+                    $api.removeCls(_this,'ready')
+                    $api.html(_this,'关注')
+                }
+            })
+        }
+
+    } 
+
+   
+</script>
+</html>

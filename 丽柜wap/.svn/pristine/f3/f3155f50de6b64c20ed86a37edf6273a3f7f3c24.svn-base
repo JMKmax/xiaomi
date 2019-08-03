@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+      <title>认证模特</title>
+    <link href="../../css/mui.picker.all.css" rel="stylesheet"/>
+    <link href="../../css/mui.poppicker.css" rel="stylesheet"/>
+  
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html,body{
+            height: auto;
+        }
+        .section-tit {
+            background:#f5f5f5;
+            height:1.173rem;
+            line-height: 1.173rem;
+            font-size:16px;
+            color:#333333;
+            padding: 0 0.4rem;
+        }
+        .item-name {
+            font-size: 14px;
+            position: relative;
+        }
+        .item-name span {
+            margin-left: 0.267rem;
+            line-height: 0.533333rem;
+        }
+        .label-wrap {
+            width: 100%;
+            height:1.067rem;
+        }
+        .label-wrap input {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            padding-left:0.267rem;
+        }
+        .label-wrap input {
+            font-size:14px;
+            color:#999999;
+        }
+        .item-ul li{
+            padding: 0.267rem 0.4rem 0;
+            background: #fff;
+            position: relative;
+        }
+        .item-ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px ;
+            transform: scaleY(.5);
+            background: #f0f0f0;
+        }
+        .mustFill {
+            position: absolute;
+            top: 0.106666rem;
+            color:#ff5c98;
+            width:0.16rem!important;
+            height:0.16rem!important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size:0.333333rem!important; 
+        }
+        .uploadImg-area {
+            padding: 0.32rem 0.4rem;
+        }
+        .tip {
+            font-size:12px;
+            color:#333333;
+            line-height: 1.4em;
+            text-align: justify;
+        }
+        .tip span{
+            color: #ff5c98;
+        }
+
+        .load_img{
+			width:2.667rem;
+            height:2.667rem;
+            margin-right: 0.266666rem;
+            margin-top: 0.533rem;
+            border-radius: 0.106666rem;
+            box-sizing: border-box;
+            overflow: hidden;
+		}
+		.load_img img{
+			width: 100%;
+			height: 100%;
+		}
+        .uploadBTn {
+            margin-top: 0.533rem;
+            border-radius:0.107rem;
+            width:2.667rem;
+            height:2.667rem;
+            background: #e8e7e7 url("../../icon/uploadImg.png") no-repeat center center;
+            -webkit-background-size: 1.12rem 1.12rem;
+            background-size: 1.12rem 1.12rem;
+
+        }
+        .submit {
+            background-image:linear-gradient(-270deg, #ff77a9 0%, #fe4f8a 100%);
+            border-radius:2.667rem;
+            width:8.533rem;
+            height:1.173rem;
+            line-height:1.173rem;
+            text-align: center;
+            font-size:18px;
+            color:#ffffff;
+            margin: 0.213rem auto 0.32rem;
+        }
+        .not-pass {
+            padding: 0.32rem 0.4rem;
+        }
+        .not-pass-tit{
+            font-size:14px;
+            color:#ff5c98;
+            margin-bottom: 0.32rem;
+        }
+        .cause {
+            width: 100%;
+            border:1px solid #d8d8d8;
+            border-radius:0.107rem;
+            height:2.187rem;
+        }
+        .cause  textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../icon/back.png" alt="">
+	    </div>
+	    <div>认证模特</div>
+	</div>
+<div class="not-pass">
+    <div class="not-pass-tit">未通过原因</div>
+    <label class="cause">
+        <textarea readonly></textarea>
+    </label>
+</div>
+<div class="section-tit">个人资料</div>
+<ul class="item-ul">
+    <li>
+        <div class="item-name"><sup class="mustFill">*</sup><span>姓名</span></div>
+        <label class="label-wrap">
+            <input type="text">
+        </label>
+    </li>
+    <li class="click_province">
+        <div class="item-name"><sup class="mustFill">*</sup><span>居住地</span></div>
+        <label class="label-wrap">
+            <input type="text" class="value_province">
+        </label>
+    </li>
+    <li class="click_sex">
+        <div class="item-name"><sup class="mustFill">*</sup><span>性别</span></div>
+        <label class="label-wrap">
+            <input type="text" class="value_sex">
+        </label>
+    </li>
+    <li class="click_height">
+        <div class="item-name"><sup class="mustFill"></sup><span>身高</span></div>
+        <label class="label-wrap">
+            <input type="text" class="value_height">
+        </label>
+    </li>
+    <li>
+        <div class="item-name"><sup class="mustFill"></sup><span>体重</span></div>
+        <label class="label-wrap">
+            <input type="text">
+        </label>
+    </li>
+    <li class="click_sanWei">
+        <div class="item-name"><span>三围</span></div>
+        <label class="label-wrap">
+            <input type="text" class="value_sanWei">
+        </label>
+    </li>
+</ul>
+<div class="section-tit">联系人信息</div>
+<ul class="item-ul">
+    <li>
+        <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+        <label class="label-wrap">
+            <input type="tel" maxlength="11">
+        </label>
+    </li>
+    <li>
+        <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+        <label class="label-wrap">
+            <input type="tel">
+        </label>
+    </li>
+    <li>
+        <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+        <label class="label-wrap">
+            <input type="text">
+        </label>
+    </li>
+    <li>
+        <div class="item-name"><sup class="mustFill">*</sup><span>模特简介</span></div>
+        <label class="label-wrap">
+            <input type="text">
+        </label>
+    </li>
+</ul>
+<div class="section-tit">上传照片</div>
+<div class="uploadImg-area">
+    <div class="tip">
+        最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+    </div>
+    <div class="flex">
+    	<div class="load_img"><img src="../../image/bg.png" alt="" /></div>
+    	<div class="uploadBTn"></div>
+    </div>
+   
+</div>
+<div class="submit">
+    审核认证
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js"></script>
+	<script type="text/javascript" src="../../script/mui.picker.all.js"></script>
+	<script type="text/javascript" src="../../script/city.data-3.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script>
+    //身高
+    var heightParams =(function(){
+    	var arr = [];
+    	for(var i = 150;i<180;i++){
+    		var wItem = {
+    			text:i + 'cm',
+    			value:i
+    		}
+    		arr.push(wItem)
+    	}
+    	return arr
+    })()
+    //性别
+    var sexParams = [
+    	{
+    		text:'男',
+    		value:0
+    	},
+    	{
+    		text:'女',
+    		value:1
+    	}
+    ]
+    //体重
+    var wightParams = (function(){
+    	var arr = []
+    	for(var i = 45;i<56;i++){
+    		var wItem = {
+    			text:i + 'kg',
+    			value:i
+    		}
+    		arr.push(wItem)
+    	}
+    	return arr
+    })()
+     // 三围
+    var sanWeiParams = (function () {
+        var arr = [];
+        var x =[],y=[],t=[];
+        for(var i= 20 ;i<100;i++){
+            x.push(i);
+            y.push(i);
+            t.push(i);
+        }
+        arr.push(x,y,t);
+        return arr;
+    })();
+    var picker_stature;
+    var picker_sex;
+    var picker_wight;
+    var picker_province;
+    var picker_sanWei;
+    ;(function($,doc){
+    	$.init();
+    	//身高
+    	var click_height = doc.querySelector('.click_height');
+    	var value_height = doc.querySelector('.value_height');
+    	click_height.addEventListener('tap',function(event){
+    		if(!picker_stature){
+    			picker_stature = new $.PopPicker({
+                    layer: 1
+                });
+               }
+                picker_stature.setData(heightParams);
+                picker_stature.setTitle('身高');
+                picker_stature.show(function (items) {
+                	value_height.value = items[0].text
+            	})
+    	},false)
+    	//性别
+    	var click_sex = doc.querySelector('.click_sex');
+    	var value_sex = doc.querySelector('.value_sex');
+    	click_sex.addEventListener('tap',function(ev){
+    		if(!picker_sex){
+    			picker_sex = new $.PopPicker({
+    				layer:1
+    			})
+    		}
+    		picker_sex.setData(sexParams);
+    		picker_sex.setTitle('性别');
+    		picker_sex.show(function(items){
+    			value_sex.value = items[0].text
+    		})
+    	},false)
+    	 // 居住地
+        var click_province = doc.querySelector('.click_province');
+        var value_province = doc.querySelector('.value_province');
+        click_province.addEventListener('tap', function (event) {
+            if (!picker_province) {
+                picker_province = new $.PopPicker({
+                    layer: 2,
+
+                });
+                picker_province.setData(cityData3);
+                picker_province.setTitle('居住地');
+            }
+            picker_province.show(function (items) {
+                if ((items[0] || {}).text == undefined) {
+                    (items[0] || {}).text = "";
+                }
+                value_province.value = (items[0] || {}).text
+            })
+        }, false);
+         // 三围
+        var click_sanWei = doc.querySelector('.click_sanWei');
+        var value_sanWei = doc.querySelector('.value_sanWei');
+        click_sanWei.addEventListener('tap', function (event) {
+            if (!picker_sanWei) {
+                picker_sanWei = new $.PopPicker({
+                    layer: 3,
+                    noLinkage:true
+                });
+                picker_sanWei.setData_noLinkage(sanWeiParams);
+                picker_sanWei.setTitle('胸围-腰围-臀围');
+            }
+            picker_sanWei.show(function (items) {
+                value_sanWei.value=items[0]+' '+items[1]+' '+items[2]+' '
+            })
+        }, false);
+    })(mui,document)
+</script>
+
+</html>

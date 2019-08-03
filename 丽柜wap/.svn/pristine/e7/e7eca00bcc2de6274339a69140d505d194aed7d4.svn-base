@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>更换手机号</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        label {
+            width: 100%;
+            height: 100%;
+        }
+        label input {
+            width: 100%;
+            height: 100%;
+            font-size:0.427rem;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size:0.427rem;
+            line-height: normal;
+            color:#999999;
+        }
+
+        .con {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 0.533rem;
+        }
+
+        .con:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #f5f5f5;
+            transform: scaleY(.5);
+        }
+
+        .input-wrap {
+            width: 86.67%;
+            background: #f2f2f2;
+            border-radius: 2.667rem;
+            height: 1.173rem;
+            margin: 0 auto 0.533rem;
+            padding: 0 0.533rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .newPhone {
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0.267rem;
+        }
+
+        .newPhone .code {
+            flex-shrink: 0;
+        }
+
+        .newPhone label {
+            flex: 1;
+        }
+
+        .newPhone label input {
+            padding: 0 0.267rem;
+        }
+        .newPhone label input {
+
+        }
+
+        .area-code {
+            padding: 0 0.267rem;
+            font-size: 16px;
+            color: #999999;
+            position: relative;
+        }
+        .area-code:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background:#d8d8d8;
+            transform: scaleX(.5);
+        }
+        .code {
+            font-size:12px;
+            color:#ff5c98;
+            padding: 0 0.267rem;
+            position: relative;
+        }
+        .code:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background:#d8d8d8;
+            transform: scaleX(.5);
+        }
+        .submit {
+            background-image:linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            border-radius:100px;
+            width:86.67%;
+            height:1.173rem;
+            line-height:1.173rem;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../icon/back.png" alt="">
+	    </div>
+	    <div>修改密码</div>
+	</div>
+<div class="con">
+    <div class="input-wrap">
+        <label for=""><input id="oldPwd" type="text" placeholder="请输入原始密码"></label>
+    </div>
+    <div class="input-wrap">
+        <label for=""><input id="newPwd" type="text" placeholder="请输入新密码"></label>
+    </div>
+    <div class="input-wrap ">
+        <label for=""><input id="repeatPwd" type="text" placeholder="确认新密码"></label>
+    </div>
+    <div class="input-wrap submit" tapmode="" onclick="updatePwd()">提交</div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    function updatePwd(){
+    	if(quakooUtils.isBlack($api.val($api.dom('#oldPwd')))){
+    		quakooMsg.toast('请输入原密码');
+    		return;
+    	};
+    	if(quakooUtils.isBlack($api.val($api.dom('#newPwd')))){
+    		quakooMsg.toast('请输入新密码');
+    		return;
+    	};
+    	if(quakooUtils.isBlack($api.val($api.dom('#repeatPwd')))){
+    		quakooMsg.toast('确认新密码');
+    		return;
+    	};
+    	if($api.val($api.dom('#repeatPwd')) != $api.val($api.dom('#newPwd'))){
+    		quakooMsg.toast('两次密码不一致');
+    		return;
+    	}
+    	var _params = {
+    		password:$api.val($api.dom('#oldPwd')),
+    		newPassword:$api.val($api.dom('#newPwd')),
+    		againNewPassword:$api.val($api.dom('#repeatPwd'))
+    	}
+    	quakooData.ajaxGetData(config.getUrl_web_user_updatePassword(),_params,function(ret,err){
+    		if(ret && ret.success){
+    			quakooMsg.toast('密码修改成功,请重新登录')
+    				
+    			setTimeout(function(){
+    				quakooApp.openNewWindow('login','../login/login.html')
+    				
+    			},300)
+    			
+    			setTimeout(function(){
+    				quakooApp.closeThisWin()
+    				
+    			},500)
+    			
+    			
+    		}
+    	})
+    }
+</script>
+</html>

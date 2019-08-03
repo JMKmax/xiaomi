@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		body{
+    			background: #F5F5F5;
+    		}
+    		.date-item{
+    			height: 1.6rem;
+    			padding: 0 0.533333rem 0 0.4rem;
+    			background: #fff;
+    			position: relative;
+    		}
+    		.date-item:after{
+    			content:'';
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			height: 1px;
+    			background: #F5F5F5;
+    			transform: scaleY(0.5);
+    		}
+    		.date-item .item-left{
+    			font-size: 0.426666rem;
+    			color: #333;
+    		}
+    		.date-item .item-left img{
+    			width: 1.066666rem;
+    			height: 1.066666rem;
+    			border-radius: 100%;
+    		}
+    		.date-item .item-right{
+    			display: flex;
+    		}
+    		.date-item .item-right .date-content{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			margin-right: 0.266666rem;
+    		}
+    		.date-item .item-right .date-content input{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			text-align: right;
+    		}
+    		.date-item .item-right .back img{
+    			width: 0.186666rem;
+    			height: 0.373333rem;	
+    		}
+    	</style>
+	</head>
+	<body>
+		
+		<div class="date-list">
+			<ul>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left"><img src="../../image/photo.png" alt="" /></div>
+					<div class="item-right">
+						<div class="date-content">更换头像</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">昵称</div>
+					<div class="item-right">
+						<div class="date-content"><label ><input type="text" placeholder="长发及腰热不热" /></label></div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">性别</div>
+					<div class="item-right">
+						<div class="date-content">女</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">身高</div>
+					<div class="item-right">
+						<div class="date-content">170cm</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">鞋码</div>
+					<div class="item-right">
+						<div class="date-content">39</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">电话</div>
+					<div class="item-right">
+						<div class="date-content"><label ><input type="tel" placeholder="1789966996666" /></label></div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">微信</div>
+					<div class="item-right">
+						<div class="date-content"><label ><input type="text" placeholder="长发及腰热不热" /></label></div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item flex flex-align-center flex-pack-justify">
+					<div class="item-left">居住地</div>
+					<div class="item-right">
+						<div class="date-content">北京</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

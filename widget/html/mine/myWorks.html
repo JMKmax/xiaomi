@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>我的作品</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        .mine-topbar {
+            height: 44px;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .switch-type {
+            flex: 1;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .switch-type span {
+            flex: 1;
+            text-align: center;
+            height: 44px;
+            line-height: 44px;
+            position: relative;
+            display: block;
+        }
+        .switch-type span.active {
+            color: #ff5c98;
+        }
+        .switch-type span.active:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            height: 2px;
+            width:40px;
+            background: #ff5c98;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+
+        .rect {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="mine-topbar">
+    <div class="rect back" tapmode="" onclick="quakooApp.closeWin()"><img src="../../icon/back.png" width="11" height="18" alt=""></div>
+    <div class="switch-type">
+        <span class="active" tapmode="itemOn" onclick="groupFrameSwitch(0)">图片</span>
+        <span tapmode="itemOn" onclick="groupFrameSwitch(1)">视频</span>
+    </div>
+    <div class="rect"></div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+        var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+        if(statusBarAppearance) {
+            var header = $api.dom('.mine-topbar');
+            $api.fixStatusBar(header);
+        }
+        api.openFrameGroup({
+				name: 'Works',
+				background: "#fff",
+				scrollEnabled: true,
+				rect: {
+					x: 0,
+					marginTop: 44 + api.safeArea.top,
+					w: "auto",
+					h: 'auto'
+				},
+				index: 0,
+				frames: [{
+						name: 'picture',
+						bgColor: "#F5F5F5",
+						reload: 'true',
+						pageParam: {},
+						url: './myWorks_pic.html',
+						bounces: true
+					},
+					{
+						name: 'vudio',
+						bgColor: "#F5F5F5",
+						reload: 'true',
+						pageParam: {},
+						url: './myWorks_video.html',
+						bounces: true
+					}
+				]
+			}, function(ret, err) {
+				groupFrameSwitch(ret.index)
+			})
+    }
+    function checkIndex(index){
+    	var labs = $api.domAll('.switch-type span')
+    	labs.forEach(function(item,i){
+    		if(index == i){
+    			$api.addCls(item,'active')
+    		}else{
+    			$api.removeCls(item,'active')
+    		}
+    	})
+    }
+    function groupFrameSwitch(index){
+    	checkIndex(index)
+    	api.setFrameGroupIndex({
+   			name: 'Works',
+    		index: index
+		});
+    }
+</script>
+
+</html>

@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<title>Hello APP</title>
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/home.css" />
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<body style="overflow-x: hidden;">
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item home mui-active" href="#home">
+				<div class="navWord"></div>
+				首页
+			</a>
+			<a class="mui-tab-item massage" href="#massage">
+				<div class="navWord"></div>
+				消息
+			</a>
+			<a class="mui-tab-item circle" href="#circle">
+				<div class="navWord"></div>
+				动态
+			</a>
+			<a class="mui-tab-item shop" href="#shop">
+				<div class="navWord"></div>
+				商城
+			</a>
+			<a class="mui-tab-item mine" href="#mine">
+				<div class="navWord"></div>
+				我的
+			</a>
+		</nav>
+		<div id="wrap" class="mui-content" style="height: 100%;">
+			<div id="home" class="mui-control-content mui-active" style="height: 100%;">
+				<div style="position: fixed;top: 0;left:0;width: 100%;z-index: 100;">
+					<div id="header">
+						<div class="home header active">
+							<div class="home-nav">
+								<ul class="home-nav-ul">
+									<li class="home-active" tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(0)">
+										<span>作品</span>
+									</li>
+									<li tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(1)"><span>模特</span></li>
+									<li tapmode="home-active-tapMode" onclick="groupFrameSwitch_home(2)"><span>摄影</span></li>
+								</ul>
+								<div class="home-search" tapmode="" onclick="openSearch()"></div>
+							</div>
+							<div class="content-switch">
+								<ul class="content-switch-ul sNav" id="homeProd">
+									<li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',0)">推荐</li>
+									<li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',1)">图片</li>
+									<li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',2)">视频</li>
+									<li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeProd',3)">VR</li>
+								</ul>
+								<ul class="content-switch-ul" id="homeModel">
+									<li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeModel',0)">推荐</li>
+									<li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeModel',1)">新人</li>
+								</ul>
+								<ul class="content-switch-ul" id="homeShoot">
+									<li class="sActive" tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeShoot',0)">摄影师</li>
+									<li tapmode="sActive-tapMode" onclick="homeContentSwitch_groupIndex('homeShoot',1)">摄影机构</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh">
+					<div class="main" style="width: 100%;">
+						<div class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+							<div class="title-recommend">
+								<div class="swiper-container ">
+									<div class="swiper-wrapper swiper-no-swiping">
+
+									</div>
+									<!-- 如果需要分页器 -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<ul id="list">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="massage" class="mui-control-content">
+				<div id="header">
+					<div class="message header ">
+						<div class="message-nav">消息</div>
+						<div class="items">
+						    <div class="item"  tapmode="itemOn" onclick="openNotWin()">
+						        <div class="item_icon  inform"></div>
+						        <div class="item_word">公告通知</div>
+						        <div class="item_enter"></div>
+						    </div>
+						    <div class="item"  tapmode="itemOn" onclick="openOpinionWin()">
+						        <div class="item_icon feedback"></div>
+						        <div class="item_word">意见反馈</div>
+						        <div class="item_enter"></div>
+						    </div>
+						    <div class="item" tapmode="itemOn" onclick="openRemWin()">
+						        <div class="item_icon commentForMe"></div>
+						        <div class="item_word">评论我的</div>
+						        <div class="item_enter"></div>
+						    </div>
+						    <div class="item"  tapmode="itemOn" onclick="openVerWin()">
+						        <div class="item_icon verify"></div>
+						        <div class="item_word">微信验证通知</div>
+						        <div class="item_enter"></div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="circle" class="mui-control-content">
+				<div id="header">
+					<div class="store header">
+						<div class="store-nav">动态</div>
+					</div>
+					<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh" style="width: 100%;">
+						<div class="main" style="width: 100%;">
+							<div  class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+					    		<ul id="focus-ul" class="focus-ul" >
+					    			
+					    		</ul>
+					    	</div>
+				    	</div>
+				   	</div>
+				</div>
+			</div>
+			<div id="shop" class="mui-control-content">
+				<div id="header">
+					<div class="store header">
+						<div class="store-nav">商城</div>
+					</div>
+				</div>
+				<iframe src="" id="iframe" width="" height=""></iframe>
+			</div>
+			<div id="mine" class="mui-control-content">
+				<div id="header">
+					<div class="mine header"></div>
+				</div>
+				<div class="con"></div>
+			</div>
+		</div>
+	</body>
+	<script id="swiper" type="text/html"><!--//首页轮播-->
+		<%for(var i=0; i< list.length; i++){%>
+		<div class="swiper-slide"><img src=<%=list[i].image%> alt="" /></div>
+		<%}%>
+	</script>
+	<script id="recommend" type="text/html"><!--//首页推荐-->
+		<%for(var i=0; i< list.length; i++){%>
+		<div class="recommend">
+			<div class="image">
+				<p class="title">
+					<%=list[i].name%>
+				</p>
+				<%if(list[i].type == 0){%>
+				<div class="image-photo" tapmode="itemOn" data-id="<%=list[i].id%>">
+					<img src="../../icon/worksbg.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt="" />
+				</div>
+				<p class="time">
+					<%=list[i].length%>P</p>
+				<%}else{%>
+				<div class="audio-photo" tapmode="" data-id="<%=list[i].id%>">
+					<img src="../../icon/worksbg.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt="" />
+				</div>
+				<p class="time">
+					<%=list[i].length%>
+				</p>
+				<%}%>
+			</div>
+			<div class="author">
+				<div class="photo" tapmode="">
+					<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].modelIcon%>" real-style="<%=list[i].modelIconStyle%>" alt="" />
+				</div>
+				<p class="name">
+					<%=list[i].modelName%>
+				</p>
+				<img class="icon" src="../../icon/weixin.png" alt="" />
+				<div class="attendWrap">
+					<%if(list[i].hasFlowModel){%>
+					<p class="attention attend" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="<%=list[i].mid%>">已关注</p>
+					<%}else{%>
+					<p class="attention" data-mid="<%=list[i].mid%>" data-flag="0" data-attend="0">关注</p>
+					<%}%>
+				</div>
+			</div>
+		</div>
+		<%}%>
+	</script>
+	<script id="list1" type="text/html">
+		<!--摄影师-->
+		<%for(var i = 0;i<list.length;i++){%>
+		<div class="author" onclick="openHome(<%=list[i].uid%>)">
+			<div class="photo">
+				<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt="" />
+			</div>
+			<div class="detail">
+				<div class="top flex">
+					<div class="name ">
+						<%=list[i].userName%>
+					</div>
+					<img src="../../icon/weixin.png" alt="" />
+					<img src="../../icon/reward.png" alt="" />
+				</div>
+				<div class="bottom flex">
+					<div class="num">粉丝
+						<%=list[i].fansCount%>
+					</div>
+					<div class="product-num">作品
+						<%=list[i].contentCount%>
+					</div>
+				</div>
+			</div>
+			<%if(list[i].hasFlow){%>
+			<p class="attention attend" data-mid="<%=list[i].uid%>" data-flag="0" data-attend="<%=list[i].uid%>" onclick="switchAttendEvent(this)">已关注</p>
+			<%}else{%>
+			<p class="attention" data-mid="<%=list[i].uid%>" data-flag="0" data-attend="0" onclick="switchAttendEvent(this)">关注</p>
+			<%}%>
+		</div>
+		<%}%>
+	</script>
+	<script id="list2" type="text/html">
+		<!--//摄影师-->
+		<ul class="sheyingshi">
+			<%for(var i = 0;i< list.length;i++){%>
+			<li class="person flex flex-align-center flex-pack-justify" onclick="openPhotoHome(<%=list[i].uid%>)">
+				<div class="person-left flex flex-align-center">
+					<div class="photo">
+						<img src="../../icon/defaultHead.png" style="width: 100%;height: 100%;border-radius: 100%;" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%;border-radius: 100%;'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt="" />
+					</div>
+					<div class="author-info">
+						<div class="name">
+							<%=list[i].userName%>
+						</div>
+						<div class="fans">
+							<span class="num">粉丝<%=list[i].fansCount%></span>
+							<span>作品<%=list[i].contentCount%></span>
+						</div>
+					</div>
+				</div>
+				<%if(list[i].hasFlow){%>
+				<p class="attention attend" data-mid="<%=list[i].uid%>" data-flag="0" data-attend="<%=list[i].uid%>">已关注</p>
+				<%}else{%>
+				<p class="attention" data-mid="<%=list[i].uid%>" data-flag="0" data-attend="0">关注</p>
+				<%}%>
+			</li>
+			<%}%>
+		</ul>
+	</script>
+	<script type="text/html" id="scriptDiv1">
+		<!--/我的-->
+		<div class="mine-top">
+			<div class="mine-nav">我的</div>
+			<div class="user-info-wrap">
+				<div class="mine-info" tapmode="" onclick="openUserInfoWin()">
+					<div class="user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%" onerror="this.src='./../icon/defaultHead.png';this.style='width: 100%;height:100%'" data-echo="<%=list.icon%>" real-style="<%=list.iconStyle%>" alt=""></div>
+					<div class="info-right">
+						<%if(list.sex == 1){%>
+						<span class="user-sex man"></span>
+						<%}else if(list.sex == 2){%>
+						<span class="user-sex woman"></span>
+						<%}%>
+						<div class="user-name">
+							<%=list.name%>
+						</div>
+					</div>
+				</div>
+				<ul class="user-data">
+					<li tapmode="" onclick="openMyFansWin()">
+						<div>
+							<%=list.fansCount%>
+						</div>
+						<span>粉丝</span>
+					</li>
+					<li tapmode="" onclick="openMyFlowWin()">
+						<div>
+							<%=list.flowCount%>
+						</div>
+						<span>关注</span>
+					</li>
+					<li>
+						<div>0</div>
+						<span>积分</span>
+					</li>
+				</ul>
+			</div>
+			<div class="logo"><img src="../../icon/mine/logo.png" alt="" /></div>
+		</div>
+		<div class="grey">
+			<ul class="feature-ul">
+				<li tapmode="itemOn" class="nth-child-1" onclick="openMyWalletWin()">
+					<div class="item-icon"><img src="../../icon/mine/m1.png" alt=""></div>
+					<div class="item-name">我的钱包</div>
+				</li>
+				<li tapmode="itemOn" class="nth-child-2" onclick="openMyOrderWin()">
+					<div class="item-icon"><img src="../../icon/mine/m3.png" alt=""></div>
+					<div class="item-name">我的订单</div>
+				</li>
+				<li class="nth-child-3" tapmode="itemOn" onclick="openMyWorksWin()">
+					<div class="item-icon"><img src="../../icon/mine/m2.png" alt=""></div>
+					<div class="item-name">我的作品</div>
+				</li>
+				<li tapmode="itemOn" class="nth-child-4" onclick="openMyCollectWin()">
+					<div class="item-icon"><img src="../../icon/mine/i4.png" alt=""></div>
+					<div class="item-name">我的收藏</div>
+				</li>
+				<li tapmode="itemOn" class="nth-child-5" onclick="openMyFlowWin()">
+					<div class="item-icon "><img src="../../icon/mine/attent.png" alt=""></div>
+					<div class="item-name">我的关注</div>
+				</li>
+				<li class=" nth-child-6" tapmode="itemOn" onclick="openMySubscriptionWin()">
+					<div class="item-icon"><img src="../../icon/mine/i6.png" alt=""></div>
+					<div class="item-name">我的订阅</div>
+				</li>
+				<%if(list.role == 0 || list.role == 1  || list.role == 2  ){%>
+				<%if(list.role == 0 ){%>
+				<li tapmode="itemOn" class="nth-child-7" onclick="openAuthenticationModelWin()">
+					<div class="item-icon"><img src="../../icon/mine/i7.png" alt=""></div>
+					<div class="item-name">认证模特</div>
+				</li>
+				<%}%>
+				<%if(list.role == 1 ){%>
+				<li tapmode="itemOn" class="nth-child-8" onclick="openAuthenticationPhotographerWin()">
+					<div class="item-icon "><img src="../../icon/mine/atten.png" alt=""></div>
+					<div class="item-name">认证摄影师</div>
+				</li>
+				<%}%>
+				<%if(list.role == 2){%>
+				<li class=" nth-child-9" tapmode="itemOn" onclick="openAuthenticationTopPicWin()">
+					<div class="item-icon"><img src="../../icon/mine/i9.png" alt=""></div>
+					<div class="item-name">认证摄影机构</div>
+				</li>
+				<%}%>
+				<%}else{%>
+				<li tapmode="itemOn" class="nth-child-7" onclick="openAuthenticationModelWin()">
+					<div class="item-icon"><img src="../../icon/mine/i7.png" alt=""></div>
+					<div class="item-name">认证模特</div>
+				</li>
+				<li tapmode="itemOn" class="nth-child-8" onclick="openAuthenticationPhotographerWin()">
+					<div class="item-icon "><img src="../../icon/mine/atten.png" alt=""></div>
+					<div class="item-name">认证摄影师</div>
+				</li>
+				<li class=" nth-child-9" tapmode="itemOn" onclick="openAuthenticationTopPicWin()">
+					<div class="item-icon"><img src="../../icon/mine/i9.png" alt=""></div>
+					<div class="item-name">认证摄影机构</div>
+				</li>
+				<%}%>
+				<li tapmode="itemOn" class=" nth-child-10" onclick="openMyHelpCenterWin()">
+					<div class="item-icon"><img src="../../icon/mine/i10.png" alt=""></div>
+					<div class="item-name">帮助中心</div>
+				</li>
+				<li tapmode="itemOn" class=" nth-child-11" onclick="openReportWin()">
+					<div class="item-icon"><img src="../../icon/mine/i11.png" alt=""></div>
+					<div class="item-name">举报</div>
+				</li>
+				<%if(list.role == 0 ){%>
+				<li class="nth-child-14" tapmode="itemOn" onclick="openSetWechatPrice()">
+					<div class="item-icon"><img src="../../icon/wxPrice.png" alt=""></div>
+					<div class="item-name">微信价格</div>
+				</li>
+				<%}%>
+				<li class=" nth-child-13" tapmode="itemOn" onclick="openBindWechatWin()">
+					<div class="item-icon"><img src="../../icon/mine/m4.png" alt=""></div>
+					<div class="item-name">绑定微信</div>
+				</li>
+				<li class="nth-child-12" tapmode="itemOn" onclick="openSettingWin()">
+					<div class="item-icon"><img src="../../icon/mine/i14.png" alt=""></div>
+					<div class="item-name">设置</div>
+				</li>
+			</ul>
+		</div>
+	</script>
+	<script type="text/html" id="scriptDiv2">
+	<%for(var i = 0 ; i< list.length ;i++){%>
+		<%if(list[i].type == 0){%>
+		<li data-canView="<%=list[i].canView ? 1 : 0%>" id="dynamic<%=list[i].id%>">
+			<div class="dynamic-content">
+				<div class="user-info">
+					<div class="user-icon"  tapmode="" onclick="AudioDetail(<%=list[i].uid%>,<%=list[i].userType%>)"><img src="../../icon/defaultHead.png" style="width:100%;height:100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+					<div class="user-top-right">
+						<div class="user-name"><%=list[i].userName%></div>
+						<div class="pastTime"><%=list[i].ctime%></div>
+					</div>
+					<%if(type == 2){%>
+						<%if(list[i].hasTop){%>
+							<div class="stick ready" >已置顶</div>
+						<%}else{%>
+							<div class="stick" data-id="<%=list[i].id%>" onclick="switchStickMine(this)">置顶</div>
+						<%}%>
+					<%}%>
+				</div>
+				<div tapmode=""  onclick="openDynamic(<%=list[i].id%>,<%=list[i].price%>,this)">
+					<div class="dynamic-text"><%=list[i].title%></div>
+					<div class="photo-area">
+						<div class="photo-desc">
+							<span class="photo-desc-sign">@<%=list[i].simpleContent.modelName%></span><%=list[i].simpleContent.name%>
+						</div>
+						<%if(list[i].objectType == 0){%>
+						<ul class="dynamic-photo ">
+							<%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+							<li><div class="real-wrap" ><img  src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;"  onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div></li>
+							<%}%>
+						</ul>
+						<%}%>
+					</div>
+					<%if(list[i].objectType == 1){%>
+					<div class="dynamic-video fromProd">
+						<div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+						<div class="play"></div>
+						<div class="total-num">17:24</div>
+					</div>
+					<%}%>
+					<%if(list[i].price){%>
+					<div class="fromProd notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+					<%}%>
+				</div>
+			</div>
+			<ul class="handle">
+				<li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+				<li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+				<li class="handle-reward" tabmode="itemOn" onclick="customReward(<%=list[i].id%>,<%=list[i].price%>,this)" ><i class="reward" ></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+			</ul>
+		</li>
+		<%}else if(list[i].type == 1){%>
+		<li data-canView='<%=list[i].canView ? 1 : 0%>' id="dynamic<%=list[i].id%>">
+			<div class="dynamic-content">
+				<div class="user-info" >
+					<div class="user-icon" tapmode="" onclick="AudioDetail(<%=list[i].uid%>,<%=list[i].userType%>)"><img src="../../icon/defaultHead.png" style="width:100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+					<div class="user-top-right">
+						<div class="user-name"><%=list[i].userName%></div>
+						<div class="pastTime"><%=list[i].ctime%></div>
+					</div>
+					<%if(type == 2){%>
+						<%if(list[i].hasTop){%>
+							<div class="stick ready" >已置顶</div>
+						<%}else{%>
+							<div class="stick" data-id="<%=list[i].id%>" onclick="switchStickMine(this)">置顶</div>
+						<%}%>
+					<%}%>
+				</div>
+				<div tapmode=""  onclick="openDynamic(<%=list[i].id%>,<%=list[i].price%>,this)">
+					<div class="dynamic-text"><%=list[i].title%></div>
+					<%if(list[i].objectType == 0){%>
+					<div class="photo-area fromDynamic">
+						<ul class="dynamic-photo">
+							<%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+							<li><div class="real-wrap"><img src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;"  onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div></li>
+							<%}%>
+						</ul>
+					</div>
+					<%}%>
+					<%if(list[i].objectType == 1){%>
+					<div class="dynamic-video">
+						<div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+						<div class="play"></div>
+<!--						<div class="total-num">17:24</div>-->
+					</div>
+					<%}%>
+					<%if(list[i].price){%>
+					<div class="notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+					<%}%>
+				</div>
+			</div>
+			<ul class="handle">
+				<li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+				<li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+				<li class="handle-reward" tabmode="itemOn" onclick="customReward(<%=list[i].id%>,<%=list[i].price%>, this )"><i class="reward" ></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+			</ul>
+		</li>
+		<%}%>
+	<%}%>
+</script>
+	
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/tab.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+	<script type="text/javascript" src="../../script/swiper-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../script/mui.min.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script type="text/javascript">
+		var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+		var winWidth = document.body.clientWidth;
+		var params = quakooUtils.GetRequest();;
+		var userIcon_size =1.227* fontSize; //头像大小
+		var image_size = (winWidth  -  0.667 * fontSize)/3; //图片大小
+		var video_size_w =winWidth - 0.8 * fontSize; //视频cover width
+		var video_size_h =winWidth / 1.7045; //视频cover height
+		//轮播图
+		quakooData.ajaxGetDataWithOutProgress(config.getUrl_banner_getAllBannerList(), {}, function(ret, err) {
+			if(ret && ret.success) {
+				var feilKey = quakooUtils.getImgKey();
+				for(var i = 0; i < ret.data.length; i++) {
+					ret.data[i].image = ret.data[i].image + feilKey;
+				}
+				var data = {
+					list: ret.data
+				};
+
+				var html = template('swiper', data)
+				document.querySelector(".swiper-wrapper").innerHTML = html;
+				var swiper = new Swiper('.swiper-container', {
+					effect: 'fade',
+					autoplay: true,
+					loop: true, // 循环模式选项
+					speed: 1500,
+					pagination: {
+						el: '.swiper-pagination',
+						bulletClass: 'my-bullet',
+						bulletActiveClass: 'my-bullet-active',
+					},
+				});
+			}
+		})
+
+		var activeIndex = 0;
+		var lastIndex = 0; //首页激活的项   分项
+
+		var lastHomeType = 0;
+		var homeType = 0; //作品/模特/摄影
+		var nextCursor = 0;
+		var allResults = {};
+		var obj = {
+			size: 8,
+			cursor: 0
+		}
+		var hasnext = false;
+
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					style: 'circle',
+					callback: pulldownRefresh
+				},
+				up: {
+					style: 'circle',
+					auto: true,
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+		
+		function pullupRefresh(index) {
+			activeIndex = index || 0;
+			var urls = config.getUrl_content_getMostPopularPager();//默认是作品下推荐的接口
+			if(activeIndex || activeIndex == 0) {
+				if(homeType == 1) {
+					if(activeIndex == 0) { //模特       推荐  新人
+						obj.type = 0;
+						urls = config.getUrl_model_getRecommendModel();
+					} else if(activeIndex == 1) { //新人
+						urls = config.getUrl_model_getRecommendModel();
+						obj.type = -1;
+					}
+				} else if(homeType == 2) {//摄影
+					if(activeIndex == 0) {
+						obj.type = 1;
+						urls = config.getUrl_model_getPhotographyPager();
+					} else if(index == 1) {
+						obj.type = 2;
+						urls = config.getUrl_model_getPhotographyPager();
+					}
+				} else {//作品   图片  视频 VR
+					if(activeIndex == 1) {
+						urls = config.getUrl_content_getContentByTypePager();
+					} else if(activeIndex == 2) {
+						urls = config.getUrl_content_getContentByTypePager();
+					} else if(activeIndex == 3) {
+						urls = config.getUrl_content_getContentByTypePager();
+					}
+				}
+			}
+			quakooData.ajaxGetData(urls, obj, function(ret, err) {
+				if(ret) {
+					if(lastIndex != activeIndex || homeType != lastHomeType) {
+						addDataToHtml(ret.data);
+					} else {
+						addDataToHtml(ret.data, true);
+					}
+					lastIndex = index;
+					obj.cursor = ret.nextCursor;
+					nextCursor = ret.nextCursor;
+					if(ret.hasnext) {
+						hasnext = false;
+					} else {
+						hasnext = true;
+					}
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(hasnext);
+					if(quakooUtils.isBlack(ret.data)) {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					}
+					if(ret.data.length == 0) {
+						mui.toast("暂无相关数据！");
+					}
+				}
+			})
+		}
+
+		function pulldownRefresh() {
+			obj.cursor = 0;
+			var urls = config.getUrl_content_getMostPopularPager();
+			if(activeIndex == 1) {
+				urls = config.getUrl_content_getContentByTypePager();
+			} else if(activeIndex == 2) {
+				urls = config.getUrl_content_getContentByTypePager();
+			} else if(activeIndex == 3) {
+				urls = config.getUrl_content_getContentByTypePager();
+			}
+			quakooData.ajaxGetData(urls, obj, function(ret, err) {
+				if(ret) {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					mui('#pullrefresh').pullRefresh().refresh(ret.hasnext);
+					addDataToHtml(ret.data);
+					obj.cursor = ret.nextCursor;
+					nextCursor = ret.nextCursor;
+					if(ret.hasnext) {
+						hasnext = false;
+					} else {
+						hasnext = true;
+					}
+				}
+			})
+		}
+
+		function addDataToHtml(results, append) { //type是资源的类型   1是视频   0是图片
+			var feilKey = quakooUtils.getImgKey();
+			var html;
+			if(homeType == 0) {
+				for(var i = 0; i < results.length; i++) {
+					if(quakooUtils.isBlack(results[i].modelIcon)) {
+						results[i].modelIcon = '../../icon/defaultHead.png';
+						results[i].modelIconStyle = 'width:100%;height:100%;'
+					} else {
+						var obj = quakooImg.processImg(results[i].modelIcon, 0.853333 * fontSize, 0.853333 * fontSize);
+						results[i].modelIcon = obj.url + feilKey;
+						results[i].modelIconStyle = obj.style;
+					}
+					if(results[i].type == 0) {
+						if(quakooUtils.isBlack(results[i].cover)) {
+							results[i].cover = '../../icon/worksbg.png';
+							results[i].coverStyle = 'width:100%;height:100%;'
+						} else {
+							var coverobj = quakooImg.processImg(results[i].cover, winWidth, 12 * fontSize);
+							results[i].cover = coverobj.url + feilKey;
+							results[i].coverStyle = coverobj.style;
+						}
+					} else {
+						if(quakooUtils.isBlack(results[i].cover)) {
+							results[i].cover = '../../icon/worksbg.png';
+							results[i].coverStyle = 'width:100%;height:100%;'
+						} else {
+							var coverobj = quakooImg.processImg(results[i].cover, winWidth, 5.866666 * fontSize);
+							results[i].cover = coverobj.url + feilKey;
+							results[i].coverStyle = coverobj.style;
+						}
+					}
+					if(results[i].type == '1') {
+						results[i].length = checkTime(results[i].length)
+					}
+
+				}
+				var data = {
+					list: results
+				};
+				html = template('recommend', data);
+			} else if(homeType == 1) {
+				for(var i = 0; i < results.length; i++) {
+					if(quakooUtils.isBlack(results[i].userIcon)) {
+						results[i].userIcon = '../../icon/defaultHead.png';
+						results[i].userIconStyle = 'width:100%;height:100%;'
+					} else {
+						var obj = quakooImg.processImg(results[i].userIcon, 1.44 * fontSize, 1.44 * fontSize);
+						results[i].userIcon = obj.url + feilKey;
+						results[i].userIconStyle = obj.style;
+					}
+				}
+				var data = {
+					list: results
+				}
+				html = template('list1', data);
+			} else if(homeType == 2) {
+				for(var i = 0; i < results.length; i++) {
+					if(quakooUtils.isBlack(results[i].userIcon)) {
+						results[i].userIcon = '../../icon/defaultHead.png';
+						results[i].userIconStyle = 'width:100%;height:100%;'
+					} else {
+						var obj = quakooImg.processImg(results[i].userIcon, 1.44 * fontSize, 1.44 * fontSize);
+						results[i].userIcon = obj.url + feilKey;
+						results[i].userIconStyle = obj.style;
+					}
+				}
+				var data = {
+					list: results
+				}
+				html = template('list2', data)
+			}
+			if(append) {
+				var div = document.createElement('div');
+				div.innerHTML = html;
+				document.querySelector("#list").appendChild(div);
+			} else {
+				document.querySelector("#list").innerHTML = html;
+			}
+			setTimeout(function() {
+				
+				//首页推荐
+				mui('.recommend').on('tap','.image-photo',function(event){
+					quakooUtils.stopEventBubble();
+		    		var id = this.getAttribute("data-id");
+		    		//图片详情
+				    function ImageDetail(id) {
+				        quakooApp.openNewWindow('works_pic_details'+id, '../home/works_pic_details.html', {cid: id});
+				    }		      	
+				    ImageDetail(id);
+				});
+				
+				
+				mui('.recommend').on('tap','.audio-photo',function(event){
+					quakooUtils.stopEventBubble();
+		    		var id = this.getAttribute("data-id");
+		    		// 视屏详情
+				    function AudioDetail(id) {
+				        quakooApp.openNewWindow('works_video_details'+id, '../home/works_video_details.html', {cid: id});
+				    }	      	
+				    AudioDetail(id);
+				});
+    
+    			mui('#list').on('tap','.attention',function(event){
+					quakooUtils.stopEventBubble();
+		    		switchAttendEvent(this);
+				});
+				
+				
+				mui('.recommend').on('tap','.photo',function(event){
+					quakooUtils.stopEventBubble();
+					var id = this.getAttribute("data-mid");
+		    		openHome(this);
+				});
+				
+				
+				echo.init({
+					offset: 0,
+					throttle: 0 //设置图片延迟加载的时间
+				});
+			}, 100);
+			//处理时间
+			function toStr(nub) {
+				return nub > 10 ? '' + nub : '0' + nub
+			}
+			function checkTime(time) {
+				var iHour = parseInt(time / 3600);
+				var iMinute = parseInt((time % 3600) / 60);
+				var iSecond = (time % 3600) % 60;
+				return time = "" + toStr(iMinute) + " : " + toStr(iSecond) + "";
+			}
+			
+			// 切换关注取消   用于首页的推荐
+		    function switchAttendEvent(_this){
+		        var mid = parseInt($api.attr(_this,'data-mid'),10); //关注模特的ID
+		        var flag  = $api.attr(_this,'data-flag');// 防止重复点击
+		        var midBtnAll =  $api.domAll('p[data-mid="'+mid+'"]'); //获取列表中 模特的ID 的关注按钮
+		        var attend =  parseInt($api.attr(_this,'data-attend'),10); // 关注状态 大于0  位关注中 等于0 未关注
+		        if(flag == 1){
+		            return
+		        }
+		        console.log(attend)
+		        $api.attr(_this,'data-flag',1);
+		
+		        var _params ={
+		            otherId: mid
+		        };
+		        if(attend === 0){ //  未关注 = 》 关注
+		            quakooData.ajaxSubmitData(config.getUrl_flow_addFlow(),_params,function(ret,err){
+		                if(ret && ret.success){
+		                    quakooMsg.toast('关注成功');
+		                    $api.attr(_this,'data-flag',0);
+		                    midBtnAll.forEach(function (item,i) {
+		                        $api.attr(item,'data-attend',mid)
+		                        $api.addCls(item,'attend')
+		                        $api.html(item,'已关注')
+		                    })
+		                }
+		            })
+		
+		        }else { //关注 == 未关注
+		            quakooData.ajaxSubmitData(config.getUrl_flow_channelFlow(),_params,function(ret,err){
+		                if(ret && ret.success){
+		                    quakooMsg.toast('取消成功')
+		                    $api.attr(_this,'data-flag',0);
+		                    midBtnAll.forEach(function (item,i) {
+		                        $api.attr(item,'data-attend',0)
+		                        $api.removeCls(item,'attend')
+		                        $api.html(item,'关注')
+		                    })
+		                }
+		            })
+		        }
+		
+		    }
+		    
+		    //跳转主页
+			 function openHome(id) {
+		       var userInfo = quakooUser.getUserInfo()
+		    	userId = userInfo.id;
+		    	if(id == userId){
+		    		return;
+		    	}else{
+		    		quakooApp.openNewWindow('model_detail'+id, './model_detail.html',{id:id})
+		    	}
+		    }
+		}
+
+		//获取我的信息
+		function getMine() {
+			var userInfo = quakooUser.getUserInfo();
+			console.log(JSON.stringify(userInfo));
+			quakooData.ajaxSubmitData(config.getUrl_web_user_getUserInfo(), {}, function(ret, err) {
+				if(ret && ret.success) {
+					ret.data.role = 9999; // 认证角色  9999 随便写的 不是 0 、1、2 就行
+					requestUserType(ret.data);
+				}
+			})
+
+			function requestUserType(results) {
+				quakooData.ajaxSubmitDataNotProcessNotToast(config.getUrl_model_getModelInfo(), {
+					mid: results.id
+				}, function(ret, err) {
+					if(ret && ret.success) {
+						results.role = ret.data.type;
+						userInfoRender(results)
+					}
+				}, function() {
+					userInfoRender(results)
+				});
+			}
+			// 渲染用户信息
+			function userInfoRender(results) {
+				var feilKey = quakooUtils.getImgKey();
+				for(var prop in results) {
+					userInfo[prop] = results[prop]
+				}
+				quakooUser.setUserInfo(userInfo);
+				if(quakooUtils.isNotBlack(results)) {
+					if(results.icon) {
+						var _obj = quakooImg.processImg(results.icon, 1.6 * fontSize, 1.6 * fontSize);
+						results.icon = _obj.url + feilKey;
+						results.iconStyle = _obj.style;
+					} else {
+						results.icon = '../../icon/defaultHead.png';
+						results.iconStyle = 'width:100%;height:100%';
+					}
+					var data = {
+						list: results
+					};
+					// alert(JSON.stringify(data))
+					var html = template('scriptDiv1', data);
+					$api.html($api.dom('.con'), html);
+					setTimeout(function() {
+						echo.init({
+							offset: 0,
+							throttle: 0 //设置图片延迟加载的时间
+						});
+					}, 100);
+				}
+
+			}
+		}
+		mui(".mui-bar-tab").on("tap", "a", function() {
+			var href = this.getAttribute("href");
+			setTimeout(function() {
+				if(href == "#circle") {//动态
+					dynamicLIstRender();
+				}else if(href == "#mine"){//我的
+					getMine();
+				}else if(href == "#massage"){//消息
+					
+				}else if(href == "#shop"){//商城
+					var winHeight = document.documentElement.clientHeight;
+			    	var iframe = document.getElementById("iframe");
+			    	iframe.style.height = winHeight - 44 + "px";
+			    	iframe.src = "https://h5.youzan.com/wscshop/feature/qrymrhz5";
+				}
+			}, 200)
+		})
+		//获取动态信息
+		var curUrl ='';
+		if(params.type === 0){// 动态 - 推荐
+			curUrl =config.getUrl_circle_getRecommendCirclePager()
+		}else  if(params.type === 1){// 动态 - 关注
+			curUrl =config.getUrl_circle_getMyFocusCirclePager()
+		}else if(params.type === 2){ // 动态 - 我的
+			curUrl =config.getUrl_circle_getMyCreateCirclePager()
+			
+		}
+		
+		var tabs;
+		apiready = function() {
+			quakooApp.startHotUpdate(function(ret) {
+				if(ret.value.status) {
+					quakooDb.setItem('removeUserInfo', 'true');
+					quakooMsg.toast('更新成功，重启后生效');
+				}
+			});
+			setTimeout(function() {
+				api.closeWin({
+					name: 'login'
+				})
+			}, 300);
+			var systemType = api.systemType;
+			if(systemType == 'ios') {
+				api.setStatusBarStyle({
+					style: 'dark',
+				});
+			} else {
+				api.setStatusBarStyle({
+					style: 'light',
+					color: '#ff5c98'
+				});
+			}
+
+			var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+			if(statusBarAppearance) {
+				var header = $api.dom('#header');
+				$api.fixStatusBar(header);
+			}
+			$api.fixTabBar($api.byId('nav'));
+			getTabs();
+
+			api.addEventListener({
+				name: 'keyback'
+			}, function(ret, err) {
+				closeOnKeyBack();
+			});
+			var backButtonPress = 0;
+
+			function closeOnKeyBack() {
+				backButtonPress++;
+				if(backButtonPress > 1) {
+					quakooApp.closeApp();
+				} else {
+					quakooMsg.toast('再按一次退出应用');
+				}
+				setTimeout(function() {
+					backButtonPress = 0;
+				}, 1000);
+			}
+		};
+
+		//配置tab选项卡 各个页面
+		function getTabs() {
+			tabs = {
+				home: {
+					isGroup: false,
+					frame: {
+						name: 'homeShell',
+						url: '../home/homeShell.html',
+						pageParam: {},
+						rect: {
+							x: 0,
+							marginTop: api.safeArea.top + 44 + 68,
+							w: "auto",
+							marginBottom: 49 + api.safeArea.bottom
+						},
+						bounces: false,
+						opaque: false,
+						bgColor: '#fff',
+						allowEdit: true,
+						vScrollBarEnabled: true,
+						showProgress: false,
+						hScrollBarEnabled: false,
+						reload: false
+					}
+				},
+				message: {
+					isGroup: false,
+					frame: {
+						name: 'message',
+						url: '../message/message.html',
+						pageParam: {},
+						rect: {
+							x: 0,
+							marginTop: 44 + api.safeArea.top,
+							w: "auto",
+							marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+						},
+						bounces: false,
+						opaque: false,
+						bgColor: '#fff',
+						allowEdit: true,
+						vScrollBarEnabled: true,
+						showProgress: false,
+						hScrollBarEnabled: false,
+						reload: false
+					}
+				},
+				dynamic: {
+					isGroup: true,
+					group: {
+						name: 'dynamic',
+						background: "#fff",
+						scrollEnabled: true,
+						rect: {
+							x: 0,
+							marginTop: 44 + api.safeArea.top,
+							w: "auto",
+							marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+						},
+
+						index: 0,
+						frames: [{
+								name: 'dynamicRecommend',
+								bgColor: "#F5F5F5",
+								reload: 'true',
+								pageParam: {
+									type: 0
+								},
+								url: '../dynamic/dynamicRecommend.html',
+								bounces: true
+							},
+							{
+								name: 'dynamicFollow',
+								bgColor: "#F5F5F5",
+								pageParam: {
+									type: 1
+								},
+								url: '../dynamic/dynamicRecommend.html',
+								bounces: true
+							},
+							{
+								name: 'dynamicMine',
+								bgColor: "#F5F5F5",
+								pageParam: {
+									type: 2
+								},
+								url: '../dynamic/dynamicRecommend.html',
+								bounces: true
+							}
+						]
+					},
+					groupCallBack: function(ret) {
+						dynamicNavSwitch(ret.index)
+					}
+				},
+				store: {
+					isGroup: false,
+					frame: {
+						name: 'store',
+						url: '../home/store.html',
+						pageParam: {},
+						rect: {
+							x: 0,
+							marginTop: 44 + api.safeArea.top,
+							w: "auto",
+							marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+						},
+						bounces: false,
+						opaque: false,
+						bgColor: '#fff',
+						allowEdit: true,
+						vScrollBarEnabled: true,
+						showProgress: false,
+						hScrollBarEnabled: false,
+						reload: false
+					}
+				},
+				mine: {
+					isGroup: false,
+					frame: {
+						name: 'mine',
+						url: '../mine/mine.html',
+						pageParam: {},
+						rect: {
+							x: 0,
+							marginTop: 0,
+							w: "auto",
+							marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight - 1
+						},
+						bounces: false,
+						opaque: false,
+						bgColor: '#fff',
+						allowEdit: true,
+						vScrollBarEnabled: true,
+						showProgress: false,
+						hScrollBarEnabled: false,
+						reload: false
+					}
+				}
+			};
+			openTab('home');
+			return tabs;
+		}
+
+		//=========================== main  导航切换 ====================================
+		// 首页部分 一级导航 切换
+		function homeNavSwitch(index) {
+			var lis = $api.domAll('.home-nav-ul li');
+			lis.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'home-active')
+				} else {
+					$api.removeCls(item, 'home-active')
+				}
+			})
+		}
+		// 顶部nav切换
+		function groupFrameSwitch_home(index) {
+			// 切换[作品  模特 摄影]相应的 二级菜单 显示
+			var sNavs = $api.domAll('.content-switch-ul');
+			sNavs.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'sNav')
+				} else {
+					$api.removeCls(item, 'sNav')
+				}
+			});
+			homeNavSwitch(index);
+			homeType = index;
+			obj.cursor = 0;
+			pullupRefresh();
+		}
+
+		// 首页部分 二级导航 切换
+		function homeContentSwitch_domStyle(parentId, index) {
+			var lis = $api.domAll('#' + parentId + '.content-switch-ul li');
+			lis.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'sActive')
+				} else {
+					$api.removeCls(item, 'sActive')
+				}
+			});
+
+		}
+
+		function homeContentSwitch_groupIndex(parentId, index) {
+			activeIndex = index;
+			homeContentSwitch_domStyle(parentId, index);
+			obj.cursor = 0;
+			if(index == 1) {
+				obj.type = 0;
+			} else if(index == 2 || index == 3) {
+				obj.type = 1;
+			}
+
+			pullupRefresh(index);
+		}
+
+		//  动态部分 导航 切换
+		function dynamicNavSwitch(index) {
+			var lis = $api.domAll('.dynamic-nav li');
+			lis.forEach(function(item, i) {
+				if(index == i) {
+					$api.addCls(item, 'dynamic-active')
+				} else {
+					$api.removeCls(item, 'dynamic-active')
+				}
+			})
+		}
+
+		function groupFrameSwitch_dynamic(index) {
+			dynamicNavSwitch(index);
+			api.setFrameGroupIndex({
+				name: "dynamic",
+				index: index,
+				scroll: true
+			});
+		}
+
+		//动态部分发布
+		function release() {
+			quakooApp.openFrame('release', '../dynamic/release.html', {}, 0, 0, {
+				bgColor: 'rgba(0,0,0,0)',
+				animation: {
+					type: 'fade',
+					duration: 300
+				}
+			})
+		}
+
+		//打开搜索
+		function openSearch() {
+			quakooApp.openNewWindow('search', '../home/search.html')
+		}
+
+		// 用户信息
+		function openUserInfoWin() {
+			quakooApp.openNewWindow('userInfo', '../mine/userInfo.html', {})
+		}
+
+		// 我的钱包
+		function openMyWalletWin() {
+			quakooApp.openNewWindow('myWallet', '../mine/myWallet.html', {})
+		}
+
+		// 我的订单
+		function openMyOrderWin() {
+			quakooApp.openNewWindow('myOrder', '../mine/myOrder.html', {})
+		}
+
+		// 我的作品
+		function openMyWorksWin() {
+			quakooApp.openNewWindow('myWorks', '../mine/myWorks.html', {})
+		}
+
+		// 我的收藏
+		function openMyCollectWin() {
+			quakooApp.openNewWindow('collect', '../mine/collect.html', {})
+		}
+
+		// 我的关注
+		function openMyFlowWin() {
+			quakooApp.openNewWindow('focusMine', '../mine/focusMine.html', {})
+		}
+		// 我的粉丝
+		function openMyFansWin() {
+			quakooApp.openNewWindow('myFans', '../mine/myFans.html', {})
+		}
+		// 我的订阅
+		function openMySubscriptionWin() {
+			quakooApp.openNewWindow('subscription', '../mine/subscription.html', {})
+		}
+
+		// 认证模特
+		function openAuthenticationModelWin() {
+			quakooApp.openNewWindow('authenticationModel', '../mine/authenticationModel.html', {
+				type: 0
+			})
+		}
+
+		// 认证摄影师
+		function openAuthenticationPhotographerWin() {
+			quakooApp.openNewWindow('authenticationModel', '.../mine/uthenticationModel.html', {
+				type: 1
+			})
+		}
+
+		// 认证摄影机构
+		function openAuthenticationTopPicWin() {
+			quakooApp.openNewWindow('authenticationModel', '../mine/authenticationModel.html', {
+				type: 2
+			})
+		}
+
+		// 帮助中心
+		function openMyHelpCenterWin() {
+			quakooApp.toast('无设计')
+			// openNewWindow('report','./report.html',{})
+		}
+
+		// 举报
+		function openReportWin() {
+			quakooApp.openNewWindow('report', '../mine/report.html', {})
+		}
+
+		// 微信价格
+		function openSetWechatPrice() {
+			quakooApp.openNewWindow('setWechatPrice', '../mine/setWechatPrice.html', {})
+		}
+
+		// 绑定微信
+		function openBindWechatWin() {
+			quakooApp.openNewWindow('bindWechat', '../mine/bindWechat.html', {})
+		}
+
+		// 设置
+		function openSettingWin() {
+			quakooApp.openNewWindow('setting', '../mine/setting.html', {})
+		}
+		// 公告通知
+		function openNotWin() {
+			quakooApp.openNewWindow('notice', '../message/notice.html', {})
+		}
+		// 意见反馈
+		function openOpinionWin() {
+			quakooApp.openNewWindow('opinion_body', '../message/opinion_body.html', {})
+		}
+		// 评论我的
+		function openRemWin() {
+			quakooApp.openNewWindow('remarkForMe', '../message/remarkForMe.html', {})
+		}
+		// 微信验证通知
+		function openVerWin() {
+			quakooApp.openNewWindow('verification', '../message/verification.html', {})
+		}
+	</script>
+
+</html>

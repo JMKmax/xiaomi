@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>评论我的</title>
+    <style type="text/css">
+        body, html {
+            background-color: #f5f5f5;
+        }
+        .fit {
+            box-sizing: border-box;
+            padding: 0 0.4rem 0 0.4rem;
+        }
+        .communication_items {
+            overflow: hidden;
+        }
+
+        .communication_item {
+            background-color: white;
+            position: relative;
+            padding-bottom: 0.4rem;
+            border-bottom: 0.026666rem solid #f5f5f5;
+            padding-top: 0.32rem;
+            float: left;
+            width: 100%;
+
+        }
+
+        .communication_item > div {
+            float: left;
+        }
+
+        .communication_item_icon {
+            width: 1.227rem;
+            height: 1.227rem;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .communication_item_icon > img {
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+
+        .communication_item_content {
+            width: calc(98% - 1.52rem);
+            margin-left: 0.266666rem;
+            position: relative;
+        }
+
+        .communication_item_content > p {
+            font-size: 0.32rem;
+            color: #666666;
+            text-align: justify;
+            margin-top: 0.106666rem;
+        }
+
+        .communication_item_content_id {
+            height: 0.533rem;
+            line-height: 0.533rem;
+            font-size: 14px;
+        }
+
+        .communication_item_date {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .notice_item_content > div {
+            font-family: PingFang-SC-Regular;
+            font-size: 0.32rem;
+            color: #999999;
+            margin-top: 0.266666rem;
+            margin-left: 0.133333rem;
+        }
+        .mui-scroll-wrapper{
+				top: 1.12rem;
+			}
+			.mui-table-view:after,.mui-table-view:before{
+				height: 0;
+			}
+			.mui-table-view{
+				background: none;
+			}
+    </style>
+</head>
+
+<body>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../image/back.png">
+	    </div>
+	    <div>评论我的</div>
+	</div>
+	<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh" style="width: 100%;">
+		<div class="main" style="width: 100%;">
+			<div  class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+	    		<ul id="list">
+	    			
+	    		</ul>
+	    	</div>
+    	</div>
+   	</div>
+<!--<div class="communication_items">-->
+<!--    <div class="communication_item fit">-->
+<!--        <div class="communication_item_icon"><img src="../../icon/defaultHead.png" alt=""/></div>-->
+<!--        <div class="communication_item_content">-->
+<!--            <div class="communication_item_content_id">何以笙箫默</div>-->
+<!--            <p>美女，好漂亮🤤</p>-->
+<!--            <div class="communication_item_date">05-20 12:23:43</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="communication_item fit">-->
+<!--        <div class="communication_item_icon"><img src="../../icon/defaultHead.png" alt=""/></div>-->
+<!--        <div class="communication_item_content">-->
+<!--            <div class="communication_item_content_id">何以笙箫默</div>-->
+<!--            <p>美女，好漂亮🤤</p>-->
+<!--            <div class="communication_item_date">05-20 12:23:43</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i< list.length;i++){%>
+        <div class="communication_item fit">
+            <div class="communication_item_icon"><img src="../../icon/defaultHead.png" style="width:100%;height:100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].info.userIcon%>" real-style="<%=list[i].info.userIconStyle%>" alt=""></div>
+            <div class="communication_item_content">
+                <div class="communication_item_content_id"><%=list[i].info.userName%></div>
+                <p><%=list[i].info.commentInfo%></p>
+                <div class="communication_item_date"><%=list[i].info.commentTime%></div>
+            </div>
+        </div>
+    <%}%>
+</script>
+<script>
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var userIcon_size =1.267 * fontSize;
+var obj = {
+		size:8,
+		cursor:0,
+		type:2  //0公告通知（系统消息） 系统回复反馈 用单独的接口 2评论消息 3微信验证通知
+	}
+	var hasnext = false;
+	
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				style:'circle',
+				callback: pulldownRefresh
+			},
+			up: {
+				style:'circle',
+				auto:true,
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+	});
+	
+	
+	function pullupRefresh(){	
+		quakooData.ajaxGetData(config.getUrl_notify_getNoticePager(),obj,function(ret,err){
+			if (ret) {
+				commentMeListRender(ret.data,true);
+				obj.cursor = ret.nextCursor;
+				nextCursor = ret.nextCursor;
+				if(ret.hasnext){
+					hasnext = false;
+				}else{
+					hasnext = true;
+				}
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(hasnext);
+				if (quakooUtils.isBlack(ret.data)) {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+				if (ret.data.length == 0) {
+					mui.toast("暂无相关数据！");
+				}
+			}
+		})
+	}
+
+	function pulldownRefresh(){//下拉
+		obj.cursor = 0;
+		quakooData.ajaxGetData(config.getUrl_notify_getNoticePager(),obj,function(ret,err){
+			if (ret) {
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				mui('#pullrefresh').pullRefresh().refresh(ret.hasnext);
+				commentMeListRender(ret.data);
+				obj.cursor = ret.nextCursor;
+				nextCursor = ret.nextCursor;
+				if(ret.hasnext){
+					hasnext = false;
+				}else{
+					hasnext = true;
+				}
+			}
+		})
+	}
+    // 评论我的 列表渲染
+    function commentMeListRender(results,append) {
+        console.log(JSON.stringify(results))
+    	var feilKey = quakooUtils.getImgKey();
+        if(quakooUtils.isNotBlack(results)){
+            results.forEach(function (item) {
+                item.info = JSON.parse(item.info);
+
+                var _obj = quakooImg.processImg(item.info.userIcon,userIcon_size,userIcon_size);
+                item.info.userIcon =_obj.url+feilKey;
+                item.info.userIconStyle =_obj.style;
+//              item.info.commentInfo =quakooUtils.emotionImg(item.info.commentInfo)
+                item.info.commentTime =quakooUtils.formatTimeToMonthSeconds(+item.info.commentTime)
+
+            });
+            var data = {
+                list:results
+            };
+
+            var html = template('scriptDiv1',data);
+                $api.append($api.dom('#list'),html)
+            setTimeout(function () {
+                    echo.init({
+                        offset: 0,
+                        throttle: 0//设置图片延迟加载的时间
+                    });
+            }, 100);
+        }
+    }
+</script>
+</body>
+</html>

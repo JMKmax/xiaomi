@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		body{
+    			background: #f0f0f0;
+    		}
+    		.message-list{
+    			overflow: hidden;
+    		}
+    		.message-item{
+    			background: #fff;
+    			margin-bottom: 0.266666rem;
+    		}
+    		.item-top{
+    			display: flex;
+    			justify-content: space-between;
+    			padding: 0.533333rem 0.4rem 0;
+    			align-items: center;
+    			margin-bottom: 0.32rem;
+    			position: relative;
+    		}
+    		.item-top:before{
+    			content: '';
+    			height: 1px;
+    			background: #f5f5f5;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.item-top .own-info{
+    			display: flex;
+    			align-items: center;
+    		}
+    		.item-top .own-info .photo{
+    			width: 1.226666rem;
+    			height: 1.226666rem;
+    			border-radius: 50%;
+    			overflow: hidden;
+    			margin-right: 0.266666rem;
+    			
+    		}
+    		.item-top .own-info .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.item-top .own-info .name{
+    			display: flex;
+    			flex-direction: column;
+    		}
+    		.item-top .own-info .name span{
+    			font-size: 0.373333rem;
+    			color: #333;
+    		}
+    		.item-top .own-info .name .time{
+    			font-size: 0.32rem;
+    			color: #999;
+    			margin-top: 0.106666rem;
+    		}
+    		.top-right{
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    		}
+    		.top-desc{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			padding-left: 0.4rem;
+    			
+    			margin-bottom: 0.32rem;
+    		}
+    		.detail-message{
+    			background: #fff;
+    			padding: 0 0.373333rem 0.32rem 0.4rem;
+    		}
+    		.detail-message.image{
+    			background: #f5f5f5;
+    		}
+    		.detail-message ul{
+    			font-size: 0;
+    		}
+    		.detail-message .detail-info{
+    			font-size: 0.373333rem;
+    			line-height: 0.533333rem;
+    			padding-top: 0.32rem;
+    		}
+    		.detail-message .detail-info .call{
+    			color: #FF5C98;
+    		}
+    		.detail-message .audio{
+    			height: 5.866666rem;
+    			overflow: hidden;
+    			position: relative;
+    		}
+    		.detail-message .audio .time{
+    			opacity:0.51;
+				background:#000000;
+				border-radius:0.053333rem;
+				width:1.173333rem;
+				height:0.533333rem;
+				line-height: 0.533333rem;
+				text-align: center;
+				box-sizing: border-box;
+				overflow: hidden;
+				font-size: 0.32rem;
+				color: #fff;
+				font-family:PingFang-SC-Regular;
+				position: absolute;
+				bottom: 0.426666rem;
+				right: 0.533333rem;
+    		}
+    		.detail-message .audio img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.detail-message .img-item{
+    			width: 2.986666rem;
+    			height: 2.986666rem;
+    			margin:0.32rem 0.133333rem 0.32rem 0;
+    			float: left;
+    			border-radius: 0.106666rem;
+    			overflow: hidden;
+    		}
+    		.detail-message .img-item:nth-child(3n+0){
+    			margin-right: 0;
+    		}
+    		.detail-message .img-item img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.message-footer{
+    			position: relative;
+    		}
+    		.message-footer:before{
+    			content: '';
+    			height: 1px;
+    			background: #f0f0f0;
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.message-footer .footer-item{
+    			height: 1.333333rem;
+    			border-right: 0.026666rem solid #F5F5F5;
+    			flex: 1;
+    		}
+    		.message-footer .footer-item .icon{
+    			width: 0.56rem;
+    			position: relative;
+    			top: 0.053333rem;
+    		}
+    		.message-footer .footer-item .icon .icon-wrap{
+    			width: 0.56rem;
+    			height: 0.613333rem;
+    			position: absolute;
+    			top: -0.4rem;
+    			left: 0;
+    		}
+    		.message-footer .footer-item .icon .icon-text{
+    			width: 0.266666rem;
+    			height: 0.266666rem;
+    			position: absolute;
+    			bottom: -0.106666rem;
+    			left: 0.16rem;
+    		}
+    		.message-footer .footer-item .icon .eye{
+    			width: 0.56rem;
+    			height: 0.4rem;
+    		}
+    		.message-footer .footer-item .icon .talk{
+    			width: 0.56rem;
+    			height: 0.48rem;
+    		}
+    		.message-footer .footer-item .icon .rew{
+    			width: 0.56rem;
+    			height: 0.613333rem;
+    		}
+    		.message-footer .footer-item .num{
+    			font-size: 0.373333rem;
+    			color: #666;
+    			line-height: 0.533333rem;
+    			margin-left: 0.106666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="message-list">
+			<ul>
+				<li class="message-item" >
+					<div class="item-top">
+						<div class="own-info">
+							<div class="photo">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="name">
+								<span>长发及腰热不热</span>
+								<span class="time">20小时前</span>
+							</div>
+						</div>
+						<div class="top-right">
+							<span>已置顶</span>
+						</div>
+					</div>
+					<div class="top-desc">赞助过旅拍活动的微信私聊我赞助过旅拍活动的微信私聊我赞助过旅拍活动的微信私聊我</div>
+					<div class="detail-message" >
+						<div class="audio">
+							<img src="../../image/bg.png" alt="" />
+							<div class="time">17:24</div>
+						</div>
+					</div>
+					<div class="message-footer flex flex-pack-justify">
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img class="eye" src="../../icon/simple_watch.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center" >
+							<div class="flex flex-align-center">
+								<div class="icon"><img class="talk" src="../../icon/talk.png" alt="" /></div>
+								<div class="num">21</div>
+							</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center" tapmode="" onclick="openRewards()">
+							<div class="icon">
+								<img class="rew" src="../../icon/rew.png" alt="" />
+							</div>
+							<div class="num">0</div>
+						</div>
+					</div>
+				</li>
+				<li class="message-item">
+					<div class="item-top">
+						<div class="own-info">
+							<div class="photo">
+								<img src="../../image/photo.png" alt="" />
+							</div>
+							<div class="name">
+								<span>长发及腰热不热</span>
+								<span class="time">45分钟以前</span>
+							</div>
+						</div>
+						<div class="top-right">
+							<span>已置顶</span>
+						</div>
+					</div>
+					<div class="top-desc">新图上架</div>
+					<div class="detail-message image" >
+						<div class="detail-info">
+							<span class="call">@乔乔</span><span>赞助过旅拍活动的微信私聊我</span>
+						</div>
+						<ul class="clearfix">
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+							<li class="img-item">
+								<img src="../../image/bg.png" alt="" />
+							</li>
+						</ul>
+					</div>
+					<div class="message-footer flex flex-pack-justify">
+						<div class="footer-item flex flex-align-center flex-pack-center">
+							<div class="icon"><img class="eye" src="../../icon/simple_watch.png" alt="" /></div>
+							<div class="num">1290</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center" >
+							<div class="flex flex-align-center">
+								<div class="icon"><img class="talk" src="../../icon/talk.png" alt="" /></div>
+								<div class="num">21</div>
+							</div>
+						</div>
+						<div class="footer-item flex flex-align-center flex-pack-center" tapmode="" onclick="openRewards()">
+							<div class="icon">
+								<img class="rew" src="../../icon/rew.png" alt="" />
+							</div>
+							<div class="num">0</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script>
+		apiready = function() {
+			
+		};
+		//打赏
+			function openRewards(){
+				quakooApp.openFrame('model_reward_1','../home/model_reward_1.html',{},0,0,{bgColor:'rgba(0,0,0,0)'})
+			}
+		
+	</script>
+</html>

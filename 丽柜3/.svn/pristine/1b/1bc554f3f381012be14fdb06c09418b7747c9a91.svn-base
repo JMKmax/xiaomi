@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>注册登录</title>
+    	<style>
+    		.icon{
+    			width: 1.813333rem;
+    			height: 1.813333rem;
+    			overflow: hidden;
+    			padding-top: 2.133333rem;
+    			padding-bottom: 1.066666rem;
+    			position: relative;
+    		}
+    		.icon .per{
+    			width: 1.813333rem;
+    			height: 1.813333rem;
+    		}
+    		.icon .cam{
+    			width: 0.426666rem;
+    			height: 0.373333rem;
+    			position: absolute;
+    			top: 3.36rem;
+    			left: 0.693333rem;
+    		}
+    		 .accont{
+    			position: relative;
+    			margin:0 0.666666rem;
+    		}
+    		 .accont:after{
+    			content: close-quote;
+    			width: 1px;
+    			height: 0.64rem;
+    			background: #d8d8d8;
+    			position: absolute;
+    			left: 1.573333rem;
+    			top: 0.266666rem;
+    			transform: scaleX(.5);
+    		}
+    		 .default{
+    			font-size: 0.426666rem;
+    			color: #999;
+    			line-height: 1.173333rem;
+    			position: absolute;
+    			top: 0;
+    			left: 0.533333rem;
+    		}
+    		.accont .tel{
+    			height: 1.173333rem;
+  				width: 100%;
+  				box-sizing: border-box;
+    		}
+    		 .accont .tel input{
+    			font-size: 0.426666rem;
+    			font-family:PingFang-SC-Medium;
+    			color: #999;
+  				padding-left: 1.866666rem;
+  				padding-right: 0.4rem;
+  				background: #f2f2f2;
+  				border-radius:0.586666rem;
+  				line-height: 1.5em;
+    		}
+    		.log{
+    			height: 1.173333rem;
+    			background: #ff77a9;
+    			border-radius: 2.666666rem;
+    			font-size: 0.48rem;
+    			color: #fff;
+    			line-height: 1.173333rem;
+    			box-sizing: border-box;
+    			margin: 0.533333rem 0.666666rem 0 0.666666rem;
+    			text-align: center;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="top-photo flex flex-pack-center">
+			<div class="icon ">
+				<img class="per" src="../../icon/defaultHead.png" />
+				<img class="cam" src="../../icon/Camera.png"  />
+			</div>
+		</div>
+		<div class="accont">
+			<div class="default">+86</div>
+			<div class="tel">
+				<input class="tel" type="tel" placeholder="输入手机号" />
+			</div>
+		</div>
+		<div class="log">登录</div>	
+	</body>
+</html>

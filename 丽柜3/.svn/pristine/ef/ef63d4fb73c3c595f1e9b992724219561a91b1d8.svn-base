@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>模特主页</title>
+    <style type="text/css">
+        body,
+        html {
+            background-color: #F5F5F5;
+        }
+        /*顶部样式*/
+        .head {
+            background: url("../../image/bg.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            width: 100%;
+            height: 215px;
+
+        }
+        .head-nav {
+            position: fixed;
+            height: 44px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: 9999;
+        }
+        .head-nav-space {
+            height: 44px;
+        }
+        .back {
+            position:absolute;
+            left: 0;
+            bottom: 0;
+            height: 44px;
+            width: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .back img{
+            width:11px;
+            height:18px;
+        }
+        .crown {
+            position:absolute;
+            right: 0;
+            bottom: 0;
+            height: 44px;
+            width: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .crown img{
+            width:19px;
+            height:19px;
+        }
+        .head-user {
+            margin-top: 43px;
+            display: flex;
+        }
+        .head-user-info {
+            width: 147px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .head-user-info .rank{
+        	position: relative;
+        }
+        .head-user-info .rank .rk{
+        	width: 0.426666rem;
+        	height: 0.4rem;
+        	position: absolute;
+        	top: 1.306666rem;
+        	left: 1.173333rem;
+        	z-index: 2;
+        }
+        .head-user-icon {
+            width:64px;
+            height:64px;
+            border-radius: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .head-user-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        .head-user-name {
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+            font-size:16px;
+            color:#ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .head-user-data {
+            flex: 1;
+            padding: 0 30px 0 35px;
+            font-size:14px;
+            color:#ffffff;
+        }
+        .user-data-top {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .data-top-item {
+            border-radius:4px;
+            width:60px;
+            height:24px;
+            line-height: 24px;
+            overflow: hidden;
+            text-align: center;
+			font-size: 0.373333rem;
+			color: #fff;
+			background: #09bb07;
+        }
+
+        .flow{
+            background:#ff5c98;
+        }
+        .flow.active {
+            background: rgba(255,92,152,.5);
+        }
+        .wx {
+            margin-left: 25px;
+            background: url("../../icon/wx_top.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+        .user-data-bottom {
+            margin-top: 41px;
+            display: flex;
+        }
+        .user-data-bottom li {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .user-data-bottom li > div {
+            height: 20px;
+            line-height: 20px;
+        }
+        .data-type {
+            margin-top: 4px;
+        }
+        /*顶部样式 over*/
+        /*分类*/
+        .results-classify {
+            display: flex;
+            height: 68px;
+            background: #fff;
+        }
+        .results-classify li{
+            height: 68px;
+            flex: 1;
+            font-size:14px;
+            color:#333333;
+        }
+        .results-classify li .classify-icon {
+            height: 38px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 4px;
+            box-sizing: border-box;
+        }
+        .results-classify li .classify-name{
+            height: 30px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        /*分类 over*/
+        /*列表*/
+        .dynamic-ul {
+            margin-top: 10px;
+        }
+
+        .dynamic-ul > li {
+            background: #fff;
+            margin-bottom: 0.267rem;
+        }
+
+        .dynamic-ul .dynamic-content {
+            padding: 0.267rem 0 0 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 0 0.4rem;
+        }
+
+        .user-icon {
+            width: 1.227rem;
+            height: 1.227rem;
+            border-radius: 50%;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .user-top-right {
+            flex: 1;
+        }
+
+        .stick {
+            color: #999;
+        }
+
+        .stick.ready {
+            flex-shrink: 0;
+            font-size: 14px;
+            color: #ff5c98;
+        }
+
+        .user-name {
+            font-size: 14px;
+            height: 0.533rem;
+            line-height: 0.533rem;
+            color: #333333
+        }
+
+        .pastTime {
+            margin-top: 0.107rem;
+            height: 0.453rem;
+            line-height: 0.453rem;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        .dynamic-text {
+            margin-top: 0.32rem;
+            font-size: 14px;
+            color: #333333;
+            line-height: 1.5em;
+            padding: 0 0.4rem;
+        }
+
+        /*视频*/
+        .dynamic-video {
+            margin: 0.32rem 0.4rem 0.32rem;
+            color: #fff;
+            height: calc(100vw / 1.7045);
+            position: relative;
+        }
+
+        .video-cover {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-cover img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .play {
+            width: 1.173rem;
+            height: 1.173rem;
+            background: url("../../icon/play.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .total-num {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            box-sizing: border-box;
+            border-radius: 0.053rem;
+            height: 0.533rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 0.053rem 0.24rem;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+        }
+
+        .handle {
+            display: flex;
+            height: 1.067rem;
+            position: relative;
+        }
+
+        .handle:after {
+            content: '';
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleY(.5);
+            position: absolute;
+        }
+
+        .handle li {
+            height: 1.067rem;
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .handle li + li:after {
+            content: '';
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #f0f0f0;
+            transform: scaleX(.5);
+            position: absolute;
+        }
+
+        .handle li i {
+            margin-right: 0.133rem;
+        }
+
+        .view {
+            width: 0.56rem;
+            height: 0.4rem;
+            background: url("../../icon/view.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .comment {
+            width: 0.56rem;
+            height: 0.48rem;
+            background: url("../../icon/talk.png") no-repeat center center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+        }
+
+        .reward {
+            width: 0.56rem;
+            height: 0.613rem;
+            background: url("../../icon/rew.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        /*照片*/
+        .photo-area {
+            margin-top: 0.32rem;
+            background: #f5f5f5;
+            padding: 0.32rem 0.333rem;
+        }
+
+        .photo-desc {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .photo-desc .photo-desc-sign {
+            color: #ff5c98;
+        }
+
+        .dynamic-photo {
+            margin-top: 0.32rem;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 0;
+        }
+
+        .dynamic-photo li {
+            width: calc((100vw - 0.667rem) / 3);
+            height: calc((100vw - 0.667rem) / 3);
+            padding: 0.067rem;
+            /*margin-bottom: 0.133rem;*/
+            flex-shrink: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            font-size: 0;
+        }
+
+        .real-wrap {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .real-wrap img {
+            display: block;
+        }
+
+        .photo-area.fromDynamic {
+            background: #fff;
+            margin-top: 0;
+        }
+
+        .photo-area.fromDynamic .dynamic-photo {
+            margin-top: 0;
+        }
+
+        .dynamic-video.fromProd {
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0 0.4rem 0.32rem;
+        }
+
+        .fromProd .total-num {
+            right: 0.8rem;
+            bottom: 0.72rem;
+        }
+        /*列表 over*/
+        /*购买的统计*/
+        .notification{
+            font-size:12px;
+            color:#ff5c98;
+            padding: 0 0.4rem 0.32rem;
+        }
+        .fromProd.notification {
+            padding:  0.32rem 0.4rem;
+        }
+        /*购买的统计 over*/
+    </style>
+</head>
+
+<body>
+
+
+<div class="top-main">
+    <div class="head">
+        <div class="head-nav">
+            <div class="back"><img src="../../icon/wBack.png" alt=""></div>
+            <div class="crown"><img src="../../icon/crown.png" alt=""></div>
+        </div>
+        <div class="head-nav-space"></div>
+        <div class="head-user">
+            <div class="head-user-info">
+            	<div class="rank">
+                	<div class="head-user-icon"><img src="../../icon/defaultHead.png" alt=""></div>
+                	<img class="rk" src="../../icon/rk.png" alt="" />
+                </div>
+                <div class="head-user-name">长发及腰热不热i长发及腰热不热i长发及腰热不热i长发及腰热不热i</div>
+            </div>
+            <div class="head-user-data">
+                <div class="user-data-top">
+                    <div class="wx data-top-item"></div>
+                    <div class="flow data-top-item">关注</div>
+                </div>
+                <ul class="user-data-bottom">
+                    <li>
+                        <div class="data-num">1.2万</div>
+                        <div class="data-type">粉丝</div>
+                    </li>
+                    <li>
+                        <div class="data-num">1.2万</div>
+                        <div class="data-type">关注</div>
+                    </li>
+                    <li>
+                        <div class="data-num">1.2万</div>
+                        <div class="data-type">积分</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ul class="results-classify">
+        <li>
+            <div class="classify-icon"><img src="../../icon/pic_0.png" style="width:28px;height:25px;" alt=""></div>
+            <div class="classify-name">图片</div>
+        </li>
+        <li>
+            <div class="classify-icon"><img src="../../icon/video.png" style="width:23px;height:21px;" alt=""></div>
+            <div class="classify-name">视频</div>
+        </li>
+        <li>
+            <div class="classify-icon"><img src="../../icon/rew_1.png" style="width:21px;height:23px;" alt=""></div>
+            <div class="classify-name">打赏</div>
+        </li>
+    </ul>
+</div>
+<ul class="dynamic-ul">
+    <!--	动态发布的-->
+<!--    	<li>-->
+<!--    		<div class="dynamic-content">-->
+<!--    			<div class="user-info">-->
+<!--    				<div class="user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%;" alt=""></div>-->
+<!--    				<div class="user-top-right">-->
+<!--    					<div class="user-name">长发及腰热不热i</div>-->
+<!--    					<div class="pastTime">20小时前</div>-->
+<!--    				</div>-->
+<!--    				<div class="stick">已置顶</div>-->
+<!--    			</div>-->
+<!--    			 <div>-->
+<!--    				 <div class="dynamic-text">-->
+<!--    					 赞助过旅拍活动的直接微信私聊我 赞助过旅拍活动的直接微信私聊我-->
+<!--    				 </div>-->
+<!--    				 <div class="dynamic-video">-->
+<!--    					 <div class="video-cover"><img src="../../icon/worksbg.png" alt=""></div>-->
+<!--    					 <div class="play"></div>-->
+<!--    					 <div class="total-num">17:24</div>-->
+<!--    				 </div>-->
+<!--    				 <div class="photo-area fromDynamic">-->
+<!--    					 <ul class="dynamic-photo">-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						 <li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    					 </ul>-->
+<!--    				 </div>-->
+<!--    			 </div>-->
+<!--                <div class="notification">需打赏90LB，已有200人打赏</div>-->
+<!--    		</div>-->
+<!--    		<ul class="handle">-->
+<!--    			<li class="handle-view"><i class="view"></i><span>1290</span></li>-->
+<!--    			<li class="handle-comment"><i class="comment"></i><span>21</span></li>-->
+<!--    			<li class="handle-reward"><i class="reward"></i><span>0</span></li>-->
+<!--    		</ul>-->
+<!--    	</li>-->
+<!--&lt;!&ndash;    从作品中获取的动态&ndash;&gt;-->
+<!--    	<li>-->
+<!--    		<div class="dynamic-content">-->
+<!--    			<div class="user-info">-->
+<!--    				<div class="user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%;" alt=""></div>-->
+<!--    				<div class="user-top-right">-->
+<!--    					<div class="user-name">长发及腰热不热i</div>-->
+<!--    					<div class="pastTime">20小时前</div>-->
+<!--    				</div>-->
+<!--    				<div class="stick">已置顶</div>-->
+<!--    			</div>-->
+<!--    			<div>-->
+<!--    				<div class="dynamic-text">-->
+<!--    					赞助过旅拍活动的直接微信私聊我 赞助过旅拍活动的直接微信私聊我-->
+<!--    				</div>-->
+
+<!--    				<div class="photo-area">-->
+<!--    					<div class="photo-desc">-->
+<!--    						<span class="photo-desc-sign">@乔乔qiii</span>赞助过旅拍活动的直接微信私聊我-->
+<!--    					</div>-->
+<!--    					<ul class="dynamic-photo ">-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>-->
+<!--    						&lt;!&ndash;					<li><div class="real-wrap"><img src="../../icon/worksbg.png" alt=""></div></li>&ndash;&gt;-->
+<!--    					</ul>-->
+<!--    				</div>-->
+<!--    				<div class="dynamic-video fromProd">-->
+<!--    					<div class="video-cover"><img src="../../icon/worksbg.png" alt=""></div>-->
+<!--    					<div class="play"></div>-->
+<!--    					<div class="total-num">17:24</div>-->
+<!--    				</div>-->
+<!--                    <div class="fromProd notification">需打赏90LB，已有200人打赏</div>-->
+<!--    			</div>-->
+<!--    		</div>-->
+<!--    		<ul class="handle">-->
+<!--    			<li class="handle-view"><i class="view"></i><span>1290</span></li>-->
+<!--    			<li class="handle-comment"><i class="comment"></i><span>21</span></li>-->
+<!--    			<li class="handle-reward"><i class="reward"></i><span>0</span></li>-->
+<!--    		</ul>-->
+<!--    	</li>-->
+
+</ul>
+<div class="loading"></div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/monent.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script id="scriptDiv0" type="text/html">
+    <div class="head">
+        <div class="head-nav">
+            <div class="back"  tapmode="itemOn" onclick="quakooApp.closeWin()"><img src="../../icon/wBack.png" alt=""></div>
+            <div class="crown" tapmode="itemOn" onclick="openRank()"><img src="../../icon/crown.png" alt=""></div>
+        </div>
+        <div class="head-nav-space"></div>
+        <div class="head-user">
+            <div class="head-user-info">
+                <div class="head-user-icon"><img src="../../icon/defaultHead.png" style="width: 100%;height: 100%;"onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%;'" data-echo="<%=list.userIcon%>" real-style="<%=list.userIconStyle%>" alt=""/></div>
+                <div class="head-user-name"><%=list.userName%></div>
+            </div>
+            <div class="head-user-data">
+                <div class="user-data-top">
+                    <%if(list.hasFlow){%>
+                    <div class="flow active data-top-item" tapmode="" data-flag="0" onclick="switchAttend(<%=list.uid%>,this)">已关注</div>
+                    <%}else{%>
+                    <div class="flow data-top-item" tapmode="" data-flag="0" onclick="switchAttend(<%=list.uid%>,this)">关注</div>
+                    <%}%>
+                </div>
+                <ul class="user-data-bottom">
+                    <li tapmode="" onclick="otherFansList()">
+                        <div class="data-num"><%=list.fansCount%></div>
+                        <div class="data-type">粉丝</div>
+                    </li>
+                    <li tapmode="" onclick="otherFlowList()">
+                        <div class="data-num"><%=list.flowCount%></div>
+                        <div class="data-type">关注</div>
+                    </li>
+                    <li>
+                        <div class="data-num"><%=list.fansCount%></div>
+                        <div class="data-type">积分</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ul class="results-classify">
+        <li tapmode="itemOn" onclick="openClassifyImage(<%=list.uid%>)">
+            <div class="classify-icon"><img src="../../icon/pic_0.png" style="width:28px;height:25px;" alt=""></div>
+            <div class="classify-name">图片</div>
+        </li>
+        <li tapmode="itemOn" onclick="openClassifyVideo(<%=list.uid%>)">
+            <div class="classify-icon"><img src="../../icon/video.png" style="width:23px;height:21px;" alt=""></div>
+            <div class="classify-name">视频</div>
+        </li>
+        <li tapmode="itemOn" onclick="openSubscribe(<%=list.uid%>)">
+            <div class="classify-icon"><img src="../../icon/rew_1.png" style="width:21px;height:23px;" alt=""></div>
+            <div class="classify-name">订阅</div>
+        </li>
+    </ul>
+</script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i< list.length ;i++){%>
+        <%if(list[i].type == 0){%>
+        <li data-canView="<%=list[i].canView ? 1 : 0%>" id="dynamic<%=list[i].id%>">
+            <div class="dynamic-content">
+                <div class="user-info" tapmode="">
+                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height:100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+                    <div class="user-top-right">
+                        <div class="user-name"><%=list[i].userName%></div>
+                        <div class="pastTime"><%=list[i].ctime%></div>
+                    </div>
+                </div>
+                <div tapmode="" onclick="openDynamic(<%=list[i].id%>,<%=list[i].price%>,this)">
+                    <div class="dynamic-text"><%=list[i].title%></div>
+                    <div class="photo-area">
+                        <div class="photo-desc">
+                            <span class="photo-desc-sign">@<%=list[i].simpleContent.modelName%></span><%=list[i].simpleContent.name%>
+                        </div>
+                        <%if(list[i].objectType == 0){%>
+                        <ul class="dynamic-photo ">
+                            <%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+                            <li>
+                                <div class="real-wrap"><img src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;" onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div>
+                            </li>
+                            <%}%>
+                        </ul>
+                        <%}%>
+                    </div>
+                    <%if(list[i].objectType == 1){%>
+                    <div class="dynamic-video fromProd">
+                        <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+                        <div class="play"></div>
+                        <div class="total-num">17:24</div>
+                    </div>
+                    <%}%>
+                    <%if(list[i].price){%>
+                        <div class="notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+                    <%}%>
+                </div>
+            </div>
+            <ul class="handle">
+                <li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+                <li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+                <li class="handle-reward"><i class="reward" tabmode="itemOn" onclick="customReward(<%=list[i].id%>,<%=list[i].price%>,this)"></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+            </ul>
+        </li>
+
+        <%}else if(list[i].type == 1){%>
+        <li data-canView='<%=list[i].canView ? 1 : 0%>' id="dynamic<%=list[i].id%>">
+            <div class="dynamic-content">
+                <div class="user-info" tapmode="">
+                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+                    <div class="user-top-right">
+                        <div class="user-name"><%=list[i].userName%></div>
+                        <div class="pastTime"><%=list[i].ctime%></div>
+                    </div>
+                </div>
+                <div tapmode="" onclick="openDynamic(<%=list[i].id%>,<%=list[i].price%>,this)">
+                    <div class="dynamic-text"><%=list[i].title%></div>
+                    <%if(list[i].objectType == 0){%>
+                        <div class="photo-area fromDynamic">
+                            <ul class="dynamic-photo">
+                                <%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+                                <li>
+                                    <div class="real-wrap"><img src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;" onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div>
+                                </li>
+                                <%}%>
+                            </ul>
+                        </div>
+                    <%}%>
+                    <%if(list[i].objectType == 1){%>
+                        <div class="dynamic-video">
+                            <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%"onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+                            <div class="play"></div>
+                            <div class="total-num">17:24</div>
+                        </div>
+                    <%}%>
+                </div>
+                <%if(list[i].price){%>
+                <div class="notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+                <%}%>
+            </div>
+            <ul class="handle">
+                <li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+                <li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+                <li class="handle-reward"><i class="reward" tabmode="itemOn"onclick="customReward(<%=list[i].id%>,<%=list[i].price%>, this )"></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+            </ul>
+        </li>
+        <%}%>
+    <%}%>
+</script>
+<script>
+    var params;
+    var curHomeId; // 访问用户的ID
+    var loading;
+    var nextCursor;
+    var hasnext;
+    var listenerFlag = true;
+    var upLoadingImgSrc = '../../image/loading_more.gif';
+
+    var clientw = document.body.clientWidth; //1903（不包含滚动条）
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var userIcon_size = 1.227 * fontSize; //头像大小
+    var image_size = (clientw - 0.667 * fontSize) / 3; //图片大小
+    var video_size_w = clientw - 0.8 * fontSize; //视频cover width
+    var video_size_h = clientw / 1.7045; //视频cover height
+    apiready = function () {
+        params = api.pageParam;
+        curHomeId = params.id;
+        quakooData.ajaxGetData(config.getUrl_model_getModelInfo(), {mid: curHomeId}, function (ret, err) {
+            if (ret && ret.success) {
+            	var feilKey = quakooUtils.getImgKey();
+                if (quakooUtils.isBlack(ret.data.userIcon)) {
+                    ret.data.userIcon = '../../icon/defaultHead.png';
+                    ret.data.userIconStyle = 'width:100%;height:100%'
+                } else {
+                    var obj = quakooImg.processImg(ret.data.userIcon, 1.706666 * fontSize, 1.706666 * fontSize);
+                    ret.data.userIcon = obj.url+feilKey;
+                    ret.data.userIconStyle = obj.style;
+                }
+                topId = ret.data.topId;
+                var data = {
+                    list: ret.data
+                };
+                var html = template('scriptDiv0', data);
+                $api.html($api.dom('.top-main'), html);
+                setTimeout(function () {
+                    if (!echo.isInit()) {
+                        echoExt.init({
+                            offset: 0,
+                            throttle: 0//设置图片延迟加载的时间
+                        });
+                    } else {
+                        echo.render()
+                    }
+                }, 100);
+                api.parseTapmode();
+                var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+                var head = $api.dom('.head');
+                var headNav = $api.dom('.head-nav');
+                if (statusBarAppearance) {
+                    $api.fixStatusBar(head);
+                    $api.fixStatusBar(headNav);
+                }
+
+                //加载动态列表
+                addCircle()
+            }
+        });
+        api.addEventListener({ // 监听 打赏（购买）后 执行事件
+			name: 'boughtDynamicRefreshDom'
+		}, function(ret, err) {
+			boughtDynamicRefreshDom(ret.value.cid,ret.value.price)
+		});
+    };
+    //排行榜
+	function openRank(){
+		quakooApp.openNewWindow('rank','./rank.html')
+	}
+    // 打开动态详情
+	function openDynamic(id,price,_this) {
+		var canView = +$api.attr($api.closest(_this,'li[data-canView]'),'data-canView');
+
+		if(canView) {
+			quakooApp.openNewWindow('model_communication', './model_communication.html', {id: id})
+		}else {
+			quakooApp.openFrame('model_reward_0', './model_reward_0.html', {price:price,id:id,winName:api.winName,frameName:api.frameName,scriptEvent:'boughtDynamicRefreshDom'}, 0, 0, {
+				bgColor: 'rgba(0,0,0,0)',
+				animation:{
+					type:'fade',
+					duration:300
+				}
+			})
+
+		}
+	}
+
+	//关注
+    function switchAttend(mid,_this) {
+        var flag = +$api.attr(_this, 'data-flag');
+        var attend = $api.hasCls(_this, 'active');
+        if (flag === 1) {
+            return
+        }
+        $api.attr(_this, 'data-flag', 1);
+        var _params = {
+            otherId: mid
+        };
+        if (attend) {  //关注 == 未关注
+            quakooData.ajaxSubmitDataNotProcess(config.getUrl_flow_channelFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('取消成功');
+                    $api.attr(_this, 'data-flag', 0);
+                    $api.removeCls(_this, 'active');
+                    $api.text(_this, '关注');
+                }
+            },function () {
+                $api.attr(_this, 'data-flag', 0);
+            })
+        } else { //  未关注 = 》 关注
+            quakooData.ajaxSubmitDataNotProcess(config.getUrl_flow_addFlow(), _params, function (ret, err) {
+                if (ret && ret.success) {
+                    quakooMsg.toast('关注成功');
+                    $api.attr(_this, 'data-flag', 0);
+                    $api.addCls(_this, 'active');
+                    $api.text(_this, '已关注');
+                }
+            },function () {
+                $api.attr(_this, 'data-flag', 0);
+            })
+        }
+    }
+
+   //分类-图片
+    function openClassifyImage(id) {
+        quakooApp.openNewWindow('classifyImage','./classifyImage.html',{id:id})
+    }
+    //分类-视频
+    function openClassifyVideo(id) {
+        quakooApp.openNewWindow('classifyVideo','./classifyVideo.html',{id:id})
+    }
+    //订阅
+    function openSubscribe(id) {
+        quakooApp.openNewWindow('photography_subscribe','./photography_subscribe.html',{id:id})
+    }
+    //添加微信好友
+    function addWx() {
+        quakooApp.openNewWindow('buyWeChat', './buyWeChat.html')
+    }
+    //加载个人列表内容
+    function addCircle() {
+        var ajaxParams = {
+            mid:curHomeId,
+            size:10,
+            cursor:0
+        };
+        quakooData.ajaxGetDataWithOutProgress(config.getUrl_model_getModelCirclePager(),ajaxParams,function (rets) {
+            if (rets) {
+                if(quakooUtils.isNotBlack(rets)){
+                    nextCursor = rets.nextCursor;
+                    hasnext = rets.hasnext;
+                    dynamicListTemplate(rets.data);
+                }
+            }
+        })
+    }
+    function dynamicListTemplate(results,append) {
+    	var feilKey = quakooUtils.getImgKey();
+    	
+        if (quakooUtils.isBlack(results)) return;
+        for (var i = 0; i < results.length; i++) {
+            if (quakooUtils.isNotBlack(results[i].userIcon)) {
+                var _obj = quakooImg.processImg(results[i].userIcon, userIcon_size, userIcon_size);
+                results[i].userIcon = _obj.url+feilKey;
+                results[i].userIconStyle = _obj.style;
+            } else {
+                results[i].userIcon = '../../icon/defaultHead.png';
+                results[i].userIconStyle = 'width:100%;height:100%';
+            }
+            if (results[i].objectType === 0) { //0图片 1视频
+                var newImageArr = [];
+                var imageStr = results[i].imageStr.split(',');
+                imageStr.forEach(function (item) {
+                    if (quakooUtils.isNotBlack(item)) {
+                        var _obj = quakooImg.processImg(item, image_size, image_size);
+                        _obj.url = _obj.url+feilKey;
+                        newImageArr.push(_obj)
+                    }
+                });
+                results[i].newImageArr = newImageArr.slice(0, 9);
+            } else {
+                if (quakooUtils.isNotBlack(results[i].imageStr)) {
+                    var _obj = quakooImg.processImg(results[i].imageStr, video_size_w, video_size_h);
+                    results[i].cover = _obj.url+feilKey;
+                    results[i].coverStyle = _obj.style;
+                }
+            }
+            results[i].ctime = quakooUtils.commentFormatTime(results[i].ctime)
+        }
+        var data = {
+            list: results,
+        };
+
+        var html = template('scriptDiv1', data);
+        if (append) {
+            $api.append($api.dom('.dynamic-ul'), html)
+        } else {
+            $api.html($api.dom('.dynamic-ul'), html)
+        }
+        setTimeout(function () {
+            if (!echo.isInit()) {
+                echoExt.init({
+                    offset: 0,
+                    throttle: 0//设置图片延迟加载的时间
+                });
+            } else {
+                echo.render()
+            }
+        }, 100);
+        api.parseTapmode();
+
+        var loadMoreDiv = document.getElementById("loadMoreDiv");
+        if (hasnext) {
+            if (loadMoreDiv) {
+                setTimeout(function () {
+                    loading = false;
+                    loadMoreDiv.innerHTML = '上拉加载更多';
+                })
+            } else {
+                var div_loading = document.createElement("div");
+                div_loading.setAttribute("id", "loadMoreDiv");
+                div_loading.innerHTML = '上拉加载更多';
+                $api.dom('.loading').appendChild(div_loading);
+                loading = false;
+            }
+
+        } else {
+            if (loadMoreDiv) {
+                setTimeout(function () {
+                    loading = false;
+                    loadMoreDiv.innerHTML = '已显示全部动态';
+                }, 200);
+            } else {
+                var div_loading = document.createElement("div");
+                div_loading.setAttribute("id", "loadMoreDiv");
+                div_loading.innerHTML = '已显示全部动态';
+                $api.dom('.loading').appendChild(div_loading);
+                loading = false;
+            }
+        }
+
+        if (listenerFlag) {
+            listenerFlag = false;
+            api.addEventListener({
+                name: 'scrolltobottom',
+                extra: {
+                    threshold: 50   //设置距离底部多少就触发
+                }
+            }, function (ret, err) {
+                if (!loading && hasnext) {
+                    loading = true;
+                    var loadMoreDiv = document.getElementById("loadMoreDiv");
+                    if (loadMoreDiv) {
+                        loadMoreDiv.innerHTML = '<img  src="' + upLoadingImgSrc + '"/> 全力加载中...';
+                    } else {
+                        var div_loading = document.createElement("div");
+                        div_loading.setAttribute("id", "loadMoreDiv");
+                        div_loading.innerHTML = '<img  src="' + upLoadingImgSrc + '"/> 全力加载中...';
+                        $api.dom('.loading').appendChild(div_loading);
+                    }
+
+                    var ajaxParams = {
+                        mid:curHomeId,
+                        size:10,
+                        cursor: nextCursor
+                    };
+                    quakooData.ajaxGetDataWithOutProgress(config.getUrl_model_getModelCirclePager(),ajaxParams,function (rets) {
+                        if (rets) {
+                            if(quakooUtils.isNotBlack(rets)){
+                                nextCursor = rets.nextCursor;
+                                hasnext = rets.hasnext;
+                                dynamicListTemplate(rets.data,true);
+                            }
+                        }
+                    })
+
+                }
+            });
+        }
+       
+    }
+    // 自定义 打赏
+	function customReward(id,price,_this) {
+
+		var canView = +$api.attr($api.closest(_this,'li[data-canView]'),'data-canView');
+		if(canView){
+			quakooApp.openFrame('model_reward_1', './model_reward_1.html', {id:id}, 0, 0, {
+				bgColor: 'rgba(0,0,0,0)',
+				animation:{
+					type:'fade',
+					duration:300
+				}
+			})
+		}else {
+			quakooApp.openFrame('model_reward_0', './model_reward_0.html', {price:price,id:id,winName:api.winName,frameName:api.frameName,scriptEvent:'boughtDynamicRefreshDom'}, 0, 0, {
+				bgColor: 'rgba(0,0,0,0)',
+				animation:{
+					type:'fade',
+					duration:300
+				}
+			})
+		}
+
+
+	}
+	// 动态购买成功刷新dom
+	function boughtDynamicRefreshDom(cid,reward) {
+		var parentLi = $api.dom('#dynamic'+cid);
+		if(quakooUtils.isNotBlack(parentLi)){
+			// 更新 动态是否 可查看详情
+			$api.attr(parentLi,'data-canView',1);
+			// 去掉图片模糊
+			$api.domAll(parentLi,'.overImg').forEach(function (item,index) {
+				$api.removeAttr(item,'class')
+			});
+			// 更新打赏金额
+			updateMoney(reward,parentLi)
+		}
+	}
+	// 更新打赏金额
+	function updateMoney(reward,li){
+		var totalReward = +$api.text($api.dom(li,'#totalReward'));
+		var _reward = +reward;
+		$api.text($api.dom(li,'#totalReward'),totalReward+_reward);
+	}
+	// 打开他的粉丝
+	function otherFansList() {
+        quakooApp.openNewWindow('otherFocus'+curHomeId,'./otherFocus.html',{id:curHomeId})
+    }
+    // 打开他的关注
+    function otherFlowList() {
+        quakooApp.openNewWindow('otherFans'+curHomeId,'./otherFans.html',{id:curHomeId})
+    }
+</script>
+</body>
+
+</html>

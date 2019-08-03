@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>认证摄影师</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            height: auto;
+        }
+
+        .section-tit {
+            background: #f5f5f5;
+            height: 1.173rem;
+            line-height: 1.173rem;
+            font-size: 16px;
+            color: #333333;
+            padding: 0 0.4rem;
+        }
+
+        .item-name {
+            font-size: 14px;
+            position: relative;
+        }
+
+        .item-name span {
+            margin-left: 0.267rem;
+            line-height: 0.533333rem;
+        }
+
+        .label-wrap {
+            width: 100%;
+            height: 1.067rem;
+        }
+
+        .label-wrap input {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            padding-left: 0.267rem;
+        }
+
+        .label-wrap input {
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .item-ul li {
+            padding: 0.267rem 0.4rem 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .item-ul li:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            transform: scaleY(.5);
+            background: #f0f0f0;
+        }
+
+        .mustFill {
+            position: absolute;
+            top: 0.106666rem;
+            color: #ff5c98;
+            width: 0.16rem !important;
+            height: 0.16rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.333333rem !important;
+        }
+
+        .uploadImg-area {
+            padding: 0.32rem 0.4rem;
+        }
+
+        .tip {
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.4em;
+            text-align: justify;
+        }
+
+        .tip span {
+            color: #ff5c98;
+        }
+
+        .uploadBTn {
+            border-radius: 0.107rem;
+            margin-top: 0.533rem;
+            width: 2.667rem;
+            height: 2.667rem;
+            background: #e8e7e7 url("../../icon/uploadImg.png") no-repeat center center;
+            -webkit-background-size: 1.12rem 1.12rem;
+            background-size: 1.12rem 1.12rem;
+
+        }
+
+        .submit {
+            background-image: linear-gradient(-270deg, #ff77a9 0%, #fe4f8a 100%);
+            border-radius: 2.667rem;
+            width: 8.533rem;
+            height: 1.173rem;
+            line-height: 1.173rem;
+            text-align: center;
+            font-size: 18px;
+            color: #ffffff;
+            margin: 0.213rem auto 0.32rem;
+        }
+
+    </style>
+</head>
+<body>
+<div id="con">
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" maxlength="11">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>摄影师简介</span></div>
+            <label class="label-wrap">
+                <input type="text">
+            </label>
+        </li>
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <div class="uploadBTn"></div>
+    </div>
+    <div class="submit">
+        审核认证
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i< list.length;i++){%>
+    <li><img src="<%=list[i].imgurl%>" style="<%=list[i].imgStyle%>" alt=""></li>
+    <%}%>
+</script>
+<script type="text/html" id="scriptDiv02">
+    <%if(list.checkStatus == 0){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">审核中</div>
+    </div>
+    <%}else if(list.checkStatus == 1){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">已通过</div>
+    </div>
+    <%}else if(list.checkStatus == 2){%>
+    <div class="auth-status">
+        <div class="auth-status-tit">未通过审核原因</div>
+        <label class="cause">
+            <textarea readonly ><%=list.reason%></textarea>
+        </label>
+    </div>
+    <%}%>
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" value='<%=list.phone%>' id="phone" maxlength="11" <%=list.checkStatus == 0 || list.checkStatus ==  1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel" value='<%=list.qq%>'  id="qq"  <%=list.checkStatus == 0|| list.checkStatus ==  1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.weixin%>' id="weChat" <%=list.checkStatus == 0 || list.checkStatus ==  1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>模特简介</span></div>
+            <label class="label-wrap">
+                <input type="text" value='<%=list.info%>' id="info" <%=list.checkStatus == 0 || list.checkStatus ==  1 ? 'readonly' : '' %>>
+            </label>
+        </li>
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <ul class="show-img">
+            <%if(list.checkStatus == 0 || list.checkStatus == 1|| list.checkStatus == 2){%>
+            <%for(var o = 0 ; o < list.images.length; o++){%>
+            <li><img src="<%=list.images[o].imgUrl%>" style="<%=list.images[o].imgStyle%>" alt=""></li>
+            <%}%>
+            <%}%>
+            <%if(list.checkStatus != 0 && list.checkStatus != 1){%>
+            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>
+            <%}%>
+        </ul>
+    </div>
+    <%if(list.checkStatus == 1){%>
+        <div class="submit submitted" >
+            已通过
+        </div>
+    <%}%>
+    <%if(list.checkStatus != 0 && list.checkStatus != 1){%>
+        <div class="submit "  tapmode="" onclick="submitParams()" >审核认证</div>
+    <%}%>
+</script>
+<script type="text/html" id="scriptDiv03">
+    <div class="section-tit">联系人信息</div>
+    <ul class="item-ul">
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>手机</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="phone" maxlength="11">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>QQ</span></div>
+            <label class="label-wrap">
+                <input type="tel" id="qq">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>微信</span></div>
+            <label class="label-wrap">
+                <input type="text" id="weChat">
+            </label>
+        </li>
+        <li>
+            <div class="item-name"><sup class="mustFill">*</sup><span>模特简介</span></div>
+            <label class="label-wrap">
+                <input type="text" id="info">
+            </label>
+        </li>
+    </ul>
+    <div class="section-tit">上传照片</div>
+    <div class="uploadImg-area">
+        <div class="tip">
+            最少上传6张，不超过20张，含至少<span>1张自拍照</span>和<span>1张自拍认证</span>（手拿纸张协商本人丽柜昵称的露脸自拍照，认证后方可提现）。
+        </div>
+        <ul class="show-img">
+            <li class="uploadBTn" tapmode="" onclick="commonUploadImg()"></li>
+        </ul>
+    </div>
+    <div class="submit" tapmode="" onclick="submitParams()">
+        审核认证
+    </div>
+</script>
+<script>
+    var imagesMap = [];
+    var maxstr = 20;
+    var submitted = false;
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    // 审核状态 0审核中 1审核通过 2审核不通过
+    apiready = function () {
+        getAuthInfo()
+    };
+    // 获取认证信息
+    function getAuthInfo() {
+        quakooData.ajaxSubmitData(config.getUrl_model_getMyCertificationInfo(), {}, function (ret, err) {
+            if (ret && ret.success) {
+
+                if(quakooUtils.isNotBlack(ret.data)) {
+                    authInfoRender(ret.data)
+                }else{
+                    notAuth()
+                }
+            }
+        })
+    }
+    // 未提交过审核  渲染dom
+    function notAuth() {
+        var html = template('scriptDiv03' ,{});
+        $api.html($api.dom('#con'),html);
+        api.parseTapmode();
+    }
+    // 认证信息渲染
+    function authInfoRender(results) {
+        if (results.checkStatus == 0 || results.checkStatus == 1 || results.checkStatus == 2) {
+            var newArr = [];
+            var size = 2.667 * fontSize;
+            if (quakooUtils.isNotBlack(results.images)) {
+                results.images = results.images.split(',');
+                results.images.forEach(function (item, i) {
+                    var _obj = {};
+                    var itemObj = quakooImg.processImg(item,size,size);
+                    _obj.imgUrl = itemObj.url;
+                    _obj.imgStyle = itemObj.style;
+                    newArr.push(_obj)
+                });
+                results.images = newArr
+            } else {
+                results.images = newArr
+            }
+            maxstr = maxstr - results.images.length;
+        }
+        var data = {
+            list:results
+        };
+
+        var html = template('scriptDiv02' ,data);
+        $api.html($api.dom('#con'),html);
+        api.parseTapmode();
+    }
+
+
+    // 上传图片
+    function commonUploadImg() {
+        var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+        var _h;
+        var _w = _h = 2.667 * fontSize;
+        var resultList = api.hasPermission({
+            list: ['camera', 'photos']
+        });
+        var list = [];
+
+        for (var i = 0; i < resultList.length; i++) {
+            if (!resultList[i].granted) {
+                list.push(resultList[i].name);
+            }
+        }
+        if (list.length > 0) {
+            api.requestPermission({
+                list: list,
+                code: 1
+            }, function (ret, err) {
+
+            });
+        } else {
+            var Multiplechoice = api.require('Multiplechoice');
+            Multiplechoice.choice({
+                maxstr: maxstr,
+                uploadflowUrl: config.uploadImageUrl
+            }, function (ret, err) {
+
+                if (quakooUtils.isNotBlack(ret.allimgjs)) {
+                    var _results = [];
+
+                    ret.allimgjs.forEach(function (item, index) {
+                        imagesMap.push(item);
+                        var imgObj = quakooImg.processImg(item, _w, _h);
+                        var _obj = {
+                            imgUrl: imgObj.url,
+                            imgStyle: imgObj.style,
+                        };
+                        _results.push(_obj)
+                    });
+                    var _data = {
+                        list: _results
+                    };
+                    var html = template('scriptDiv1', _data)
+                    $api.prepend($api.dom('.show-img'), html)
+
+                    maxstr = maxstr - imagesMap.length;
+                }
+
+            })
+        }
+    }
+</script>
+
+</html>

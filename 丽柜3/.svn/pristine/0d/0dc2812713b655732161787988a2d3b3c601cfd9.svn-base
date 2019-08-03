@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>意见反馈</title>
+    	<style>
+    		html,body {
+				background: #F5F5F5;
+
+			}
+			body {
+				height: 100%;
+				min-height: 100%;
+				padding-top: 0.267rem;
+			}
+			.dialogue-ul {
+				height: auto;
+				min-height: 100%;
+				width: 100%;
+				padding: 0 0.4rem 0.4rem;
+				box-sizing: border-box;
+				background: #fff;
+			}
+			.dialogue-ul li {
+				margin-bottom: 0.267rem;
+			}
+			.this_time {
+				height: 1.173rem;
+				line-height: 1.173rem;
+				text-align: center;
+				font-size:0.32rem;
+				color:#999999;
+			}
+			.content-area {
+				background:#f5f5f5;
+				border-radius:0.107rem;
+				padding: 0.32rem 0.267rem;
+				line-height: 1.5em;
+				font-size:0.373rem;
+				color:#333333;
+				text-align: justify;
+				word-break: break-all;
+				position: relative;
+			}
+			.content-area img{
+				max-width: 6.667rem;
+				display: block;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			.real-size {
+				display: flex;
+			}
+
+			/*左*/
+			.admin-icon {
+				flex-shrink: 0;
+				width: 0.853rem;
+				height: 0.853rem;
+				border-radius: 50%;
+				overflow: hidden;
+				background: #ffc009 url("../../icon/m2.png") no-repeat center center;
+				-webkit-background-size: 0.48rem 0.48rem;
+				background-size: 0.48rem 0.48rem;
+			}
+			.left-content-area {
+				margin-left: 0.267rem;
+			}
+			.left-item {
+				position: relative;
+			}
+			.left-item .content-area:after {
+				content: '';
+				position: absolute;
+				left: -0.133rem;
+				top: 0.4rem;
+				width:0;
+				height:0;
+				border-top:0.133rem solid transparent;
+				border-bottom:0.133rem solid transparent;
+				border-right:0.133rem solid #f5f5f5;
+			}
+
+			/*右*/
+
+			.right-item .content-area:after {
+				content: '';
+				position: absolute;
+				right: -0.133rem;
+				top: 0.4rem;
+				width:0;
+				height:0;
+				border-top:0.133rem solid transparent;
+				border-bottom:0.133rem solid transparent;
+				border-left:0.133rem solid #f5f5f5;
+			}
+			.right-content-area {
+				margin-right: 0.267rem;
+			}
+
+			.user-icon {
+				flex-shrink: 0;
+				width: 0.853rem;
+				height: 0.853rem;
+				border-radius: 50%;
+				overflow: hidden;
+				position: relative;
+				z-index: 1;
+			}
+			.user-icon img {
+				width: 100%;
+				height: 100%;
+			}
+			.right-item .real-size {
+				justify-content: flex-end;
+			}
+    	</style>
+	</head>
+	<body>
+		<ul class="dialogue-ul">
+<!--			<li class="left-item">-->
+<!--				<div class="this_time">2019-05-20 12:23:43</div>-->
+<!--				<div class="real-size">-->
+<!--					<div class="admin-icon "></div>-->
+<!--					<div class=" content-area left-content-area">-->
+<!--									阿豪【更换【啊哈国哈国哈哈刚 p阿哥哈哈个爱过后试试收盘价回家说句话审批环节dsfafdfafgapahg[oahg[ahgoagiag[ha0gagha]0gh0aghi]ahg-->
+<!--						<img src="../../image/home_2.png" alt="">-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+<!--			<li class="right-item">-->
+<!--				<div class="this_time">2019-05-20 12:23:43</div>-->
+<!--				<div class="real-size">-->
+
+<!--					<div class=" content-area right-content-area">-->
+<!--						阿豪【-->
+<!--					</div>-->
+<!--					<div class="user-icon"><img src="../../icon/defaultHead.png" alt=""></div>-->
+<!--				</div>-->
+<!--			</li>-->
+		</ul>
+	</body>
+</html>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+
+<%for(var i = 0 ; i< list.length ;i++){%>
+	<%if(list[i].uid  == userId){%>
+	<li class="right-item">
+		<div class="this_time"><%=list[i].ctime%></div>
+		<div class="real-size">
+			<div class=" content-area right-content-area"><%=list[i].content%></div>
+			<div class="user-icon"><img src="<%=list[i].user.iconUrl%>" style="<%=list[i].user.iconStyle%>" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"alt=""></div>
+		</div>
+	</li>
+		<%if(list[i].image){%>
+			<%for(var j = 0 ; j< list[i].image.length ;j++){%>
+				<li class="right-item">
+					<div class="real-size">
+						<div class=" content-area right-content-area"><img src="<%=list[i].image[j]%>" alt=""></div>
+						<div class="user-icon"><img src="<%=list[i].user.iconUrl%>" style="<%=list[i].user.iconStyle%>" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'"alt=""></div>
+					</div>
+				</li>
+			<%}%>
+		<%}%>
+	<%}%>
+	<%if(list[i].notice){%>
+		<li class="left-item">
+			<div class="this_time"><%=list[i].notice.ctime%></div>
+			<div class="real-size">
+				<div class="admin-icon "></div>
+				<div class=" content-area left-content-area"><%=list[i].notice.info%></div>
+			</div>
+		</li>
+	<%}%>
+<%}%>
+
+
+</script>
+<script>
+	var fontSize = window.getComputedStyle($api.dom('html'),null)['fontSize'].split('px')[0];
+	var userIcon_size = 0.853 * fontSize;
+	var params;
+	var userInfo,userId;
+    apiready = function () {
+		params = api.pageParam;
+		 userInfo = quakooUser.getUserInfo();
+		userId = userInfo.id;
+		renderDialogueList(params)
+    };
+    // 渲染列表
+	function renderDialogueList(results){
+		if(quakooUtils.isNotBlack(results)){
+			for(var i = 0; i <results.length ;i++ ){
+				if(quakooUtils.isNotBlack(results[i].user)){
+					var _obj = quakooImg.processImg(results[i].user.icon,userIcon_size,userIcon_size);
+					results[i].user.iconUrl = _obj.url;
+					results[i].user.iconStyle = _obj.style;
+					if(quakooUtils.isNotBlack(results[i].image)){
+						var _arr = results[i].image.split(',');
+						var noNull=_arr.filter(function (item) {
+							return quakooUtils.isNotBlack(item)
+						});
+						results[i].image = noNull
+					}
+				}
+				results[i].ctime = quakooUtils.formatTimeToDate(results[i].ctime)
+				if(quakooUtils.isNotBlack(results[i].notice)){
+					results[i].notice.ctime = quakooUtils.formatTimeToDate(results[i].notice.ctime)
+				}
+
+
+
+			}
+		}
+		console.log(JSON.stringify(results))
+		var data = {
+			list:results,
+			userId:userId
+		}
+		var html = template('scriptDiv1',data);
+		$api.html($api.dom('.dialogue-ul'),html)
+	}
+	 function addReply(content) {
+		 var data = {
+			 "uid": userId,
+			 "content": content,
+			 "ctime": "",
+			 "user": {
+				 "id": userId,
+				 "name": userInfo.name,
+				 "icon": userInfo.icon,
+				 "phone": userInfo.phone,
+			 },
+
+		 };
+
+		 var ajaxParams = {
+			 content:content
+		 };
+		 quakooData.ajaxGetData(config.getUrl_suggestion_addSuggestion(),ajaxParams,function (ret) {
+			 if(ret && ret.success){
+				 data.ctime = new Date().getTime();
+				 dialogInput([data])
+			 }
+		 })
+	 }
+	 function dialogInput (results){
+		if(quakooUtils.isNotBlack(results)){
+			for(var i = 0; i <results.length ;i++ ){
+				if(quakooUtils.isNotBlack(results[i].user)){
+					var _obj = quakooImg.processImg(results[i].user.icon,userIcon_size,userIcon_size);
+					results[i].user.iconUrl = _obj.url;
+					results[i].user.iconStyle = _obj.style;
+					if(quakooUtils.isNotBlack(results[i].image)){
+						var _arr = results[i].image.split(',');
+						var noNull=_arr.filter(function (item) {
+							return quakooUtils.isNotBlack(item)
+						});
+						results[i].image = noNull
+					}
+				}
+				results[i].ctime = quakooUtils.formatTimeToDate(results[i].ctime)
+				if(quakooUtils.isNotBlack(results[i].notice)){
+					results[i].notice.ctime = quakooUtils.formatTimeToDate(results[i].notice.ctime)
+				}
+
+
+
+			}
+		}
+		console.log(JSON.stringify(results))
+		var data = {
+			list:results,
+			userId:userId
+		}
+		var html = template('scriptDiv1',data);
+		$api.append($api.dom('.dialogue-ul'),html)
+	}
+</script>

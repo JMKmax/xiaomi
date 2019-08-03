@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>圈子-全部</title>
+		<style type="text/css">
+			body{
+				background: #F5F5F5;
+				padding-top: 0.266666rem;
+			}
+			.user-wrap{
+				background: #fff;
+				height: 2.933333rem;
+				padding: 0 0.426666rem;
+			}
+			.user-icon{
+				width: 1.6rem;
+				height: 1.6rem;
+				box-sizing: border-box;
+				overflow: hidden;
+				border-radius: 100%;
+				position: relative;
+				z-index: 1;
+				margin-right: 0.266666rem;
+			}
+			.user-icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.user-info .name{
+				font-size: 0.48rem;
+				color: #2D3134;
+				margin-bottom: 0.4rem;
+			}
+			.user-info .tel{
+				font-size: 0.32rem;
+				color: #B1B1B1;
+			}
+			.content{
+				height: 1.333333rem;
+				background: #fff;
+				padding: 0 0.426666rem;
+				line-height: 1.333333rem;
+				font-size: 0.4rem;
+				color: #646769;
+				margin-top: 0.266666rem;
+			}
+			.content span{
+				color: #08A3FF;
+			}
+			.bottom-btn{
+				height: 1.333333rem;
+				background: #fff;
+				padding: 0 0.426666rem;
+				line-height: 1.333333rem;
+				text-align: center;
+				font-size: 0.4rem;
+				color: #08A3FF;
+				margin-top: 0.266666rem;
+			}
+		</style>
+	</head>
+		<div class="user-wrap flex flex-align-center">
+			<div class="user-icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+			<div class="user-info">
+				<div class="name">用户名称</div>
+				<div class="tel">12345678945</div>
+			</div>
+		</div>
+		<div class="content">分账比例：<span>30%</span></div>
+		<div class="bottom-btn">添加合伙人</div>
+	<body>
+		
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+		</script>
+	</body>
+
+</html>

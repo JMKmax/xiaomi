@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>详情</title>
+</head>
+<body>
+	<div id="topbar">
+        <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+            <img src="../../image/back.png">
+        </div>
+        <div>意见反馈</div>
+    </div>
+    
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var UIChatBox;
+    apiready = function () {
+        UIChatBox = api.require('UIChatBox');
+        var statusBarAppearance = api.statusBarAppearance;//是否支持沉浸式
+        // var foot = document.querySelector('#topbar');
+        var header = document.querySelector('#topbar');
+        if(statusBarAppearance){
+            $api.fixStatusBar(header);
+            // $api.fixTabBar(foot);
+        }
+        params = api.pageParam;
+        cid = params.cid;
+        quakooData.ajaxGetData(config.getUrl_suggestion_getSuggestList(), {}, function(ret, err) {
+            if(ret && ret.success) {
+                renderFoot(ret.data)
+            }
+        });
+    };
+    function renderFoot(results){
+            quakooApp.openFrame(api.winName+'_body','./'+api.winName+'_body.html',results,44+api.safeArea.top,49+api.safeArea.bottom,{})
+            setTimeout(function () {
+                commentInput();
+            },350)
+    }
+    function commentInput() {
+        UIChatBox.open({
+            placeholder: '',
+            maxRows: 4,
+            emotionPath: 'widget://image/emotion',
+            texts: {
+                sendBtn: {
+                    title: '发送'
+                }
+            },
+            styles: {
+                topDivider:{                        //(可选项)顶部分割线配置
+                    width:1,                        //(可选项)顶部分割线的粗细，默认：0
+                    color:'#f0f0f0'                    //(可选项)顶部分割线的颜色；默认：#000 ;支持图片设置(fs:// & widget://)
+                },
+                inputBar:{                          //（可选项）JSON对象；输入区域（输入框及两侧按钮）整体样式
+                    borderColor: '#f0f0f0',         //（可选项）字符串类型；输入框区域上下边框的颜色，支持 rgb，rgba，#；默认：'#d9d9d9'
+                    bgColor: '#fff',             //（可选项）字符串类型；输入框区域的整体背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    textColor:'#333',               //（可选项）字符串类型；输入文字的颜色；默认：#000
+                    textSize:16,                    //（可选项）数字类型；默认：16
+                    textMarginLeft:5                //（可选项）数字类型；光标距离左边框的距离，默认：5
+                },
+                inputBox: {                         //（可选项）JSON对象；输入框样式
+                    borderColor: '#f0f0f0',         //（可选项）字符串类型；输入框的边框颜色，支持 rgb，rgba，#；默认：'#B3B3B3'
+                    bgColor: '#fff',             //（可选项）字符串类型；输入框的背景色，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    boardBgColor: '#fff',        //（可选项）字符串类型；面板的背景色(表情面板，附加面板)，支持 rgb，rgba，#；默认：'#f2f2f2'
+                    topMargin:5,                   //（可选项）数字类型；输入框距离顶部的边距；默认：10
+                    borderCorner:5,                 //(可选项)数字类型；默认：5
+                    leftIcon:{                      //(可选项)JSON对象，输入框左侧图标  本参数仅支持android
+                        size:0,                //(可选项)数字类型；icon的大小；默认：20
+                    }
+                },
+                emotionBtn: {                       //（可选项）JSON对象；表情按钮样式；不传则不显示表情按钮
+                    normalImg: 'widget://'          //（可选项）字符串类型；表情按钮常态的背景图片（本地路径，fs://、widget://）；默认：笑脸小图标,
+                },
+                sendBtn: {                         //（可选项）JSON对象；发送按钮样式，本参数对 iOS 平台上的键盘内发送按钮无效
+                    bg: '#ff5c98',                 //（可选项）字符串类型；发送按钮背景颜色，支持 rgb、rgba、#、img；默认：#4cc518
+                    titleColor: '#ffffff',          //（可选项）字符串类型；发送按钮标题颜色；默认：#ffffff
+                    activeBg: '#ff5c98',            //（可选项）字符串类型；发送按钮背景颜色，支持 rgb、rgba、#、img；默认：无
+                    titleSize: 13                    //（可选项）数字类型；发送按钮标题字体大小；默认：13
+                }
+            }
+        }, function(ret, err) {
+            if(ret.eventType =='send'){
+                if(quakooUtils.isBlack(ret.msg.trim())) {
+                    quakooMsg.toast('请输入写内容');
+                    return
+                }
+                api.execScript({
+                    name:api.winName,
+                    frameName:api.winName+'_body',
+                    script:'addReply("'+ret.msg+'")'
+                })
+                UIChatBox.closeKeyboard();
+            }
+        });
+    }
+</script>
+</body>
+</html>

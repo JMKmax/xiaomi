@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		body{
+    			background: #F5F5F5;
+    		}
+    		.residue{
+    			padding: 0.533333rem 0 0.426666rem;
+    			background: url(../../icon/myWallet.png);
+    			background-size: cover;
+    			justify-content: space-around;
+    			position: relative;
+    		}
+    		.residue:after{
+    			content: '';
+    			width: 1px;
+    			height: 1.28rem;
+    			background: #F5F5F5;
+    			position: absolute;
+    			top: 0.613333rem;
+    			left: 50%;
+    			transform: scaleY(.5);
+    		}
+    		.residue:after{
+    			content: '';
+    			width: 0.013333rem;
+    		}
+    		.residue .money{
+    			text-align: center;
+    			color: #fff;
+    		}
+    		.residue .money .money-nub{
+    			font-size: 0.64rem;
+    			line-height: 0.88rem;
+    			margin-bottom: 0.213333rem;
+    		}
+    		.residue .money .money-desc{
+    			font-size: 0.32rem;
+    			line-height: 0.453333rem;
+    		}
+    		.earnings{
+    			margin-bottom: 0.266666rem;
+    			padding-top: 0.533333rem;
+    			background: #fff;
+    		}
+    		.earnings .name{
+    			padding-left: 0.4rem;
+    			font-size: 0.426666rem;
+    			color: #333;
+    			line-height: 0.586666rem;
+    			margin-bottom: 0.8rem;
+    		}
+    		.earnings .import .import-nub{
+    			margin-left: 0.4rem;
+    			position: relative;
+    		}
+    		.earnings .import .import-nub:after{
+    			content: '';
+    			height: 1px;
+    			background: #F5F5F5;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.earnings .import .import-icon{
+    			font-size: 0.64rem;
+    			margin-left: 0.213333rem;
+    			display: inline-block;
+    			width: 0.64rem;
+    			height: 0.88rem;
+    			background: url(../../icon/money-icon.png) no-repeat center center;
+    			background-size: 0.373rem 0.48rem;
+    		}
+    		.earnings .import label{
+    			display: inline-block;
+    			flex: 1;
+    			font-size: 0.48rem;
+    			line-height: 0.88rem;
+    			vertical-align: text-bottom;
+    		}
+    		.earnings .import input{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.earnings-desc{
+    			padding:0 0.4rem;	
+    		}
+    		.earnings-desc .desc{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			line-height: 1.12rem;
+    		}
+    		.earnings-desc .withdrow{
+    			font-size: 0.426666rem;
+    			color: #FF5C98;
+    			line-height: 1.12rem;
+    		}
+    		.require{
+    			background: #fff;
+    		}
+    		.bind{
+    			justify-content: space-around;
+    			padding-top: 0.533333rem;
+    		}
+    		.bind-item{
+    			text-align: center;
+    			font-size: 0;
+    		}
+    		.bind-item .icon{
+    			width: 3.146666rem;
+    			height: 1.44rem;
+    			overflow: hidden;
+    		}
+    		.bind-item .bind-name{
+    			font-size: 0.32rem;
+    			color: #999;
+    			line-height: 0.453333rem;
+    			margin-top: 0.266666rem;
+    			margin-bottom: 0.106666rem;
+    		}
+    		.bind-item .underline{
+    			width: 0.746666rem;
+    			height: 0.026666rem;
+    		}
+    		.require-desc{
+    			margin-top: 0.666666rem;
+    			padding: 0 0.4rem;
+    		}
+    		.require-desc .title{
+    			font-size: 0.426666rem;
+    			font-family:PingFang-SC-Medium;
+    			color: #333;
+    			margin-bottom: 0.266666rem;
+    		}
+    		.require-desc .desc-item{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			line-height: 0.533333rem;
+    		}
+    		.select-way{
+    			margin-top: 0.533333rem;
+    			padding: 0 0.4rem;
+    		}
+    		.select-way .title{
+    			font-size: 0.426666rem;
+    			color: #333;
+    		}
+    		.select-way .select-item{
+    			height: 1.28rem;
+    			position: relative;
+    		}
+    		.select-way .select-item:after{
+    			content: '';
+    			height: 1px;
+    			background: #F5F5F5;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.select-way .select-item .item-left>img{
+    			width: 0.64rem;
+    			height: 0.56rem;
+    			margin-right: 0.266666rem;
+    			vertical-align: bottom;
+    		}
+    		.select-way .select-item span{
+    			font-size: 0.373333rem;
+    			font-family:PingFang-SC-Regular;
+    			color: #666;
+    			
+    		}
+    		.select-way .select-item .sel-status{
+    			width: 0.453333rem;
+    			height: 0.453333rem;
+    			background: url(../../icon/pay-unsel.png) no-repeat center center;
+    			background-size: cover;
+    		}
+    		.select-way .select-item.active .sel-status{
+    			width: 0.453333rem;
+    			height: 0.453333rem;
+    			background: url(../../icon/pay-sel.png) no-repeat center center;
+    			background-size: cover;
+    		}
+    		.affirm-btn{
+    			width: 8.666666rem;
+    			height: 1.173333rem;
+    			line-height: 1.173333rem;
+    			text-align: center;
+    			font-size: 0.48rem;
+    			color: #fff;
+    			background: #FF5C98;
+    			margin: 0 auto;
+    			border-radius: 2.666666rem;
+    			margin-top: 0.506666rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="residue flex flex-align-center ">
+			<div class="money">
+				<div class="money-nub">0</div>
+				<div class="money-desc">我的收入</div>
+			</div>
+			<div class="money">
+				<div class="money-nub">0</div>
+				<div class="money-desc">我的收入</div>
+			</div>
+		</div>
+		<div class="earnings">
+			<div class="name">收益金额</div>
+			<div class="import">
+				<div class="import-nub"><i class="import-icon"></i><label><input type="tel" maxlength="6" /></label></div>
+			</div>
+			<div class="earnings-desc flex flex-pack-justify">
+				<div class="desc">可提现金额200元</div>
+				<div class="withdrow">全部提现</div>
+			</div>
+		</div>
+		<div class="require">
+			<div class="bind flex">
+				<div class="bind-item">
+					<img class="icon" src="../../icon/ali-icon.png" alt="" />
+					<div class="bind-name">去绑定</div>
+					<img class="underline" src="../../icon/grayline.png" alt="" />
+				</div>
+				<div class="bind-item">
+					<img class="icon" src="../../icon/ali-icon.png" alt="" />
+					<div class="bind-name">去绑定</div>
+					<img class="underline" src="../../icon/grayline.png" alt="" />
+				</div>
+			</div>
+			<div class="require-desc">
+				<div class="title">提现要求:</div>
+				<div class="desc-item">1、提现必须绑定支付宝号或者微信号</div>
+				<div class="desc-item">2、提现必须绑定支付宝号或者微信号(暂定500元可以提交提现名额)</div>
+				<div class="desc-item">3、提现必须绑定支付宝号或者微信号</div>
+			</div>
+			<div class="select-way">
+				<div class="title">选择支付方式</div>
+				<ul class="select-list">
+					<li class="select-item flex flex-pack-justify flex-align-center">
+						<div class="item-left"><img src="../../icon/wxPay.png" alt="" /><span>微信</span></div>
+						<div class="sel-status"></div>
+					</li>
+					<li class="select-item active flex flex-pack-justify flex-align-center">
+						<div class="item-left"><img src="../../icon/aliPay.png" alt="" /><span>支付宝</span></div>
+						<div class="sel-status"></div>
+					</li>
+					<div class="affirm-btn">确认支付</div>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

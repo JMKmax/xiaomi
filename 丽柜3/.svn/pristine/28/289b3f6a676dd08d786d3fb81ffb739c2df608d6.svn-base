@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>模特推荐</title>
+    	<style>
+    		body{
+    			background: #f5f5f5;
+    		}
+    		.title{
+    			padding-top: 0.533333rem;
+    			padding-bottom: 0.533333rem;
+    		}
+    		.title-item{
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    			width: 1.813333rem;
+    			height: 0.746666rem;
+    			line-height: 0.746666rem;
+    			text-align: center;
+    			border: 0.026666rem solid #FF5C98;
+    			border-radius: 0.373333rem;
+    			box-sizing: border-box;
+    		}
+    		.title-item.recommend{
+    			border-right: none;
+    			border-top-right-radius:0;
+    			border-bottom-right-radius: 0;
+    		}
+    		.title-item.new{
+    			border-top-left-radius:0;
+    			border-bottom-left-radius: 0;
+    		}
+    		.title-item.active{
+    			background: #FF5C98;
+    			color: #fff;
+    		}
+    		.author{
+    			/*margin-top: 0.266666rem;*/
+    			position: relative;
+    			background: #fff;
+    			height: 2.08rem;
+    			box-sizing: border-box;
+    			position: relative;
+    		}
+    		.author:after{
+    			content: '';
+    			height: 1px;
+    			background: #F5F5F5;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.author .photo{
+    			width: 1.44rem;
+    			height: 1.44rem;
+    			border-radius: 100%;
+    			position: absolute;
+    			top: 0.32rem;
+    			left: 0.4rem;
+    			overflow: hidden;
+    		}
+    		.author .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.author .detail{
+    			position: absolute;
+    			top: 0.453333rem;
+    			left: 2.106666rem;
+    			
+    		}
+    		.author .detail .name{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			margin-right: 0.266666rem;
+    			margin-bottom: 0.16rem;
+    			width: 2rem;
+    			overflow: hidden;
+    			text-overflow: ellipsis;
+    			white-space: normal;
+    		}
+    		.author .detail img{
+    			width: 0.426666rem;
+    			height: 0.426666rem;
+    			margin-right: 0.16rem;
+    		}
+    		.author .detail .num{
+    			font-size: 0.32rem;
+    			color: #666;
+    			position: absolute;
+    			top: 0.693333rem;
+    			left: 0;
+    		}
+    		.author .detail .product-num{
+    			font-size: 0.32rem;
+    			color: #666;
+    			position: absolute;
+    			top: 0.693333rem;
+    			left: 1.866666rem;
+    		}
+    		.author .attention{
+    			font-size: 0.373333rem;
+    			color: #FF5C98;
+    			width: 1.28rem;
+    			height: 0.64rem;
+    			line-height: 0.64rem;
+    			text-align: center;
+    			position: absolute;
+    			right: 0.533333rem;
+    			top: 0.72rem;
+				border:1px solid #FF5C98
+    		}
+    	</style>
+	</head>
+	<body>
+		<div class="title flex flex-pack-center">
+			<div class="title-item active recommend">推荐</div>
+			<div class="title-item  new">新人</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+		<div class="author">
+			<div class="photo">
+				<img  src="../../image/bg.png" alt="" />
+			</div>
+			<div class="detail flex">
+				<div class="name ">请叫我妲姬</div>
+				<img src="../../icon/weixin.png" alt="" />
+				<img  src="../../icon/reward_1.png" alt="" />
+				<div class="num">粉丝22901</div>
+				<div class="product-num">作品数23</div>
+			</div>
+			<div class="attention">关注</div>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

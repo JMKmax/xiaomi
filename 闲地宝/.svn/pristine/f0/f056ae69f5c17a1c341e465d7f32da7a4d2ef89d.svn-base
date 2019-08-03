@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <title>收益明细</title>
+    <style type="text/css">
+		html,body{
+			 background: #F7F5F6;
+		}
+		body{
+			padding-top: 0.266666rem;
+		}
+		
+		/*     收益列表*/
+		.earing_wrap{
+			background: #fff;
+			flex: 1;
+		}
+		.earing_wrap li{
+			height: 1.866666rem;
+			box-sizing: border-box;
+			overflow: hidden;
+			padding-left:0.426666rem;
+		}
+		.earing_wrap li .icon{
+			width: 1.066666rem;
+			height: 1.066666rem;
+			border-radius: 0.133333rem;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		.earing_wrap li .icon img{
+			width: 100%;
+			height: 100%;
+		}
+		.earing_wrap li .info{
+			flex: 1;
+			padding-left:0.266666rem ;
+			padding-right: 0.426666rem;
+			position: relative;
+		}
+		.earing_wrap li .info:after{
+			content: '';
+			height: 1px;
+			background: rgba(0,0,0,0.1);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transform: scaleY(.5);
+		}
+		.earing_wrap li .title{
+			font-size: 0.373333rem;
+			color: #2D3134;
+			margin-bottom: 0.293333rem;
+		}
+		.earing_wrap li .time{
+			font-size: 0.266666rem;
+			color: #646769;
+			line-height: 0.266666rem;
+		}
+		.earing_wrap li .info{
+			height: 100%;
+		}
+		
+    </style>
+</head>
+
+<body>
+	<div class="earing_wrap">
+		<ul>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/wealth_bg.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">朋友账号名</div>
+						<div class="time">手机联系人小明（15337207566）</div>
+					</div>
+				</div>
+			</li>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/wealth_bg.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">朋友账号名</div>
+						<div class="time">手机联系人小明（15337207566）</div>
+					</div>
+				</div>
+			</li>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/wealth_bg.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">朋友账号名</div>
+						<div class="time">手机联系人小明（15337207566）</div>
+					</div>
+				</div>
+			</li>
+			<li class="earing_item flex flex-align-center ">
+				<div class="icon"><img src="../../icon/wealth_bg.png" alt="" /></div>
+				<div class="info flex flex-align-center flex-pack-justify">
+					<div class="info-left">
+						<div class="title">朋友账号名</div>
+						<div class="time">手机联系人小明（15337207566）</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    var wx, qqPlus;
+    apiready = function () {
+      
+    };
+</script>
+</body>
+</html>

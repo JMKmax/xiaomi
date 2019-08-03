@@ -1,0 +1,374 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/commonWindow.css"/>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        input {
+            /*line-height: 43px;*/
+        }
+
+        input::-webkit-input-placeholder {
+            color: rgba(153, 153, 153, .8);
+        }
+
+        input[type=search] {
+            -webkit-appearance: textfield;
+            -webkit-box-sizing: content-box;
+            font-family: inherit;
+            /*font-size: 100%;*/
+        }
+
+        input::-webkit-search-decoration,
+        input::-webkit-search-cancel-button {
+            display: none;
+        }
+
+        input[type="search"] {
+            -webkit-appearance: none;
+        }
+
+        #header {
+      
+        }
+
+        #header .header {
+            width: 100%;
+            display: none;
+            position: relative;
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+ 
+
+        /* 头部-我的 */
+
+        #header .active {
+            display: block;
+        }
+
+        #nav {
+            background: #FFFFFF;
+            /*box-shadow: inset 0 .5px 0 0 #FFDBBE;*/
+
+            width: 100%;
+            text-align: center;
+            position: relative;
+            font-size: 11px;
+            height: 49px;
+            position: relative;
+        }
+
+        #nav:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -0.5px;
+            border-top: 1px solid rgba(255, 219, 190, 1);
+            transform: scaleY(.7);
+            -webkit-transform: scaleY(.7);
+        }
+
+        #nav ul {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+
+        #nav ul li {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        #nav li a {
+            color: #999;
+            display: block;
+            padding-top: 33px;
+            font-size: 11px;
+        }
+
+        #nav .home {
+            background: url(../image/home_index1.png) no-repeat center 5px;
+            background-size: 25px 25px;
+        }
+
+        #nav .home.active,
+        #nav li.active .home {
+            background: url(../image/home_index.png) no-repeat center 5px;
+            background-size: 25px 25px;
+        }
+
+        #nav .caifu {
+            position: relative;
+            background: url(../image/home_caifu.png) no-repeat center 5px;
+            background-size: 22px 22px;
+        }
+	
+		#nav .caifu.active,
+        #nav li.active .caifu {
+            background: url(../image/home_caifu.png) no-repeat center 5px;
+            background-size: 25px 25px;
+        }
+
+        #nav .friend {
+            background: url(../image/home_msg.png) no-repeat center 7px;
+            background-size: 21px 20px;
+        }
+        
+        #nav .friend.active,
+        #nav li.active .friend {
+            background: url(../image/home_msg.png) no-repeat center 7px;
+            background-size: 21px 20px;
+        }
+
+        #nav .mine {
+            background: url(../image/home_mine.png) no-repeat center 7px;
+            background-size: 25px 25px;
+        }
+
+        #nav .mine.active,
+        #nav li.active .mine {
+            background: url(../icon/home_mine.png) no-repeat center 7px;
+            background-size: 25px 25px;
+        }
+
+        #nav li.active a {
+            color: #0097FE;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="wrap">
+    <!-- 五个头部 -->
+    <div id="header">
+        <!-- 设备控制 -->
+        <div class="nav_home control header active">
+
+        </div>
+        <!-- 圈子 -->
+        <div class="nav_circle circle header  ">
+
+        </div>
+        <!-- 教育 -->
+        <div class="nav_education education header">
+            
+        </div>
+        <!-- 我的 -->
+        <div class="nav_mine mine header" style="height:">
+
+        </div>
+
+    </div>
+
+    <!-- 内容显示区 -->
+    <div id="main">
+
+    </div>
+
+    <!-- 底部导航 -->
+    <div id="nav">
+        <ul>
+            <li class="">
+                <a class="home" tapmode="active" onclick="openTab('home')">首页</a>
+            </li>
+            <li>
+                <a class="caifu" tapmode="active" onclick="openTab('caifu')">财富</a>
+            </li>
+            <li>
+                <a class="friend" tapmode="active" onclick="openTab('friend')">朋友</a>
+            </li>
+            <li>
+                <a class="mine" tapmode="active" onclick="openTab('mine')">我的</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/tab.js"></script>
+<script type="text/javascript" src="../lib/script/quakoo/project.js"></script>
+<script>
+    var user;
+    var tabs;
+    var window_width, win_height;
+    var titleHeight = 0;
+    var flag = true;
+    var connectionType;//全局中定义变量
+    apiready = function () {
+		window_width = api.winWidth;
+        connectionType = api.connectionType;
+        api.addEventListener({
+            name: 'online'
+        }, function (ret, err) {
+            connectionType = ret.connectionType;
+        });
+        api.addEventListener({
+            name: 'offline'
+        }, function (ret, err) {
+            connectionType = "";
+            toast('网络无连接！');
+        });
+
+        var titleheight = api.safeArea.top;
+        var statusBarAppearance = api.statusBarAppearance; //是否支持沉浸式
+        if (statusBarAppearance) {
+            var header = $api.dom('#header');
+            $api.fixStatusBar(header);
+        }
+
+        // 解决iphone X底部高度兼容
+        $api.fixTabBar($api.byId('nav'));
+        //配置tab选项卡 各个页面
+        tabs = {
+            home: {
+                isGroup: false,
+                frame: {
+                    name: 'home',
+                    url: './home/home_body.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: $api.dom('#header').offsetHeight,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false,
+
+                },
+                color: 'light'
+            },
+            caifu: {
+                isGroup: false,
+                frame: {
+                    name: 'caifu',
+                    url: './wealth/wealth.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: $api.dom('#header').offsetHeight,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false,
+
+                },
+                color: 'light'
+            },
+           	friend: {
+                isGroup: false,
+                frame: {
+                    name: 'friend',
+                    url: './home/home_body.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        marginTop: $api.dom('#header').offsetHeight,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false,
+
+                },
+                color: 'light'
+            },
+            mine: {
+                isGroup: false,
+                frame: {
+                    name: 'mine',
+                    url: 'mine/mine.html',
+                    pageParam: {bottom: api.safeArea.bottom},
+                    rect: {
+                        x: 0,
+//                      marginTop: $api.dom('#header').offsetHeight - 53 - titleheight,
+                        marginTop: 0,
+                        w: "auto",
+                        marginBottom: api.winHeight - $api.dom('#main').offsetHeight - $api.dom('#header').offsetHeight
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false,
+
+                },
+                color: 'light'
+            }
+        }
+        //添加安卓退出按钮事件
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        }); 
+        	
+        openTab('home');   
+    }; //apiready结束
+    var backButtonPress = 0;
+
+    function closeOnKeyBack() {
+        backButtonPress++;
+        if (backButtonPress > 1) {
+            closeApp();
+        } else {
+            api.toast({
+                msg: '再按一次退出应用'
+            });
+        }
+        setTimeout(function () {
+            backButtonPress = 0;
+        }, 1000);
+    }
+
+</script>
+</body>
+
+</html>

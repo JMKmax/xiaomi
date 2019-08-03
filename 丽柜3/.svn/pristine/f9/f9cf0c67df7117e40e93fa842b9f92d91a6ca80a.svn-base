@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>提现</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        body {
+            background: #f8f8f8;
+            height: 100%;
+        }
+
+        .section + .section {
+            margin-top: 10px;
+        }
+
+        .withdraw-top {
+            width: 100%;
+            height: calc(100vw / 3.98936);
+            background: url("../../icon/myWallet.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            display: flex;
+        }
+
+        .withdraw-top .part {
+            flex: 1;
+            height: 100%;
+        }
+
+        .part {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .part .nub {
+            height: 0.88rem;
+            line-height: 0.88rem;
+            font-size: 24px;
+        }
+
+        .part > span {
+            margin-top: 0.213rem;
+            height: 0.453rem;
+            line-height: 0.453rem;
+            font-size: 12px;
+        }
+
+        .part .wrap {
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .part .wrap:after {
+            content: '';
+            width: 1px;
+            background: #fff;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            transform: scaleX(.5);
+        }
+
+        .part .wrap span {
+            margin-top: 0.213rem;
+            height: 0.453rem;
+            line-height: 0.453rem;
+            font-size: 12px;
+        }
+
+        /*提现金额*/
+        .section {
+            background: #fff;
+            padding: 0.533rem 0.4rem 0;
+        }
+
+        .area-tit {
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .font-icon {
+            font-size: 24px;
+            color: #333333;
+        }
+
+        .money-wrap {
+            margin-top: 0.8rem;
+            height: 0.907rem;
+            display: flex;
+            margin-bottom: 0.267rem;
+        }
+
+        .font-icon {
+            width: 0.64rem;
+            height: 0.907rem;
+            margin-right: 0.267rem;
+            background: url("../../icon/money-icon.png") no-repeat center center;
+            -webkit-background-size: 0.373rem 0.48rem;
+            background-size: 0.373rem 0.48rem;
+        }
+
+        .money-input {
+            display: inline-block;
+            flex: 1;
+            font-size: 18px;
+        }
+
+        .money-input input {
+            width: 100%;
+            height: 100%;
+        }
+
+        .money-show {
+            border-top: 1px solid #F2F2F2;
+            height: 1.12rem;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .all-withdraw {
+            font-size: 16px;
+            color: #ff5c98;
+        }
+
+        /*提现要求*/
+        .withdraw-type {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .withdraw-type > div {
+            margin: 0 0.533rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .to-bind {
+            height: 0.453rem;
+            line-height: 0.453rem;
+            margin: 0.267rem auto 0;
+            font-size: 12px;
+            color: #999999;
+            position: relative;
+
+        }
+
+        .to-bind:after {
+            content: '';
+            position: absolute;
+            background: url("../../icon/grayline.png") center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            left: 0;
+            right: 0;
+            bottom: -0.133rem;
+            height: 0.027rem;
+        }
+
+        .bind-icon {
+            width: 3.147rem;
+            height: 1.44rem;
+        }
+
+        .ali-img {
+            background: url("../../icon/ali-icon.png") no-repeat;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        .wx-img {
+            background: url("../../icon/wx-icon.png") no-repeat;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        .withdraw-tip {
+            margin-top: 0.267rem;
+            font-size: 14px;
+            color: #333333;
+            padding-bottom: 0.133rem;
+        }
+
+        .withdraw-tip p {
+            line-height: 1.5em;
+        }
+
+        /*选择方式*/
+        .sel-pay-type {
+            margin-top: 0.373rem;
+            font-size: 14px;
+            color: #666666
+        }
+
+        .sel-pay-type li {
+            height: 1.28rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+        .sel-pay-type li:after {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            right: 0.4rem;
+            bottom: 0;
+            height:1px ;
+            background: #f0f0f0;
+        }
+
+        .item-r {
+            display: flex;
+            align-items: center;
+        }
+
+        .wxPay {
+            display: block;
+            width: 0.64rem;
+            height: 0.56rem;
+            background: url("../../icon/wxPay.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            margin-right: 0.267rem;
+        }
+
+        .aliPay {
+            display: block;
+            width: 0.64rem;
+            height: 0.64rem;
+            background: url("../../icon/aliPay.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            margin-right: 0.267rem;
+        }
+
+        .sel-status {
+            width: 0.427rem;
+            height: 0.427rem;
+            background: url("../../icon/pay-unsel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+
+        .sel-pay-type li.active .sel-status {
+            background: url("../../icon/pay-sel.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .sure-pay {
+            margin: 0.773rem auto;
+            background-image: linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            border-radius: 2.667rem;
+            width: 86.7%;
+            height: 1.173rem;
+            line-height: 1.173rem;
+            font-size: 18px;
+            color: #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="main-wrap">
+<!--    <div class="withdraw-top">-->
+<!--        <div class="income part">-->
+<!--            <div class="wrap">-->
+<!--                <div class="nub">0</div>-->
+<!--                <span>我的收入</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="cash part">-->
+<!--            <div class="nub"><span>0</span>(元)</div>-->
+<!--            <span>现金</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="section">-->
+<!--        <div class="area-tit">收益金额</div>-->
+<!--        <div class="money-wrap">-->
+<!--            <div class="font-icon"></div>-->
+<!--            <label class="money-input"><input type="tel"></label>-->
+<!--        </div>-->
+<!--        <div class="money-show">-->
+<!--            <div>可提现金额 <span>200</span>元</div>-->
+<!--            <div class="all-withdraw">全部提现</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="section">-->
+<!--        <div class="withdraw-type">-->
+<!--            <div class="bind-ali" tapmode="" onclick="changeAccountEvent(1)">-->
+<!--                <div class="ali-img bind-icon"></div>-->
+<!--                <span class="to-bind">去绑定</span>-->
+<!--            </div>-->
+<!--            <div class="bind-wx" tapmode="" onclick="changeAccountEvent(2)">-->
+<!--                <div class="wx-img bind-icon"></div>-->
+<!--                <span class="to-bind">去绑定</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <div class="area-tit">提现要求</div>-->
+<!--            <div class="withdraw-tip">-->
+<!--                <p>1、提现必须要绑定支付宝号或微信号。</p>-->
+<!--                <p>2、提现金额只能是整数。（暂定500元可以提交提现申请）</p>-->
+<!--                <p>3、提交提现申请后需等待平台放确认。</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="section" style="padding-left: 0 ;padding-right: 0">-->
+<!--        <div class="area-tit" style="padding-left: 0.4rem ;padding-right: 0.4rem">选择方式</div>-->
+<!--        <ul class="sel-pay-type">-->
+<!--            <li class="active" tapmode="itemOn" onclick="checkSel(0)">-->
+<!--                <div class="item-r"><i class="wxPay"></i><span>微信</span></div>-->
+<!--                <span class="sel-status"></span>-->
+<!--            </li>-->
+<!--            <li tapmode="itemOn" onclick="checkSel(1)">-->
+<!--                <div class="item-r"><i class="aliPay"></i><span>支付宝</span></div>-->
+<!--                <span class="sel-status"></span>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <div class="sure-pay">确认支付</div>-->
+<!--    </div>-->
+</div>
+</body>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <div class="withdraw-top">
+        <div class="income part">
+            <div class="wrap">
+                <div class="nub"><%=list.gainMoney%></div>
+                <span>我的收入</span>
+            </div>
+        </div>
+        <div class="cash part">
+            <div class="nub"><span><%=list.money%></span>(元)</div>
+            <span>现金</span>
+        </div>
+    </div>
+    <div class="section">
+        <div class="area-tit">收益金额</div>
+        <div class="money-wrap">
+            <div class="font-icon"></div>
+            <label class="money-input"><input type="tel" id="withdrawMoney" maxlength="5" onkeyup="value = value.replace(/[^0-9]$/,'')"></label>
+        </div>
+        <div class="money-show">
+            <div>可提现金额 <span><%=list.useMoney%></span>元</div>
+            <div class="all-withdraw" tapmode="" onclick="allWithdraw()">全部提现</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="withdraw-type">
+            <div class="bind-ali" tapmode="" onclick="changeAccountEvent(1)">
+                <div class="ali-img bind-icon"></div>
+                <span class="to-bind"><%=userInfo.alipayId ? '已绑定':'去绑定'%></span>
+            </div>
+            <div class="bind-wx" tapmode="" onclick="changeAccountEvent(2)">
+                <div class="wx-img bind-icon"></div>
+                <span class="to-bind"><%=userInfo.weixinCount ? '已绑定':'去绑定'%></span>
+            </div>
+        </div>
+        <div>
+            <div class="area-tit">提现要求</div>
+            <div class="withdraw-tip">
+                <p>1、提现必须要绑定支付宝号或微信号。</p>
+                <p>2、提现金额只能是整数。（暂定500元可以提交提现申请）</p>
+                <p>3、提交提现申请后需等待平台放确认。</p>
+            </div>
+        </div>
+    </div>
+    <div class="section" style="padding-left: 0 ;padding-right: 0">
+        <div class="area-tit" style="padding-left: 0.4rem ;padding-right: 0.4rem">选择方式</div>
+        <ul class="sel-pay-type">
+            <li class="active" tapmode="itemOn" onclick="checkSel(0,2)">
+                <div class="item-r"><i class="wxPay"></i><span>微信</span></div>
+                <span class="sel-status"></span>
+            </li>
+            <li tapmode="itemOn" onclick="checkSel(1,1)">
+                <div class="item-r"><i class="aliPay"></i><span>支付宝</span></div>
+                <span class="sel-status"></span>
+            </li>
+        </ul>
+        <div class="sure-pay" tapmode="" onclick="cashMoneyEvent()">提现</div>
+    </div>
+</script>
+<script>
+    var payType = 2; //默认提现方式 微信,
+    var useMoney = 0;//能够提现的币
+    var userInfo ;
+    apiready = function () {
+        userInfo = quakooUser.getUserInfo();
+        console.log(JSON.stringify(userInfo))
+        quakooData.ajaxGetDataWithOutProgress(config.getUrl_wallet_getMyWallet(), {}, function (ret, err) {
+            if (ret && ret.success) {
+                useMoney = ret.data.useMoney;
+                mainContentRender(ret.data)
+            }
+        })
+    };
+    // 内容渲染
+    function mainContentRender(results) {
+        var data = {
+            list:results,
+            userInfo:userInfo
+        };
+        var html = template('scriptDiv1',data);
+        $api.html( $api.dom('.main-wrap'),html);
+        api.parseTapmode()
+    }
+
+    function checkSel(index,type) {
+        var labs = $api.domAll('.section li');
+        labs.forEach(function (item, i) {
+            if (index == i) {
+                $api.addCls(item, 'active');
+                payType = type
+            } else {
+                $api.removeCls(item, 'active')
+            }
+        })
+    }
+
+    // 点击全部提现
+    function allWithdraw() {
+        if(useMoney<500){
+            quakooMsg.toast('暂定500元可以提交提现申请');
+            return
+        }
+        $api.val($api.dom('#withdrawMoney'),parseInt(useMoney,10))
+    }
+
+    // 提现审核
+    function cashMoneyEvent() {
+        var withdrawMoney = $api.val($api.dom('#withdrawMoney')) * 1;
+        if(useMoney<500){
+            quakooMsg.toast('暂定500元可以提交提现申请');
+            return
+        }
+        if (useMoney < withdrawMoney) {
+            toast('提现金额不可大于可提现金额');
+            return
+        }
+
+        if (payType === 1) {
+            getMoneyToAli(withdrawMoney, payType);
+        } else if (payType === 2) {
+            getMoneyToWx(withdrawMoney, payType);
+        }
+    }
+
+    //更换账号
+    function changeAccountEvent(type) {
+        if (type === 1) {
+            quakooData.ajaxSubmitData(config.getUrl_wallet_aliAuthParam(), {}, function (ret, err) {
+                if (ret && ret.success) {
+                    var aliPayPlus = api.require('aliPayPlus');
+                    aliPayPlus.authDirect({
+                        authInfoStr: ret.data
+                    }, function (data) {
+                        var theRequest = new Object();
+                        var strs = data.result.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = strs[i].split("=")[1];
+                        }
+                        if(data.resultStatus=='9000'){
+                            bindAccount(theRequest.user_id, type)
+
+                        }
+
+                    });
+
+                } else {
+
+                }
+            })
+        } else {
+            var wx = api.require('wx');
+            wx.isInstalled(function (ret, err) {
+                if (ret.installed) {
+                    wx.auth({
+                        apiKey: ''
+                    }, function (ret, err) {
+                        if (ret.status) {
+                            wx.getToken({
+                                apiKey: '',
+                                apiSecret: '',
+                                code: ret.code
+                            }, function(data, err) {
+                                if (data.status) {
+                                    bindAccount(data.openId, type)
+                                } else {
+                                    flag = false;
+                                    quakooMsg.toast("提现失败！");
+                                }
+                            })
+                        } else {
+                            flag = false;
+                            quakooMsg.toast("微信授权失败！");
+                        }
+                    })
+                } else {
+                    flag = false;
+                    quakooMsg.toast("未安装微信客户端！");
+                }
+            })
+        }
+
+    }
+
+    // 绑定账号
+    function bindAccount(count, type) {
+        var ajaxParams = {
+            count: count,
+            type: type,// 1支付宝 2微信
+            info: user.id
+        };
+        api.showProgress({
+            title: '',
+            text:'绑定账号中...' ,
+            modal: true
+        });
+        quakooData.ajaxSubmitData(config.getUrl_wallet_bangCount(), ajaxParams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('绑定成功')
+            }
+        })
+    }
+
+    //提现到支付宝
+    function getMoneyToAli(money, num) {
+        var userInfo = getUserInfo();
+        ajaxGetWithProgress(aliAuthParamUrl, {}, function (ret, err) {
+            if (ret && ret.success) {
+                if (userInfo.aliCount) {
+                    ajaxGet(cashMoneyUrl, {type: num, money: money}, function (ret, err) {
+                        flag = false;
+                        if (ret && ret.success) {
+                            $api.html($api.dom('.driver_money'), toFixed(params.driver_money * 1 - money * 1,2));
+                            showOneDialog("温馨提示", "24小时内完成提现审核，遇节假日自动顺延！", "确定", function () {
+                                api.execScript({
+                                    name: "driverWallet",
+                                    script: "fillUserMoneyData()"
+                                });
+                                api.execScript({
+                                    name: "driverWallet",
+                                    frameName: "driverWalletHaveWithdrawal",
+                                    script: "apiready()"
+                                });
+                                api.execScript({
+                                    name: "driverWallet",
+                                    frameName: "driverWalletToTransfer",
+                                    script: "apiready()"
+                                });
+                                setTimeout(function () {
+                                    closeWin();
+                                }, 500)
+                            });
+
+                        } else {
+                            quakooMsg.toast(ret.msg);
+                        }
+                    })
+                } else {
+                    var aliPayPlus = api.require('aliPayPlus');
+                    aliPayPlus.authDirect({
+                        authInfoStr: ret.data
+                    }, function (data) {
+                        var theRequest = new Object();
+                        var strs = data.result.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = strs[i].split("=")[1];
+                        }
+                        bindAccount(theRequest.user_id, 1)
+                    });
+                }
+            } else {
+                flag = false;
+            }
+        })
+    }
+
+    //提现到微信
+    function getMoneyToWx(money, num) {
+        var userInfo = getUserInfo();
+        if (userInfo.weixinId) {
+            quakooData.ajaxSubmitData(getUrl_wallet_cashMoney, {payType: num, money: money}, function (ret, err) {
+                flag = false;
+                if (ret && ret.success) {
+
+                    showOneDialog("温馨提示", "24小时内完成提现审核，遇节假日自动顺延！", "确定", function () {
+
+                    });
+                } else {
+                    toast(ret.msg);
+                }
+            })
+        } else {
+            var wx = api.require('wx');
+            wx.isInstalled(function (ret, err) {
+                if (ret.installed) {
+                    wx.auth({
+                        apiKey: ''
+                    }, function (ret, err) {
+                        if (ret.status) {
+                            wx.getToken({
+                                apiKey: '',
+                                apiSecret: '',
+                                code: ret.code
+                            }, function (data, err) {
+                                if (data.status) {
+                                    bindAccount(data.openId, 2)
+                                } else {
+                                    flag = false;
+                                    toast("提现失败！");
+                                }
+                            })
+                        } else {
+                            flag = false;
+                            toast("微信授权失败！");
+                        }
+                    })
+                } else {
+                    flag = false;
+                    toast("未安装微信客户端！");
+                }
+            })
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="../../script/flexible_css.js"></script>
+	<script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+	<title>新建用户信息</title>
+	<style type="text/css">
+		.items{
+			width: 9.2rem;
+			height: 1.733333rem;
+			margin: 0 auto;
+			/*background-color: pink;*/
+			border-bottom: 1px solid #e1e1e1;
+			line-height: 1.733333rem;
+			font-family:PingFang-SC-Medium;
+			font-size: 0.48rem;
+			color:#333333;
+			position: relative;
+		}
+		.item_first{
+			margin-top: 0.503333rem;
+			border-top: 1px solid #e1e1e1;
+		}
+		.item_first>img{
+			width: 0.17rem;
+			height: 0.373333rem;
+			position: absolute;
+			right: 0;
+			top: 0.693333rem;
+		}
+		.item_second>input{
+			width: 7rem;
+			height: 0.666666rem;
+			margin-left: 0.8rem;
+		}.item_third>input{
+			width: 7rem;
+			height: 0.666666rem;
+			margin-left: 0.32rem;
+		}
+		.items>input::placeholder{
+			font-family:PingFang-SC-Medium;
+			font-size: 0.48rem;
+			color:#999999;
+		}
+		.pic{
+			width: 1.066666rem;
+			height: 1.066666rem;
+			background-color: #f1f1f1;
+			position: absolute;
+			left: 1.76rem;
+			top: 0.346666rem;
+			border-radius: 0.053333rem;
+		}
+		.pic>img{
+			width: 0.586666rem;
+			height: 0.586666rem;
+			display: block;
+			margin: auto;
+			margin-top: 0.24rem;
+		}
+		.loginButton{
+			width: 8.666666rem;
+			margin: 0 auto;
+			margin-top: 1.066666rem;
+			color: #fff;
+			background-image:linear-gradient(-227deg, #fe4f8a 13%,#ff77a9  87%);
+			font-size: 0.48rem;
+			height: 1.173333rem;
+			border-radius: 0.586666rem;
+		}
+	</style>
+</head>
+<body>
+    <div class="items item_first">
+    	头像
+    	<div class="pic">
+    		<img src="../../icon/person.png" alt="" />
+    	</div>
+    	<img src="../../icon/right.png" alt="" />
+    </div>
+    <div class="items item_second">
+    	昵称
+    	<input type="text" placeholder="未填写"/>
+    </div>
+    <div class="items item_third">
+    	手机号
+    	<input type="text" placeholder="未填写" maxlength="11"/>
+    </div>
+    <div class="loginButton flex flex-align-center flex-pack-center">保存</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+    	
+    };
+</script>
+</body>
+</html>

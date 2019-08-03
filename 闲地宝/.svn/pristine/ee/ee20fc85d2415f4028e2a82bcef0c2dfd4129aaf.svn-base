@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+		<title>圈子-全部</title>
+		<style type="text/css">
+			html,body{
+				background: #F5F5F5;
+			}
+			.user-info{
+				height: 3.893333rem;
+				background: #fff;
+				padding-left: 0.64rem;
+				padding-right: 0.533333rem;
+			}
+			.user-info .icon{
+				width: 1.44rem;
+				height: 1.44rem;
+				border-radius: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				position: relative;
+				z-index: 1;
+				margin-right: 0.533333rem;
+			}
+			.user-info .icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.user-info .name{
+				font-size: 0.426666rem;
+				color: #282828;
+			}
+			.right{
+				width: 0.213333rem;
+				height: 0.373333rem;
+				background: url(../../icon/next.png) no-repeat center center;
+				background-size: 0.213333rem 0.373333rem;
+			}
+			ul{
+				background: #fff;
+				margin-top: 0.266666rem;
+				padding: 0 0.533333rem;
+			}
+			.item{
+				height: 1.333333rem;
+				
+				position: relative;
+			}
+			.item:after{
+				content: '';
+				height: 1px;
+				background: #E6E6EB;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				transform: scaleY(.5);
+			}
+			.item .item-icon{
+				width: 0.506666rem;
+				height: 0.506666rem;
+				box-sizing: border-box;
+				overflow: hidden;
+				margin-right: 0.4rem;
+			}
+			.item .item-icon img{
+				width: 100%;
+				height: 100%;
+			}
+			.item .item-desc{
+				font-size: 0.426666rem;
+				color: #282828;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="user-info flex flex-align-center flex-pack-justify">
+			<div class="info-left flex flex-align-center">
+				<div class="icon"><img src="../../icon/defaultHead.png" alt="" /></div>
+				<div class="name">余秋雨</div>
+			</div>
+			<div class="right"></div>
+		</div>
+		<ul>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">圈子</div>
+				</div>
+				<div class="right"></div>
+			</li>
+		</ul>
+		<ul>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">我的资源</div>
+				</div>
+				<div class="right"></div>
+			</li>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">我的闲地</div>
+				</div>
+				<div class="right"></div>
+			</li>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">我的柜机</div>
+				</div>
+				<div class="right"></div>
+			</li>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">我的提现</div>
+				</div>
+				<div class="right"></div>
+			</li>
+		</ul>
+		<ul>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">浏览历史</div>
+				</div>
+				<div class="right"></div>
+			</li>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">意见反馈</div>
+				</div>
+				<div class="right"></div>
+			</li>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">联系我们</div>
+				</div>
+				<div class="right"></div>
+			</li>
+		</ul>
+		<ul>
+			<li class="item flex flex-align-center flex-pack-justify">
+				<div class="item-left flex flex-align-center">
+					<div class="item-icon"><img src="../../icon/yijianicon.png" alt="" /></div>
+					<div class="item-desc">设置</div>
+				</div>
+				<div class="right"></div>
+			</li>
+		</ul>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+		<script>
+			apiready = function() {
+
+			};
+		</script>
+	</body>
+
+</html>

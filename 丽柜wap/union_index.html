@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+	    <link rel="stylesheet" href="../../css/api.css">
+	    <link rel="stylesheet" href="../../css/mui.min.css">
+	    <link rel="stylesheet" href="../../css/commonWindow.css">
+	    <link rel="stylesheet" type="text/css" href="../../css/photoswipe.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/default-skin.css"/>
+		<title>青年曲艺</title>
+		<style>
+		
+			.container{
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.32rem;
+				padding-bottom: 0;
+				margin: 0 auto;
+				background: #fff;
+			}
+
+			#leftButton{
+				z-index: 0;
+			}
+			.right_button{
+				display: none;
+				font-size: 0.373333rem;
+			}
+
+			
+			.basicInfo .left{
+				color: #333;
+				line-height: 0.56rem;
+			}
+			.basicInfo .left .userIcon_user{
+				width: 1.066666rem;
+				height: 1.066666rem;
+				border-radius: 0.533333rem;
+				overflow: hidden;
+				margin-right: 0.213333rem;
+			}
+			.basicInfo .left .userIcon_user img{
+				/*width: 100%;
+				height: 100%;*/
+			}
+			.basicInfo .right{
+				font-size: 0.32rem;
+				line-height: 0.453333rem;
+				color: #777;
+			}
+			
+			.list .Introduction{
+				color: #333;
+				font-size: 0.4rem;
+				line-height: 0.64rem;
+				margin-top: 0.266666rem;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				/** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical;
+				/** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 3;
+				/** 显示的行数 **/
+				overflow: hidden;
+			}
+
+			.list .imgList .imgCon{
+				width: 2.986666rem;
+				height: 2.986666rem;
+				border-radius: 0.053333rem;
+				overflow: hidden;
+				float: left;
+				margin-top: 0.32rem;
+			}
+			.list .imgList .imgCon:nth-child(3n-1){
+				margin-left: 0.2rem;
+			}
+			.list .imgList .imgCon:nth-child(3n){
+				float: right;
+			}
+			.list .imgList .imgCon img{
+				/*width: 100%;
+				height: 100%;*/
+			}
+			
+			
+			.list .imgList{
+				padding-top: 0.106666rem;
+				padding-bottom: 0.426666rem;
+				position: relative;
+				width: 100%;
+				overflow: hidden;
+/*				border-bottom: 0.026666rem solid #DDDDDD;*/
+			}
+			
+			.list .imgList::after {
+			    content: " ";
+			    position: absolute;
+			    left: 0;
+			    bottom: 0;
+			    width: 100%;
+			    height: 1px;
+			    background: #DDDDDD;
+			    transform: scaleY(0.5);
+			}
+			
+			.list .list_bottom .praise_num{
+				width: 50%;
+				height: 1.093333rem;
+				text-align: center;
+				line-height: 0.453333rem;
+				font-size: 0.32rem;
+				color: #333;
+			}
+			.list .list_bottom .active{
+				color: #D7533D;
+			}
+			.list .list_bottom img{
+				width:0.426666rem;
+				margin-right: 0.09rem;
+			}
+			.mui-scroll-wrapper{
+				top: 1.12rem;
+			}
+			.mui-table-view:after,.mui-table-view:before{
+				height: 0;
+			}
+			.mui-table-view{
+				background: none;
+			}
+			#main{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1000000;
+				display: none;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<iframe id="main" src="" width="" height=""></iframe>
+		<div id="topbar">
+	        <div id="leftButton" tapmode="itemOn" onclick="closeWins()">
+	            <img src="../../image/back@3x.png">
+	        </div>
+	        <div>
+	        	媒体联盟
+	        </div>
+	        <div class="right_button" onclick="openNewWindow('union_add.html')">添加</div>
+	    </div>
+	    <div class="topbar"></div>
+	    <div id="con">
+	    	
+	    	
+	    	
+		    <div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh" style="width: 100%;">
+				<div class="main" style="width: 100%;">
+					<div  class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+			    		<ul id="list">
+			    			
+			    		</ul>
+			    	</div>
+		    	</div>
+		   	</div>
+		   	
+		   	
+		   	
+		   	
+	   	</div>
+	   	
+	   	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+		    <!-- Background of PhotoSwipe.
+		         It's a separate element, as animating opacity is faster than rgba(). -->
+		    <div class="pswp__bg"></div>
+		    <!-- Slides wrapper with overflow:hidden. -->
+		    <div class="pswp__scroll-wrap">
+		        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+		        <div class="pswp__container">
+		            <!-- don't modify these 3 pswp__item elements, data is added later on -->
+		            <div class="pswp__item"></div>
+		            <div class="pswp__item"></div>
+		            <div class="pswp__item"></div>
+		        </div>
+		        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+		        <div id="showNum" class="pswp__ui pswp__ui--hidden">
+		            <div class="pswp__top-bar">
+						<div class="pswp__counter">1 / 5</div>
+						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button></button>
+		
+						<div class="pswp__preloader">
+							<div class="pswp__preloader__icn">
+							  <div class="pswp__preloader__cut">
+							    <div class="pswp__preloader__donut"></div>
+							  </div>
+							</div>
+						</div>
+		            </div>
+		            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+		                <div class="pswp__share-tooltip"></div>
+		            </div>
+		            <div class="pswp__caption">
+		                <div class="pswp__caption__center" style="font-size: 15px;"></div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	    <script type="text/html" id="scriptDiv1">
+			<%for(var i = 0;i<list.length;i++){%>
+				<li class="list container top" id="<%=list[i].id%>">
+    				<div class="basicInfo flex flex-align-center flex-pack-center flex-pack-justify">
+    					<div class="left flex flex-align-center flex-pack-center">
+    						<div class="userIcon_user">
+	    						<img data-echo="<%=list[i].icon%>" style="<%=list[i].style%>" alt="" />
+	    					</div>
+	    					<div class="userName"><%=list[i].title%></div>
+    					</div>
+    					<div class="right"><%=list[i].ctime%></div>
+    				</div>
+    				<div class="Introduction"><%=list[i].info%></div>
+    				<div class="imgList">
+    					<%for(var j = 0;j<list[i].imageListStr.length;j++){%>
+    						<div class="imgCon">
+	    						<img id="<%=list[i].id%>" index="<%=j%>" data-echo="<%=list[i].imageListStr[j].url%>" style="<%=list[i].imageListStr[j].style%>" alt="" />
+	    					</div>
+    					<%}%>	
+    				</div>
+    				<div class="list_bottom flex flex-align-center flex-pack-center">
+    					<div class="praise_num flex flex-align-center flex-pack-center">
+    						<%if(list[i].comment){%>
+    							<img src="../../icon/msg_active.png" alt="" />
+    							<span class="active"><%=list[i].comentcout%></span>
+    						<%}else{%>
+    							<img src="../../icon/msg.png" alt="" /><%=list[i].comentcout%>
+    						<%}%>
+    					</div>	
+    					<div data-id="<%=list[i].id%>" class="praise_num praise_button flex flex-align-center flex-pack-center">
+    						<%if(list[i].support){%>
+    							<img src="../../icon/praised.png" alt="" />
+    							<span class="active"><%=list[i].likecout%></span>
+    						<%}else{%>
+    							<img src="../../icon/praise.png" alt="" />
+    							<span><%=list[i].likecout%></span>
+    						<%}%>
+    					</div>
+    				</div>
+    			</li>
+			<%}%>
+		</script>
+	    <script type="text/javascript" src="../../script/api.js"></script>
+	    <script type="text/javascript" src="../../script/mui.min.js?v=1.01"></script>
+		<script type="text/javascript" src="../../script/uhpUtils.js?v=8.06"></script>
+		<script type="text/javascript" src="../../script/util.js"></script>
+		<script type="text/javascript" src="../../script/user.js"></script>
+		<script type="text/javascript" src="../../script/public.js"></script>
+		<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../script/template-native.js"></script>
+		<script type="text/javascript" src="../../script/echo.min.js"></script>
+		<script type="text/javascript" src="../../script/photoswipe.js?v=1.01"></script>
+		<script type="text/javascript" src="../../script/photoswipe-ui-default.min.js"></script>
+		<script>
+			var userInfo = getUserInfo();
+//			if (userInfo.associationId) {
+				ajaxGet(getMyBingMediaUrl,{},function(rets,err){
+					if (rets&&rets.success) {
+						if (rets.data.checkStatus == 1) {//状态(0 未审核 1通过 2没通过)
+							document.querySelector(".right_button").style.display = "block";
+						}
+					}
+				})
+//			}
+			
+			var n = 0;
+			var nextCursor = 0;
+			var allResults = {};
+			var obj = {
+				size:8,
+				cursor:0
+			}
+			var hasnext = false;
+			
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						style:'circle',
+						auto:true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			
+			function pullupRefresh(){	
+				ajaxGet(getMediaPagerUrl,obj,function(ret,err){
+					if (ret) {
+						addDataToHtml(ret.data,true);
+						obj.cursor = ret.nextCursor;
+						nextCursor = ret.nextCursor;
+						if(ret.hasnext){
+							hasnext = false;
+						}else{
+							hasnext = true;
+						}
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(hasnext);
+						if (isBlack(ret.data)) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						if (ret.data.length == 0) {
+							mui.toast("暂无相关数据！");
+						}
+					}
+				})
+			}
+		
+			function pulldownRefresh(){//下拉
+				obj.cursor = 0;
+				ajaxGet(getMediaPagerUrl,obj,function(ret,err){
+					if (ret) {
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						mui('#pullrefresh').pullRefresh().refresh(ret.hasnext);
+						addDataToHtml(ret.data);
+						obj.cursor = ret.nextCursor;
+						nextCursor = ret.nextCursor;
+						if(ret.hasnext){
+							hasnext = false;
+						}else{
+							hasnext = true;
+						}
+					}
+				})
+			}
+			
+			function addDataToHtml(results,append){
+				var fontSize = document.querySelector("html").getAttribute("style").split(":")[1].split("px")[0];
+				var imgWidth = 2.986666*fontSize;
+				var imgHeight = 2.986666*fontSize;
+				for (var i = 0; i < results.length; i++) {
+					var imgsList = results[i].imageListStr.split(",");
+					var imgStyleArr = [];
+					for (var j = 0; j < imgsList.length; j++) {
+						if (isNotBlack(imgsList[j])) {
+							var obj = getImgByThisSize(imgsList[j],imgWidth,imgWidth)
+							imgStyleArr.push(obj);
+						}
+					}
+					results[i].imageListStr = imgStyleArr;
+					results[i].ctime = formatTimeToDay(results[i].ctime);
+					results[i].info = tryDecodeURIComponent(results[i].info);
+					var obj_userIcon_user = getImgByThisSize(results[i].icon,1.066666*fontSize,1.066666*fontSize);
+					results[i].icon = obj_userIcon_user.url;
+					results[i].style = obj_userIcon_user.style;
+					allResults[results[i].id] = results[i];
+				}
+				var data = {list: results};
+				var html = template('scriptDiv1',data);
+				if (append) {
+					$("#list").append(html);
+				}else{
+					document.querySelector('#list').innerHTML = html;
+				}
+				
+	            setTimeout(function(){
+	            	echo.init({
+		                offset : 0,
+		                throttle : 0 //设置图片延迟加载的时间
+		            });
+					mui('.imgCon').on('tap','img',function(event){
+						stopEventBubble();
+			    		var id = this.getAttribute("id");
+			    		var index = this.getAttribute("index");
+			    		openPhotoSwipe(id,index);
+			      	});
+			      	mui('.list_bottom').on('tap','.praise_button',function(event){
+			      		stopEventBubble();
+			    		var id = this.getAttribute("data-id");
+			    		setPraise(this,id);
+			      	});
+				},100)
+			}
+			
+		
+			setTimeout(function(){
+				mui('#list').on('tap','li',function(event){
+		    		var id = this.getAttribute("id");
+		    		setDataItem("activeUnionId",id);
+		    		$("#main").css("display","block");
+		    		$("#main").attr("src","union_detail.html?v=1.13");
+//		    		openNewWindow("union_detail.html",{id:id});
+		      	});
+			},100)
+			
+			
+			//点赞
+			var flag_praise = false;
+			function setPraise(_this,typeId){
+				if (flag_praise) {
+					return;	
+				}
+				flag_praise = true;
+				var urls = addSupportUrl;
+				if (allResults[typeId].support) {
+					urls = delSupportUrl;
+				}
+				ajaxGet(urls,{type:1,typeId:typeId},function(ret,err){
+					flag_praise = false;
+					if(ret&&ret.success){
+						if (allResults[typeId].support) {
+							allResults[typeId].support = false;
+							_this.classList.remove("active");
+							_this.querySelector("img").src = "../../icon/praise.png";
+							_this.querySelector("span").innerHTML = parseInt(_this.querySelector("span").innerHTML) -1;
+						}else{
+							allResults[typeId].support = true;
+							_this.classList.add("active");
+							_this.querySelector("img").src = "../../icon/praised.png";
+							_this.querySelector("span").innerHTML = parseInt(_this.querySelector("span").innerHTML) +1;
+						}
+					}else{
+						mui.toast(ret.msg)
+					}
+				})		
+			}
+			
+			
+			function closeWins(){
+				if (getItemData("activeUnionId")) {
+					setDataItem("activeUnionId","");
+					$("#main").html("");
+		            $("#main").css("display","none");
+		            pushHistory();  
+				}else{
+					history.back(-1);
+				}
+			}
+			
+			
+//		$(function(){  
+//		    window.addEventListener("popstate", function(e) {  
+//		        $("#main").html("");
+//		        $("#main").css("display","none");
+//			}, false); 
+//		})
+		
+			$(function(){  
+			    pushHistory();  
+			    window.addEventListener("popstate", function(e) {  
+			       	closeWins()
+				}, false);  
+			    
+			}); 
+
+			function pushHistory() {  
+		        var state = {  
+		            title: "title",  
+		            url: window.location.href  
+		        };  
+		        window.history.pushState(state, "title", state.url);  
+		    }     
+		</script>
+		
+	</body>
+</html>

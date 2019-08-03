@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>打赏</title>
+		<style>
+			body{
+				background: #f5f5f5;
+			}
+			.author-info{
+				background: #fff;
+				display: flex;
+				padding: 0.213333rem 1.28rem 0.213333rem 0.4rem;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.author-info .author-photo img{
+				width: 1.386666rem;
+				height: 1.386666rem;
+			}
+			.author-info .reward-num  {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.author-info .reward-num .top .time{
+				font-size: 0.373333rem;
+				color: #333;
+			}
+			.author-info .reward-num .top .units{
+				font-size: 0.373333rem;
+				color: #999;
+			}
+			.author-info .reward-num .num{
+				font-size: 0.48rem;
+				color: #FF5C98;
+				margin-top: 0.053333rem;
+				line-height: 0.666666rem;
+			}
+			.recharge{
+				margin-top: 0.266666rem;
+				background: #fff;
+				padding-left: 0.4rem;
+				padding-top: 0.266666rem;
+				padding-bottom: 0.373333rem;
+			}
+			.recharge .limit ul{
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.recharge .limit li{
+				font-size: 0.426666rem;
+				color: #333;
+				height: 1.066666rem;
+				line-height: 1.066666rem;
+				text-align: center;
+				border: 0.026666rem solid #cbcbcb;
+				border-radius: 0.08rem;
+				margin-right: 0.266666rem;
+				margin-bottom: 0.373333rem;
+				width: 30.5%;
+				box-sizing: border-box;
+			}
+			.recharge .limit li:active{
+				border-color: #FF5C98;
+				color: #FF5C98;
+			}
+			.recharge .specific{
+				display: flex;
+				align-items: center;
+			}
+			.recharge .specific>div{
+				font-size: 0.373333rem;
+				color: #666;
+				margin-right: 0.32rem;
+				flex-flow: 0;
+			}
+			.recharge .specific>input{
+				width: 4.24rem;
+				height: 0.853333rem;
+				border: 0.026666rem solid #CBCBCB;
+				border-radius: 0.08rem;
+				box-sizing: border-box;
+				margin-right: 0.266666rem;
+				line-height: 1.5em;
+				padding: 0 0.4rem;
+			}
+			input:-webkit-input-placeholder{
+    			line-height: 1.5em;
+    		}
+			.recharge .specific .units{
+				font-size: 0.426666rem;
+				color: #999;
+				margin-right: 2.72rem;
+			}
+			.extra{
+				display: flex;
+				align-items: center;
+				margin-top: 0.373333rem;
+			}
+			.extra div{
+				font-size: 0.373333rem;
+				color: #999;
+			}
+			.extra .num{
+				font-size: 0.426666rem;
+				color: #999;
+			}
+			.extra .extra-right{
+				font-size: 0.426666rem;
+				color: #FF5C98;
+				margin-left: 0.533333rem;
+			}
+			.recharge-bottom{
+				font-size: 0.48rem;
+				color: #fff;
+				width: 5.546666rem;
+				height: 1.173333rem;
+				line-height: 1.173333rem;
+				text-align: center;
+				background: #FF5C98;
+				border-radius: 2.666666rem;
+				margin: 0.373333rem auto;
+				margin-bottom: 0;
+			}
+			.record{
+				margin-top: 0.266666rem;
+				background: #fff;	
+			}
+			.record .title{
+				padding-left: 0.4rem;
+				font-size: 0.426666rem;
+				color: #333;
+				line-height: 1.12rem;
+				border-bottom: 0.026666rem solid #F5F5F5;
+			}
+			.record .record-item{
+				padding: 0.32rem 0.4rem;
+				border-bottom: 0.026666rem solid #F5F5F5;
+			}
+			.record .top-nub{
+				font-size: 0.426666rem;
+				color: #333;
+				margin-bottom: 0.266666rem;
+			}
+			.record .bottom{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.record .bottom .bottom-left div{
+				font-size: 0.32rem;
+				color: #999;
+			}
+			.record .bottom .bottom-left .name{
+				font-size: 0.373333rem;
+				margin-bottom: 0.106666rem;
+			}
+			.record .bottom-right{
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+			}
+			.record .bottom-right .time{
+				font-size: 0.373333rem;
+				color: #666;
+				margin-bottom: 0.106666rem;
+			}
+			.record .bottom-right .date{
+				font-size: 0.32rem;
+				color: #999;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="author-info">
+			<div class="author-photo">
+				<img src="../../image/photo.png" alt="" />
+			</div>
+			<div class="reward-num">
+				<div class="top">
+					<span class="time">今日打赏</span><span class="units">(LB)</span>
+				</div>
+				<div class="bottom">
+					<span class="num">660</span>
+				</div>
+			</div>
+			<div class="reward-num">
+				<div class="top">
+					<span class="time">总打赏</span><span class="units">(LB)</span>
+				</div>
+				<div class="bottom">
+					<span class="num">36660</span>
+				</div>
+			</div>
+		</div>
+		<div class="recharge">
+			<div class="limit">
+				<ul>
+					<li >588LB</li>
+					<li>588LB</li>
+					<li>588LB</li>
+					<li>588LB</li>
+					<li>588LB</li>
+					<li>588LB</li>
+				</ul>
+			</div>
+			<div class="specific">
+				<div>其他金额</div>
+				<input type="tel"  />
+				<div class="units">LB</div>
+			</div>
+			<div class="extra">
+				<div>账户余额：</div>
+				<div class="num">0LB</div>
+				<div class="extra-right">充值</div>
+			</div>
+			<div class="recharge-bottom">充值</div>
+		</div>
+		<div class="record">
+			<div class="title">打赏记录</div>
+			<ul>
+				<li class="record-item">
+					<div class="top-nub">10LB</div>
+					<div class="bottom">
+						<div class="bottom-left">
+							<div class="name">沙拉酱</div>
+							<div>打赏</div>
+						</div>
+						<div class="bottom-right">
+							<div class="time">58分钟前</div>
+							<div class="date">动态：2018.06.11 18：56</div>
+						</div>
+					</div>
+				</li>
+				<li class="record-item">
+					<div class="top-nub">10LB</div>
+					<div class="bottom">
+						<div class="bottom-left">
+							<div class="name">沙拉酱</div>
+							<div>打赏</div>
+						</div>
+						<div class="bottom-right">
+							<div class="time">58分钟前</div>
+							<div class="date">动态：2018.06.11 18：56</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

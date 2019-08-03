@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>添加微信好友</title>
+    	<style>
+    		body{
+    			background: #F5F5F5;
+    		}
+    		header{
+    			width: 100%;
+    			height: 1.173333rem;	
+    		}
+    		#leftButton>img{
+    			position: absolute;
+    			left: 0.4rem;
+    			top:0.346666rem;
+    			width:0.293333rem;
+    			height:0.48rem;
+    		}
+    		.title{
+    			display: flex;
+    			justify-content: center;
+    			align-items: center;
+    		}
+    		.topBar{
+    			line-height: 1.173333rem;
+    			font-size: 0.48rem;
+    		}
+    		.date-item{
+    			height: 1.6rem;
+    			padding: 0 0.533333rem 0 0.4rem;
+    			display: flex;
+    			justify-content: space-between;
+    			align-items: center;
+    			background: #fff;
+    			border-top: 0.026666rem solid #f5f5f5;
+    		}
+    		.date-item .item-left{
+    			font-size: 0.426666rem;
+    			color: #333;
+    		}
+    		.date-item .item-left img{
+    			width: 1.066666rem;
+    			height: 1.066666rem;
+    			border-radius: 100%;
+    		}
+    		.date-item .item-right{
+    			display: flex;
+    		}
+    		.date-item .item-right .date-content{
+    			font-size: 0.373333rem;
+    			color: #999;
+    			margin-right: 0.266666rem;
+    		}
+    		.date-item .item-right .back img{
+    			width: 0.186666rem;
+    			height: 0.373333rem;	
+    		}
+    		.select-box{
+    			position: fixed;
+    			top: 0;
+    			left: 0;
+    			width: 100%;
+    			height: 100%;
+    			background: rgba(0,0,0,0.5)
+    		}
+    		.main-height{
+    			width: 100%;
+    			background: #fff;
+    			position: absolute;
+    			bottom: 0;
+    			height: 7.413333rem;
+    			z-index: 99;
+    		}
+    		.main-height .height-top{
+    			display: flex;
+    			height: 1.44rem;
+    			padding: 0 0.4rem;
+    			justify-content: space-between;
+    			align-items: center;
+    			border-bottom: 0.026666rem solid #F5F5F5;
+    		}
+    		.main-height .height-top .cancel{
+    			font-size: 0.426666rem;
+    			color: #666;
+    		}
+    		.main-height .height-top .title{
+    			font-size: 0.426666rem;
+    			color: #333;
+    		}
+    		.main-height .height-top .confirm{
+    			font-size: 0.426666rem;
+    			color: #FF5C98;
+    		}
+    		.height-select{
+    			padding: 0 0.4rem;
+    		}
+    		.height-select li{
+    			font-size: 0.426666rem;
+    			color: #999;
+    			text-align: center;
+    			line-height: 1.12rem;
+    			box-sizing: border-box;
+    		}
+    		.height-select li:first-child{
+    			border-top: none;
+    		}
+    		.height-select li:hover{
+    			border-bottom: 0.026666rem solid #F5F5F5;
+    			border-top: 0.026666rem solid #F5F5F5;
+    		}
+    	</style>
+	</head>
+	<body>
+		<header>
+		    <div id="leftButton" >
+            	<img src="../../image/back.png">
+       		</div>
+       		<div class="title">
+       			<div class="topBar">个人资料</div>
+       		</div> 	
+		</header>
+		<div class="date-list">
+			<ul>
+				<li class="date-item">
+					<div class="item-left"><img src="../../image/photo.png" alt="" /></div>
+					<div class="item-right">
+						<div class="date-content">更换头像</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">昵称</div>
+					<div class="item-right">
+						<div class="date-content">长发及腰热不热</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">性别</div>
+					<div class="item-right">
+						<div class="date-content">女</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">身高</div>
+					<div class="item-right">
+						<div class="date-content">170cm</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">鞋码</div>
+					<div class="item-right">
+						<div class="date-content">39</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">电话</div>
+					<div class="item-right">
+						<div class="date-content">17788866686</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">微信</div>
+					<div class="item-right">
+						<div class="date-content">fasj</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+				<li class="date-item">
+					<div class="item-left">居住地</div>
+					<div class="item-right">
+						<div class="date-content">北京</div>
+						<div class="back"><img src="../../icon/next.png" alt="" /></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="select-box">
+			<div class="main-height">
+				<div class="height-top">
+					<div class="cancel">取消</div>
+					<div class="title">身高</div>
+					<div class="confirm">确定</div>
+				</div>
+				<div class="height-select">
+					<ul>
+						<li class="select-item">168cm</li>
+						<li class="select-item">168cm</li>
+						<li class="select-item">168cm</li>
+						<li class="select-item">168cm</li>
+						<li class="select-item">168cm</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

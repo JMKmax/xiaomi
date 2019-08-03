@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>摄影师</title>
+    	<style>
+    	
+    		.person{
+    			height: 2.08rem;
+    			padding: 0 0.4rem;
+    			position: relative;
+    		}
+    		.person:after{
+    			content: '';
+    			height: 1px;
+    			background: #F0F0F0;
+    			position: absolute;
+    			bottom: 0;
+    			left: 0;
+    			right: 0;
+    			transform: scaleY(.5);
+    		}
+    		.person-left .rank{
+    			width: 0.453333rem;
+    			height: 0.533333rem;
+    			overflow: hidden;
+    			margin-right: 0.266666rem;
+    			text-align: center;
+    		}
+    		.person-left .rank span{
+    			font-size: 0.426666rem;
+    			color: #333;
+    			font-family:PingFang-SC-Medium;
+    		}
+    		.person-left .rank img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.person-left .photo{
+    			width: 1.173333rem;
+    			height: 1.173333rem;
+    			margin-right: 0.266666rem;
+    			border-radius: 50%;
+    			overflow: hidden;
+    		}
+    		.person-left .photo img{
+    			width: 100%;
+    			height: 100%;
+    		}
+    		.person-left .author-info {
+    			font-size: 0.426666rem;
+    			color: #333;
+    			font-family:PingFang-SC-Medium;
+    		}
+    		
+    		.person .person-right .right-top{
+    			font-size: 0.373333rem;
+    			color: #333;
+    			line-height: 0.533333rem;
+    		}
+    		.person .person-right .time{
+    			font-size: 0.32rem;
+    			color: #999;
+    			line-height: 0.453333rem;
+    		}
+    		.person .person-right.attention{
+    			border-color: #999;
+    			color: #999;
+    			padding: 0.08rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		
+		<div class="persons-item">
+			<ul>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><img src="../../icon/gold_medal.png" alt="" /></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><img src="../../icon/silver_medal.png" alt="" /></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><img src="../../icon/bronze_medal.png" alt="" /></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><span>4</span></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><span>5</span></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><span>6</span></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+				<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank"><span>7</span></div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info">机器猫</div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+56667</div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/echo.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script id="list" type="text/html">
+		<%for(var i = 0;i<list.length;i++){%>
+			<li class="person flex flex-align-center flex-pack-justify">
+					<div class="person-left flex flex-align-center">
+						<div class="rank">
+						<%if(i == '0'){%>
+							<img src="../../icon/gold_medal.png" alt="" />
+						<%}else if(i == '1'){%>
+							<img src="../../icon/silver_medal.png" alt="" />
+						<%}else if (i == '2'){%>
+							<img src="../../icon/bronze_medal.png" alt="" />
+						<%}else{%>
+							<span><%=i+'1'%></span>
+						<%}%>
+						</div>
+						<div class="photo">
+							<img src="../../image/photo.png" alt="" />
+						</div>
+						<div class="author-info"><%=list[i].userName%></div>	
+					</div>
+					<div class="person-right">
+						<div class="right-top">+<%=list[i].totalGainMoney%></div>
+						<div class="time">2019.06.06</div>
+					</div>
+				</li>
+		<%}%>
+	</script>
+	<script>
+   		apiready = function () {
+        	quakooData.ajaxGetData(config.getUrl_model_getModelEarningRankingList(),{},function(ret,err){
+        		if(ret && ret.success){
+        			console.log(JSON.stringify(ret))
+        			var data = {
+        				list:ret.data
+        			}
+        			var html = template('list',data)
+        			$api.html($api.dom('ul'),html)
+        			api.parseTapmode()
+        		}
+        	})
+    	}
+	</script>
+</html>

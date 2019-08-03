@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>提现记录</title>
+    	<style>
+    		#topbar{
+    			height: 1.173333rem;
+    			border-bottom: 0.026666rem solid #F5F5F5;
+    			padding: 0 0.4rem;
+    		}
+    		.left-icon{
+    			width:0.293333rem;
+    			height:0.48rem;
+    		}
+    		.topBar{
+    			font-size: 0.48rem;
+    			color: #333;
+    		}
+    		.right-icon{
+    			width: 0.533333rem;
+    			height: 0.133333rem;
+    		}
+    	</style>
+	</head>
+	<body>
+		<div id="topbar">
+    		<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        		<img src="../../icon/back.png" alt="">
+   			 </div>
+    		<div>提现记录</div>
+		</div>	
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	initFrameInWin(api.pageParam);
+    	}
+	</script>
+</html>

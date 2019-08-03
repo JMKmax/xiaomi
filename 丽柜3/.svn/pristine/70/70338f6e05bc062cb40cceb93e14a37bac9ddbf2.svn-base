@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>我的钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+    	.item{
+    		position: relative;
+    		background: #F1F1F1;
+    		padding-top: 0.266666rem;
+    	}
+    	.item .img{
+    		width: 100%;
+    		height: 5.866666rem;
+    		box-sizing: border-box;
+    		overflow: hidden;
+    	}
+    	.item .img img{
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.item .title{
+    		font-size: 0.373333rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Medium;
+    		position: absolute;
+    		top: 0.4rem;
+    		left: 0.4rem;
+    	}
+    	.item .time{
+    		font-size: 0.32rem;
+    		color: #fff;
+    		font-family:PingFang-SC-Regular;
+    		width: 0.853333rem;
+    		height: 0.533333rem;
+    		line-height: 0.533333rem;
+    		text-align: center;
+    		background: #000;
+    		opacity: 0.5;
+    		border-radius: 0.053333rem;
+    		position: absolute;
+    		bottom: 0.4rem;
+    		right: 0.4rem;
+    	}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li class="item" tapmode="" onclick="openDetail()">
+				<div class="img"><img src="../../image/bg.png" alt="" /></div>
+				<div class="title">巴厘岛的夏天</div>
+				<div class="time">6p</div>
+			</li>
+		</ul>
+	</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+	<script id="scriptPic" type="text/html">
+		<%for(var i = 0;i<list.length;i++){%>
+			<li class="item" tapmode="" onclick="openPicDetail(<%=list[i].id%>)">
+				<div class="img"><img src="<%=list[i].cover%>" alt="" /></div>
+				<div class="title"><%=list[i].name%></div>
+				<div class="time"><%=list[i].length%></div>
+				<div class="price"><%=list[i].price%>LB</div>
+			</li>
+		<%}%>
+	</script>
+<script>
+    apiready = function () {
+         new QuakooPage(function(results,append){
+        	console.log($api.jsonToStr(results))
+        	for(var i = 0;i<results.length;i++){
+        		 results[i].length = checkTime(results.length)
+        	}
+        	var data = {
+        		list:results
+        	}
+        	var html = template('scriptPic',data)
+        	if(append){
+        		$api.append($api.dom('ul'),html)
+        	}else{
+        		$api.html($api.dom('ul'),html)
+        	}
+        	api.parseTapmode()
+        },config.getUrl_content_getMyContentPager(),{type:1})
+    }
+    //处理时间
+		    function toStr(nub){
+		    	return nub>10 ? ''+nub : '0'+nub
+		    }
+		    function checkTime(time){
+		    	var iHour = parseInt(time / 3600);
+				var iMinute = parseInt((time % 3600) / 60);
+				var iSecond = (time % 3600) % 60;
+				
+				return time = ""+toStr(iMinute)+" : "+toStr(iSecond)+"";
+		    }
+    function openDetail(id){
+			quakooApp.openNewWindow('works_video_details','../home/works_video_details.html',{cid:id})
+		}
+		
+</script>
+
+</html>

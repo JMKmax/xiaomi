@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, 		initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<script src="../../script/flexible_css.js"></script>
+		<script src="../../script/flexible.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    	<link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    	<title>我的</title>
+		<style>
+			.top{
+				background-image:linear-gradient(-179deg, #ff5c98 0%, #f28be7 100%);
+				padding-bottom: 0.453333rem;
+			}
+			.top-name{
+				font-size: 0.48rem;
+				color: #fff;
+				text-align: center;
+				line-height: 1.173333rem;
+			}
+			.mine-info{
+				padding-top: 0.533333rem;
+			}
+			.mine-info .photo{
+				position: relative;
+				margin-right: 0.24rem;
+				width: 1.6rem;
+				height: 1.6rem;
+				overflow: hidden;
+			}
+			.mine-info .photo img{
+				width: 100%;
+				height: 100%;
+				border-radius: 100%;
+			}
+			.mine-info .photo .rank{
+				width: 0.426666rem;
+				height: 0.4rem;
+				position: absolute;
+				left: 1.173333rem;
+				top: 1.2rem;
+			}
+			.mine-info .right .sex img{
+				width: 0.426666rem;
+				height: 0.426666rem;
+			}
+			.mine-info .right .name{
+				font-size: 0.373333rem;
+				color: #fff;
+				margin-top: 0.106666rem;
+			}
+			.top-list{
+				margin-top: 0.533333rem;
+				padding: 0 2.293333rem;
+				
+			}
+			.top-item{
+				text-align: center;
+			}
+			.top-item .num{
+				margin-bottom: 0.106666rem;
+			}
+			.top-item div{
+				font-size: 0.373333rem;
+				color: #fff;
+			}
+			.info-list{
+				padding-bottom: 0.266666rem;
+				background: #F5F5F5;
+			}
+			.info-list ul{
+				flex-wrap: wrap;
+			}
+			.info-list .info-item{
+				width: 33.3%;
+				height: calc(100vw / 3 / 1.4);
+				flex-direction: column;
+				box-sizing: border-box;
+				background: #fff;
+				position: relative;
+			}
+			.info-list .info-item:before{
+				content: '';
+				width: 1px;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				background: #F5F5F5;
+				transform: scaleX(0.5);
+			}
+			.info-list .info-item:after{
+				content: '';
+				height: 1px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: #F5F5F5;
+				transform: scaleY(0.5);
+			}
+			.info-item .item-icon img{
+				
+			}
+			.info-item:first-child .item-icon img{
+				width: 0.613333rem;
+				height: 0.56rem;
+				margin-bottom: 0.293333rem;
+			}
+			.info-item:nth-child(2) .item-icon img{
+				width: 0.533333rem;
+				height: 0.64rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(3) .item-icon img{
+				width: 0.613333rem;
+				height: 0.613333rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(4) .item-icon img{
+				width: 0.64rem;
+				height: 0.64rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(6) .item-icon img{
+				width: 0.533333rem;
+				height: 0.64rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(7) .item-icon img{
+				width: 0.533333rem;
+				height: 0.693333rem;
+				margin-bottom: 0.24rem;
+			}
+			.info-item:nth-child(8) .item-icon img{
+				width: 0.453333rem;
+				height: 0.64rem;
+				margin-bottom: 0.293333rem;
+			}
+			.info-item:nth-child(9) .item-icon img{
+				width: 0.693333rem;
+				height: 0.586666rem;
+				margin-bottom: 0.32rem;
+			}
+			.info-item:nth-child(10) .item-icon img{
+				width: 0.64rem;
+				height: 0.64rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(11) .item-icon img{
+				width: 0.64rem;
+				height: 0.56rem;
+				margin-bottom: 0.24rem;
+			}
+			.info-item:nth-child(12) .item-icon img{
+				width: 0.666666rem;
+				height: 0.533333rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(13) .item-icon img{
+				width: 0.64rem;
+				height: 0.64rem;
+				margin-bottom: 0.266666rem;
+			}
+			.info-item:nth-child(14) .item-icon img{
+				width: 0.64rem;
+				height: 0.613333rem;
+				margin-bottom: 0.24rem;
+			}
+			.info-list .info-item .item-name{
+				font-size: 0.373333rem;
+				color: #333;
+			}
+			.info-list .info-item .item-icon.recom img{
+				width: 0.506666rem;
+				height: 0.666666rem;
+				margin-bottom: 0.293333rem;
+			}
+			.recom{
+				position: relative;
+			}
+			.info-list .info-item .item-icon.recom .atten-icon{
+				width: 0.373333rem;
+				height: 0.346666rem;
+				position: absolute;
+				bottom: 0;
+				left: 0.266666rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div class="mine-info flex flex-align-center flex-pack-center">
+				<div class="photo">
+					<img src="../../image/photo.png" alt="" />
+					<img class="rank" src="../../icon/V.png" alt="" />
+				</div>
+				<div class="right">
+					<div class="sex"><img src="../../icon/woman.png" alt="" /></div>
+					<div class="name">长发及腰热不热</div>
+				</div>
+			</div>
+			<div class="top-list flex flex-pack-justify">
+				<div class="top-item">
+					<div class="num">1.2万</div>
+					<div >粉丝</div>
+				</div>
+				<div class="top-item">
+					<div class="num">1.2万</div>
+					<div >粉丝</div>
+				</div>
+				<div class="top-item">
+					<div class="num">1.2万</div>
+					<div >粉丝</div>
+				</div>
+			</div>
+		</div>
+		<div class="info-list">
+			<ul class="flex">
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i1.png" alt="" /></div>
+					<div class="item-name">我的钱包</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i2.png" alt="" /></div>
+					<div class="item-name">我的订单</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i3.png" alt="" /></div>
+					<div class="item-name">我的作品</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i4.png" alt="" /></div>
+					<div class="item-name">我的收藏</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon recom"><img src="../../icon/mine/i5.png" /><img class="atten-icon" src="../../icon/mine/i4.png" alt="" /></div>
+					<div class="item-name">我的关注</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i6.png" alt="" /></div>
+					<div class="item-name">我的订阅</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i7.png" alt="" /></div>
+					<div class="item-name">认证模特</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon">
+						<img src="../../icon/mine/i8.png" alt="" />
+					</div>
+					<div class="item-name">认证摄影师</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i9.png" alt="" /></div>
+					<div class="item-name">认证摄影机构</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i10.png" alt="" /></div>
+					<div class="item-name">帮助中心</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i11.png" alt="" /></div>
+					<div class="item-name">举报</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i12.png" alt="" /></div>
+					<div class="item-name">消息</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i13.png" alt="" /></div>
+					<div class="item-name">绑定微信</div>
+				</li>
+				<li class="info-item flex flex-align-center flex-pack-center">
+					<div class="item-icon"><img src="../../icon/mine/i14.png" alt="" /></div>
+					<div class="item-name">设置</div>
+				</li>
+				<li class="info-item"></li>
+			</ul>
+		</div>
+	</body>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/apiCloud.js"></script>
+	<script src="../../script/util.js"></script>
+	<script>
+   		apiready = function () {
+        	
+    	}
+	</script>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <title>更换手机号</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        label {
+            width: 100%;
+            height: 100%;
+        }
+        label input {
+            width: 100%;
+            height: 100%;
+            font-size:0.427rem;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size:0.427rem;
+            line-height: normal;
+            color:#999999;
+        }
+
+        .con {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 0.533rem;
+        }
+
+        .con:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #f5f5f5;
+            transform: scaleY(.5);
+        }
+
+        .input-wrap {
+            width: 86.67%;
+            background: #f2f2f2;
+            border-radius: 2.667rem;
+            height: 1.173rem;
+            margin: 0 auto 0.533rem;
+            padding: 0 0.533rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .newPhone {
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0.267rem;
+        }
+
+        .newPhone .code {
+            flex-shrink: 0;
+        }
+
+        .newPhone label {
+            flex: 1;
+        }
+
+        .newPhone label input {
+            padding: 0 0.267rem;
+        }
+        .newPhone label input {
+
+        }
+
+        .area-code {
+            padding: 0 0.267rem;
+            font-size: 16px;
+            color: #999999;
+            position: relative;
+        }
+        .area-code:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background:#d8d8d8;
+            transform: scaleX(.5);
+        }
+        .code {
+            font-size:12px;
+            color:#ff5c98;
+            padding: 0 0.267rem;
+            position: relative;
+        }
+        .code:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background:#d8d8d8;
+            transform: scaleX(.5);
+        }
+        .submit {
+            background-image:linear-gradient(-227deg, #ff77a9 13%, #fe4f8a 87%);
+            border-radius:100px;
+            width:86.67%;
+            height:1.173rem;
+            line-height:1.173rem;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="input-wrap newPhone">
+        <div class="area-code" id="domAreaNumber" tapmode="" onclick="selectAreaNumber()">+86</div>
+        <label for=""><input type="tel" id="tel"  placeholder="输入新手机号" maxlength="11"></label>
+        <div class="code" id="sms" tapmode="" onclick="getCode()">获取验证码</div>
+    </div>
+    <div class="input-wrap">
+        <label for=""><input type="tel" id="code" placeholder="输入验证码" maxlength="6"></label>
+    </div>
+    <div class="input-wrap ">
+        <label for=""><input type="password" id="pwd" placeholder="输入密码"></label>
+    </div>
+    <div class="input-wrap submit" tapmode="" onclick="changePhone()">提交</div>
+</div>
+</body>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+      
+    };
+    //获取验证码
+    function getCode(){
+    	var phone = $api.val($api.dom('#tel'));
+    	if(quakooUtils.isBlack(phone)){
+    		quakooMsg.toast('请输入手机号');
+    		return 
+    	}
+    	quakooLogin.sms(config.getUrl_web_user_createUpdatePhone(),true,{phone:phone,areaAccount:config.areaAccount})
+    }
+    //确认提交
+    function changePhone(){
+    	if(quakooUtils.isBlack($api.val($api.dom('#tel')))){
+    		quakooMsg.toast('请输入手机号');
+    		return
+    	}
+    	if(quakooUtils.isBlack($api.val($api.dom('#code')))){
+    		quakooMsg.toast('请输入手机号');
+    		return
+    	}
+    	if(quakooUtils.isBlack($api.val($api.dom('#pwd')))){
+    		quakooMsg.toast('请输入手机号');
+    		return
+    	}
+    	var _params = {
+    		phone:$api.val($api.dom('#tel')),
+    		code:$api.val($api.dom('#code')),
+            password:$api.val($api.dom('#pwd')),
+    		areaAccount:config.areaAccount
+    	};
+    	quakooData.ajaxSubmitDataNotProcess(config.getUrl_web_user_updatePhone(),_params,function(ret,err){
+            quakooUser.removeUserInfo();
+    	   if(ret && ret.success){
+    	       quakooMsg.showOneDialog('修改成功','手机号修改成功需重新登录','确定',function () {
+                   quakooApp.openNewWindow("login", "../login/login.html", {},{slidBackEnabled: false});
+                   setTimeout(function () {
+                       quakooApp.closeThisWin()
+                   },300);
+                   setTimeout(function () {
+                       api.closeWin({
+                           name:'main'
+                       })
+                   },600)
+               })
+           }
+
+    	})
+    }
+    // 选择区号
+	function selectAreaNumber() {
+		quakooApp.openFrame('select_phone','../login/select_phone.html',{winName:api.winName,frameName:api.frameName,propsEvent:'setAreaNumber'},0,0,{bgColor:'rgba(0,0,0,0)'})
+	}
+	function setAreaNumber(_num) {
+		config.areaAccount = _num;
+		$api.text($api.dom('#domAreaNumber'),'+'+_num)
+	}
+</script>
+
+</html>

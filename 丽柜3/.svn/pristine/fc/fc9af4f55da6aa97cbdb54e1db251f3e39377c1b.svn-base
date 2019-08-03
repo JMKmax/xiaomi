@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>消息</title>
+    <style type="text/css">
+        body, html {
+            background-color: #f5f5f5;
+        }
+        body {
+           padding-top: 0.267rem;
+        }
+        .items {
+            background-color: white;
+        }
+
+        .item {
+            width: 100%;
+            padding-bottom: 0.24rem;
+            padding-top: 0.24rem;
+            position: relative;
+        }
+        .item + .item:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            transform: scaleY(.5);
+            background: #F5F5F5;
+        }
+
+        .item > div {
+            display: inline-block;
+        }
+
+        .item_icon {
+            width: 0.853rem;
+            height: 0.853rem;
+            background-color: pink;
+            border-radius: 50%;
+            margin-left: 0.4rem;
+        }
+
+        .item_word {
+            font-size: 0.426666rem;
+            color: #333333;
+            position: relative;
+            bottom: 0.266666rem;
+            left: 0.266666rem;
+        }
+
+        .item_enter {
+            width: 0.186666rem;
+            height: 0.373333rem;
+            background-image: url(../../icon/next.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.506666rem;
+        }
+        .inform {
+        	background-color: #08d19f;
+            background-image: url("../../icon/m1.png"),url(../../icon/ms_1.png);
+            background-repeat: no-repeat,no-repeat;
+            background-position: 0.186666rem 0.24rem,0.506666rem 0.373333rem;
+            -webkit-background-size: 0.48rem 0.4rem,0.08rem 0.16rem;
+            background-size: 0.48rem 0.4rem,0.08rem 0.16rem;
+        }
+        .feedback {
+            background:#ffc009 url("../../icon/m2.png") no-repeat center center;
+            -webkit-background-size: 0.48rem 0.48rem;
+            background-size: 0.48rem 0.48rem;
+        }
+        .commentForMe {
+            background: url("../../icon/m3.png") no-repeat center center;
+            -webkit-background-size:cover;
+            background-size: cover;
+        }
+        .verify {
+            background:#7ed321 url("../../icon/m4.png") no-repeat center center;
+            -webkit-background-size:0.48rem 0.56rem;
+            background-size::0.48rem 0.56rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="items">
+    <div class="item"  tapmode="itemOn" onclick="notice()">
+        <div class="item_icon  inform"></div>
+        <div class="item_word">公告通知</div>
+        <div class="item_enter"></div>
+    </div>
+    <div class="item"  tapmode="itemOn" onclick="openOpinionWin()">
+        <div class="item_icon feedback"></div>
+        <div class="item_word">意见反馈</div>
+        <div class="item_enter"></div>
+    </div>
+    <div class="item" tapmode="itemOn" onclick="openRemarkForMeWin()">
+        <div class="item_icon commentForMe"></div>
+        <div class="item_word">评论我的</div>
+        <div class="item_enter"></div>
+    </div>
+    <div class="item"  tapmode="itemOn" onclick="openVerificationWin()">
+        <div class="item_icon verify"></div>
+        <div class="item_word">微信验证通知</div>
+        <div class="item_enter"></div>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script>
+    apiready = function () {
+
+    };
+    // 公告通知
+    function notice() {
+        quakooApp.openNewWindow('notice','./notice.html')
+    }
+    // 意见反馈
+    function openOpinionWin() {
+        quakooApp.openNewWindow('opinion','opinion.html')
+    }
+    // 评论我的
+    function openRemarkForMeWin() {
+        quakooApp.openNewWindow('remarkForMe','remarkForMe.html')
+    }
+    // 微信验证通知
+    function openVerificationWin() {
+        quakooApp.openNewWindow('verification','verification.html')
+    }
+</script>
+</body>
+
+</html>

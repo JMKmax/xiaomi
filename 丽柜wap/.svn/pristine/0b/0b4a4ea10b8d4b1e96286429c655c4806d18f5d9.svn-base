@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../../script/flexible_css.js"></script>
+    <script src="../../script/flexible.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css"/>
+    <title>视频</title>
+    <style>
+    	body,
+        html {
+            background-color: #F5F5F5;
+        }
+    	/*列表*/
+        .dynamic-ul {
+            margin-top: 10px;
+        }
+
+        .dynamic-ul > li {
+            background: #fff;
+            margin-bottom: 0.267rem;
+        }
+
+        .dynamic-ul .dynamic-content {
+            padding: 0.267rem 0 0 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 0 0.4rem;
+        }
+
+        .user-icon {
+            width: 1.227rem;
+            height: 1.227rem;
+            border-radius: 50%;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-right: 0.267rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .user-top-right {
+            flex: 1;
+        }
+
+        .stick {
+            color: #999;
+        }
+
+        .stick.ready {
+            flex-shrink: 0;
+            font-size: 14px;
+            color: #ff5c98;
+        }
+
+        .user-name {
+            font-size: 14px;
+            height: 0.533rem;
+            line-height: 0.533rem;
+            color: #333333
+        }
+
+        .pastTime {
+            margin-top: 0.107rem;
+            height: 0.453rem;
+            line-height: 0.453rem;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        .dynamic-text {
+            margin-top: 0.32rem;
+            font-size: 14px;
+            color: #333333;
+            line-height: 1.5em;
+            padding: 0 0.4rem;
+        }
+
+        /*视频*/
+        .dynamic-video {
+            margin: 0.32rem 0.4rem 0.32rem;
+            color: #fff;
+            height: calc(100vw / 1.7045);
+            position: relative;
+        }
+
+        .video-cover {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-cover img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .play {
+            width: 1.173rem;
+            height: 1.173rem;
+            background: url("../../icon/play.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .total-num {
+            position: absolute;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            box-sizing: border-box;
+            border-radius: 0.053rem;
+            height: 0.533rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 0.053rem 0.24rem;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+        }
+
+        .handle {
+            display: flex;
+            height: 1.067rem;
+            position: relative;
+        }
+
+        .handle:after {
+            content: '';
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: #f0f0f0;
+            transform: scaleY(.5);
+            position: absolute;
+        }
+
+        .handle li {
+            height: 1.067rem;
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .handle li + li:after {
+            content: '';
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #f0f0f0;
+            transform: scaleX(.5);
+            position: absolute;
+        }
+
+        .handle li i {
+            margin-right: 0.133rem;
+        }
+
+        .view {
+            width: 0.56rem;
+            height: 0.4rem;
+            background: url("../../icon/view.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .comment {
+            width: 0.56rem;
+            height: 0.48rem;
+            background: url("../../icon/talk.png") no-repeat center center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+        }
+
+        .reward {
+            width: 0.56rem;
+            height: 0.613rem;
+            background: url("../../icon/rew.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        /*照片*/
+        .photo-area {
+            margin-top: 0.32rem;
+            background: #f5f5f5;
+            padding: 0.32rem 0.333rem;
+        }
+
+        .photo-desc {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .photo-desc .photo-desc-sign {
+            color: #ff5c98;
+        }
+
+        .dynamic-photo {
+            margin-top: 0.32rem;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 0;
+        }
+
+        .dynamic-photo li {
+            width: calc((100vw - 0.667rem) / 3);
+            height: calc((100vw - 0.667rem) / 3);
+            padding: 0.067rem;
+            /*margin-bottom: 0.133rem;*/
+            flex-shrink: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            font-size: 0;
+        }
+
+        .real-wrap {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .real-wrap img {
+            display: block;
+        }
+
+        .photo-area.fromDynamic {
+            background: #fff;
+            margin-top: 0;
+        }
+
+        .photo-area.fromDynamic .dynamic-photo {
+            margin-top: 0;
+        }
+
+        .dynamic-video.fromProd {
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0 0.4rem 0.32rem;
+        }
+
+        .fromProd .total-num {
+            right: 0.8rem;
+            bottom: 0.72rem;
+        }
+        /*列表 over*/
+        /*购买的统计*/
+        .notification{
+            font-size:12px;
+            color:#ff5c98;
+            padding: 0 0.4rem 0.32rem;
+        }
+        .fromProd.notification {
+            padding:  0.32rem 0.4rem;
+        }
+        /*购买的统计 over*/
+       .mui-scroll-wrapper{
+			top: 1.12rem;
+		}
+		.mui-table-view:after,.mui-table-view:before{
+			height: 0;
+		}
+		.mui-table-view{
+			background: none;
+		}
+				      /*打赏*/
+      .mark{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99;
+            display: none;
+            opacity: 0;
+        }
+        .popup-area {
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            background:#ffffff;
+            border-radius:8px;
+            width:319px;
+            height:198px;
+            box-sizing: border-box;
+            padding: 0.533rem;
+        }
+        .popup-title {
+            height: 0.587rem;
+            line-height: 0.587rem;
+            font-size:16px;
+            color:#333333;
+            text-align: center;
+        }
+        .popup-main {
+            height: 2.213rem;
+            line-height: 2.213rem;
+            text-align: center;
+            font-size:0.64rem;
+            color:#ff5c98;
+            letter-spacing: 0.027rem;
+        }
+        .popup-main span.unit{
+            font-size: 0.373rem;
+        }
+        .popup-btn {
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border:1px solid #ff5c98;
+            border-radius:0.213rem;
+            width:4.96rem;
+            height:1.227rem;
+            font-size:0.48rem;
+            color:#ff5c98;
+        }
+        .rew_1 {
+            display: inline-block;
+            width:0.56rem;
+            height:0.613rem;
+            background: url("../../icon/rew_1.png") no-repeat center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            margin-right: 0.373rem;
+        }
+        /*自定义打赏模块*/
+       .rew_mask {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99;
+            opacity: 0;
+        }
+
+        .popups-area {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #fff;
+            border-radius: 0.213rem;
+            width: 8.507rem;
+            height: 9.333rem;
+            overflow: hidden;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .popups-title {
+            flex-shrink: 0;
+            height: 1.653rem;
+            line-height: 1.653rem;
+            font-size: 0.427rem;
+            color: #333333;
+            text-align: center;
+            background: #fff;
+        }
+
+        .gray-font {
+            font-size: 0.373rem;
+            color: #999999;
+        }
+
+        .popups-main {
+            flex: 1;
+            padding: 0 0.4rem;
+        }
+
+        .rewards-ul {
+            height: 3rem;
+            overflow-y: scroll;
+            padding: 0.16rem 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .rewards-ul li {
+            flex-shrink: 0;
+            margin: 0.16rem 0.267rem 0.16rem 0;
+            border: 1px solid #cbcbcb;
+            border-radius: 0.08rem;
+            width: 2.213rem;
+            height: 1.013rem;
+            line-height: 1.013rem;
+            font-size: 0.427rem;
+            text-align: center;
+            color: #333333;
+            box-sizing: border-box;
+        }
+
+        .rewards-ul li.active {
+            border: 1px solid #ff5c98;
+            color: #ff5c98;
+        }
+
+        .atWill {
+            margin-top: 0.213rem;
+        }
+
+        .user-input {
+            margin-left: 0.32rem;
+            margin-right: 0.267rem;
+            display: inline-block;
+            border: 1px solid #cbcbcb;
+            border-radius: 0.08rem;
+            width: 4.187rem;
+            height: 0.8rem;
+        }
+
+        .user-input input {
+            width: 100%;
+            height: 100%;
+            padding: 0 0.133rem;
+        }
+
+        .user-money {
+            margin-top: 0.533rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-money .user-money-total {
+            margin: 0 0.32rem;
+        }
+
+        .user-money .recharge {
+            color: #ff5c98;
+        }
+
+        .btn-group {
+            flex-shrink: 0;
+            height: 1.227rem;
+            line-height: 1.227rem;
+            display: flex;
+            position: relative;
+        }
+
+        .btn-group:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: #F0F0F0;
+            transform: scaleY(.5);
+        }
+
+        .btn-group:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: #F0F0F0;
+            transform: scaleX(.5) translateX(-50%);
+        }
+
+        .btn-group span {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            color: #999999;
+        }
+
+        .btn-group span.submit {
+            color: #ff5c98;
+        }
+    </style>
+</head>
+<body>
+	<div class="rew_mask" >
+		<div class="popups-area">
+		
+		</div>
+	</div>
+	<div class="mark" onclick="cancelRew()">
+	    <div class="popup-area">
+	        <div class="popup-title">打赏后即可观看该动态</div>
+	        <div class="popup-main"><span class="price">0</span><span class="unit">LB</span></div>
+	        <div class="popup-btn" tapmode="itemOn" onclick="buyCircleEvent()"><i class="rew_1"></i><span>打赏</span></div>
+	    </div>
+	</div>
+	<div id="topbar">
+	    <div id="leftButton" tapmode="itemOn" onclick="quakooApp.closeWin()">
+	        <img src="../../icon/back.png" alt="">
+	    </div>
+	    <div>视频</div>
+	</div>
+	<div class="knowlageVideo_m content mui-content mui-scroll-wrapper" id="pullrefresh" style="width: 100%;">
+		<div class="main" style="width: 100%;">
+			<div  class="mui-table-view mui-table-view-chevron" style="width: 100%;">
+	    		<ul id="focus-ul" class="dynamic-ul" >
+	    			
+	    		</ul>
+	    	</div>
+    	</div>
+  </div>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBase-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooConfig-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseApp-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakooLib/QuakooBaseAppBusiness-1.0.0.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/Config.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../lib/script/quakoo/project.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/monent.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.base64.js"></script>
+<script type="text/html" id="scriptDiv1">
+    <%for(var i = 0 ; i< list.length ;i++){%>
+        <%if(list[i].type == 0){%>
+        <li data-canView="<%=list[i].canView ? 1 : 0%>" id="dynamic<%=list[i].id%>">
+            <div class="dynamic-content">
+                <div class="user-info" tapmode="">
+                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height:100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+                    <div class="user-top-right">
+                        <div class="user-name"><%=list[i].userName%></div>
+                        <div class="pastTime"><%=list[i].ctime%></div>
+                    </div>
+                </div>
+                <div class="image_wrap" data-id="<%=list[i].id%>" data-price="<%=list[i].price%>">
+                    <div class="dynamic-text"><%=list[i].title%></div>
+                    <div class="photo-area">
+                        <div class="photo-desc">
+                            <span class="photo-desc-sign">@<%=list[i].simpleContent.modelName%></span><%=list[i].simpleContent.name%>
+                        </div>
+                        <%if(list[i].objectType == 0){%>
+                        <ul class="dynamic-photo ">
+                            <%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+                            <li>
+                                <div class="real-wrap"><img src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;" onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div>
+                            </li>
+                            <%}%>
+                        </ul>
+                        <%}%>
+                    </div>
+                    <%if(list[i].objectType == 1){%>
+                    <div class="dynamic-video fromProd">
+                        <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%" onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+                        <div class="play"></div>
+                        <div class="total-num">17:24</div>
+                    </div>
+                    <%}%>
+                    <%if(list[i].price){%>
+                        <div class="notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+                    <%}%>
+                </div>
+            </div>
+            <ul class="handle">
+                <li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+                <li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+                <li class="handle-reward" data-id="<%=list[i].id%>" data-price="<%=list[i].price%>"><i class="reward"></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+            </ul>
+        </li>
+
+        <%}else if(list[i].type == 1){%>
+        <li data-canView='<%=list[i].canView ? 1 : 0%>' id="dynamic<%=list[i].id%>">
+            <div class="dynamic-content">
+                <div class="user-info" tapmode="">
+                    <div class="user-icon"><img src="../../icon/defaultHead.png" style="width:100%;height: 100%" onerror="this.src='../../icon/defaultHead.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].userIcon%>" real-style="<%=list[i].userIconStyle%>" alt=""></div>
+                    <div class="user-top-right">
+                        <div class="user-name"><%=list[i].userName%></div>
+                        <div class="pastTime"><%=list[i].ctime%></div>
+                    </div>
+                </div>
+                <div class="image_wrap" data-id="<%=list[i].id%>" data-price="<%=list[i].price%>">
+                    <div class="dynamic-text"><%=list[i].title%></div>
+                    <%if(list[i].objectType == 0){%>
+                        <div class="photo-area fromDynamic">
+                            <ul class="dynamic-photo">
+                                <%for(var j = 0;j< list[i].newImageArr.length;j++){%>
+                                <li>
+                                    <div class="real-wrap"><img src="../../icon/worksbg.png" class="<%=list[i].canView ? '' : 'overImg'%>" style="width: 100%;height: 100%;" onerror="this.src='../../icon/worksbg.png';this.style='width: 100%;height: 100%;'" data-echo="<%=list[i].newImageArr[j].url%>" real-style="<%=list[i].newImageArr[j].style%>" alt=""></div>
+                                </li>
+                                <%}%>
+                            </ul>
+                        </div>
+                    <%}%>
+                    <%if(list[i].objectType == 1){%>
+                        <div class="dynamic-video">
+                            <div class="video-cover"><img src="../../icon/worksbg.png" style="width:100%;height: 100%"onerror="this.src='../../icon/worksbg.png';this.style='width:100%;height:100%'" data-echo="<%=list[i].cover%>" real-style="<%=list[i].coverStyle%>" alt=""></div>
+                            <div class="play"></div>
+                            <div class="total-num">17:24</div>
+                        </div>
+                    <%}%>
+                </div>
+                <%if(list[i].price){%>
+                <div class="notification">需打赏<%=list[i].price%>LB，已有<%=list[i].totalPay%>人打赏</div>
+                <%}%>
+            </div>
+            <ul class="handle">
+                <li class="handle-view"><i class="view"></i><span><%=list[i].viewCount%></span></li>
+                <li class="handle-comment"><i class="comment"></i><span><%=list[i].commentCount%></span></li>
+                <li class="handle-reward" data-id="<%=list[i].id%>" data-price="<%=list[i].price%>"><i class="reward" ></i><span id="totalReward"><%=list[i].totalMoney%></span></li>
+            </ul>
+        </li>
+        <%}%>
+    <%}%>
+</script>
+<script type="text/html" id="reward_1">
+    <div class="popups-title">打赏给长发及腰热不热i</div>
+    <div class="popups-main">
+        <div class="gray-font">打赏金额</div>
+        <ul class="rewards-ul">
+            <%for(var i = 0 ; i< list.length;i++){%>
+            <li tapmode="itemOn" onclick="checkSel(<%=i%>,<%=list[i].name%>)"><%=list[i].name%>LB</li>
+            <%}%>
+        </ul>
+        <div class="atWill">
+            <span class="gray-font">任意赏</span><label class="user-input"><input type="number"
+                                                                               onfocus="clearStyle()"></label><span
+                class="gray-font">LB</span>
+        </div>
+        <div class="user-money gray-font"><span>账户余额</span>
+            <div class="user-money-total"><span>1</span>LB</div>
+            <div class="recharge" tapmode="" onclick="openRechargeWin()">充值</div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <span tapmode="itemOn" onclick="closeCurFrame()">取消</span>
+        <span tapmode="itemOn" class="submit" onclick="RewardPro()">确定</span>
+    </div>
+
+</script>
+<script>
+	var params = quakooUtils.GetRequest();;
+    var curHomeId = params.id;; // 访问用户的ID
+    var nextCursor;
+    var hasnext;
+
+    var clientw = document.body.clientWidth; //1903（不包含滚动条）
+    var fontSize = window.getComputedStyle($api.dom('html'), null)['fontSize'].split('px')[0];
+    var userIcon_size = 1.227 * fontSize; //头像大小
+    var image_size = (clientw - 0.667 * fontSize) / 3; //图片大小
+    var video_size_w = clientw - 0.8 * fontSize; //视频cover width
+    var video_size_h = clientw / 1.7045; //视频cover height
+    var ajaxParams = {
+            mid:curHomeId,
+            type:1,
+            size:10,
+            cursor:0
+        };
+    mui.init({
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				style:'circle',
+				callback: pulldownRefresh
+			},
+			up: {
+				style:'circle',
+				auto:true,
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+	});
+	
+	
+	function pullupRefresh(){	
+		quakooData.ajaxGetData(config.getUrl_model_getModelCirclePager(),ajaxParams,function(ret,err){
+			if (ret) {
+				dynamicListTemplate(ret.data,true);
+				ajaxParams.cursor = ret.nextCursor;
+				nextCursor = ret.nextCursor;
+				if(ret.hasnext){
+					hasnext = false;
+				}else{
+					hasnext = true;
+				}
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(hasnext);
+				if (quakooUtils.isBlack(ret.data)) {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+				if (ret.data.length == 0) {
+					mui.toast("暂无相关数据！");
+				}
+			}
+		})
+	}
+
+	function pulldownRefresh(){//下拉
+		ajaxParams.cursor = 0;
+		quakooData.ajaxGetData(config.getUrl_model_getModelCirclePager(),ajaxParams,function(ret,err){
+			if (ret) {
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				mui('#pullrefresh').pullRefresh().refresh(ret.hasnext);
+				dynamicListTemplate(ret.data);
+				ajaxParams.cursor = ret.nextCursor;
+				nextCursor = ret.nextCursor;
+				if(ret.hasnext){
+					hasnext = false;
+				}else{
+					hasnext = true;
+				}
+			}
+		})
+	}
+    function dynamicListTemplate(results,append) {
+    	var feilKey = quakooUtils.getImgKey();
+        if (quakooUtils.isBlack(results)) return;
+        for (var i = 0; i < results.length; i++) {
+            if (quakooUtils.isNotBlack(results[i].userIcon)) {
+                var _obj = quakooImg.processImg(results[i].userIcon, userIcon_size, userIcon_size);
+                results[i].userIcon = _obj.url+feilKey;
+                results[i].userIconStyle = _obj.style;
+            } else {
+                results[i].userIcon = '../../icon/defaultHead.png';
+                results[i].userIconStyle = 'width:100%;height:100%';
+            }
+            if (results[i].objectType === 0) { //0图片 1视频
+                var newImageArr = [];
+                var imageStr = results[i].imageStr.split(',');
+                imageStr.forEach(function (item) {
+                    if (quakooUtils.isNotBlack(item)) {
+                        var _obj = quakooImg.processImg(item, image_size, image_size);
+                         _obj.url = _obj.url+feilKey;
+                        newImageArr.push(_obj)
+                    }
+                });
+                results[i].newImageArr = newImageArr.slice(0, 9);
+            } else {
+                if (quakooUtils.isNotBlack(results[i].imageStr)) {
+                    var _obj = quakooImg.processImg(results[i].imageStr, video_size_w, video_size_h);
+                    results[i].cover = _obj.url+feilKey;
+                    results[i].coverStyle = _obj.style;
+                }
+            }
+            results[i].ctime = quakooUtils.commentFormatTime(results[i].ctime)
+        }
+        var data = {
+            list: results,
+        };
+
+        var html = template('scriptDiv1', data);
+        if (append) {
+            $api.append($api.dom('.dynamic-ul'), html)
+        } else {
+            $api.html($api.dom('.dynamic-ul'), html)
+        }
+        setTimeout(function () {
+                echo.init({
+                    offset: 0,
+                    throttle: 0//设置图片延迟加载的时间
+                });
+        }, 100);
+
+        
+    }
+    // 打开动态详情
+    mui('.dynamic-ul').on('tap','.image_wrap',function(event){
+    	var canView = +$api.attr($api.closest(this,'li[data-canView]'),'data-canView');
+    	var id = this.getAttribute("data-id")
+    	if(canView) {
+			quakooApp.openNewWindow('model_communication', './model_communication.html', {id: id})
+		}else {
+			openReward(this)
+		}
+	})
+    //取消打赏
+    function cancelRew(){
+    	
+    	var oWrap = document.querySelector('.mark');
+    	changeOpacity(oWrap,0);
+    	setTimeout(function(){
+    		oWrap.style.display = "none"
+    	},500)
+    }
+    function openReward(_this){
+    	var oWrap = document.querySelector('.mark');
+    	var oPrice = document.querySelector('.popup-main .price')
+    	oWrap.style.display = "block";
+    	changeOpacity(oWrap,100);
+	 	var id = _this.getAttribute("data-id")
+	 	var reward = _this.getAttribute("data-price")
+	 	oPrice.innerHTML = reward;
+	 	buyCircleEvent(id,reward)
+    }
+     function buyCircleEvent(cid,reward) {
+        quakooData.ajaxSubmitData(config.getUrl_circle_buyCircle(), {cid: cid}, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('打赏成功');
+                boughtDynamicRefreshDom(cid,reward)
+                setTimeout(function () {
+                    closeCurFrame()
+                },300)
+            }
+        });
+    }
+    // 自定义 打赏
+    mui('.dynamic-ul').on('tap','.handle-reward',function(event){
+    	var canView = +$api.attr($api.closest(this,'li[data-canView]'),'data-canView');
+			var oWrap = document.querySelector('.rew_mask');
+	    	
+	    	renderRew();
+	    	oWrap.style.display = "block";
+	    	changeOpacity(oWrap,100);
+		 	var id = this.getAttribute("data-id")
+		 	RewardPro(id);
+	})
+    function closeCurFrame(){
+    	var oWrap = document.querySelector('.rew_mask');
+    	changeOpacity(oWrap,0);
+    	setTimeout(function(){
+    		oWrap.style.display = "none"
+    	},500)
+    }
+    function renderRew(){
+    	 quakooData.ajaxSubmitDataNotProcess(config.getUrl_postType_getPostTypeListByType(), {type: 4}, function (ret, err) {
+            if (ret && ret.success) {
+                var data = {
+                    list: ret.data
+                };
+                var html = template('reward_1', data);
+                $api.html($api.dom('.popups-area'), html);
+                quakooData.ajaxSubmitDataNotProcess(config.getUrl_wallet_getMyWallet(), {}, function (ret, err) {
+                    if (ret && ret.success) {
+                        $api.text($api.dom('.user-money-total span'), ret.data.money);
+                        money = ret.data.money
+                    }
+                });
+                setTimeout(function(){
+                	
+                })
+            }
+        })
+    }
+    function RewardPro(cid) {
+        price = $api.val($api.dom('.atWill input'));
+        if (quakooUtils.isBlack(price)) {
+            quakooMsg.toast('请选择金额')
+            return;
+        }
+        var ajaxparams = {
+            type: 1,
+            objectId: cid,
+            money: price
+        }
+        quakooData.ajaxSubmitData(config.getUrl_model_rewardModelOrCircle(), ajaxparams, function (ret, err) {
+            if (ret && ret.success) {
+                quakooMsg.toast('打赏成功');
+                boughtDynamicRefreshDom(cid,price)
+                setTimeout(function () {
+                    closeCurFrame()
+                }, 300)
+            }
+        })
+    }
+	function checkSel(index, nub) {
+		quakooUtils.stopEventBubble()
+        var labs = $api.domAll('.rewards-ul li');
+        labs.forEach(function (item, i) {
+            if (index == i) {
+                if (!item.classList.contains('active')) {
+                    $api.addCls(item, 'active')
+                    $api.val($api.dom('.atWill input'), nub)
+                }
+            } else {
+                if (item.classList.contains('active')) {
+                    $api.removeCls(item, 'active')
+                }
+            }
+        })
+    }
+	 function clearStyle() {
+        var labs = $api.dom('.rewards-ul li.active');
+        if (quakooUtils.isNotBlack(labs)) {
+            $api.removeCls(labs, 'active')
+        }
+    }
+	 //打开充值窗口
+    function openRechargeWin() {
+        quakooApp.openNewWindow('recharge', '../mine/recharge.html', {})
+    }
+     //缓冲充值窗口
+	 function changeOpacity(oWrap,end){
+	 	var timer = 0;
+	 	clearInterval(timer);
+		var iSpeed = 0;
+	 	timer = setInterval(function(){
+			var current = parseFloat(getComputedStyle(oWrap,false)['opacity']);
+			current = Math.round(current * 100);
+			if(current > end){
+				iSpeed = -5;
+			}else{
+				iSpeed = 5;
+			}
+			if(Math.abs(end - current) < Math.abs(iSpeed)){
+				oWrap.style.opacity = 'end';
+				clearInterval(timer);
+			}else{
+				oWrap.style.opacity = (current + iSpeed)/100;
+			}
+			
+		},30)	
+	 }
+	// 动态购买成功刷新dom
+	function boughtDynamicRefreshDom(cid,reward) {
+		var parentLi = $api.dom('#dynamic'+cid);
+		if(quakooUtils.isNotBlack(parentLi)){
+			// 更新 动态是否 可查看详情
+			$api.attr(parentLi,'data-canView',1);
+			// 去掉图片模糊
+			$api.domAll(parentLi,'.overImg').forEach(function (item,index) {
+				$api.removeAttr(item,'class')
+			});
+			// 更新打赏金额
+			updateMoney(cid,reward)
+		}
+	}
+	 //更新打赏金额 已打赏人数
+    function updateMoney(cid,reward){
+        var parentLi = $api.dom('#dynamic'+cid);
+        if(quakooUtils.isNotBlack(parentLi)){
+            var totalReward = +$api.text($api.dom(parentLi,'#totalReward'+cid));
+            var _reward = +reward;
+            $api.html($api.dom(parentLi,'#totalReward'+cid),totalReward+_reward);
+
+            // 更新打赏人数
+            var curNumberDom = $api.dom(parentLi,'.notification span');
+            var curNumber = +$api.text(curNumberDom);
+            $api.text(curNumberDom,++curNumber);
+        }
+
+    }
+</script>
+</body>
+
+</html>
